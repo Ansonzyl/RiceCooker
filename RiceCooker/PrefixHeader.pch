@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  RiceCooker
+//
+//  Created by yi on 15-6-6.
+//  Copyright (c) 2015年 yi. All rights reserved.
+//
+
+#ifndef RiceCooker_PrefixHeader_pch
+#define RiceCooker_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "MBProgressHUD.h"
+#import "AFNetworking.h"
+//#define SERVER_URL @"localhost:8080/zyl1"
+#define SERVER_URL @"202.75.219.40:8080/zgz"
+//#define SERVER_URL @"beta.webgps.tk:8081/zgz"
+
+#endif
