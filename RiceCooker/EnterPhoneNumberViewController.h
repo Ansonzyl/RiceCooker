@@ -12,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *phoneImageView;
 @property (nonatomic, copy) NSString *identityStr;
+@property (strong, nonatomic) IBOutlet UIImageView *ohterImage;
 
 - (IBAction)getPhoneNumber:(id)sender;
 - (IBAction)tapback:(id)sender;

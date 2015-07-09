@@ -19,14 +19,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.phoneImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"phone.png" ofType:nil]];
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
-    self.navigationItem.leftBarButtonItem = button;
+//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
+//    self.navigationItem.leftBarButtonItem = button;
+    self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
     if ([self.identityStr isEqualToString:@"注册"]) {
-        self.title = self.identityStr;
+        self.title = @"注册";
         _urlStr = [NSString stringWithFormat:@"http://%@/RegisterPhonenumberServlet", SERVER_URL];
+        self.ohterImage.hidden = NO;
     }else if ([self.identityStr isEqualToString:@"忘记密码？"])
     {
-        self.title = @"忘记密码";
+        self.title = @"找回密码";
         _urlStr = [NSString stringWithFormat:@"http://%@/ForgetPassword", SERVER_URL];
     }
     
@@ -36,7 +38,7 @@
 
 - (void)exit:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,14 +57,32 @@
 */
 
 - (IBAction)getPhoneNumber:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
 //    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewController animated:YES];
 ////    
-    RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-    viewController.phoneNumber = self.phoneNumberTextField.text;
-    [self.navigationController pushViewController:viewController animated:YES];
+//    RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+//    viewController.phoneNumber = self.phoneNumberTextField.text;
+//    [self.navigationController pushViewController:viewController animated:YES];
+    
+    
+    if ([self.identityStr isEqualToString:@"忘记密码？"]) {
+                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
+            viewController.phoneNumber = self.phoneNumberTextField.text;
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+            }else if ([self.identityStr isEqualToString:@"注册"])
+    {
+        
+            RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+            viewController.phoneNumber = self.phoneNumberTextField.text;
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+                
+    }
+    
+
     
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 //    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text};

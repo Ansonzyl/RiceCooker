@@ -16,9 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.passwordImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"password.png" ofType:nil]];
-    self.nickNameImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"username.png" ofType:nil]];
-    self.verificationCodeImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"verification.png" ofType:nil]];
+    self.title = @"注册";
+    self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
+//    self.passwordImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"password.png" ofType:nil]];
+//    self.nickNameImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"username.png" ofType:nil]];
+//    self.verificationCodeImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"verification.png" ofType:nil]];
     self.iconImage.layer.cornerRadius = self.iconImage.frame.size.width/2;
     self.iconImage.layer.masksToBounds = YES;
 

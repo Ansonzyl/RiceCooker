@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "AddDeviceViewController.h"
+
 @interface MainViewController ()
 
 @end
@@ -19,17 +19,10 @@
     // Do any additional setup after loading the view.
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
     self.navigationItem.leftBarButtonItem = button;
-    //UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addDevice:)];
-    //self.navigationItem.rightBarButtonItem = add;
+
     
 }
 
-- (void)addDevice:(id)sender
-{
-    
-    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] init];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
 
 - (void)exit:(id)sender
 {

@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+
+//#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
 @interface AppDelegate ()
 
 @end
@@ -18,9 +22,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x40c8c4)];
+    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0xd7ffff)];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
+    
+//    [UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x40c8c4), NSForegroundColorAttributeName, [UIFont systemFontOfSize:18],nil];
+//
+
+    //将返回按钮的文字position设置不在屏幕上显示
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+    
+    
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-    self.window.rootViewController = loginViewController;
-     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    self.window.rootViewController = nav;
+   
+//    [[UINavigationBar appearance] setTranslucent:YES];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed: @"navigation_bar_background.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barBack.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    
     return YES;
 }
 

@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *phoneNumberImageView;
 @property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (strong, nonatomic) IBOutlet UIButton *login_button;
 
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *passwordImageView;

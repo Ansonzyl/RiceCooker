@@ -126,11 +126,12 @@
         self.blackOverlay = [[UIControl alloc] init];
         self.blackOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     }
-    self.blackOverlay.frame = containerView.bounds;
+//    self.blackOverlay.frame = containerView.bounds;
+    self.blackOverlay.frame = CGRectMake(0, 65, containerView.bounds.size.width, containerView.bounds.size.height);
     UIColor *maskColor;
     switch (self.maskType) {
         case DXPopoverMaskTypeBlack:
-            maskColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+            maskColor = [UIColor colorWithWhite:1 alpha:0.8];
             break;
         case DXPopoverMaskTypeNone:
             maskColor = [UIColor clearColor];

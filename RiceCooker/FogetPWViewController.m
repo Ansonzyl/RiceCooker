@@ -17,9 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.passwordImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"password.png" ofType:nil]];
-    self.repeatPWImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"password.png" ofType:nil]];
-    self.verificationImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"verification.png" ofType:nil]];
     self.title = @"重置密码";
     
 }

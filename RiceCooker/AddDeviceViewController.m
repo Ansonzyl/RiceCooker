@@ -2,26 +2,25 @@
 //  AddDeviceViewController.m
 //  RiceCooker
 //
-//  Created by yi on 15/6/14.
+//  Created by yi on 15/7/2.
 //  Copyright (c) 2015年 yi. All rights reserved.
 //
 
 #import "AddDeviceViewController.h"
 
 @interface AddDeviceViewController ()
-@property (nonatomic, strong) NSArray *array;
+
 @end
 
 @implementation AddDeviceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _array = [NSArray arrayWithObjects:@"e饭煲", @"e菜煲", nil];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view from its nib.
+//    UIBarButtonItem *exited = [[UIBarButtonItem alloc]initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
+//    UIBarButtonItem *exited = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:uibar target:self action:@selector(exit:)];
+//    self.navigationItem.leftBarButtonItem = exited;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,78 +28,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)exit:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    // Return the number of sections.
-    return 2;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    }else
-        return 2;
-    
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.textLabel.text = @"请选择您要链接的设备";
-        cell.textLabel.font = [UIFont systemFontOfSize:11];
-        return cell;
-    }else
-    {
-        static NSString *cellID = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        }
-            
-        return cell;
-    }
-    
-    
-    
-}
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
