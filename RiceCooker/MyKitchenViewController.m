@@ -26,10 +26,12 @@
 @property (nonatomic, strong) NSMutableArray *vegetableArray;
 @property (nonatomic, strong) UIBarButtonItem *addBuuton;
 @property (nonatomic, strong) UITableView *addTableView;
+
 @property (nonatomic, strong) DXPopover *popover;
 @property (nonatomic, strong) NSArray *config;
-@property (nonatomic, strong) UIView *overView;
 @property (nonatomic, strong) UIButton *addBtn;
+@property (nonatomic, strong) UIImage *addImage;
+@property (nonatomic, strong) UIImage *cancelImage;
 @end
 
 @implementation MyKitchenViewController
@@ -37,22 +39,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的厨房";
-//    _addBuuton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addDevice:)];
-   
-//    _addBuuton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-添加.png" ofType:nil]] style:UIBarButtonItemStylePlain target:self action:@selector(addDevice:)];
-//    _addBuuton.image = [UIImage imageNamed:@"icon-添加.png"];
-//     self.navigationItem.rightBarButtonItem = _addBuuton;
     
-//    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _addBtn.bounds = CGRectMake(0, 0, 23, 23);
+    _addImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-添加.png" ofType:nil]];
+    
     _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31, 31)];
-    [_addBtn setImage:[UIImage imageNamed:@"icon-添加.png"] forState:UIControlStateNormal];
+    [_addBtn setImage:_addImage forState:UIControlStateNormal];
     [_addBtn addTarget:self action:@selector(addDevice:) forControlEvents:UIControlEventTouchUpInside];
     
     _addBuuton = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
     self.navigationItem.rightBarButtonItem = _addBuuton;
     
-    
+   
     
     
     UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, AddCellHeight*2) style:UITableViewStylePlain];
@@ -207,12 +204,10 @@
 {
     if ([tableView isEqual:_addTableView]) {
 
-            AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
-            [self presentViewController:viewController animated:YES completion:^{
-                
-            }];
-//        }
+        AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
+        [self.popover dismiss];
+        [viewController setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:viewController animated:YES];
         
     }else
     {
@@ -248,22 +243,28 @@
 
 
 - (IBAction)addDevice:(id)sender {
-    
-    [self updateTableViewFrame];
-    UIView *leftView = _addBuuton.customView;
-//    CGPoint startPoint = CGPointMake(CGRectGetMidX(leftView.frame)+self.view.frame.size.width - 25, CGRectGetMidY(leftView.frame) + 55);
-//    NSLog(@"%@", self.tabBarController.view);
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(self.addBtn.frame) , CGRectGetMinY(self.addBtn.frame) + 50);
-  
-    
-    [self.popover showAtPoint:startPoint popoverPostion:DXPopoverPositionDown withContentView:self.addTableView inView:self.tabBarController.view];
-    [self.addBtn setImage:[UIImage imageNamed:@"icon-关闭.png"] forState:UIControlStateNormal];
-    self.title = @"添加设备";
-    __weak typeof (self)weakSelf = self;
-    self.popover.didDismissHandler = ^{
-        [weakSelf bounceTargetView:leftView];
-    };
+    NSLog(@"%@", _addBtn.imageView.image);
+    if ([_addBtn.imageView.image isEqual:_addImage]) {
+        NSLog(@"yes");
+        [self updateTableViewFrame];
+        UIView *leftView = _addBuuton.customView;
+        CGPoint startPoint = CGPointMake(CGRectGetMidX(self.addBtn.frame) , CGRectGetMinY(self.addBtn.frame) + 50);
+        
+        
+        [self.popover showAtPoint:startPoint popoverPostion:DXPopoverPositionDown withContentView:self.addTableView inView:self.tabBarController.view];
+        _cancelImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-关闭.png" ofType:nil]];
+        [self.addBtn setImage:_cancelImage forState:UIControlStateNormal];
+        self.title = @"添加设备";
+        __weak typeof (self)weakSelf = self;
+        self.popover.didDismissHandler = ^{
+            [weakSelf bounceTargetView:leftView];
+        };
 
+    }else if([_addBtn.imageView.image isEqual:_cancelImage])
+    {
+        [self.popover dismiss];
+    }
+    
 }
 
 - (void)updateTableViewFrame
@@ -278,7 +279,8 @@
     targetView.transform = CGAffineTransformMakeScale(0.9, 0.9);
     [UIView animateWithDuration:0.5 delay:3 usingSpringWithDamping:0.3 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         targetView.transform = CGAffineTransformIdentity;
-        [_addBtn setImage:[UIImage imageNamed:@"icon-添加.png"] forState:UIControlStateNormal];
+        
+        [_addBtn setImage:_addImage forState:UIControlStateNormal];
         self.title = @"我的厨房";
 
     } completion:nil];

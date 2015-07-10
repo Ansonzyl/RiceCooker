@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface EnterPhoneNumberViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
-@property (strong, nonatomic) IBOutlet UIImageView *phoneImageView;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *phoneImageView;
 @property (nonatomic, copy) NSString *identityStr;
-@property (strong, nonatomic) IBOutlet UIImageView *ohterImage;
+@property (weak, nonatomic) IBOutlet UIImageView *ohterImage;
+@property (weak, nonatomic) IBOutlet UIButton *getBtutton;
 
 - (IBAction)getPhoneNumber:(id)sender;
 - (IBAction)tapback:(id)sender;

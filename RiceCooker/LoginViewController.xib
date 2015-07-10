@@ -12,6 +12,7 @@
                 <outlet property="passwordTextField" destination="tGy-lX-TBO" id="L1f-vo-Ohg"/>
                 <outlet property="phoneNumberImageView" destination="iVg-PM-oVg" id="qWV-dI-llU"/>
                 <outlet property="phoneNumberTextField" destination="QhW-JN-3dF" id="FOf-gR-uM5"/>
+                <outlet property="topCons" destination="hCF-Ji-ztU" id="yw6-F6-TD1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -118,19 +119,19 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo-dicooker.png" translatesAutoresizingMaskIntoConstraints="NO" id="IEN-XN-8Wu">
                     <rect key="frame" x="182" y="21" width="51" height="65"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="65" id="ble-0U-Cfe"/>
                         <constraint firstAttribute="width" secondItem="IEN-XN-8Wu" secondAttribute="height" multiplier="51:65" id="dFa-ry-gXD"/>
-                        <constraint firstAttribute="width" constant="51" id="dtP-6E-vS6"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="ble-0U-Cfe"/>
                             <exclude reference="dFa-ry-gXD"/>
-                            <exclude reference="dtP-6E-vS6"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular">
                         <mask key="constraints">
+                            <include reference="ble-0U-Cfe"/>
                             <include reference="dFa-ry-gXD"/>
-                            <include reference="dtP-6E-vS6"/>
                         </mask>
                     </variation>
                 </imageView>
@@ -140,6 +141,7 @@
                 <constraint firstItem="gFU-qp-eHP" firstAttribute="leading" secondItem="XhN-lp-ES0" secondAttribute="leading" id="6Z7-Pr-kwZ"/>
                 <constraint firstItem="QhW-JN-3dF" firstAttribute="leading" secondItem="iVg-PM-oVg" secondAttribute="leading" constant="40" id="6pQ-9Q-PGA"/>
                 <constraint firstItem="QhW-JN-3dF" firstAttribute="trailing" secondItem="iVg-PM-oVg" secondAttribute="trailing" constant="-49" id="7oe-yb-Ehf"/>
+                <constraint firstItem="IEN-XN-8Wu" firstAttribute="centerX" secondItem="iVg-PM-oVg" secondAttribute="centerX" id="9v1-D6-f9y"/>
                 <constraint firstItem="eOV-PH-iEX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Aiy-Iq-HJP"/>
                 <constraint firstAttribute="trailing" secondItem="ubf-10-GKK" secondAttribute="trailing" constant="14" id="DId-YZ-nmY"/>
                 <constraint firstItem="eOV-PH-iEX" firstAttribute="top" secondItem="gFU-qp-eHP" secondAttribute="bottom" constant="77" id="Ezz-b4-rjS"/>
@@ -153,13 +155,12 @@
                 <constraint firstItem="ubf-10-GKK" firstAttribute="top" secondItem="iVg-PM-oVg" secondAttribute="bottom" constant="14" id="UAv-9P-fC5"/>
                 <constraint firstItem="QhW-JN-3dF" firstAttribute="height" secondItem="iVg-PM-oVg" secondAttribute="height" id="ULQ-Ic-qEv"/>
                 <constraint firstAttribute="trailing" secondItem="o50-1P-prI" secondAttribute="trailing" constant="14" id="WSe-D9-9Nw"/>
-                <constraint firstAttribute="centerY" secondItem="gFU-qp-eHP" secondAttribute="centerY" id="X5V-Xi-8aG"/>
                 <constraint firstItem="tGy-lX-TBO" firstAttribute="leading" secondItem="ubf-10-GKK" secondAttribute="leading" constant="40" id="Z7s-gu-8ZX"/>
                 <constraint firstAttribute="trailing" secondItem="eOV-PH-iEX" secondAttribute="trailing" constant="14" id="ZgH-Qe-LXo"/>
                 <constraint firstItem="iVg-PM-oVg" firstAttribute="top" secondItem="IEN-XN-8Wu" secondAttribute="bottom" constant="36" id="bSE-Np-AZa"/>
-                <constraint firstAttribute="centerX" secondItem="IEN-XN-8Wu" secondAttribute="centerX" id="bbz-Zx-0tv"/>
                 <constraint firstItem="ubf-10-GKK" firstAttribute="height" secondItem="iVg-PM-oVg" secondAttribute="height" id="ei2-8q-cq9"/>
                 <constraint firstItem="iVg-PM-oVg" firstAttribute="height" secondItem="gFU-qp-eHP" secondAttribute="height" id="fAG-AC-m34"/>
+                <constraint firstItem="IEN-XN-8Wu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="hCF-Ji-ztU"/>
                 <constraint firstItem="gFU-qp-eHP" firstAttribute="top" secondItem="ubf-10-GKK" secondAttribute="bottom" constant="14" id="hWd-2i-ze2"/>
                 <constraint firstItem="iVg-PM-oVg" firstAttribute="width" secondItem="gFU-qp-eHP" secondAttribute="width" id="ldL-qD-F6D"/>
                 <constraint firstItem="gFU-qp-eHP" firstAttribute="trailing" secondItem="ubf-10-GKK" secondAttribute="trailing" id="meL-ls-Vbm"/>
@@ -185,7 +186,8 @@
                     <exclude reference="7oe-yb-Ehf"/>
                     <exclude reference="GNX-DZ-jRW"/>
                     <exclude reference="ULQ-Ic-qEv"/>
-                    <exclude reference="bbz-Zx-0tv"/>
+                    <exclude reference="9v1-D6-f9y"/>
+                    <exclude reference="hCF-Ji-ztU"/>
                     <exclude reference="ei2-8q-cq9"/>
                     <exclude reference="wzc-ap-osQ"/>
                     <exclude reference="QvG-sg-esO"/>
@@ -197,7 +199,6 @@
                     <exclude reference="WSe-D9-9Nw"/>
                     <exclude reference="pTo-FP-1d7"/>
                     <exclude reference="6Z7-Pr-kwZ"/>
-                    <exclude reference="X5V-Xi-8aG"/>
                     <exclude reference="hWd-2i-ze2"/>
                     <exclude reference="meL-ls-Vbm"/>
                 </mask>
@@ -218,7 +219,8 @@
                     <include reference="7oe-yb-Ehf"/>
                     <include reference="GNX-DZ-jRW"/>
                     <include reference="ULQ-Ic-qEv"/>
-                    <include reference="bbz-Zx-0tv"/>
+                    <include reference="9v1-D6-f9y"/>
+                    <include reference="hCF-Ji-ztU"/>
                     <include reference="ei2-8q-cq9"/>
                     <include reference="wzc-ap-osQ"/>
                     <include reference="QvG-sg-esO"/>
@@ -230,7 +232,6 @@
                     <include reference="WSe-D9-9Nw"/>
                     <include reference="pTo-FP-1d7"/>
                     <include reference="6Z7-Pr-kwZ"/>
-                    <include reference="X5V-Xi-8aG"/>
                     <include reference="hWd-2i-ze2"/>
                     <include reference="meL-ls-Vbm"/>
                 </mask>

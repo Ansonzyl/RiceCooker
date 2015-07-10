@@ -259,14 +259,14 @@
         [UIView animateWithDuration:self.animationOut delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
             self.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
         } completion:^(BOOL finished) {
-            if (finished) {
+//            if (finished) {
                 [self.contentView removeFromSuperview];
                 [self.blackOverlay removeFromSuperview];
                 [self removeFromSuperview];
                 if (self.didDismissHandler) {
                     self.didDismissHandler();
                 }
-            }
+//            }
         }];
     }
 }

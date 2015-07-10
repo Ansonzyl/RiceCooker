@@ -9,7 +9,7 @@
 #import "EnterPhoneNumberViewController.h"
 #import "FogetPWViewController.h"
 #import "RegisterViewController.h"
-@interface EnterPhoneNumberViewController ()
+@interface EnterPhoneNumberViewController () <UITextFieldDelegate>
 @property (nonatomic, copy) NSString *urlStr;
 @end
 
@@ -17,11 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.getBtutton.layer.cornerRadius = 2;
     // Do any additional setup after loading the view from its nib.
     self.phoneImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"phone.png" ofType:nil]];
 //    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
 //    self.navigationItem.leftBarButtonItem = button;
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
+    self.phoneNumberTextField.delegate = self;
     if ([self.identityStr isEqualToString:@"注册"]) {
         self.title = @"注册";
         _urlStr = [NSString stringWithFormat:@"http://%@/RegisterPhonenumberServlet", SERVER_URL];
@@ -34,7 +36,15 @@
     
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _phoneImageView.highlighted = YES;
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _phoneImageView.highlighted = NO;
+}
 
 - (void)exit:(id)sender
 {
@@ -120,6 +130,9 @@
 //    }];
     
 }
+
+
+
 
 - (IBAction)tapback:(id)sender {
     [self.view endEditing:YES];

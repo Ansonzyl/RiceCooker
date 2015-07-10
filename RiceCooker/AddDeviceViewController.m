@@ -7,8 +7,12 @@
 //
 
 #import "AddDeviceViewController.h"
+#import "EasyLinkViewController.h"
+
 
 @interface AddDeviceViewController ()
+- (IBAction)exit:(id)sender;
+
 
 @end
 
@@ -16,10 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//    UIBarButtonItem *exited = [[UIBarButtonItem alloc]initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
-//    UIBarButtonItem *exited = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:uibar target:self action:@selector(exit:)];
-//    self.navigationItem.leftBarButtonItem = exited;
+    self.title = @"添加设备";
+    if (_isAdd) {
+        _leftButton.hidden = YES;
+        _rightButton.hidden = YES;
+    }
+
 
 }
 
@@ -28,13 +34,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)exit:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-
+- (IBAction)PushEasyLink:(id)sender {
+    EasyLinkViewController *viewController = [[EasyLinkViewController alloc] initWithNibName:@"EasyLinkViewController" bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
+
 
 /*
 #pragma mark - Navigation
@@ -46,4 +50,9 @@
 }
 */
 
+- (IBAction)exit:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 @end

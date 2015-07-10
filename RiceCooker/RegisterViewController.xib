@@ -12,6 +12,7 @@
                 <outlet property="nickNameTextField" destination="jMo-Gr-tmt" id="2wh-PN-WbP"/>
                 <outlet property="passwordImage" destination="eJF-NO-fmj" id="I0Y-kU-40n"/>
                 <outlet property="passwordTextField" destination="z2M-B7-7jv" id="C2s-bD-CYf"/>
+                <outlet property="register_button" destination="ebv-iN-1mQ" id="sHX-E9-ZgJ"/>
                 <outlet property="verificationBtn" destination="BWz-Qc-xQW" id="FX7-Aw-vBJ"/>
                 <outlet property="verificationCodeImage" destination="lef-Zt-qVa" id="Izj-N8-r4L"/>
                 <outlet property="verificationTextField" destination="fso-RW-38s" id="nhc-EA-7KT"/>
@@ -24,22 +25,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="验证码.png" highlightedImage="验证码输入后.png" translatesAutoresizingMaskIntoConstraints="NO" id="lef-Zt-qVa">
-                    <rect key="frame" x="13" y="197" width="219" height="57"/>
+                    <rect key="frame" x="13" y="133" width="219" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="lef-Zt-qVa" secondAttribute="height" multiplier="73:19" id="lPt-GL-dW3"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="password.png" highlightedImage="password输入后.png" translatesAutoresizingMaskIntoConstraints="NO" id="eJF-NO-fmj">
-                    <rect key="frame" x="13" y="268" width="385" height="57"/>
+                    <rect key="frame" x="13" y="204" width="385" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eJF-NO-fmj" secondAttribute="height" multiplier="385:57" id="gu8-ah-4tu"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="nickname.png" highlightedImage="nickname输入后.png" translatesAutoresizingMaskIntoConstraints="NO" id="bmA-P6-F0f">
-                    <rect key="frame" x="13" y="339" width="385" height="57"/>
+                    <rect key="frame" x="13" y="275" width="385" height="57"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWz-Qc-xQW">
-                    <rect key="frame" x="247" y="197" width="151" height="57"/>
+                    <rect key="frame" x="247" y="133" width="151" height="57"/>
                     <color key="backgroundColor" red="0.15294117647058825" green="0.63137254901960782" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="BWz-Qc-xQW" secondAttribute="height" multiplier="151:57" id="0ji-BH-DUl"/>
@@ -53,8 +54,50 @@
                         <action selector="regain:" destination="-1" eventType="touchUpInside" id="QaV-oT-HHc"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="470" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebv-iN-1mQ">
-                    <rect key="frame" x="13" y="410" width="385" height="57"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-上传头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="F6C-IK-3Yf">
+                    <rect key="frame" x="176" y="17" width="62" height="62"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="62" id="7qO-Sr-Gwe"/>
+                        <constraint firstAttribute="width" secondItem="F6C-IK-3Yf" secondAttribute="height" multiplier="1:1" id="rh0-LD-lTZ"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rW-5w-9fj">
+                    <rect key="frame" x="177" y="87" width="60" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="上传头像">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="uploadImage:" destination="-1" eventType="touchUpInside" id="mUE-CM-eii"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2M-B7-7jv">
+                    <rect key="frame" x="55" y="204" width="273" height="57"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="z2M-B7-7jv" secondAttribute="height" multiplier="91:19" id="y71-dg-8PC"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jMo-Gr-tmt">
+                    <rect key="frame" x="55" y="275" width="273" height="57"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fso-RW-38s">
+                    <rect key="frame" x="55" y="133" width="172" height="57"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fso-RW-38s" secondAttribute="height" multiplier="172:57" id="AhD-zP-EAs"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="470" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebv-iN-1mQ">
+                    <rect key="frame" x="13" y="346" width="385" height="57"/>
                     <color key="backgroundColor" red="0.15294117647058825" green="0.63137254901960782" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,53 +109,10 @@
                         <action selector="upload:" destination="-1" eventType="touchUpInside" id="ODd-8A-Exj"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-上传头像.png" translatesAutoresizingMaskIntoConstraints="NO" id="F6C-IK-3Yf">
-                    <rect key="frame" x="176" y="81" width="62" height="62"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="62" id="7qO-Sr-Gwe"/>
-                        <constraint firstAttribute="width" secondItem="F6C-IK-3Yf" secondAttribute="height" multiplier="1:1" id="rh0-LD-lTZ"/>
-                    </constraints>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rW-5w-9fj">
-                    <rect key="frame" x="177" y="151" width="60" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="上传头像">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="uploadImage:" destination="-1" eventType="touchUpInside" id="mUE-CM-eii"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2M-B7-7jv">
-                    <rect key="frame" x="55" y="268" width="273" height="57"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="z2M-B7-7jv" secondAttribute="height" multiplier="91:19" id="y71-dg-8PC"/>
-                    </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jMo-Gr-tmt">
-                    <rect key="frame" x="55" y="339" width="273" height="57"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fso-RW-38s">
-                    <rect key="frame" x="55" y="197" width="172" height="57"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="fso-RW-38s" secondAttribute="height" multiplier="172:57" id="AhD-zP-EAs"/>
-                    </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
             </subviews>
             <color key="backgroundColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="bmA-P6-F0f" secondAttribute="trailing" constant="16" id="1Sq-Oc-5NJ"/>
-                <constraint firstAttribute="centerY" secondItem="bmA-P6-F0f" secondAttribute="centerY" id="3kF-Mg-XfL"/>
                 <constraint firstItem="lef-Zt-qVa" firstAttribute="height" secondItem="eJF-NO-fmj" secondAttribute="height" id="4fa-uL-dCg"/>
                 <constraint firstItem="BWz-Qc-xQW" firstAttribute="top" secondItem="lef-Zt-qVa" secondAttribute="top" id="74Q-eu-W0O"/>
                 <constraint firstItem="eJF-NO-fmj" firstAttribute="top" secondItem="z2M-B7-7jv" secondAttribute="top" id="7lf-Ze-Xtp"/>
@@ -133,6 +133,7 @@
                 <constraint firstItem="bmA-P6-F0f" firstAttribute="top" secondItem="jMo-Gr-tmt" secondAttribute="top" id="WJ1-KG-ZUg"/>
                 <constraint firstAttribute="centerX" secondItem="6rW-5w-9fj" secondAttribute="centerX" id="WUb-x3-EdN"/>
                 <constraint firstItem="fso-RW-38s" firstAttribute="height" secondItem="lef-Zt-qVa" secondAttribute="height" id="au2-EX-UKy"/>
+                <constraint firstItem="F6C-IK-3Yf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="bkm-E2-nW2"/>
                 <constraint firstItem="z2M-B7-7jv" firstAttribute="height" secondItem="jMo-Gr-tmt" secondAttribute="height" id="cuM-ea-Gr7"/>
                 <constraint firstItem="ebv-iN-1mQ" firstAttribute="width" secondItem="bmA-P6-F0f" secondAttribute="width" id="g1I-hg-Tt3"/>
                 <constraint firstItem="eJF-NO-fmj" firstAttribute="leading" secondItem="z2M-B7-7jv" secondAttribute="leading" constant="-42" id="hdX-PJ-bDT"/>

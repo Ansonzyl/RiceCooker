@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 
-@interface RegisterViewController ()
+@interface RegisterViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @end
 
@@ -18,11 +18,13 @@
     [super viewDidLoad];
     self.title = @"注册";
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
-//    self.passwordImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"password.png" ofType:nil]];
-//    self.nickNameImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"username.png" ofType:nil]];
-//    self.verificationCodeImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"verification.png" ofType:nil]];
     self.iconImage.layer.cornerRadius = self.iconImage.frame.size.width/2;
     self.iconImage.layer.masksToBounds = YES;
+    self.verificationBtn.layer.cornerRadius = 2;
+    self.register_button.layer.cornerRadius = 2;
+    self.verificationTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.nickNameTextField.delegate = self;
 
 }
 
@@ -103,4 +105,27 @@
  }];
     
 }
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.verificationTextField]) {
+        self.verificationCodeImage.highlighted = YES;
+    }else if ([textField isEqual:self.passwordTextField])
+    {
+        self.passwordImage.highlighted = YES;
+    }else if([textField isEqual:self.nickNameTextField])
+    {
+        self.nickNameImage.highlighted = YES;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.verificationCodeImage.highlighted = NO;
+    self.passwordImage.highlighted = NO;
+    self.nickNameImage.highlighted = NO;
+}
+
+
 @end

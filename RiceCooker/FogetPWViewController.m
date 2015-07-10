@@ -8,7 +8,7 @@
 
 #import "FogetPWViewController.h"
 
-@interface FogetPWViewController ()<UIAlertViewDelegate>
+@interface FogetPWViewController ()<UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @end
 
@@ -18,6 +18,11 @@
     [super viewDidLoad];
     
     self.title = @"重置密码";
+    self.passwordTextField.delegate = self;
+    self.verificationCodeTextField.delegate = self;
+    self.repeatPWTextField.delegate = self;
+    self.verificationCodeBtn.layer.cornerRadius = 2;
+    self.upload_button.layer.cornerRadius = 2;
     
 }
 
@@ -129,6 +134,26 @@
             
         }];
     }
+}
+
+#pragma mark -UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.verificationCodeTextField]) {
+        self.verificationImageView.highlighted = YES;
+    }else if ([textField isEqual:self.passwordTextField]){
+        self.passwordImageView.highlighted = YES;
+    }else if ([textField isEqual:self.repeatPWTextField])
+    {
+        self.repeatPWImage.highlighted = YES;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.verificationImageView.highlighted = NO;
+    self.passwordImageView.highlighted = NO;
+    self.repeatPWImage.highlighted = NO;
 }
 
 @end

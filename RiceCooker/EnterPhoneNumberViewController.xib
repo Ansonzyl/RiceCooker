@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterPhoneNumberViewController">
             <connections>
+                <outlet property="getBtutton" destination="5SB-yB-cbh" id="E1l-iX-Osd"/>
                 <outlet property="ohterImage" destination="lnM-XG-dWr" id="dLb-xF-Bvi"/>
                 <outlet property="phoneImageView" destination="9RN-Sr-JlC" id="fJy-cC-cRe"/>
                 <outlet property="phoneNumberTextField" destination="IqY-hj-JME" id="fCS-oM-iWT"/>
@@ -18,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="9RN-Sr-JlC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="phone.png" highlightedImage="phone输入后.png" translatesAutoresizingMaskIntoConstraints="NO" id="9RN-Sr-JlC">
                     <rect key="frame" x="15" y="45" width="385" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9RN-Sr-JlC" secondAttribute="height" multiplier="385:57" id="L8O-WB-NXK"/>
@@ -86,5 +87,6 @@
     <resources>
         <image name="other.png" width="1158" height="283"/>
         <image name="phone.png" width="1154" height="172"/>
+        <image name="phone输入后.png" width="1154" height="172"/>
     </resources>
 </document>

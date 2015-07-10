@@ -41,14 +41,10 @@
 		1931E5821B4677820035B21B /* navigation_bar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5811B4677820035B21B /* navigation_bar_background.png */; };
 		1931E5851B46A5500035B21B /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5841B46A5500035B21B /* Cell.xib */; };
 		1931E5881B46AE700035B21B /* AddDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931E5871B46AE700035B21B /* AddDeviceCell.m */; };
-		1931E5951B46B1C60035B21B /* 短分割.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58A1B46B1C60035B21B /* 短分割.png */; };
 		1931E5961B46B1C60035B21B /* 右半按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58B1B46B1C60035B21B /* 右半按钮.png */; };
-		1931E5971B46B1C60035B21B /* 长分割.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58C1B46B1C60035B21B /* 长分割.png */; };
 		1931E5981B46B1C60035B21B /* 左半按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58D1B46B1C60035B21B /* 左半按钮.png */; };
 		1931E5991B46B1C60035B21B /* icon-关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58E1B46B1C60035B21B /* icon-关闭.png */; };
 		1931E59A1B46B1C60035B21B /* icon-添加.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E58F1B46B1C60035B21B /* icon-添加.png */; };
-		1931E59B1B46B1C60035B21B /* icon-网络.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5901B46B1C60035B21B /* icon-网络.png */; };
-		1931E59C1B46B1C60035B21B /* icon-网络输入后.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5911B46B1C60035B21B /* icon-网络输入后.png */; };
 		1931E59D1B46B1C60035B21B /* icon-e菜宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5921B46B1C60035B21B /* icon-e菜宝.png */; };
 		1931E59E1B46B1C60035B21B /* icon-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5931B46B1C60035B21B /* icon-e饭宝.png */; };
 		1931E59F1B46B1C60035B21B /* pic-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5941B46B1C60035B21B /* pic-e饭宝.png */; };
@@ -67,7 +63,12 @@
 		196B3FDE1B1DCF3B00AD77E9 /* RiceCookerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B3FDD1B1DCF3B00AD77E9 /* RiceCookerTests.m */; };
 		196B3FEA1B1DD0F200AD77E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B3FE81B1DD0F200AD77E9 /* LoginViewController.m */; };
 		196B3FEB1B1DD0F200AD77E9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196B3FE91B1DD0F200AD77E9 /* LoginViewController.xib */; };
+		198D431A1B4FB7DD00D703B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */; };
 		199C72391B3FC196005BFC89 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 199C72381B3FC196005BFC89 /* DXPopover.m */; };
+		19A019C61B4EA777005405C4 /* EasyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A019C41B4EA777005405C4 /* EasyLinkViewController.m */; };
+		19A019C71B4EA777005405C4 /* EasyLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A019C51B4EA777005405C4 /* EasyLinkViewController.xib */; };
+		19A019CA1B4EA8A7005405C4 /* wlan.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A019C81B4EA8A7005405C4 /* wlan.png */; };
+		19A019CB1B4EA8A7005405C4 /* wlan输入后.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A019C91B4EA8A7005405C4 /* wlan输入后.png */; };
 		19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B4053D1B45202E000E1941 /* AddDeviceViewController.m */; };
 		19B405401B45202E000E1941 /* AddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */; };
 		19C1F73A1B26C92400C59704 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C1F7391B26C92400C59704 /* MainViewController.m */; };
@@ -123,14 +124,10 @@
 		1931E5841B46A5500035B21B /* Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
 		1931E5861B46AE700035B21B /* AddDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceCell.h; sourceTree = "<group>"; };
 		1931E5871B46AE700035B21B /* AddDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceCell.m; sourceTree = "<group>"; };
-		1931E58A1B46B1C60035B21B /* 短分割.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "短分割.png"; sourceTree = "<group>"; };
 		1931E58B1B46B1C60035B21B /* 右半按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右半按钮.png"; sourceTree = "<group>"; };
-		1931E58C1B46B1C60035B21B /* 长分割.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长分割.png"; sourceTree = "<group>"; };
 		1931E58D1B46B1C60035B21B /* 左半按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "左半按钮.png"; sourceTree = "<group>"; };
 		1931E58E1B46B1C60035B21B /* icon-关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-关闭.png"; sourceTree = "<group>"; };
 		1931E58F1B46B1C60035B21B /* icon-添加.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-添加.png"; sourceTree = "<group>"; };
-		1931E5901B46B1C60035B21B /* icon-网络.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-网络.png"; sourceTree = "<group>"; };
-		1931E5911B46B1C60035B21B /* icon-网络输入后.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-网络输入后.png"; sourceTree = "<group>"; };
 		1931E5921B46B1C60035B21B /* icon-e菜宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e菜宝.png"; sourceTree = "<group>"; };
 		1931E5931B46B1C60035B21B /* icon-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e饭宝.png"; sourceTree = "<group>"; };
 		1931E5941B46B1C60035B21B /* pic-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic-e饭宝.png"; sourceTree = "<group>"; };
@@ -160,8 +157,14 @@
 		196B3FE71B1DD0F200AD77E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		196B3FE81B1DD0F200AD77E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		196B3FE91B1DD0F200AD77E9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		199C72381B3FC196005BFC89 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
 		199C723A1B3FC19C005BFC89 /* DXPopover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
+		19A019C31B4EA777005405C4 /* EasyLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLinkViewController.h; sourceTree = "<group>"; };
+		19A019C41B4EA777005405C4 /* EasyLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLinkViewController.m; sourceTree = "<group>"; };
+		19A019C51B4EA777005405C4 /* EasyLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EasyLinkViewController.xib; sourceTree = "<group>"; };
+		19A019C81B4EA8A7005405C4 /* wlan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wlan.png; sourceTree = "<group>"; };
+		19A019C91B4EA8A7005405C4 /* wlan输入后.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wlan输入后.png"; sourceTree = "<group>"; };
 		19B4053C1B45202E000E1941 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
 		19B4053D1B45202E000E1941 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDeviceViewController.xib; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198D431A1B4FB7DD00D703B7 /* SystemConfiguration.framework in Frameworks */,
 				B03C1D92BD109150AA1EB068 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,14 +263,12 @@
 		1931E5891B46B1B50035B21B /* addDevice */ = {
 			isa = PBXGroup;
 			children = (
-				1931E58A1B46B1C60035B21B /* 短分割.png */,
+				19A019C81B4EA8A7005405C4 /* wlan.png */,
+				19A019C91B4EA8A7005405C4 /* wlan输入后.png */,
 				1931E58B1B46B1C60035B21B /* 右半按钮.png */,
-				1931E58C1B46B1C60035B21B /* 长分割.png */,
 				1931E58D1B46B1C60035B21B /* 左半按钮.png */,
 				1931E58E1B46B1C60035B21B /* icon-关闭.png */,
 				1931E58F1B46B1C60035B21B /* icon-添加.png */,
-				1931E5901B46B1C60035B21B /* icon-网络.png */,
-				1931E5911B46B1C60035B21B /* icon-网络输入后.png */,
 				1931E5921B46B1C60035B21B /* icon-e菜宝.png */,
 				1931E5931B46B1C60035B21B /* icon-e饭宝.png */,
 				1931E5941B46B1C60035B21B /* pic-e饭宝.png */,
@@ -381,6 +383,9 @@
 				19B4053C1B45202E000E1941 /* AddDeviceViewController.h */,
 				19B4053D1B45202E000E1941 /* AddDeviceViewController.m */,
 				19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */,
+				19A019C31B4EA777005405C4 /* EasyLinkViewController.h */,
+				19A019C41B4EA777005405C4 /* EasyLinkViewController.m */,
+				19A019C51B4EA777005405C4 /* EasyLinkViewController.xib */,
 			);
 			name = MyKitchen;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 		9A417AAA793B798ED35B753F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */,
 				9084F8633FA07B0862F06D8C /* libPods.a */,
 			);
 			name = Frameworks;
@@ -502,7 +508,6 @@
 				1931E5821B4677820035B21B /* navigation_bar_background.png in Resources */,
 				1931E5981B46B1C60035B21B /* 左半按钮.png in Resources */,
 				1931E59F1B46B1C60035B21B /* pic-e饭宝.png in Resources */,
-				1931E5951B46B1C60035B21B /* 短分割.png in Resources */,
 				194A89A71B26AEFD000E27F8 /* FogetPWViewController.xib in Resources */,
 				190F1BD01B4D0990001DC34E /* password输入后.png in Resources */,
 				1931E59A1B46B1C60035B21B /* icon-添加.png in Resources */,
@@ -520,24 +525,24 @@
 				190F1BB71B4CD8B6001DC34E /* 获验证码按钮.png in Resources */,
 				190F1BB81B4CD8B6001DC34E /* 上弹窗背景.png in Resources */,
 				190F1BD61B4D3F58001DC34E /* 验证码.png in Resources */,
+				19A019CA1B4EA8A7005405C4 /* wlan.png in Resources */,
 				190F1BBA1B4CD8B6001DC34E /* 长输入框.png in Resources */,
 				1931E5851B46A5500035B21B /* Cell.xib in Resources */,
 				194A89A21B26AEEA000E27F8 /* RegisterViewController.xib in Resources */,
 				190F1BCA1B4CD8B6001DC34E /* logo-dicooker.png in Resources */,
-				1931E59B1B46B1C60035B21B /* icon-网络.png in Resources */,
 				190F1BDA1B4D407B001DC34E /* nickname.png in Resources */,
 				190F1BC61B4CD8B6001DC34E /* icon-微博.png in Resources */,
 				190F1BD91B4D407B001DC34E /* nickname输入后.png in Resources */,
 				190F1BC21B4CD8B6001DC34E /* icon-上传头像.png in Resources */,
 				190F1BC71B4CD8B6001DC34E /* icon-微信.png in Resources */,
+				19A019CB1B4EA8A7005405C4 /* wlan输入后.png in Resources */,
 				196B3FEB1B1DD0F200AD77E9 /* LoginViewController.xib in Resources */,
 				190F1BBB1B4CD8B6001DC34E /* 长输入框输入后.png in Resources */,
 				190F1BD21B4D0994001DC34E /* password.png in Resources */,
-				1931E59C1B46B1C60035B21B /* icon-网络输入后.png in Resources */,
 				190F1BC41B4CD8B6001DC34E /* icon-手机输入后.png in Resources */,
 				190F1B9D1B4CD7F8001DC34E /* barBack.png in Resources */,
+				19A019C71B4EA777005405C4 /* EasyLinkViewController.xib in Resources */,
 				196B3FCF1B1DCF3B00AD77E9 /* Images.xcassets in Resources */,
-				1931E5971B46B1C60035B21B /* 长分割.png in Resources */,
 				195B5E951B3ED6A600838C55 /* ERiceViewController.xib in Resources */,
 				1931E59D1B46B1C60035B21B /* icon-e菜宝.png in Resources */,
 				1931E59E1B46B1C60035B21B /* icon-e饭宝.png in Resources */,
@@ -597,6 +602,7 @@
 			files = (
 				190F1BE11B4D5FCD001DC34E /* UIViewController+TopBarMessage.m in Sources */,
 				196B3FCA1B1DCF3B00AD77E9 /* ViewController.m in Sources */,
+				19A019C61B4EA777005405C4 /* EasyLinkViewController.m in Sources */,
 				194A89A11B26AEEA000E27F8 /* RegisterViewController.m in Sources */,
 				1931E5881B46AE700035B21B /* AddDeviceCell.m in Sources */,
 				194A89A61B26AEFD000E27F8 /* FogetPWViewController.m in Sources */,

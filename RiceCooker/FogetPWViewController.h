@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *verificationImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *passwordImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *repeatPWImage;
+@property (strong, nonatomic) IBOutlet UIButton *upload_button;
 
 @property (nonatomic, copy) NSString *phoneNumber;
 

@@ -40,6 +40,8 @@
 //    [[UINavigationBar appearance] setTranslucent:YES];
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed: @"navigation_bar_background.png"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barBack.png"] forBarMetrics:UIBarMetricsDefault];
+   
+//    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"barBack.png"]];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     
     return YES;

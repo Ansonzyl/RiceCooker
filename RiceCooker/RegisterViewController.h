@@ -11,17 +11,18 @@
 @interface RegisterViewController : UIViewController
 @property (nonatomic, copy) NSString *phoneNumber;
 
-@property (strong, nonatomic) IBOutlet UIImageView *verificationCodeImage;
-@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet UIImageView *verificationCodeImage;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
-@property (strong, nonatomic) IBOutlet UITextField *verificationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *verificationTextField;
 
-@property (strong, nonatomic) IBOutlet UIButton *verificationBtn;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UIImageView *passwordImage;
+@property (weak, nonatomic) IBOutlet UIButton *verificationBtn;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordImage;
 
-@property (strong, nonatomic) IBOutlet UITextField *nickNameTextField;
-@property (strong, nonatomic) IBOutlet UIImageView *nickNameImage;
+@property (weak, nonatomic) IBOutlet UITextField *nickNameTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *nickNameImage;
+@property (weak, nonatomic) IBOutlet UIButton *register_button;
 
 - (IBAction)tapback:(id)sender;
 - (IBAction)regain:(id)sender;

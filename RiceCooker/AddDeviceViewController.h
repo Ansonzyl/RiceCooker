@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface AddDeviceViewController : UIViewController
+@property (nonatomic, assign) BOOL isAdd;
+@property (strong, nonatomic) IBOutlet UIButton *rightButton;
+@property (strong, nonatomic) IBOutlet UIButton *leftButton;
+@property (strong, nonatomic) IBOutlet UIButton *startButton;
 
 @end

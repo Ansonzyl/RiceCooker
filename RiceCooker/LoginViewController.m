@@ -14,6 +14,7 @@
     BOOL isPassWord;
     BOOL isPhoneNumber;
 }
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topCons;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 @end
 
@@ -23,6 +24,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"登录";
+    if (self.view.frame.size.height == 480) {
+        _topCons.constant = 5;
+    }
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
     self.phoneNumberTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -61,8 +65,7 @@
         NSLog(@"%@", recieve);
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([recieve isEqualToString:@"fail"]) {
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录错误" message:@"用户名或者密码错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alertView show];
+
             [self showTopMessage:@"用户名或密码错误"];
 
             
@@ -106,7 +109,7 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-
+#pragma mark -UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if ([textField isEqual:self.phoneNumberTextField]) {
