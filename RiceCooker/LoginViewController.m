@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "EnterPhoneNumberViewController.h"
 #import "MainViewController.h"
+#import <sys/utsname.h>
 @interface LoginViewController () <UITextFieldDelegate>
 {
     BOOL isPassWord;
@@ -24,9 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"登录";
-    if (self.view.frame.size.height == 480) {
-        _topCons.constant = 5;
-    }
+    
+//    if () {
+//        _topCons.constant = 0;
+//    }
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
     self.phoneNumberTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -46,11 +48,11 @@
 
 - (IBAction)loginBtn:(id)sender {
     
+//    [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
 //    UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//    //            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:main];
+//    
 //    [self presentViewController:main animated:YES completion:nil];
-    
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -62,7 +64,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", recieve);
+        
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([recieve isEqualToString:@"fail"]) {
 
@@ -74,7 +76,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
             UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:main];
+
             [self presentViewController:main animated:YES completion:nil];
         }
         

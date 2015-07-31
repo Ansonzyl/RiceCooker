@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddShareViewController">
+            <connections>
+                <outlet property="iconImage" destination="QeT-VG-edR" id="UPP-1b-qja"/>
+                <outlet property="nameLabel" destination="9le-4B-hO2" id="rAa-0X-mgx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="470" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5r-3t-Yol">
+                    <rect key="frame" x="15" y="425" width="385" height="57"/>
+                    <color key="backgroundColor" red="0.16862745098039217" green="0.69019607843137254" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="确定分享">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjS-wc-JlH">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-e菜宝下188.png" translatesAutoresizingMaskIntoConstraints="NO" id="QeT-VG-edR">
+                            <rect key="frame" x="176" y="90" width="63" height="63"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="QeT-VG-edR" secondAttribute="height" multiplier="1:1" id="atV-EC-bsZ"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快来分享设备，和家人一起享受智能厨房生活吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGH-3U-EVv">
+                            <rect key="frame" x="0.0" y="167" width="414" height="88"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="xGH-3U-EVv" secondAttribute="height" multiplier="207:44" id="snC-jA-fmk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjs-1d-nRX">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="E78-I2-0C2"/>
+                                <constraint firstAttribute="width" secondItem="bjs-1d-nRX" secondAttribute="height" multiplier="414:89" id="sLj-R9-XRd"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="E78-I2-0C2"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9le-4B-hO2">
+                            <rect key="frame" x="0.0" y="154" width="414" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="9le-4B-hO2" secondAttribute="height" multiplier="46:3" id="tiI-3e-y1d"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16862745098039217" green="0.69019607843137254" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9le-4B-hO2" secondAttribute="trailing" id="1JG-Bg-5XL"/>
+                        <constraint firstItem="xGH-3U-EVv" firstAttribute="top" secondItem="9le-4B-hO2" secondAttribute="bottom" constant="-14" id="2xa-i6-49k"/>
+                        <constraint firstItem="QeT-VG-edR" firstAttribute="top" secondItem="bjs-1d-nRX" secondAttribute="bottom" constant="1" id="5qx-FP-9Zu"/>
+                        <constraint firstAttribute="centerX" secondItem="QeT-VG-edR" secondAttribute="centerX" id="HRI-9L-zC3"/>
+                        <constraint firstAttribute="bottom" secondItem="xGH-3U-EVv" secondAttribute="bottom" id="LGK-ed-FNp"/>
+                        <constraint firstAttribute="height" constant="255" id="Rmp-8A-r7n"/>
+                        <constraint firstAttribute="trailing" secondItem="bjs-1d-nRX" secondAttribute="trailing" id="XP2-cG-LPi"/>
+                        <constraint firstItem="xGH-3U-EVv" firstAttribute="leading" secondItem="CjS-wc-JlH" secondAttribute="leading" id="ZmF-YS-Mhd"/>
+                        <constraint firstAttribute="trailing" secondItem="xGH-3U-EVv" secondAttribute="trailing" id="fZ7-Ve-4Pb"/>
+                        <constraint firstItem="bjs-1d-nRX" firstAttribute="top" secondItem="CjS-wc-JlH" secondAttribute="top" id="gB8-mH-mYL"/>
+                        <constraint firstItem="bjs-1d-nRX" firstAttribute="leading" secondItem="CjS-wc-JlH" secondAttribute="leading" id="hgq-kv-dcL"/>
+                        <constraint firstItem="9le-4B-hO2" firstAttribute="leading" secondItem="CjS-wc-JlH" secondAttribute="leading" id="rOe-xL-uFy"/>
+                        <constraint firstItem="9le-4B-hO2" firstAttribute="top" secondItem="QeT-VG-edR" secondAttribute="bottom" constant="1" id="vMl-FJ-dTb"/>
+                        <constraint firstAttribute="width" secondItem="CjS-wc-JlH" secondAttribute="height" multiplier="138:85" id="yqc-i2-PYi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CjS-wc-JlH" secondAttribute="trailing" id="9Qo-L1-Rdc"/>
+                <constraint firstItem="CjS-wc-JlH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LjB-C8-Qva"/>
+                <constraint firstItem="CjS-wc-JlH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vxj-IO-dH4"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-e菜宝下188.png" width="188" height="188"/>
+    </resources>
+</document>

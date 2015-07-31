@@ -10,9 +10,11 @@
 #import "DXPopover.h"
 #import "AddDeviceViewController.h"
 #import "ERiceViewController.h"
+#import "EriceCell.h"
+
 #define TYPE 2
-#define kRice 1
-#define kVegetable 2
+#define kRice 0
+#define kVegetable 1
 #import "AddDeviceCell.h"
 #define AddCellHeight 58
 
@@ -65,8 +67,6 @@
     [self resetPopover];
     _config = [NSArray arrayWithObjects:@"e饭宝", @"e菜宝", nil];
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
-    _recieveArray = [NSMutableArray array];
-    _vegetableArray = [[NSMutableArray alloc] init];
     
 }
 
@@ -81,7 +81,11 @@
     popoverWidth = CGRectGetWidth(self.view.bounds);
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self JSONWithURL];
+}
 
 - (void)JSONWithURL
 {
@@ -89,6 +93,9 @@
     NSDictionary *parameters = @{@"phonenumber": _phoneNumber};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"http://%@/HomePage", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",operation);
+        _recieveArray = [NSMutableArray array];
+        _vegetableArray = [[NSMutableArray alloc] init];
         _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         for (int i = 0; i<_recieveArray.count; i++) {
             if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
@@ -116,7 +123,7 @@
         return 1;
     }else if ([tableView isEqual:_tableView])
     {
-        return TYPE + 1;
+        return TYPE;
     }else
             return 0;
 }
@@ -130,14 +137,12 @@
     }else
     {
     switch (section) {
+        
         case 0:
-            return 1;
-            break;
-        case 1:
 //            return _riceArray.count;
             return 2;
             break;
-        case 2:
+        case 1:
             return _vegetableArray.count;
             break;
         default:
@@ -170,21 +175,19 @@
         }
     }else
     {
-        static NSString *riceID = @"reiceID";
+        
         static NSString *vegetableID = @"vegetableID";
-        if (indexPath.section == 0) {
-            cell = [[UITableViewCell alloc] init];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = @"welcome";
-            
-        }else if(indexPath.section == kRice)
+        if(indexPath.section == kRice)
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:riceID];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:riceID];
-                cell.textLabel.text = @"e饭宝";
-            }
+//            cell = [tableView dequeueReusableCellWithIdentifier:riceID];
+//            if (cell == nil) {
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:riceID];
+//                cell.textLabel.text = @"e饭宝";
+//            }
+//            return cell;
+            EriceCell *cell = [EriceCell ericeCell];
             return cell;
+            
 
         }else if (indexPath.section == kVegetable)
         {
@@ -230,13 +233,9 @@
         return AddCellHeight;
         
     }else
-        return 44;
+        return 137;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 20;
-//}
 
 
 
