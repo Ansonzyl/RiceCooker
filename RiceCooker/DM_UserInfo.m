@@ -15,4 +15,9 @@
     [dm_userInfo setValuesForKeysWithDictionary:dic];
     return dm_userInfo;
 }
+
+
+
+
+
 @end

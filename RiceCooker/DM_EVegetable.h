@@ -15,11 +15,14 @@
 @property (nonatomic, copy) NSString *settime;//
 @property (nonatomic, copy) NSString *module;//
 @property (nonatomic, copy) NSString *phonenumber;//
-@property (nonatomic, copy) NSString *remaintime;
+
 @property (nonatomic, copy) NSString *state;//
 @property (nonatomic, copy) NSString *degree;//
 @property (nonatomic, copy) NSString *pnumberweight;//
 @property (nonatomic, copy) NSString *finishtime;//
 @property (nonatomic, copy) NSString *UUID;//
+
+@property (nonatomic, assign) NSInteger remianTime;
+@property (nonatomic, assign) NSInteger settingTime;
 + (DM_EVegetable *)eVegetableWithDict:(NSDictionary *)dict;
 @end

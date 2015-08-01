@@ -10,19 +10,34 @@
 
 @implementation EriceCell
 
++(NSString *)cellID
+{
+    return @"riceCell";
+}
+
+- (void)awakeFromNib {
+    // Initialization code
+    [super awakeFromNib];
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+}
+
+
 + (id)ericeCell
 {
     return [[NSBundle mainBundle] loadNibNamed:@"homeCell" owner:nil options:nil][0];
 }
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)setRiceCell:(DM_ERiceCell *)riceCell
+{
+    _riceCell = riceCell;
+    _stateLabel.text = riceCell.state;
+    self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", riceCell.pnumberweight];
+    self.moduleLable.text = riceCell.module;
+    self.degreeLabel.text = riceCell.degree;
+    self.finishTime.text = [NSString stringWithFormat:@"%@完成", riceCell.finishtime];
+    [self.progressView setProgress:riceCell.remianTime/riceCell.settingTime];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 @end

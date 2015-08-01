@@ -1,36 +1,26 @@
 //
-//  DM_EVegetable.m
+//  DM_ERiceCell.m
 //  RCooker
 //
-//  Created by yi on 15-5-30.
+//  Created by yi on 15-5-29.
 //  Copyright (c) 2015年 yi. All rights reserved.
 //
 
-#import "DM_EVegetable.h"
+#import "DM_ERiceCell.h"
 
-@implementation DM_EVegetable
-+ (DM_EVegetable *)eVegetableWithDict:(NSDictionary *)dict
+@implementation DM_ERiceCell
++ (DM_ERiceCell *)eRiceWithDict:(NSDictionary *)dict
 {
-    DM_EVegetable *cell = [[self alloc] init];
+    DM_ERiceCell *cell = [[self alloc] init];
     [cell setValuesForKeysWithDictionary:dict];
-
+//    [cell finishTime];
     [cell remianTimeWithFinishTime:cell.finishtime withSetTime:cell.settime];
     return cell;
 }
 
-//- (void)finishTime
-//{
-//    NSTimeInterval remain = [_remaintime intValue]*60;
-//    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:remain];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"HH:mm"];
-//    self.finishtime = [formatter stringFromDate:date];
-//    
-//}
-
 - (void)remianTimeWithFinishTime:(NSString *)finishTime withSetTime:(NSString *)setTime
 {
-   
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     NSDate *finish = [formatter dateFromString:finishTime];

@@ -11,6 +11,9 @@
 #import "AddDeviceViewController.h"
 #import "ERiceViewController.h"
 #import "EriceCell.h"
+#import "DM_ERiceCell.h"
+#import "DM_EVegetable.h"
+#import "EVegetabelCell1.h"
 
 #define TYPE 2
 #define kRice 0
@@ -61,6 +64,7 @@
     blueView.delegate = self;
     self.addTableView = blueView;
 //    self.addTableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
@@ -89,15 +93,18 @@
 
 - (void)JSONWithURL
 {
+    _riceArray = [[NSMutableArray alloc] init];
+    _vegetableArray = [[NSMutableArray alloc] init];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"phonenumber": _phoneNumber};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"http://%@/HomePage", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation);
-        _recieveArray = [NSMutableArray array];
-        _vegetableArray = [[NSMutableArray alloc] init];
+
         _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         for (int i = 0; i<_recieveArray.count; i++) {
+            NSLog(@"%@",_recieveArray);
             if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
                 [_riceArray addObject:_recieveArray[i]];
             }else if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e菜宝"])
@@ -139,8 +146,8 @@
     switch (section) {
         
         case 0:
-//            return _riceArray.count;
-            return 2;
+            return _riceArray.count;
+            
             break;
         case 1:
             return _vegetableArray.count;
@@ -155,9 +162,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   UITableViewCell *cell = nil;
-    
     
     if ([tableView isEqual:_addTableView]) {
         
@@ -176,29 +180,40 @@
     }else
     {
         
-        static NSString *vegetableID = @"vegetableID";
         if(indexPath.section == kRice)
         {
-//            cell = [tableView dequeueReusableCellWithIdentifier:riceID];
-//            if (cell == nil) {
-//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:riceID];
-//                cell.textLabel.text = @"e饭宝";
-//            }
-//            return cell;
-            EriceCell *cell = [EriceCell ericeCell];
+            EriceCell *cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
+            if (cell == nil) {
+                cell = [EriceCell ericeCell];
+            }
+            DM_ERiceCell *riceCell = [DM_ERiceCell eRiceWithDict:_riceArray[indexPath.row]];
+            cell.riceCell = riceCell;
             return cell;
             
 
-        }else if (indexPath.section == kVegetable)
+        }else //if (indexPath.section == kVegetable)
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:vegetableID];
+            DM_EVegetable *vegetable = [DM_EVegetable eVegetableWithDict:_vegetableArray[indexPath.row]];
+            EVegetabelCell1 *cell = [tableView dequeueReusableCellWithIdentifier:[EVegetabelCell1 cellID]];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] init];
-                cell.textLabel.text = @"e菜宝";
+                cell = [EVegetabelCell1 eVegetableCell];
             }
+            cell.vegetable = vegetable;
+            if ([vegetable.devicename isEqualToString:@"e菜宝上"]) {
+                cell.vegetable = vegetable;
+            }else if([vegetable.devicename isEqualToString:@"e菜宝中"])
+            {
+                cell.vegetable2 = vegetable;
+            }else
+                cell.vegetable3 = vegetable;
+            
+            
+            return cell;
         }
-    }
-    return cell;
+        
+    }return nil;
+    
+    
 }
 
 
@@ -209,6 +224,8 @@
 
         AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
         [self.popover dismiss];
+        viewController.device = _config[indexPath.row];
+        viewController.phoneNumber = self.phoneNumber;
         [viewController setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:viewController animated:YES];
         
@@ -248,7 +265,6 @@
         [self updateTableViewFrame];
         UIView *leftView = _addBuuton.customView;
         CGPoint startPoint = CGPointMake(CGRectGetMidX(self.addBtn.frame) , CGRectGetMinY(self.addBtn.frame) + 50);
-        
         
         [self.popover showAtPoint:startPoint popoverPostion:DXPopoverPositionDown withContentView:self.addTableView inView:self.tabBarController.view];
         _cancelImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-关闭.png" ofType:nil]];

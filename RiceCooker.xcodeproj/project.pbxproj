@@ -38,6 +38,7 @@
 		190F1BE51B4D65A9001DC34E /* other.png in Resources */ = {isa = PBXBuildFile; fileRef = 190F1BE41B4D65A9001DC34E /* other.png */; };
 		1917BD7F1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1917BD7D1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m */; };
 		1917BD801B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1917BD7E1B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib */; };
+		1927F5FB1B6CDC5F00DECD44 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */; };
 		1931E5821B4677820035B21B /* navigation_bar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5811B4677820035B21B /* navigation_bar_background.png */; };
 		1931E5851B46A5500035B21B /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5841B46A5500035B21B /* Cell.xib */; };
 		1931E5881B46AE700035B21B /* AddDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931E5871B46AE700035B21B /* AddDeviceCell.m */; };
@@ -48,6 +49,8 @@
 		1931E59D1B46B1C60035B21B /* icon-e菜宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5921B46B1C60035B21B /* icon-e菜宝.png */; };
 		1931E59E1B46B1C60035B21B /* icon-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5931B46B1C60035B21B /* icon-e饭宝.png */; };
 		1931E59F1B46B1C60035B21B /* pic-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5941B46B1C60035B21B /* pic-e饭宝.png */; };
+		1941D44D1B6C9ED500FEF48D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941D44C1B6C9ED500FEF48D /* Reachability.m */; };
+		1941D4541B6CB59600FEF48D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941D4531B6CB59600FEF48D /* CoreGraphics.framework */; };
 		194A89A11B26AEEA000E27F8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194A899F1B26AEEA000E27F8 /* RegisterViewController.m */; };
 		194A89A21B26AEEA000E27F8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194A89A01B26AEEA000E27F8 /* RegisterViewController.xib */; };
 		194A89A61B26AEFD000E27F8 /* FogetPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194A89A41B26AEFD000E27F8 /* FogetPWViewController.m */; };
@@ -179,6 +182,7 @@
 		1985995B1B69041300ECAEF4 /* DM_ShareDevices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1985995A1B69041300ECAEF4 /* DM_ShareDevices.m */; };
 		198A0B9C1B6B1514009EE795 /* EVegetabelCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A0B9B1B6B1514009EE795 /* EVegetabelCell1.m */; };
 		198A0BA21B6B157A009EE795 /* DM_EVegetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A0BA11B6B157A009EE795 /* DM_EVegetable.m */; };
+		198A0BA51B6B581A009EE795 /* DM_ERiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A0BA41B6B581A009EE795 /* DM_ERiceCell.m */; };
 		198D431A1B4FB7DD00D703B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */; };
 		199C72391B3FC196005BFC89 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 199C72381B3FC196005BFC89 /* DXPopover.m */; };
 		19A019C61B4EA777005405C4 /* EasyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A019C41B4EA777005405C4 /* EasyLinkViewController.m */; };
@@ -236,6 +240,8 @@
 		1917BD7C1B257E0A00C8FA17 /* EnterPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterPhoneNumberViewController.h; sourceTree = "<group>"; };
 		1917BD7D1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterPhoneNumberViewController.m; sourceTree = "<group>"; };
 		1917BD7E1B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterPhoneNumberViewController.xib; sourceTree = "<group>"; };
+		1927F5F91B6CDC5F00DECD44 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		1931E5811B4677820035B21B /* navigation_bar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_bar_background.png; sourceTree = "<group>"; };
 		1931E5841B46A5500035B21B /* Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
 		1931E5861B46AE700035B21B /* AddDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceCell.h; sourceTree = "<group>"; };
@@ -247,6 +253,9 @@
 		1931E5921B46B1C60035B21B /* icon-e菜宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e菜宝.png"; sourceTree = "<group>"; };
 		1931E5931B46B1C60035B21B /* icon-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e饭宝.png"; sourceTree = "<group>"; };
 		1931E5941B46B1C60035B21B /* pic-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic-e饭宝.png"; sourceTree = "<group>"; };
+		1941D44B1B6C9ED500FEF48D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1941D44C1B6C9ED500FEF48D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1941D4531B6CB59600FEF48D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		194A899E1B26AEEA000E27F8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		194A899F1B26AEEA000E27F8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		194A89A01B26AEEA000E27F8 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -404,6 +413,8 @@
 		198A0B9B1B6B1514009EE795 /* EVegetabelCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVegetabelCell1.m; sourceTree = "<group>"; };
 		198A0BA01B6B1571009EE795 /* DM_EVegetable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DM_EVegetable.h; sourceTree = "<group>"; };
 		198A0BA11B6B157A009EE795 /* DM_EVegetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_EVegetable.m; sourceTree = "<group>"; };
+		198A0BA31B6B581A009EE795 /* DM_ERiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DM_ERiceCell.h; sourceTree = "<group>"; };
+		198A0BA41B6B581A009EE795 /* DM_ERiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_ERiceCell.m; sourceTree = "<group>"; };
 		198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		199C72381B3FC196005BFC89 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
 		199C723A1B3FC19C005BFC89 /* DXPopover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
@@ -429,6 +440,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1941D4541B6CB59600FEF48D /* CoreGraphics.framework in Frameworks */,
 				198D431A1B4FB7DD00D703B7 /* SystemConfiguration.framework in Frameworks */,
 				B03C1D92BD109150AA1EB068 /* libPods.a in Frameworks */,
 			);
@@ -682,6 +694,10 @@
 		196B3FC11B1DCF3B00AD77E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1927F5F91B6CDC5F00DECD44 /* ProgressView.h */,
+				1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */,
+				1941D44B1B6C9ED500FEF48D /* Reachability.h */,
+				1941D44C1B6C9ED500FEF48D /* Reachability.m */,
 				19E217EF1B4BB4C4001808B9 /* resource */,
 				196B3F471B22C88B00287B79 /* image */,
 				196B3FC21B1DCF3B00AD77E9 /* Info.plist */,
@@ -749,6 +765,8 @@
 		197630721B6200B6002EFB77 /* DataMode */ = {
 			isa = PBXGroup;
 			children = (
+				198A0BA31B6B581A009EE795 /* DM_ERiceCell.h */,
+				198A0BA41B6B581A009EE795 /* DM_ERiceCell.m */,
 				198A0BA01B6B1571009EE795 /* DM_EVegetable.h */,
 				198A0BA11B6B157A009EE795 /* DM_EVegetable.m */,
 				198599591B69040D00ECAEF4 /* DM_ShareDevices.h */,
@@ -814,6 +832,7 @@
 		9A417AAA793B798ED35B753F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1941D4531B6CB59600FEF48D /* CoreGraphics.framework */,
 				198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */,
 				9084F8633FA07B0862F06D8C /* libPods.a */,
 			);
@@ -1125,17 +1144,20 @@
 				19F619B61B26F1D000F69610 /* MyKitchenViewController.m in Sources */,
 				197998961B6600720061CB28 /* BasicCell.m in Sources */,
 				199C72391B3FC196005BFC89 /* DXPopover.m in Sources */,
+				198A0BA51B6B581A009EE795 /* DM_ERiceCell.m in Sources */,
 				197998991B6629200061CB28 /* DM_MyDevices.m in Sources */,
 				19C1F73A1B26C92400C59704 /* MainViewController.m in Sources */,
 				1979989C1B6673E50061CB28 /* DM_UserInfo.m in Sources */,
 				196B3FC71B1DCF3B00AD77E9 /* AppDelegate.m in Sources */,
 				198599581B68A88000ECAEF4 /* EriceCell.m in Sources */,
+				1927F5FB1B6CDC5F00DECD44 /* ProgressView.m in Sources */,
 				1959F27E1B673D4800829160 /* ShareDeviceViewController.m in Sources */,
 				1917BD7F1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m in Sources */,
 				195D50B31B611DBC009ACEB4 /* UserInfoCell.m in Sources */,
 				19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */,
 				196B3FEA1B1DD0F200AD77E9 /* LoginViewController.m in Sources */,
 				195D50B01B60E0FC009ACEB4 /* UserInfoViewController.m in Sources */,
+				1941D44D1B6C9ED500FEF48D /* Reachability.m in Sources */,
 				196B3FC41B1DCF3B00AD77E9 /* main.m in Sources */,
 				198A0B9C1B6B1514009EE795 /* EVegetabelCell1.m in Sources */,
 				1959F2851B67463D00829160 /* AddShareViewController.m in Sources */,

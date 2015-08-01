@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
 - (IBAction)tapBack:(id)sender;
 - (IBAction)pushNextView:(id)sender;
+- (IBAction)backStep:(id)sender;
 
 @end
 
@@ -105,6 +106,10 @@
     viewController.isAdd = YES;
     [self.navigationController pushViewController:viewController animated:YES];
 
+}
+
+- (IBAction)backStep:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)restart

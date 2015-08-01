@@ -7,9 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDeviceViewController">
             <connections>
-                <outlet property="leftButton" destination="Kt6-ON-Pph" id="MKF-qi-vB5"/>
+                <outlet property="leftButton" destination="Kt6-ON-Pph" id="pLS-zk-1hB"/>
                 <outlet property="rightButton" destination="GQa-S1-Pnd" id="oZU-6u-kQM"/>
-                <outlet property="startButton" destination="5cf-jU-QED" id="8xD-1o-fHd"/>
+                <outlet property="startButton" destination="5cf-jU-QED" id="xoa-Cg-B9f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,12 +33,11 @@
                         <constraint firstAttribute="width" secondItem="Z2r-kk-LBr" secondAttribute="height" multiplier="35:52" id="0cm-37-VjQ"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQa-S1-Pnd">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQa-S1-Pnd">
                     <rect key="frame" x="207" y="418" width="192" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="GQa-S1-Pnd" secondAttribute="height" multiplier="64:19" id="uGD-ft-r6s"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="是" backgroundImage="右半按钮.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,12 +46,11 @@
                         <action selector="PushEasyLink:" destination="-1" eventType="touchUpInside" id="qAl-uB-jLU"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt6-ON-Pph">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt6-ON-Pph">
                     <rect key="frame" x="14" y="418" width="192" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kt6-ON-Pph" secondAttribute="height" multiplier="64:19" id="MrE-Cu-3zl"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="否" backgroundImage="左半按钮.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,8 +64,11 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="开始体验">
-                        <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="startStep:" destination="-1" eventType="touchUpInside" id="Hk6-c2-tdS"/>
+                    </connections>
                 </button>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVk-k1-Nyc">
                     <rect key="frame" x="0.0" y="220" width="139" height="57"/>

@@ -2,8 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,16 +22,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="烹饪中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgp-m1-X8B">
-                        <rect key="frame" x="110" y="57" width="60" height="21"/>
+                        <rect key="frame" x="110" y="57" width="94" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BOF-qS-tiE">
                         <rect key="frame" x="110" y="115" width="280" height="2"/>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.45882352941176469" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.83137254901960778" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="progressTintColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.16862745100000001" green="0.45882352939999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     </progressView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-TY-ow6">
-                        <rect key="frame" x="110" y="86" width="81" height="21"/>
+                        <rect key="frame" x="110" y="86" width="188" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,12 +43,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-米量.png" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-ez-xiO">
                         <rect key="frame" x="266" y="27" width="25" height="25"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-e饭宝-烹饪方式.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-RE-2KB">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-烹饪方式.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-RE-2KB">
                         <rect key="frame" x="312" y="27" width="25" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="Qiy-RE-2KB" secondAttribute="height" multiplier="1:1" id="YbM-RW-LOt"/>
-                            <constraint firstAttribute="height" constant="25" id="zqN-6E-f0x"/>
-                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-口感.png" translatesAutoresizingMaskIntoConstraints="NO" id="3VD-nM-tFX">
                         <rect key="frame" x="358" y="27" width="25" height="25"/>
@@ -69,23 +67,18 @@
                         <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-BR-YOD">
-                        <rect key="frame" x="259" y="0.0" width="124" height="27"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="kRx-BR-YOD" secondAttribute="height" multiplier="124:27" id="ibQ-QA-awE"/>
-                        </constraints>
-                    </view>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="kRx-BR-YOD" firstAttribute="leading" secondItem="bYU-3x-YkB" secondAttribute="leadingMargin" constant="251" id="4CV-4y-rHG"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="kRx-BR-YOD" secondAttribute="trailing" constant="23" id="TtT-LY-Ids"/>
-                    <constraint firstItem="Qiy-RE-2KB" firstAttribute="top" secondItem="kRx-BR-YOD" secondAttribute="bottom" id="ceo-Fr-roH"/>
-                    <constraint firstItem="kRx-BR-YOD" firstAttribute="centerX" secondItem="Qiy-RE-2KB" secondAttribute="centerX" constant="-3.5" id="gmF-BM-BvE"/>
-                    <constraint firstItem="kRx-BR-YOD" firstAttribute="top" secondItem="bYU-3x-YkB" secondAttribute="topMargin" constant="-8" id="x7e-ch-1n0"/>
-                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.29803921568627451" green="0.59607843137254901" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="degreeLabel" destination="UHq-cY-ONW" id="wyr-FD-6GO"/>
+                <outlet property="finishTime" destination="Ws2-TY-ow6" id="jhr-NS-M8b"/>
+                <outlet property="iconImage" destination="dg0-U2-ekv" id="mUB-cI-CGr"/>
+                <outlet property="moduleLable" destination="Sgp-m1-X8B" id="rk5-gX-AuL"/>
+                <outlet property="pNumberLabel" destination="Vwg-Z3-EMT" id="g5P-Dp-8XO"/>
+                <outlet property="progressView" destination="BOF-qS-tiE" id="5YH-kE-VCT"/>
+                <outlet property="stateLabel" destination="sxM-sp-MdP" id="Ql9-H3-1l8"/>
+            </connections>
             <point key="canvasLocation" x="360" y="150.5"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="vegetableCell_first" id="7r2-23-jCl" customClass="EVegetabelCell1">
@@ -111,6 +104,8 @@
                     </label>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NG2-BP-hYd">
                         <rect key="frame" x="110" y="115" width="280" height="2"/>
+                        <color key="progressTintColor" red="0.81176470588235294" green="0.92549019607843142" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.16862745098039217" green="0.27058823529411763" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     </progressView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xA-wC-tef">
                         <rect key="frame" x="110" y="86" width="164" height="21"/>
@@ -122,7 +117,7 @@
                         <rect key="frame" x="249" y="27" width="25" height="25"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝上-食材.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZhO-tW-zgL">
-                        <rect key="frame" x="293" y="27" width="25" height="25"/>
+                        <rect key="frame" x="291" y="27" width="25" height="25"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝上-重量.png" translatesAutoresizingMaskIntoConstraints="NO" id="ggx-mf-TSk">
                         <rect key="frame" x="332" y="27" width="25" height="25"/>
@@ -143,13 +138,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="青菜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-7o-EpR">
-                        <rect key="frame" x="286" y="60" width="39" height="18"/>
+                        <rect key="frame" x="284" y="59" width="39" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lql-oE-5Xj">
-                        <rect key="frame" x="323" y="59" width="43" height="18"/>
+                        <rect key="frame" x="318" y="59" width="53" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -157,149 +152,111 @@
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.28235294117647058" green="0.45098039215686275" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="degreeImageView" destination="H0J-mS-DgL" id="qDU-5w-Jbb"/>
+                <outlet property="degreeLabel" destination="q1o-o6-n2U" id="BvX-Kg-2zj"/>
+                <outlet property="device" destination="tOY-zG-PJk" id="4W9-NY-ydb"/>
+                <outlet property="finishTime" destination="8xA-wC-tef" id="GSM-gy-SOf"/>
+                <outlet property="iconImage" destination="DBk-8l-SxP" id="74a-XG-Zgf"/>
+                <outlet property="materialImageView" destination="ZhO-tW-zgL" id="xG4-oz-a3R"/>
+                <outlet property="moduleLable" destination="07R-v1-W0w" id="37V-EK-Ncj"/>
+                <outlet property="pNumberLabel" destination="lql-oE-5Xj" id="fGe-4b-JrI"/>
+                <outlet property="progressView" destination="NG2-BP-hYd" id="WFF-cB-cZS"/>
+                <outlet property="setTimeImageView" destination="GsP-LH-sxe" id="j5o-fq-vDv"/>
+                <outlet property="settimeLabel" destination="BR0-dN-ACB" id="p4U-j2-eg0"/>
+                <outlet property="stateLabel" destination="Nlr-7o-EpR" id="kiI-Jx-6e4"/>
+                <outlet property="weightImageView" destination="ggx-mf-TSk" id="tUb-8o-4Wf"/>
+            </connections>
             <point key="canvasLocation" x="360" y="339.5"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="vegetableCell_second" id="wj5-yb-0by">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="riceCell" id="Hfv-Yr-FP2" customClass="EriceCell">
             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wj5-yb-0by" id="csR-ez-6HV">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hfv-Yr-FP2" id="yrt-gF-RMI">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝中（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="b7s-iP-C7y">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝未连接（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="6nf-KT-R8E">
                         <rect key="frame" x="26" y="36" width="63" height="63"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="e菜宝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n54-lt-KM2">
-                        <rect key="frame" x="110" y="29" width="60" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="e饭宝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO5-Sh-dDh">
+                        <rect key="frame" x="110" y="29" width="60" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                        <color key="textColor" red="0.81960784313725488" green="0.81568627450980391" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="烹饪中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlu-7U-dVj">
-                        <rect key="frame" x="110" y="57" width="60" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未连接" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sI-gS-BWE">
+                        <rect key="frame" x="110" y="57" width="94" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WLr-ye-8ML">
-                        <rect key="frame" x="110" y="115" width="280" height="2"/>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tcW-KD-MTT">
+                        <rect key="frame" x="115" y="104" width="280" height="2"/>
+                        <color key="backgroundColor" red="0.16862745100000001" green="0.45882352939999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="progressTintColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.16862745100000001" green="0.45882352939999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     </progressView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-Qe-9xQ">
-                        <rect key="frame" x="110" y="86" width="164" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝中-烹饪方式.png" translatesAutoresizingMaskIntoConstraints="NO" id="t2i-Q9-LoJ">
-                        <rect key="frame" x="249" y="27" width="25" height="25"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝中-重量.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xco-Lx-bcy">
-                        <rect key="frame" x="332" y="27" width="25" height="25"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝中-烹饪时长.png" translatesAutoresizingMaskIntoConstraints="NO" id="mk9-w9-M5e">
-                        <rect key="frame" x="374" y="26" width="25" height="25"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="美味蒸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5d-Jn-2Cn">
-                        <rect key="frame" x="242" y="60" width="39" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfN-bo-X6L">
-                        <rect key="frame" x="323" y="59" width="43" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGU-ew-hsQ">
-                        <rect key="frame" x="362" y="59" width="52" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="青菜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t33-1t-zgt">
-                        <rect key="frame" x="286" y="60" width="39" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.81960784310000001" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝中-食材.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Ae-YT-YUG">
-                        <rect key="frame" x="293" y="27" width="25" height="25"/>
-                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-cb-aM3">
+                        <rect key="frame" x="337" y="29" width="46" height="30"/>
+                        <state key="normal" title="连接">
+                            <color key="titleColor" red="0.81176470590000005" green="0.92549019610000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" red="0.81176470588235294" green="0.92549019607843142" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.29411764705882354" green="0.3529411764705882" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="365" y="528.5"/>
+            <color key="backgroundColor" red="0.29803921570000003" green="0.59607843140000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="iconImage" destination="6nf-KT-R8E" id="rpn-qa-N6k"/>
+                <outlet property="moduleLable" destination="5sI-gS-BWE" id="9Rw-aN-lWT"/>
+                <outlet property="progressView" destination="tcW-KD-MTT" id="YXf-dK-ukO"/>
+            </connections>
+            <point key="canvasLocation" x="360" y="533.5"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="vegetableCell_third" id="XXf-9Q-Ttn">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="vegetableCell_first" id="d4t-XT-rYm" customClass="EVegetabelCell1">
             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXf-9Q-Ttn" id="GPO-Oa-ftt">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4t-XT-rYm" id="d9q-Ny-Deb">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝下（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="xOM-ET-x1K">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝上未连接（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-ai-k7v">
                         <rect key="frame" x="26" y="36" width="63" height="63"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="e菜宝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MK-PZ-2qT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="e菜宝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zb-OF-IYF">
                         <rect key="frame" x="110" y="29" width="60" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                        <color key="textColor" red="0.9137254901960784" green="0.81568627450980391" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.81176470590000005" green="0.92549019610000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="烹饪中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzN-gb-P53">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未连接" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEe-5S-Mby">
                         <rect key="frame" x="110" y="57" width="60" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.81176470590000005" green="0.92549019610000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vQy-UV-tIW">
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IgM-kv-Q8U">
                         <rect key="frame" x="110" y="115" width="280" height="2"/>
+                        <color key="progressTintColor" red="0.81176470590000005" green="0.92549019610000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.16862745100000001" green="0.27058823529999998" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                     </progressView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i4-hn-uev">
-                        <rect key="frame" x="110" y="86" width="164" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝下-烹饪方式.png" translatesAutoresizingMaskIntoConstraints="NO" id="UPm-9P-ghq">
-                        <rect key="frame" x="249" y="27" width="25" height="25"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝下-食材.png" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-Uy-sEw">
-                        <rect key="frame" x="293" y="27" width="25" height="25"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝下-重量.png" translatesAutoresizingMaskIntoConstraints="NO" id="jhh-Ae-H5V">
-                        <rect key="frame" x="332" y="27" width="25" height="25"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝下-烹饪时长.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fom-Zj-2C5">
-                        <rect key="frame" x="374" y="26" width="25" height="25"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="美味蒸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjN-mK-BYn">
-                        <rect key="frame" x="242" y="60" width="39" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-iK-Y7b">
-                        <rect key="frame" x="362" y="59" width="52" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="青菜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyW-gD-pRS">
-                        <rect key="frame" x="286" y="60" width="39" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYu-Oj-8Xg">
-                        <rect key="frame" x="323" y="59" width="43" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.91372549020000005" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSS-LV-mtr">
+                        <rect key="frame" x="344" y="25" width="46" height="30"/>
+                        <state key="normal" title="连接">
+                            <color key="titleColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" red="0.83137254900000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.32941176470588235" green="0.30196078431372547" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="365" y="707.5"/>
+            <color key="backgroundColor" red="0.28235294119999998" green="0.45098039220000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="device" destination="1zb-OF-IYF" id="w1x-VB-MBO"/>
+                <outlet property="iconImage" destination="L9E-ai-k7v" id="ylD-hf-aOf"/>
+                <outlet property="moduleLable" destination="wEe-5S-Mby" id="bFm-lX-z9g"/>
+                <outlet property="progressView" destination="IgM-kv-Q8U" id="AfY-CF-HRD"/>
+            </connections>
+            <point key="canvasLocation" x="360" y="726.5"/>
         </tableViewCell>
     </objects>
     <resources>
@@ -307,20 +264,12 @@
         <image name="icon-e菜宝上-烹饪时长.png" width="74" height="74"/>
         <image name="icon-e菜宝上-重量.png" width="74" height="74"/>
         <image name="icon-e菜宝上-食材.png" width="74" height="74"/>
+        <image name="icon-e菜宝上未连接（188）.png" width="188" height="188"/>
         <image name="icon-e菜宝上（188）.png" width="188" height="188"/>
-        <image name="icon-e菜宝下-烹饪方式.png" width="74" height="74"/>
-        <image name="icon-e菜宝下-烹饪时长.png" width="74" height="74"/>
-        <image name="icon-e菜宝下-重量.png" width="74" height="74"/>
-        <image name="icon-e菜宝下-食材.png" width="74" height="74"/>
-        <image name="icon-e菜宝下（188）.png" width="188" height="188"/>
-        <image name="icon-e菜宝中-烹饪方式.png" width="74" height="74"/>
-        <image name="icon-e菜宝中-烹饪时长.png" width="74" height="74"/>
-        <image name="icon-e菜宝中-重量.png" width="74" height="74"/>
-        <image name="icon-e菜宝中-食材.png" width="74" height="74"/>
-        <image name="icon-e菜宝中（188）.png" width="188" height="188"/>
         <image name="icon-e饭宝-口感.png" width="74" height="74"/>
         <image name="icon-e饭宝-烹饪方式.png" width="74" height="74"/>
         <image name="icon-e饭宝-米量.png" width="74" height="74"/>
+        <image name="icon-e饭宝未连接（188）.png" width="188" height="188"/>
         <image name="icon-e饭宝（188）.png" width="188" height="188"/>
     </resources>
 </document>
