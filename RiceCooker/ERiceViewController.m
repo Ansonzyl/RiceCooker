@@ -28,7 +28,7 @@
     vWidth = self.view.frame.size.width;
     vHeight = self.view.frame.size.height;
     self.overView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, vWidth, kOverViewHeight)];
-    self.overView.backgroundColor = [UIColor greenColor];
+    self.overView.backgroundColor = UIColorFromRGB(0x40C8C4);
     [self.view addSubview:_overView];
     
     self.tableview = [[UITableView alloc] initWithFrame:CGRectMake (0, kOverViewHeight, vWidth, vHeight)];
@@ -84,7 +84,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = @"hello";
+    cell.textLabel.text = @"hello world!";
     return cell;
 
 }

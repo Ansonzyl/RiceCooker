@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;
 @property (strong, nonatomic) IBOutlet UIButton *recipebBtn;
 @property (nonatomic, strong) DM_UserInfo *dm_userInfo;
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
 - (void)setDm_userInfo:(DM_UserInfo *)dm_userInfo;
 
 @end

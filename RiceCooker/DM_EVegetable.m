@@ -40,6 +40,7 @@
     if (_settingTime < _remianTime) {
         _remianTime = _settingTime;
     }
+    _remianTime = _settingTime - _remianTime;
 }
 
 

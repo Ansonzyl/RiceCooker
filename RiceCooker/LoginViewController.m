@@ -36,7 +36,12 @@
     _userDefaults  = [NSUserDefaults standardUserDefaults];
     self.passwordTextField.text = [_userDefaults objectForKey:@"password"];
     self.phoneNumberTextField.text = [_userDefaults objectForKey:@"phoneNumber"];
-}
+    if (!([self.phoneNumberTextField isEqual:nil]||[self.phoneNumberTextField.text isEqualToString:@""])) {
+        self.phoneNumberImageView.highlighted = YES;
+    }
+    if (![self.passwordTextField.text isEqualToString:@""]) {
+        self.passwordImageView.highlighted = YES;
+    }}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -124,8 +129,13 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.phoneNumberImageView.highlighted = NO;
-    self.passwordImageView.highlighted = NO;
+    if ([self.phoneNumberTextField isEqual:nil]||[self.phoneNumberTextField.text isEqualToString:@""]) {
+        self.phoneNumberImageView.highlighted = NO;
+    }
+    if ([self.passwordTextField.text isEqualToString:@""]) {
+         self.passwordImageView.highlighted = NO;
+    }
+   
 }
 
 

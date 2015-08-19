@@ -41,7 +41,9 @@
     }else
         self.SSIDTextField.text = SSIDN;
     
-    
+    if (![self.SSIDTextField.text isEqualToString:@""]) {
+        self.WlanViewImage.highlighted = YES;
+    }
     
 }
 
@@ -91,8 +93,13 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _passwordImageView.highlighted = NO;
-    _WlanViewImage.highlighted = NO;
+    if ([self.SSIDTextField.text isEqualToString:@""]) {
+        self.WlanViewImage.highlighted = NO;
+    }
+    if ([self.passwordTextField.text isEqualToString:@""]) {
+        self.passwordImageView.highlighted = NO;
+    }
+
 }
 
 

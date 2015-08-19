@@ -18,7 +18,7 @@
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
-    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+
 }
 
 
@@ -29,6 +29,8 @@
 
 - (void)setRiceCell:(DM_ERiceCell *)riceCell
 {
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    self.progressView.layer.cornerRadius = 6;
     _riceCell = riceCell;
     _stateLabel.text = riceCell.state;
     self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", riceCell.pnumberweight];

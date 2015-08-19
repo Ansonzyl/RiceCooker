@@ -68,7 +68,7 @@
 
 
 - (IBAction)regain:(id)sender {
-    [self countDown];
+    
     NSString *str = [NSString stringWithFormat:@"发送验证码到 %@", self.phoneNumber];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"修改号码",@"确认", nil];
     [alert show];
@@ -126,6 +126,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else if (buttonIndex == 1)
     {
+        [self countDown];
         _manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *paramters = @{@"phonenumber":self.phoneNumber};
         [_manager POST:[NSString stringWithFormat:@"http://%@/ForgetPassword", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -151,9 +152,16 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.verificationImageView.highlighted = NO;
-    self.passwordImageView.highlighted = NO;
-    self.repeatPWImage.highlighted = NO;
+    if ([self.verificationCodeTextField.text isEqualToString:@""]) {
+        self.verificationImageView.highlighted = NO;
+    }
+    if ([self.passwordTextField.text isEqualToString:@""]) {
+        self.passwordImageView.highlighted = NO;
+    }
+    if ([self.repeatPWTextField.text isEqualToString:@""]) {
+        self.repeatPWImage.highlighted = NO;
+    }
+    
 }
 
 @end

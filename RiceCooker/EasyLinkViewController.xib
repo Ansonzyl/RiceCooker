@@ -65,50 +65,60 @@
                         <action selector="backStep:" destination="-1" eventType="touchUpInside" id="Jth-er-9bB"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48r-aD-XEV">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WLAN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48r-aD-XEV">
                     <rect key="frame" x="55" y="180" width="306" height="57"/>
+                    <color key="textColor" red="0.94509803921568625" green="0.98039215686274506" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TED-WU-lVc">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TED-WU-lVc">
                     <rect key="frame" x="55" y="251" width="306" height="57"/>
+                    <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4xc-Xm-n3l" secondAttribute="trailing" constant="14" id="2Hl-sZ-nfw"/>
                 <constraint firstItem="4xc-Xm-n3l" firstAttribute="top" secondItem="wln-5F-Tzd" secondAttribute="bottom" constant="55" id="6CI-Xo-Ii6"/>
+                <constraint firstItem="cEx-62-WAX" firstAttribute="top" secondItem="TED-WU-lVc" secondAttribute="top" id="8KD-xI-uhe"/>
+                <constraint firstItem="4xc-Xm-n3l" firstAttribute="bottom" secondItem="48r-aD-XEV" secondAttribute="bottom" id="AJA-CC-57t"/>
                 <constraint firstItem="cEx-62-WAX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="BCb-sX-sOh"/>
                 <constraint firstItem="TED-WU-lVc" firstAttribute="trailing" secondItem="cEx-62-WAX" secondAttribute="trailing" constant="-39" id="Ga1-a7-ln3"/>
                 <constraint firstItem="4XY-4j-3pn" firstAttribute="width" secondItem="4XY-4j-3pn" secondAttribute="height" multiplier="64:19" id="GvY-sk-pcv"/>
                 <constraint firstItem="wln-5F-Tzd" firstAttribute="top" secondItem="1Av-WI-IHB" secondAttribute="bottom" constant="8" id="IZR-Xw-KGA"/>
                 <constraint firstAttribute="trailing" secondItem="1Av-WI-IHB" secondAttribute="trailing" id="Jq2-hK-oFG"/>
                 <constraint firstItem="wln-5F-Tzd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NGe-up-wcq"/>
-                <constraint firstItem="48r-aD-XEV" firstAttribute="trailing" secondItem="4xc-Xm-n3l" secondAttribute="trailing" constant="-39" id="NWH-Jt-nCg"/>
                 <constraint firstItem="4XY-4j-3pn" firstAttribute="top" secondItem="cEx-62-WAX" secondAttribute="bottom" constant="90" id="Ohm-SL-7jf"/>
                 <constraint firstItem="TED-WU-lVc" firstAttribute="height" secondItem="cEx-62-WAX" secondAttribute="height" id="PDF-pZ-hTu"/>
                 <constraint firstItem="48r-aD-XEV" firstAttribute="leading" secondItem="4xc-Xm-n3l" secondAttribute="leading" constant="40" id="Q9H-qt-Pv3"/>
                 <constraint firstAttribute="trailing" secondItem="IRT-jx-RVS" secondAttribute="trailing" constant="14" id="She-RV-1ZZ"/>
+                <constraint firstItem="cEx-62-WAX" firstAttribute="bottom" secondItem="TED-WU-lVc" secondAttribute="bottom" id="UAv-ba-7mk"/>
                 <constraint firstItem="4XY-4j-3pn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Zu3-rY-Z1v"/>
                 <constraint firstItem="TED-WU-lVc" firstAttribute="top" secondItem="cEx-62-WAX" secondAttribute="bottom" constant="-57" id="bxf-n0-AAl"/>
                 <constraint firstItem="IRT-jx-RVS" firstAttribute="width" secondItem="IRT-jx-RVS" secondAttribute="height" multiplier="64:19" id="elF-5J-pOE"/>
                 <constraint firstItem="cEx-62-WAX" firstAttribute="height" secondItem="4XY-4j-3pn" secondAttribute="height" id="fAF-i7-Wlt"/>
                 <constraint firstItem="48r-aD-XEV" firstAttribute="height" secondItem="4xc-Xm-n3l" secondAttribute="height" id="idw-cG-jq9"/>
                 <constraint firstItem="4xc-Xm-n3l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="jTI-Rt-fcQ"/>
+                <constraint firstItem="4xc-Xm-n3l" firstAttribute="top" secondItem="48r-aD-XEV" secondAttribute="top" id="mPk-54-mjc"/>
                 <constraint firstItem="IRT-jx-RVS" firstAttribute="top" secondItem="4XY-4j-3pn" secondAttribute="top" id="mhc-vr-cVo"/>
                 <constraint firstItem="TED-WU-lVc" firstAttribute="leading" secondItem="cEx-62-WAX" secondAttribute="leading" constant="40" id="n8g-Zp-5IN"/>
                 <constraint firstAttribute="trailing" secondItem="cEx-62-WAX" secondAttribute="trailing" constant="14" id="ohS-VA-ckw"/>
+                <constraint firstItem="4xc-Xm-n3l" firstAttribute="trailing" secondItem="48r-aD-XEV" secondAttribute="trailing" constant="39" id="pFe-hU-996"/>
                 <constraint firstItem="1Av-WI-IHB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r41-5r-e4X"/>
                 <constraint firstAttribute="trailing" secondItem="wln-5F-Tzd" secondAttribute="trailing" id="r5S-TH-td0"/>
                 <constraint firstItem="cEx-62-WAX" firstAttribute="top" secondItem="4xc-Xm-n3l" secondAttribute="bottom" constant="14" id="rMT-wL-vi0"/>
-                <constraint firstItem="48r-aD-XEV" firstAttribute="top" secondItem="4xc-Xm-n3l" secondAttribute="bottom" constant="-57" id="tcw-az-gkr"/>
                 <constraint firstItem="IRT-jx-RVS" firstAttribute="leading" secondItem="4XY-4j-3pn" secondAttribute="trailing" constant="1" id="vVy-n3-GGA"/>
                 <constraint firstItem="IRT-jx-RVS" firstAttribute="height" secondItem="cEx-62-WAX" secondAttribute="height" id="xxn-x5-To9"/>
                 <constraint firstItem="1Av-WI-IHB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="y1j-Am-HzP"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="bxf-n0-AAl"/>
+                </mask>
+            </variation>
             <connections>
                 <action selector="tapBack:" destination="-1" eventType="touchDown" id="fsv-mj-Ano"/>
             </connections>

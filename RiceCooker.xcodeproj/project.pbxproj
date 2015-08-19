@@ -192,6 +192,8 @@
 		19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B4053D1B45202E000E1941 /* AddDeviceViewController.m */; };
 		19B405401B45202E000E1941 /* AddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */; };
 		19C1F73A1B26C92400C59704 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C1F7391B26C92400C59704 /* MainViewController.m */; };
+		19F44A4F1B6F339A00A73B19 /* 手机号浅灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F44A4D1B6F339A00A73B19 /* 手机号浅灰.png */; };
+		19F44A501B6F339A00A73B19 /* 手机号深灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F44A4E1B6F339A00A73B19 /* 手机号深灰.png */; };
 		19F619B61B26F1D000F69610 /* MyKitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F619B51B26F1D000F69610 /* MyKitchenViewController.m */; };
 		B03C1D92BD109150AA1EB068 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9084F8633FA07B0862F06D8C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -428,6 +430,8 @@
 		19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDeviceViewController.xib; sourceTree = "<group>"; };
 		19C1F7381B26C92400C59704 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		19C1F7391B26C92400C59704 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		19F44A4D1B6F339A00A73B19 /* 手机号浅灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手机号浅灰.png"; sourceTree = "<group>"; };
+		19F44A4E1B6F339A00A73B19 /* 手机号深灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手机号深灰.png"; sourceTree = "<group>"; };
 		19F619B41B26F1D000F69610 /* MyKitchenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyKitchenViewController.h; sourceTree = "<group>"; };
 		19F619B51B26F1D000F69610 /* MyKitchenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyKitchenViewController.m; sourceTree = "<group>"; };
 		279BA58B3438BFA5C7112976 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -741,6 +745,8 @@
 		197630531B61DD04002EFB77 /* userInfo */ = {
 			isa = PBXGroup;
 			children = (
+				19F44A4D1B6F339A00A73B19 /* 手机号浅灰.png */,
+				19F44A4E1B6F339A00A73B19 /* 手机号深灰.png */,
 				197630731B62118E002EFB77 /* icon-反馈.png */,
 				197630541B61DD28002EFB77 /* 示例头像.png */,
 				197630751B621E71002EFB77 /* line.png */,
@@ -1000,6 +1006,7 @@
 				1959F2C21B677BE300829160 /* icon-分享给家人.png in Resources */,
 				190F1BD61B4D3F58001DC34E /* 验证码.png in Resources */,
 				19A019CA1B4EA8A7005405C4 /* wlan.png in Resources */,
+				19F44A4F1B6F339A00A73B19 /* 手机号浅灰.png in Resources */,
 				1959F2BF1B677BE300829160 /* e菜宝中背景.png in Resources */,
 				190F1BBA1B4CD8B6001DC34E /* 长输入框.png in Resources */,
 				1959F3291B67B38800829160 /* icon-e菜宝中-食材.png in Resources */,
@@ -1018,6 +1025,7 @@
 				1959F3201B67B38800829160 /* icon-e菜宝上未连接（188）.png in Resources */,
 				1959F3131B67B38800829160 /* icon-导航-个人中心select.png in Resources */,
 				1959F2C51B677BE300829160 /* icon-米仓信息.png in Resources */,
+				19F44A501B6F339A00A73B19 /* 手机号深灰.png in Resources */,
 				1959F28B1B6771D400829160 /* DeviceDetailViewController.xib in Resources */,
 				1959F2D31B677BE300829160 /* icon-e菜宝烹饪方式（152）.png in Resources */,
 				1959F3211B67B38800829160 /* icon-e菜宝下-烹饪方式.png in Resources */,

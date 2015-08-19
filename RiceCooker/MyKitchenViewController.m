@@ -231,7 +231,7 @@
         
     }else
     {
-        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
             ERiceViewController *viewController = [[ERiceViewController alloc] initWithNibName:@"ERiceViewController" bundle:nil];
             
 

@@ -17,6 +17,7 @@
 @interface UserInfoViewController ()
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *objArray;
+
 @property (nonatomic, strong) NSDictionary *recieve;
 @end
 

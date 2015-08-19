@@ -14,6 +14,7 @@
     DM_ERiceCell *cell = [[self alloc] init];
     [cell setValuesForKeysWithDictionary:dict];
 //    [cell finishTime];
+    
     [cell remianTimeWithFinishTime:cell.finishtime withSetTime:cell.settime];
     return cell;
 }
@@ -30,6 +31,7 @@
     if (_settingTime < _remianTime) {
         _remianTime = _settingTime;
     }
+    _remianTime = _settingTime - _remianTime;
 }
 
 

@@ -9,6 +9,12 @@
 #import "AddShareViewController.h"
 
 @interface AddShareViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *sharePhoneNumberTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *sharePhoneNumberImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *repeatPhoneNumberImageView;
+@property (weak, nonatomic) IBOutlet UITextField *repeatPhoneNumberTextFiled;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+- (IBAction)shareDevices:(id)sender;
 
 @end
 
@@ -21,6 +27,7 @@
     NSString *image = [NSString stringWithFormat:@"icon-%@188", _shareDevice.devicename];
     NSString *path = [[NSBundle mainBundle] pathForResource:image ofType:@"png"];
     self.iconImage.image = [UIImage imageWithContentsOfFile:path];
+    self.shareButton.layer.cornerRadius = 2;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,4 +45,6 @@
 }
 */
 
+- (IBAction)shareDevices:(id)sender {
+}
 @end

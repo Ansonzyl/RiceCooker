@@ -23,8 +23,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [super awakeFromNib];
+//    [super awakeFromNib];
+//    _progressView = [[UIProgressView alloc] init];
+//    _progressView.frame = CGRectMake(110, 115, 280, 7);
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    self.progressView.layer.cornerRadius = 5;
 }
 
 
