@@ -176,6 +176,10 @@
 		197998961B6600720061CB28 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 197998951B6600720061CB28 /* BasicCell.m */; };
 		197998991B6629200061CB28 /* DM_MyDevices.m in Sources */ = {isa = PBXBuildFile; fileRef = 197998981B6629200061CB28 /* DM_MyDevices.m */; };
 		1979989C1B6673E50061CB28 /* DM_UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1979989B1B6673E50061CB28 /* DM_UserInfo.m */; };
+		197BF82D1B95814400D7463B /* MyKitchenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 197BF82C1B95814400D7463B /* MyKitchenView.xib */; };
+		197BF8301B95851800D7463B /* MDRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF82F1B95851800D7463B /* MDRadialProgressView.m */; };
+		197BF8351B958F7000D7463B /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF8321B958F7000D7463B /* MDRadialProgressLabel.m */; };
+		197BF8361B958F7000D7463B /* MDRadialProgressTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF8341B958F7000D7463B /* MDRadialProgressTheme.m */; };
 		198599531B688FA800ECAEF4 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 198599521B688FA800ECAEF4 /* home.png */; };
 		198599551B689DAC00ECAEF4 /* homeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198599541B689DAC00ECAEF4 /* homeCell.xib */; };
 		198599581B68A88000ECAEF4 /* EriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198599571B68A88000ECAEF4 /* EriceCell.m */; };
@@ -192,6 +196,10 @@
 		19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B4053D1B45202E000E1941 /* AddDeviceViewController.m */; };
 		19B405401B45202E000E1941 /* AddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */; };
 		19C1F73A1B26C92400C59704 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C1F7391B26C92400C59704 /* MainViewController.m */; };
+		19CF94511B932E40002085D2 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CF944F1B932E40002085D2 /* DevicesViewController.m */; };
+		19CF94521B932E40002085D2 /* DevicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CF94501B932E40002085D2 /* DevicesViewController.xib */; };
+		19CF94561B934B10002085D2 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CF94541B934B10002085D2 /* MyViewController.m */; };
+		19CF94571B934B10002085D2 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CF94551B934B10002085D2 /* MyViewController.xib */; };
 		19F44A4F1B6F339A00A73B19 /* 手机号浅灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F44A4D1B6F339A00A73B19 /* 手机号浅灰.png */; };
 		19F44A501B6F339A00A73B19 /* 手机号深灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F44A4E1B6F339A00A73B19 /* 手机号深灰.png */; };
 		19F619B61B26F1D000F69610 /* MyKitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F619B51B26F1D000F69610 /* MyKitchenViewController.m */; };
@@ -405,6 +413,13 @@
 		197998981B6629200061CB28 /* DM_MyDevices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_MyDevices.m; sourceTree = "<group>"; };
 		1979989A1B6673E50061CB28 /* DM_UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DM_UserInfo.h; sourceTree = "<group>"; };
 		1979989B1B6673E50061CB28 /* DM_UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_UserInfo.m; sourceTree = "<group>"; };
+		197BF82C1B95814400D7463B /* MyKitchenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyKitchenView.xib; sourceTree = "<group>"; };
+		197BF82E1B95851800D7463B /* MDRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressView.h; sourceTree = "<group>"; };
+		197BF82F1B95851800D7463B /* MDRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressView.m; sourceTree = "<group>"; };
+		197BF8311B958F7000D7463B /* MDRadialProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressLabel.h; sourceTree = "<group>"; };
+		197BF8321B958F7000D7463B /* MDRadialProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressLabel.m; sourceTree = "<group>"; };
+		197BF8331B958F7000D7463B /* MDRadialProgressTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressTheme.h; sourceTree = "<group>"; };
+		197BF8341B958F7000D7463B /* MDRadialProgressTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressTheme.m; sourceTree = "<group>"; };
 		198599521B688FA800ECAEF4 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		198599541B689DAC00ECAEF4 /* homeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeCell.xib; sourceTree = "<group>"; };
 		198599561B68A88000ECAEF4 /* EriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EriceCell.h; sourceTree = "<group>"; };
@@ -430,6 +445,12 @@
 		19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDeviceViewController.xib; sourceTree = "<group>"; };
 		19C1F7381B26C92400C59704 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		19C1F7391B26C92400C59704 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		19CF944E1B932E40002085D2 /* DevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesViewController.h; sourceTree = "<group>"; };
+		19CF944F1B932E40002085D2 /* DevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesViewController.m; sourceTree = "<group>"; };
+		19CF94501B932E40002085D2 /* DevicesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevicesViewController.xib; sourceTree = "<group>"; };
+		19CF94531B934B10002085D2 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		19CF94541B934B10002085D2 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		19CF94551B934B10002085D2 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 		19F44A4D1B6F339A00A73B19 /* 手机号浅灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手机号浅灰.png"; sourceTree = "<group>"; };
 		19F44A4E1B6F339A00A73B19 /* 手机号深灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手机号深灰.png"; sourceTree = "<group>"; };
 		19F619B41B26F1D000F69610 /* MyKitchenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyKitchenViewController.h; sourceTree = "<group>"; };
@@ -811,6 +832,7 @@
 			children = (
 				19F619B41B26F1D000F69610 /* MyKitchenViewController.h */,
 				19F619B51B26F1D000F69610 /* MyKitchenViewController.m */,
+				197BF82C1B95814400D7463B /* MyKitchenView.xib */,
 				195B5E911B3ED6A600838C55 /* ERiceViewController.h */,
 				195B5E921B3ED6A600838C55 /* ERiceViewController.m */,
 				195B5E931B3ED6A600838C55 /* ERiceViewController.xib */,
@@ -820,6 +842,12 @@
 				19A019C31B4EA777005405C4 /* EasyLinkViewController.h */,
 				19A019C41B4EA777005405C4 /* EasyLinkViewController.m */,
 				19A019C51B4EA777005405C4 /* EasyLinkViewController.xib */,
+				19CF944E1B932E40002085D2 /* DevicesViewController.h */,
+				19CF944F1B932E40002085D2 /* DevicesViewController.m */,
+				19CF94501B932E40002085D2 /* DevicesViewController.xib */,
+				19CF94531B934B10002085D2 /* MyViewController.h */,
+				19CF94541B934B10002085D2 /* MyViewController.m */,
+				19CF94551B934B10002085D2 /* MyViewController.xib */,
 			);
 			name = MyKitchen;
 			sourceTree = "<group>";
@@ -827,6 +855,12 @@
 		19E217EF1B4BB4C4001808B9 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				197BF8311B958F7000D7463B /* MDRadialProgressLabel.h */,
+				197BF8321B958F7000D7463B /* MDRadialProgressLabel.m */,
+				197BF8331B958F7000D7463B /* MDRadialProgressTheme.h */,
+				197BF8341B958F7000D7463B /* MDRadialProgressTheme.m */,
+				197BF82E1B95851800D7463B /* MDRadialProgressView.h */,
+				197BF82F1B95851800D7463B /* MDRadialProgressView.m */,
 				190F1BE01B4D5FCD001DC34E /* UIViewController+TopBarMessage.m */,
 				190F1BDB1B4D5EDE001DC34E /* UIViewController+TopBarMessage.h */,
 				199C72381B3FC196005BFC89 /* DXPopover.m */,
@@ -936,6 +970,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19CF94571B934B10002085D2 /* MyViewController.xib in Resources */,
 				190F1BCC1B4D07D5001DC34E /* phone.png in Resources */,
 				1976306E1B61DD28002EFB77 /* icon-e菜宝中133.png in Resources */,
 				1959F2CD1B677BE300829160 /* icon-e菜宝-食材选中（152）.png in Resources */,
@@ -950,6 +985,7 @@
 				1959F2C41B677BE300829160 /* icon-解除连接.png in Resources */,
 				1959F30C1B67B38800829160 /* e菜宝上进度条.png in Resources */,
 				1931E5821B4677820035B21B /* navigation_bar_background.png in Resources */,
+				19CF94521B932E40002085D2 /* DevicesViewController.xib in Resources */,
 				1959F3271B67B38800829160 /* icon-e菜宝中-烹饪方式.png in Resources */,
 				1959F2D71B677BE300829160 /* icon-e饭宝-口感不可选（152）.png in Resources */,
 				1931E5981B46B1C60035B21B /* 左半按钮.png in Resources */,
@@ -1051,6 +1087,7 @@
 				196B3FCF1B1DCF3B00AD77E9 /* Images.xcassets in Resources */,
 				1959F3191B67B38800829160 /* icon-网络（100）.png in Resources */,
 				197630651B61DD28002EFB77 /* icon-关于.png in Resources */,
+				197BF82D1B95814400D7463B /* MyKitchenView.xib in Resources */,
 				1959F2C31B677BE300829160 /* icon-检查固件升级.png in Resources */,
 				197630701B61DD28002EFB77 /* icon-e饭宝133.png in Resources */,
 				1959F3231B67B38800829160 /* icon-e菜宝下-食材.png in Resources */,
@@ -1148,6 +1185,8 @@
 				1931E5881B46AE700035B21B /* AddDeviceCell.m in Sources */,
 				1959F28A1B6771D400829160 /* DeviceDetailViewController.m in Sources */,
 				19780A411B69E6F300E2100B /* ManageShareDeviceViewController.m in Sources */,
+				197BF8351B958F7000D7463B /* MDRadialProgressLabel.m in Sources */,
+				19CF94511B932E40002085D2 /* DevicesViewController.m in Sources */,
 				194A89A61B26AEFD000E27F8 /* FogetPWViewController.m in Sources */,
 				19F619B61B26F1D000F69610 /* MyKitchenViewController.m in Sources */,
 				197998961B6600720061CB28 /* BasicCell.m in Sources */,
@@ -1160,7 +1199,9 @@
 				198599581B68A88000ECAEF4 /* EriceCell.m in Sources */,
 				1927F5FB1B6CDC5F00DECD44 /* ProgressView.m in Sources */,
 				1959F27E1B673D4800829160 /* ShareDeviceViewController.m in Sources */,
+				197BF8301B95851800D7463B /* MDRadialProgressView.m in Sources */,
 				1917BD7F1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m in Sources */,
+				197BF8361B958F7000D7463B /* MDRadialProgressTheme.m in Sources */,
 				195D50B31B611DBC009ACEB4 /* UserInfoCell.m in Sources */,
 				19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */,
 				196B3FEA1B1DD0F200AD77E9 /* LoginViewController.m in Sources */,
@@ -1171,6 +1212,7 @@
 				1959F2851B67463D00829160 /* AddShareViewController.m in Sources */,
 				198A0BA21B6B157A009EE795 /* DM_EVegetable.m in Sources */,
 				195B5E941B3ED6A600838C55 /* ERiceViewController.m in Sources */,
+				19CF94561B934B10002085D2 /* MyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

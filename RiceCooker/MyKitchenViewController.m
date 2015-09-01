@@ -37,6 +37,8 @@
 @property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic, strong) UIImage *addImage;
 @property (nonatomic, strong) UIImage *cancelImage;
+
+@property (nonatomic, strong) NSMutableArray *devicesArray;
 @end
 
 @implementation MyKitchenViewController
@@ -54,7 +56,7 @@
     _addBuuton = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
     self.navigationItem.rightBarButtonItem = _addBuuton;
     
-   
+    
     
     
     UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, AddCellHeight*2) style:UITableViewStylePlain];
@@ -100,11 +102,11 @@
     NSDictionary *parameters = @{@"phonenumber": _phoneNumber};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"http://%@/HomePage", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",operation);
+        
 
         _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         for (int i = 0; i<_recieveArray.count; i++) {
-            NSLog(@"%@",_recieveArray);
+           
             if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
                 [_riceArray addObject:_recieveArray[i]];
             }else if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e菜宝"])
@@ -112,6 +114,7 @@
                 [_vegetableArray addObject:_recieveArray[i]];
             }
         }
+
         [self.tableView reloadData];
 
         
@@ -186,8 +189,11 @@
             if (cell == nil) {
                 cell = [EriceCell ericeCell];
             }
-            DM_ERiceCell *riceCell = [DM_ERiceCell eRiceWithDict:_riceArray[indexPath.row]];
-            cell.riceCell = riceCell;
+//            DM_ERiceCell *riceCell = [DM_ERiceCell eRiceWithDict:_riceArray[indexPath.row]];
+            DM_EVegetable *device = [DM_EVegetable eVegetableWithDict:_riceArray[indexPath.row]];
+            cell.device = device;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return cell;
             
 
@@ -207,7 +213,7 @@
             }else
                 cell.vegetable3 = vegetable;
             
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         
@@ -231,15 +237,35 @@
         
     }else
     {
+        DevicesViewController *viewController = [[DevicesViewController alloc] initWithNibName:@"DevicesViewController" bundle:nil];
+        _devicesArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i<_riceArray.count; i++) {
+            DM_EVegetable *riceCell = [DM_EVegetable eVegetableWithDict:_riceArray[i]];
+            [_devicesArray addObject:riceCell];
+                   }
+        for (int i = 0; i<_vegetableArray.count; i++) {
+            DM_EVegetable *vegetable = [DM_EVegetable eVegetableWithDict:_vegetableArray[i]];
+            [_devicesArray addObject:vegetable];
+
+        }
+        viewController.devicesArray = _devicesArray;
+        
+        NSLog(@"%ld", (long)indexPath.row);
         if (indexPath.section == 0) {
-            ERiceViewController *viewController = [[ERiceViewController alloc] initWithNibName:@"ERiceViewController" bundle:nil];
+            viewController.currentNumber = indexPath.row;
             
+        }else
+        {
+            viewController.currentNumber = indexPath.row + _riceArray.count;
+        }
+
+        
 
             [self presentViewController:viewController animated:YES completion:^{
                 
             }];
             
-        }
+      
     }
 }
 
@@ -259,9 +285,9 @@
 
 
 - (IBAction)addDevice:(id)sender {
-    NSLog(@"%@", _addBtn.imageView.image);
+    
     if ([_addBtn.imageView.image isEqual:_addImage]) {
-        NSLog(@"yes");
+        
         [self updateTableViewFrame];
         UIView *leftView = _addBuuton.customView;
         CGPoint startPoint = CGPointMake(CGRectGetMidX(self.addBtn.frame) , CGRectGetMinY(self.addBtn.frame) + 50);

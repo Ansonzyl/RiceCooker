@@ -7,7 +7,7 @@
 //
 
 #import "ERiceViewController.h"
-#define kOverViewHeight 400
+#define kOverViewHeight 525
 #define kTempHeight 200
 
 @interface ERiceViewController ()<UITableViewDataSource, UITableViewDelegate>\
@@ -15,9 +15,11 @@
     CGFloat vHeight;
     CGFloat vWidth;
 }
-@property (nonatomic, strong) UITableView *tableview;
-@property (nonatomic, strong) UIView *overView;
-@property (nonatomic, strong) IBOutlet UIButton *startButton;
+@property (nonatomic, weak) IBOutlet UITableView *tableview;
+@property (nonatomic, weak) IBOutlet UIView *overView;
+@property (nonatomic, weak) IBOutlet UIButton *startButton;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollerView;
+@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
 @end
 
 @implementation ERiceViewController
@@ -27,20 +29,29 @@
     // Do any additional setup after loading the view from its nib.
     vWidth = self.view.frame.size.width;
     vHeight = self.view.frame.size.height;
-    self.overView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, vWidth, kOverViewHeight)];
-    self.overView.backgroundColor = UIColorFromRGB(0x40C8C4);
-    [self.view addSubview:_overView];
+//    self.overView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, vWidth, kOverViewHeight)];
+//    self.overView.backgroundColor = UIColorFromRGB(0x40C8C4);
+//    [self.view addSubview:_overView];
     
-    self.tableview = [[UITableView alloc] initWithFrame:CGRectMake (0, kOverViewHeight, vWidth, vHeight)];
-    self.tableview.delegate = self;
-    self.tableview.dataSource = self;
-    [self.view addSubview:self.tableview];
-    [self.view addSubview:self.startButton];
+//    self.tableview = [[UITableView alloc] initWithFrame:CGRectMake (0, kOverViewHeight, vWidth, vHeight)];
+//    self.tableview.frame = CGRectMake (0, kOverViewHeight, vWidth, vHeight);
+//    NSLog(@"%f",self.tableview.frame.origin.y);
+//    self.tableview.delegate = self;
+//    self.tableview.dataSource = self;
+//    [self.view addSubview:self.tableview];
+//    [self.view addSubview:self.startButton];
 //    [self.view addSubview:_tableview];
 //    _startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, vHeight-60, vWidth, 60)];
 //    _startButton.backgroundColor = [UIColor redColor];
 //    [_startButton setTitle:@"开始烹饪" forState:UIControlStateNormal];
-//    [self.view addSubview:_startButton];
+    
+    
+    
+    
+    
+    
+        
+   [self.view addSubview:_startButton];
    
     
 }
@@ -52,23 +63,23 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect aOriginRect = scrollView.frame;
-    aOriginRect.origin.y = aOriginRect.origin.y - scrollView.contentOffset.y;
-    
-    if (aOriginRect.origin.y <= kOverViewHeight && aOriginRect.origin.y >= kTempHeight) {
-        CGRect aOriginBounds = scrollView.bounds;
-        aOriginBounds.origin = CGPointMake(0, 0);
-        scrollView.bounds = aOriginBounds;
-        
-    }else if (aOriginRect.origin.y > kOverViewHeight)
-    {
-        aOriginRect.origin.y = kOverViewHeight;
-    }else{
-        aOriginRect.origin.y = kTempHeight;
-    }
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    aOriginRect.size.height = screenSize.height - aOriginRect.origin.y -45;
-    scrollView.frame = aOriginRect;
+//    CGRect aOriginRect = scrollView.frame;
+//    aOriginRect.origin.y = aOriginRect.origin.y - scrollView.contentOffset.y;
+//    
+//    if (aOriginRect.origin.y <= kOverViewHeight && aOriginRect.origin.y >= kTempHeight) {
+//        CGRect aOriginBounds = scrollView.bounds;
+//        aOriginBounds.origin = CGPointMake(0, 0);
+//        scrollView.bounds = aOriginBounds;
+//        
+//    }else if (aOriginRect.origin.y > kOverViewHeight)
+//    {
+//        aOriginRect.origin.y = kOverViewHeight;
+//    }else{
+//        aOriginRect.origin.y = kTempHeight;
+//    }
+//    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+//    aOriginRect.size.height = screenSize.height - aOriginRect.origin.y -45;
+//    scrollView.frame = aOriginRect;
 }
 
 
@@ -79,12 +90,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellid";
+    static NSString *cellID = @"newCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    cell.textLabel.text = @"hello world!";
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//    }
+//    cell.textLabel.text = @"hello world!";
     return cell;
 
 }

@@ -41,5 +41,18 @@
 }
 
 
+- (void)setDevice:(DM_EVegetable *)device
+{
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    self.progressView.layer.cornerRadius = 6;
+    _device = device;
+    _stateLabel.text = device.state;
+    self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
+    self.moduleLable.text = device.module;
+    self.degreeLabel.text = device.degree;
+    self.finishTime.text = [NSString stringWithFormat:@"%@完成", device.finishtime];
+    [self.progressView setProgress:device.remianTime/device.settingTime];
+}
+
 
 @end

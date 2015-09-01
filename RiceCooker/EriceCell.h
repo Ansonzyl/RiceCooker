@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DM_ERiceCell.h"
+#import "DM_EVegetable.h"
 
 @interface EriceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
@@ -22,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) DM_ERiceCell *riceCell;
 - (void)setRiceCell:(DM_ERiceCell *)riceCell;
+@property (nonatomic, strong) DM_EVegetable *device;
+- (void)setDevice:(DM_EVegetable *)device;
 + (NSString *)cellID;
 + (id)ericeCell;
 

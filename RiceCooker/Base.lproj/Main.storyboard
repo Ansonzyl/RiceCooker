@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -566,8 +566,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BRi-4h-9yv">
-                                <rect key="frame" x="0.0" y="197" width="414" height="494"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BRi-4h-9yv">
+                                <rect key="frame" x="0.0" y="197" width="414" height="490"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="SB9-VD-Q2Y" id="wQ0-Qk-PLF"/>
@@ -577,7 +577,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8be-AJ-slk" firstAttribute="top" secondItem="BRi-4h-9yv" secondAttribute="bottom" id="B7n-Sn-kEr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BRi-4h-9yv" secondAttribute="trailing" constant="-16" id="V06-U5-iQx"/>
+                            <constraint firstItem="BRi-4h-9yv" firstAttribute="top" secondItem="4Bs-4b-PW1" secondAttribute="bottom" id="VTr-Hu-uSa"/>
                             <constraint firstItem="4Bs-4b-PW1" firstAttribute="leading" secondItem="jal-g0-NxF" secondAttribute="leadingMargin" constant="-16" id="edC-Dz-gBm"/>
+                            <constraint firstItem="BRi-4h-9yv" firstAttribute="leading" secondItem="jal-g0-NxF" secondAttribute="leadingMargin" constant="-16" id="hHc-Kv-d3i"/>
                             <constraint firstItem="4Bs-4b-PW1" firstAttribute="top" secondItem="spW-Lv-kSU" secondAttribute="bottom" id="rV1-yS-ccl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Bs-4b-PW1" secondAttribute="trailing" constant="-16" id="uiH-rq-WA1"/>
                         </constraints>
@@ -589,7 +593,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvl-0g-Man" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="0.0"/>
+            <point key="canvasLocation" x="963" y="0.0"/>
         </scene>
     </scenes>
     <resources>

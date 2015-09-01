@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DevicesViewController.h"
 @interface MyKitchenViewController : UIViewController
 @property (nonatomic, copy) NSString *phoneNumber;
 
