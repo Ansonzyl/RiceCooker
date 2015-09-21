@@ -28,17 +28,28 @@
 //    
 //}
 
-- (void)remianTimeWithFinishTime:(NSString *)finishTime withSetTime:(NSString *)setTime
+- (void)remianTimeWithFinishTime:(NSMutableString *)finishTime withSetTime:(NSString *)setTime
 {
    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
+//    NSDate *date = [NSDate date];
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    
+//    NSInteger interval = [zone secondsFromGMTForDate: date];
+//    
+//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+//    
     NSDate *finish = [formatter dateFromString:finishTime];
+    
     NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
     self.remianTime = [finish timeIntervalSinceDate:now];
     _settingTime = [setTime integerValue] * 60;
     if (_settingTime < _remianTime) {
         _remianTime = _settingTime;
+    }
+    if (_remianTime < 0) {
+        _remianTime = 0;
     }
     _remianTime = _settingTime - _remianTime;
 }

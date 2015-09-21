@@ -23,8 +23,6 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x40c8c4)];
-    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0xd7ffff)];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
     
 //    [UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x40c8c4), NSForegroundColorAttributeName, [UIFont systemFontOfSize:18],nil];
 //
@@ -39,10 +37,11 @@
    
 //    [[UINavigationBar appearance] setTranslucent:YES];
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed: @"navigation_bar_background.png"] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barBack.png"] forBarMetrics:UIBarMetricsDefault];
-   
-//    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"barBack.png"]];
-    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    
+    
+//    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0xd7ffff)];
+//    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
+
     
     return YES;
 }

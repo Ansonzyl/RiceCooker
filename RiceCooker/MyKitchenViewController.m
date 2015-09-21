@@ -48,7 +48,6 @@
     self.title = @"我的厨房";
     
     _addImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-添加.png" ofType:nil]];
-    
     _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31, 31)];
     [_addBtn setImage:_addImage forState:UIControlStateNormal];
     [_addBtn addTarget:self action:@selector(addDevice:) forControlEvents:UIControlEventTouchUpInside];
@@ -56,6 +55,7 @@
     _addBuuton = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
     self.navigationItem.rightBarButtonItem = _addBuuton;
     
+
     
     
     
@@ -90,6 +90,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
+    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
     [self JSONWithURL];
 }
 
@@ -172,11 +178,12 @@
             AddDeviceCell *cell = [tableView dequeueReusableCellWithIdentifier:[AddDeviceCell ID]];
             if (cell == nil) {
                 cell = [AddDeviceCell AddDeviceCell];
+                
             }
             NSString *image = [NSString stringWithFormat:@"icon-%@.png", _config[indexPath.row]];
             cell.logoImage.image = [UIImage imageNamed:image];
             cell.myLebel.text = _config[indexPath.row];
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
 
         }
@@ -258,13 +265,13 @@
         {
             viewController.currentNumber = indexPath.row + _riceArray.count;
         }
-
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+        [viewController setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:viewController animated:YES];
+//            [self presentViewController:viewController animated:YES completion:^{
+//                
+//            }];
         
-
-            [self presentViewController:viewController animated:YES completion:^{
-                
-            }];
-            
       
     }
 }

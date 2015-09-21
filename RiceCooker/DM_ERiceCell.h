@@ -21,6 +21,6 @@
 @property (nonatomic, copy) NSString *UUID;//
 @property (nonatomic, assign) NSInteger remianTime;
 @property (nonatomic, assign) NSInteger settingTime;
-
+@property (nonatomic, copy) NSString *remaintime;
 + (DM_ERiceCell *)eRiceWithDict:(NSDictionary *)dict;
 @end

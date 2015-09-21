@@ -25,11 +25,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"登录";
+//    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x40c8c4)];
+//    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
     
-//    if () {
-//        _topCons.constant = 0;
-//    }
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"barBack.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
+    
     self.phoneNumberTextField.delegate = self;
     self.passwordTextField.delegate = self;
     self.login_button.layer.cornerRadius = 2;

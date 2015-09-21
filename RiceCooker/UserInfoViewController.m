@@ -28,6 +28,11 @@
     // Do any additional setup after loading the view.
     self.title = @"个人中心";
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.1)];
+    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
+   
+    
+    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
     _objArray = [NSArray arrayWithObjects:@"消息中心",@"我的订单",@"反馈",@"关于", nil];
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
 }
@@ -148,8 +153,8 @@
 }
 
 - (IBAction)collectRecipe:(id)sender {
-    AddShareViewController *viewController = [[AddShareViewController alloc] initWithNibName:@"AddShareViewController" bundle:nil];
-    [self.navigationController pushViewController:viewController animated:YES];
+    //AddShareViewController *viewController = [[AddShareViewController alloc] initWithNibName:@"AddShareViewController" bundle:nil];
+    //[self.navigationController pushViewController:viewController animated:YES];
     
     
 }

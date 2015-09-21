@@ -16,9 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *settimeLabel;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *device;
 
+@property (weak, nonatomic) IBOutlet UILabel *device;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIImageView *degreeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *materialImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *weightImageView;

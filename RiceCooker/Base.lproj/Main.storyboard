@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xgs-8M-5qZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -283,6 +283,7 @@
         <!--Share Device View Controller-->
         <scene sceneID="StJ-pr-HFY">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zt8-Av-21W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ShareDeviceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="krF-G6-gFp" customClass="ShareDeviceViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="f77-aS-esv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -383,7 +384,6 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zt8-Av-21W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="907" y="1720"/>
         </scene>
@@ -483,7 +483,7 @@
                                         <rect key="frame" x="0.0" y="103" width="414" height="30"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="zkZ-7W-jx8" secondAttribute="height" multiplier="69:5" id="Vhl-G9-EJI"/>
+                                            <constraint firstAttribute="width" secondItem="zkZ-7W-jx8" secondAttribute="height" multiplier="69:5" id="Ql1-Qu-CH3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.39607843139999999" green="0.46274509800000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -560,6 +560,8 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Ovs-xn-3GX"/>
+                                        <exclude reference="EP1-0v-8uN"/>
+                                        <exclude reference="aHc-FD-mYo"/>
                                         <exclude reference="mUX-5o-vep"/>
                                         <exclude reference="yR8-TY-9fS"/>
                                         <exclude reference="fGQ-Wi-VqD"/>
@@ -577,11 +579,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zkZ-7W-jx8" firstAttribute="width" secondItem="jal-g0-NxF" secondAttribute="width" id="9rT-6H-8tb"/>
                             <constraint firstItem="8be-AJ-slk" firstAttribute="top" secondItem="BRi-4h-9yv" secondAttribute="bottom" id="B7n-Sn-kEr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BRi-4h-9yv" secondAttribute="trailing" constant="-16" id="V06-U5-iQx"/>
+                            <constraint firstItem="BRi-4h-9yv" firstAttribute="width" secondItem="jal-g0-NxF" secondAttribute="width" id="Pmr-Q4-4dp"/>
                             <constraint firstItem="BRi-4h-9yv" firstAttribute="top" secondItem="4Bs-4b-PW1" secondAttribute="bottom" id="VTr-Hu-uSa"/>
                             <constraint firstItem="4Bs-4b-PW1" firstAttribute="leading" secondItem="jal-g0-NxF" secondAttribute="leadingMargin" constant="-16" id="edC-Dz-gBm"/>
-                            <constraint firstItem="BRi-4h-9yv" firstAttribute="leading" secondItem="jal-g0-NxF" secondAttribute="leadingMargin" constant="-16" id="hHc-Kv-d3i"/>
+                            <constraint firstAttribute="centerX" secondItem="BRi-4h-9yv" secondAttribute="centerX" id="ffv-tB-y0i"/>
                             <constraint firstItem="4Bs-4b-PW1" firstAttribute="top" secondItem="spW-Lv-kSU" secondAttribute="bottom" id="rV1-yS-ccl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Bs-4b-PW1" secondAttribute="trailing" constant="-16" id="uiH-rq-WA1"/>
                         </constraints>

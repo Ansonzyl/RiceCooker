@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cookModeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *finishTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
+- (IBAction)pushToNextView:(UIButton *)sender;
 
 @end

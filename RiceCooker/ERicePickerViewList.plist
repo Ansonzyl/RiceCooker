@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>cookMode</key>
+	<array>
+		<string>香韧</string>
+		<string>标准</string>
+		<string>软糯</string>
+	</array>
+	<key>fire</key>
+	<array>
+		<string>煮饭</string>
+		<string>煮粥</string>
+		<string>煲仔饭</string>
+		<string>再加热</string>
+	</array>
+	<key>pNumber</key>
+	<array>
+		<string>1</string>
+		<string>2</string>
+		<string>3</string>
+		<string>4</string>
+		<string>5</string>
+		<string>6</string>
+		<string>7</string>
+	</array>
+</dict>
+</plist>

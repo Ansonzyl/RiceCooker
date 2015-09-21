@@ -21,6 +21,7 @@
 //    self.navigationItem.leftBarButtonItem = button;
     self.tabBar.barTintColor = UIColorFromRGB(0x40c8c4);
     self.tabBar.tintColor = UIColorFromRGB(0xbbf5f4);
+    
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0xbbf5f4),NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     NSArray *items = self.tabBar.items;

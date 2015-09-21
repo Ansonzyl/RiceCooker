@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -19,18 +19,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-Ip-WHe">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dAR-Ip-WHe" secondAttribute="height" multiplier="46:5" id="PFa-4a-DaU"/>
+                    </constraints>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="42" image="phone.png" highlightedImage="phone输入后.png" translatesAutoresizingMaskIntoConstraints="NO" id="9RN-Sr-JlC">
                     <rect key="frame" x="15" y="45" width="385" height="57"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9RN-Sr-JlC" secondAttribute="height" multiplier="385:57" id="L8O-WB-NXK"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-hj-JME">
-                    <rect key="frame" x="55" y="45" width="293" height="57"/>
-                    <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="470" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SB-yB-cbh">
                     <rect key="frame" x="15" y="121" width="385" height="57"/>
                     <color key="backgroundColor" red="0.1529411765" green="0.63137254899999995" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,20 +61,29 @@
                         </mask>
                     </variation>
                 </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-hj-JME">
+                    <rect key="frame" x="55" y="45" width="293" height="57"/>
+                    <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="dAR-Ip-WHe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5tS-4R-ZLE"/>
                 <constraint firstItem="9RN-Sr-JlC" firstAttribute="top" secondItem="IqY-hj-JME" secondAttribute="top" id="69L-Dn-GP4"/>
                 <constraint firstAttribute="trailing" secondItem="lnM-XG-dWr" secondAttribute="trailing" constant="14" id="75l-Di-52n"/>
                 <constraint firstItem="5SB-yB-cbh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="7Xc-eq-NGL"/>
                 <constraint firstItem="9RN-Sr-JlC" firstAttribute="leading" secondItem="IqY-hj-JME" secondAttribute="leading" constant="-40" id="97n-eU-Phl"/>
                 <constraint firstItem="9RN-Sr-JlC" firstAttribute="height" secondItem="IqY-hj-JME" secondAttribute="height" id="GPB-uq-UEt"/>
+                <constraint firstItem="IqY-hj-JME" firstAttribute="top" secondItem="dAR-Ip-WHe" secondAttribute="bottom" id="J9w-UO-n1e"/>
                 <constraint firstItem="9RN-Sr-JlC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Ndw-8m-wrY"/>
+                <constraint firstAttribute="trailing" secondItem="dAR-Ip-WHe" secondAttribute="trailing" id="Q9Q-Na-VVn"/>
                 <constraint firstItem="5SB-yB-cbh" firstAttribute="height" secondItem="9RN-Sr-JlC" secondAttribute="height" id="VlI-S6-9ed"/>
-                <constraint firstItem="9RN-Sr-JlC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="ZHf-Dl-gq9"/>
                 <constraint firstItem="lnM-XG-dWr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="bnm-1F-mKy"/>
                 <constraint firstItem="lnM-XG-dWr" firstAttribute="width" secondItem="lnM-XG-dWr" secondAttribute="height" multiplier="193:47" id="fwy-jB-Nnr"/>
                 <constraint firstItem="lnM-XG-dWr" firstAttribute="top" secondItem="5SB-yB-cbh" secondAttribute="bottom" constant="53" id="nnC-zh-fYK"/>
+                <constraint firstItem="dAR-Ip-WHe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oJ7-pK-Ktu"/>
                 <constraint firstItem="5SB-yB-cbh" firstAttribute="width" secondItem="9RN-Sr-JlC" secondAttribute="width" id="sek-Qu-GIg"/>
                 <constraint firstAttribute="trailing" secondItem="9RN-Sr-JlC" secondAttribute="trailing" constant="14" id="wpO-8A-PSE"/>
                 <constraint firstItem="9RN-Sr-JlC" firstAttribute="trailing" secondItem="IqY-hj-JME" secondAttribute="trailing" constant="52" id="xP7-EU-Iun"/>

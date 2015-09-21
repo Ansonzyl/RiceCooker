@@ -27,6 +27,8 @@
     if (_isAdd) {
         [self addDvice];
     }
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"barBack.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 
