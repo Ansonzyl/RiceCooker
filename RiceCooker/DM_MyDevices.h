@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface DM_MyDevices : NSObject
 @property (nonatomic, copy) NSString *device;
 @property (nonatomic, copy) NSString *devicename;

@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DM_EVegetable.h"
+#import "DeviceChangeDelegate.h"
+
+
 @interface EVegetableChooseViewController : UIViewController
 @property (nonatomic, strong) DM_EVegetable *device;
 @property (nonatomic, assign) NSInteger currentTag;
 @property (nonatomic, copy) NSString *currentButtonName;
-
+@property (nonatomic, weak) id <DeviceChangeDelegate> delegate;
+@property (nonatomic, assign) NSInteger currentIndex;
 @end

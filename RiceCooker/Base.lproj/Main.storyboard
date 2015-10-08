@@ -283,7 +283,6 @@
         <!--Share Device View Controller-->
         <scene sceneID="StJ-pr-HFY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zt8-Av-21W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ShareDeviceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="krF-G6-gFp" customClass="ShareDeviceViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="f77-aS-esv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -384,6 +383,7 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zt8-Av-21W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="907" y="1720"/>
         </scene>
@@ -532,41 +532,25 @@
                                     <constraint firstItem="b5M-Na-ci7" firstAttribute="top" secondItem="4Bs-4b-PW1" secondAttribute="top" constant="21" id="9fw-o7-G7s"/>
                                     <constraint firstItem="pFq-5Z-erq" firstAttribute="centerX" secondItem="EF2-uR-fld" secondAttribute="centerX" constant="19.5" id="Bh1-Bs-0UY"/>
                                     <constraint firstItem="r6v-yD-mDR" firstAttribute="centerY" secondItem="3kF-NB-Q0G" secondAttribute="centerY" constant="1.5" id="Bx8-F1-LXx"/>
-                                    <constraint firstItem="zkZ-7W-jx8" firstAttribute="leading" secondItem="4Bs-4b-PW1" secondAttribute="leading" id="EP1-0v-8uN"/>
                                     <constraint firstItem="WbG-LO-7Ed" firstAttribute="leading" secondItem="b5M-Na-ci7" secondAttribute="trailing" constant="1" id="Hbo-Vy-cbF"/>
                                     <constraint firstItem="4Jr-Wf-IJD" firstAttribute="leading" secondItem="EF2-uR-fld" secondAttribute="trailing" constant="5" id="JoD-25-cID"/>
                                     <constraint firstItem="zkZ-7W-jx8" firstAttribute="top" secondItem="EF2-uR-fld" secondAttribute="bottom" constant="6" id="Le7-P4-HEL"/>
                                     <constraint firstItem="aIZ-5T-9jY" firstAttribute="centerY" secondItem="qb4-qC-sWj" secondAttribute="centerY" constant="-0.5" id="Lfz-pt-5G8"/>
                                     <constraint firstItem="r6v-yD-mDR" firstAttribute="leading" secondItem="3kF-NB-Q0G" secondAttribute="trailing" constant="3" id="Nit-Du-Tjl"/>
-                                    <constraint firstItem="aIZ-5T-9jY" firstAttribute="centerY" secondItem="qb4-qC-sWj" secondAttribute="centerY" constant="-1.5" id="Ovs-xn-3GX"/>
                                     <constraint firstItem="3kF-NB-Q0G" firstAttribute="top" secondItem="uUx-7C-eBH" secondAttribute="bottom" constant="1" id="PiV-6z-aBP"/>
                                     <constraint firstItem="zkZ-7W-jx8" firstAttribute="top" secondItem="3kF-NB-Q0G" secondAttribute="bottom" constant="6" id="UlN-CZ-UdW"/>
                                     <constraint firstAttribute="height" constant="133" id="WMI-Fh-2bx"/>
                                     <constraint firstAttribute="trailing" secondItem="WbG-LO-7Ed" secondAttribute="trailing" constant="15" id="YJp-pg-LGB"/>
                                     <constraint firstItem="qb4-qC-sWj" firstAttribute="leading" secondItem="aIZ-5T-9jY" secondAttribute="trailing" constant="4" id="ZJ0-ku-M8C"/>
-                                    <constraint firstAttribute="trailing" secondItem="zkZ-7W-jx8" secondAttribute="trailing" id="aHc-FD-mYo"/>
                                     <constraint firstItem="aIZ-5T-9jY" firstAttribute="top" secondItem="bm1-4D-mmi" secondAttribute="bottom" id="e7E-FO-cXp"/>
                                     <constraint firstAttribute="centerX" secondItem="zkZ-7W-jx8" secondAttribute="centerX" id="ego-66-Vhf"/>
-                                    <constraint firstItem="uUx-7C-eBH" firstAttribute="centerX" secondItem="3kF-NB-Q0G" secondAttribute="centerX" constant="31" id="fGQ-Wi-VqD"/>
                                     <constraint firstAttribute="trailing" secondItem="uUx-7C-eBH" secondAttribute="trailing" constant="15" id="fiX-oE-udt"/>
                                     <constraint firstAttribute="width" secondItem="4Bs-4b-PW1" secondAttribute="height" multiplier="414:133" id="fpk-H8-pgM"/>
                                     <constraint firstItem="aIZ-5T-9jY" firstAttribute="centerX" secondItem="bm1-4D-mmi" secondAttribute="centerX" constant="-16" id="kCI-rx-iX4"/>
                                     <constraint firstAttribute="bottom" secondItem="zkZ-7W-jx8" secondAttribute="bottom" id="m1a-Es-Spb"/>
-                                    <constraint firstItem="pFq-5Z-erq" firstAttribute="centerX" secondItem="EF2-uR-fld" secondAttribute="centerX" constant="16.5" id="mUX-5o-vep"/>
                                     <constraint firstItem="zkZ-7W-jx8" firstAttribute="top" secondItem="aIZ-5T-9jY" secondAttribute="bottom" constant="6" id="pPk-Qx-8MY"/>
                                     <constraint firstAttribute="centerX" secondItem="pFq-5Z-erq" secondAttribute="centerX" id="uAF-tn-Yg9"/>
-                                    <constraint firstItem="4Jr-Wf-IJD" firstAttribute="top" secondItem="EF2-uR-fld" secondAttribute="top" constant="3" id="yR8-TY-9fS"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Ovs-xn-3GX"/>
-                                        <exclude reference="EP1-0v-8uN"/>
-                                        <exclude reference="aHc-FD-mYo"/>
-                                        <exclude reference="mUX-5o-vep"/>
-                                        <exclude reference="yR8-TY-9fS"/>
-                                        <exclude reference="fGQ-Wi-VqD"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BRi-4h-9yv">
                                 <rect key="frame" x="0.0" y="197" width="414" height="490"/>

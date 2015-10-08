@@ -22,6 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
 //    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x40c8c4)];
     
 //    [UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x40c8c4), NSForegroundColorAttributeName, [UIFont systemFontOfSize:18],nil];

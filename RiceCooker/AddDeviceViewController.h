@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (nonatomic, copy) NSString *device;
 @property (nonatomic, copy) NSString *phoneNumber;
+@property (nonatomic, copy) NSString *UUID;
 
-
+@property (weak, nonatomic) IBOutlet UILabel *deviceTextField;
 
 @end

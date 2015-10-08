@@ -37,6 +37,7 @@ static int myTime;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [_timer invalidate];
     
 }
 

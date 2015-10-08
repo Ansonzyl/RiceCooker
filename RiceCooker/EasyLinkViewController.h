@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 @interface EasyLinkViewController : UIViewController
+@property (nonatomic, strong) NSString *device;
+@property (nonatomic, strong) NSString *UUID;
 
 @end

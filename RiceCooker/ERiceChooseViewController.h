@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "DM_EVegetable.h"
+#import "DeviceChangeDelegate.h"
+
 @interface ERiceChooseViewController : UIViewController
 
 @property (nonatomic, strong) DM_EVegetable *device;
 @property (nonatomic, strong) NSString *currentButtonName;
 @property (nonatomic, assign) NSInteger currentTag;
+@property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, weak) id <DeviceChangeDelegate> delegate;
+
 
 - (IBAction)startCooking:(UIButton *)sender;
 

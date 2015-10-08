@@ -7,14 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DevicesViewController">
             <connections>
-                <outlet property="cookModeBtn" destination="GWH-GD-taC" id="hIZ-3x-3FE"/>
-                <outlet property="cookModeLabel" destination="zzr-cT-ffZ" id="k5f-uX-Uak"/>
-                <outlet property="finishTimeBtn" destination="Yqf-ba-CBc" id="OSW-Zm-8MX"/>
-                <outlet property="finishTimeLabel" destination="sRU-77-YWo" id="wtm-Zm-ROm"/>
-                <outlet property="fireBtn" destination="B0R-Rg-GE9" id="2Fd-t7-cH9"/>
-                <outlet property="fireLabel" destination="T5Y-wG-iVi" id="M1e-sl-Q3h"/>
-                <outlet property="pNumberBtn" destination="c0h-Rf-bwX" id="9p0-bP-zax"/>
-                <outlet property="pNumberLabel" destination="qdH-yl-WF9" id="c5b-V9-tpI"/>
+                <outlet property="scrollView" destination="bkx-fb-eWn" id="b6Y-Fa-Xyq"/>
                 <outlet property="startBtn" destination="ZO2-hE-eYT" id="AFh-pz-Rfk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,83 +17,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZO2-hE-eYT">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZO2-hE-eYT">
                     <rect key="frame" x="0.0" y="687" width="414" height="49"/>
                     <color key="backgroundColor" red="0.25098039220000001" green="0.7843137255" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ZO2-hE-eYT" secondAttribute="height" multiplier="414:49" id="guq-m4-uoT"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="开始烹饪">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="startCook:" destination="-1" eventType="touchUpInside" id="pnr-xa-Ces"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="三人份" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdH-yl-WF9">
-                    <rect key="frame" x="44" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标准煮" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5Y-wG-iVi">
-                    <rect key="frame" x="139" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="软糯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzr-cT-ffZ">
-                    <rect key="frame" x="232" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkx-fb-eWn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="525"/>
+                    <subviews>
+                        <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lWn-md-ppL">
+                            <rect key="frame" x="150" y="441" width="115" height="37"/>
+                        </pageControl>
+                    </subviews>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="bkx-fb-eWn" secondAttribute="height" multiplier="138:175" id="Jps-uU-Hcf"/>
                     </constraints>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRU-77-YWo">
-                    <rect key="frame" x="310" y="638" width="73" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWH-GD-taC" userLabel="软糯">
-                    <rect key="frame" x="229" y="570" width="51" height="51"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="pushToNextView:" destination="-1" eventType="touchUpInside" id="GEn-5g-t7r"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0R-Rg-GE9" userLabel="标准煮">
-                    <rect key="frame" x="136" y="570" width="51" height="51"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="pushToNextView:" destination="-1" eventType="touchUpInside" id="rV4-d0-nO1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0h-Rf-bwX">
-                    <rect key="frame" x="41" y="570" width="51" height="51"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="pushToNextView:" destination="-1" eventType="touchUpInside" id="czH-U5-N8Z"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yqf-ba-CBc" userLabel="完成时间">
-                    <rect key="frame" x="322" y="570" width="51" height="51"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="pushToNextView:" destination="-1" eventType="touchUpInside" id="dcL-rG-ESM"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -111,7 +53,7 @@
                 <constraint firstItem="bkx-fb-eWn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pGZ-DY-kaq"/>
                 <constraint firstItem="bkx-fb-eWn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sq8-Rr-OHg"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="555" y="670"/>
         </view>
     </objects>

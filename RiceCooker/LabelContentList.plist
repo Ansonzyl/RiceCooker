@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>riceGrad</key>
+	<array>
+		<string>糙米的好处</string>
+		<string>1.糙米能有效的调节体内新城代谢，内分泌异常等；</string>
+		<string>2.糙米能治疗贫血</string>
+		<string>3.糙米能治疗便秘，净化血液，因而有强化体质的作用。</string>
+		<string>4.胚芽中富含的维生素E能促进血月循环，有效维护全身机能；</string>
+		<string>5.糙米能使细胞功能转为正常，保持内分泌平衡；</string>
+		<string>6.糙米具有连接和分解农药等放射性物质的功效达到了防癌的作用。</string>
+	</array>
+	<key>deviceDetail</key>
+	<array>
+		<string>修改设备名称</string>
+		<string>分享给家人</string>
+		<string>精米程度</string>
+		<string>米仓信息</string>
+		<string>检查固件升级</string>
+		<string>解除连接</string>
+		<string>反馈</string>
+		<string>说明书</string>
+	</array>
+	<key>userInfo</key>
+	<array>
+		<string>消息中心</string>
+		<string>我的订单</string>
+		<string>反馈</string>
+		<string>关于</string>
+	</array>
+	<key>addDevices</key>
+	<array>
+		<string>e饭宝</string>
+		<string>e菜宝</string>
+		<string>扫码添加</string>
+	</array>
+	<key>more</key>
+	<array>
+		<string>修改设备名称</string>
+		<string>分享给家人</string>
+		<string>精米程度</string>
+		<string>米仓信息</string>
+		<string>检查固件升级</string>
+		<string>解除固件连接</string>
+		<string>反馈</string>
+		<string>说明书</string>
+	</array>
+</dict>
+</plist>

@@ -11,16 +11,14 @@
                 <outlet property="cookModeImage" destination="lx6-H9-6nY" id="1Oe-U3-IQ4"/>
                 <outlet property="cookModeLabel" destination="g2M-9T-FuS" id="uKV-Kr-G1Z"/>
                 <outlet property="cookModePickerView" destination="Ucc-UB-whc" id="2bJ-Ai-FWX"/>
-                <outlet property="dataPicker" destination="pHd-hH-RYI" id="sjq-GU-V0k"/>
+                <outlet property="datePicker" destination="pHd-hH-RYI" id="j8a-LO-KDx"/>
                 <outlet property="finishTimeImage" destination="nM8-Re-fUG" id="R1A-c6-hQx"/>
                 <outlet property="finishTimeLabel" destination="mWb-cb-DFD" id="fYh-jA-aaA"/>
                 <outlet property="fireImage" destination="MhM-Nk-M8R" id="y45-8x-0S8"/>
                 <outlet property="fireLabel" destination="aRw-eT-FGv" id="gig-PJ-Erg"/>
                 <outlet property="firePickerView" destination="Bfz-Ko-10v" id="UNk-5w-BEd"/>
-                <outlet property="pNumber" destination="7n0-Nb-LVd" id="BHB-sg-fdF"/>
                 <outlet property="pNumberLabel" destination="dcE-bM-yCY" id="DpH-yz-HUf"/>
                 <outlet property="pNumberPickerView" destination="6pA-hj-iFM" id="ong-PE-wVY"/>
-                <outlet property="startBtn" destination="ODS-bN-vtT" id="1zw-jR-U0T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,8 +27,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="e饭宝背景1.png" translatesAutoresizingMaskIntoConstraints="NO" id="gQd-Ec-JKE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="e饭宝背景1.png" translatesAutoresizingMaskIntoConstraints="NO" id="gQd-Ec-JKE">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="310"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="gQd-Ec-JKE" secondAttribute="height" multiplier="207:155" id="lQU-uV-xrg"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已关机" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPv-Or-4Am">
                     <rect key="frame" x="150" y="121" width="115" height="21"/>
@@ -38,9 +39,12 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-MZ-Af8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-MZ-Af8">
                     <rect key="frame" x="0.0" y="310" width="414" height="30"/>
                     <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vg4-MZ-Af8" secondAttribute="height" multiplier="69:5" id="Ks2-DN-NaF"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.396078431372549" green="0.46274509803921571" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -75,18 +79,19 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODS-bN-vtT">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODS-bN-vtT">
                     <rect key="frame" x="0.0" y="687" width="414" height="49"/>
                     <color key="backgroundColor" red="0.25098039220000001" green="0.7843137255" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ODS-bN-vtT" secondAttribute="height" multiplier="414:49" id="uMO-3y-U6a"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="开始烹饪">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="startCooking:" destination="-1" eventType="touchUpInside" id="TeW-7e-449"/>
+                        <action selector="startCooking:" destination="-1" eventType="touchUpInside" id="4lG-pl-pdG"/>
                     </connections>
                 </button>
                 <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pA-hj-iFM" userLabel="人数">
@@ -116,9 +121,6 @@
                         <!--2015-09-02 02:37:59 +0000-->
                     </date>
                 </datePicker>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-米量（152）.png" highlightedImage="icon-e饭宝-米量选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="7n0-Nb-LVd">
-                    <rect key="frame" x="40" y="571" width="51" height="51"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-烹饪方式（152）.png" highlightedImage="icon-e饭宝-烹饪方式选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="MhM-Nk-M8R">
                     <rect key="frame" x="135" y="571" width="51" height="51"/>
                 </imageView>
@@ -149,8 +151,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="vg4-MZ-Af8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Lw-5h-FES"/>
                 <constraint firstAttribute="bottom" secondItem="ODS-bN-vtT" secondAttribute="bottom" id="4UE-ZZ-IAc"/>
+                <constraint firstAttribute="trailing" secondItem="vg4-MZ-Af8" secondAttribute="trailing" id="Mk9-6D-XDp"/>
                 <constraint firstItem="ODS-bN-vtT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fQF-AE-3Hr"/>
+                <constraint firstAttribute="trailing" secondItem="gQd-Ec-JKE" secondAttribute="trailing" id="gZN-Zq-8En"/>
+                <constraint firstItem="gQd-Ec-JKE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jha-Ef-XfX"/>
+                <constraint firstItem="vg4-MZ-Af8" firstAttribute="top" secondItem="gQd-Ec-JKE" secondAttribute="bottom" id="kX5-lD-fpQ"/>
+                <constraint firstItem="gQd-Ec-JKE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rTH-oc-f0k"/>
                 <constraint firstAttribute="trailing" secondItem="ODS-bN-vtT" secondAttribute="trailing" id="uHk-NB-Ev9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -162,8 +170,6 @@
         <image name="icon-e饭宝-口感（152）.png" width="152" height="152"/>
         <image name="icon-e饭宝-烹饪方式选中（152）.png" width="152" height="152"/>
         <image name="icon-e饭宝-烹饪方式（152）.png" width="152" height="152"/>
-        <image name="icon-e饭宝-米量选中（152）.png" width="152" height="152"/>
-        <image name="icon-e饭宝-米量（152）.png" width="152" height="152"/>
         <image name="icon-e饭宝-预约选中（152）.png" width="152" height="152"/>
         <image name="icon-e饭宝-预约（152）.png" width="152" height="152"/>
     </resources>

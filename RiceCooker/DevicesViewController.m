@@ -9,15 +9,19 @@
 #import "DevicesViewController.h"
 #import "MyViewController.h"
 #import "ERiceChooseViewController.h"
-#import "DM_EVegetable.h"
+
 #import "DXPopover.h"
 #import "AddDeviceCell.h"
 #import "EVegetableChooseViewController.h"
-
+#import "RiceGradViewController.h"
+#import "DeviceChangeDelegate.h"
 #define kCellHeight 58
-#define kCellCount 7
+#define kCellCount 8
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+#define kRate [UIScreen mainScreen].bounds.size.width/414
 
-@interface DevicesViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface DevicesViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, DeviceChangeDelegate, UIAlertViewDelegate>
 {
     CGFloat popoverWidth;
 }
@@ -31,6 +35,7 @@
 @property (nonatomic, strong) UIImage *moreImage;
 @property (nonatomic, strong) UIImage *cancelImage;
 @property (nonatomic, strong) NSString *titleName;
+- (IBAction)startCook:(UIButton *)sender;
 
 @end
 
@@ -39,35 +44,138 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavigationBar];
-
+    [self setButtonWithLabel];
     _device = _devicesArray[_currentNumber];
+    
     [self setImageAndLabelWithDevice:_device];
     
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+   
+    [self myViewController];
+    [self setPageView];
     
+
+    dispatch_async(queue, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LabelContentList" ofType:@"plist"];
+        _moreArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"deviceDetail"];
+        
+        // popover
+        
+        UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, kCellHeight * _moreArray.count) style:UITableViewStylePlain];
+        blueView.dataSource = self;
+        blueView.delegate = self;
+        self.moreTableView = blueView;
+
+    });
+    
+    
+    dispatch_async(queue, ^{
+        [self resetPopver];
+    });
+    
+    dispatch_async(queue, ^{
+        _pNumberBtn.tag = 0;
+        _fireBtn.tag = 1;
+        _cookModeBtn.tag = 2;
+        _finishTimeBtn.tag = 3;
+
+    });
+    
+}
+
+
+// button label 位置
+- (void)setButtonWithLabel
+{
+    double size = 51 * kRate;
+    double height = 570 * kRate;
+    _pNumberBtn = [[UIButton alloc] initWithFrame:CGRectMake(41*kRate, height, size, size)];
+    _fireBtn = [[UIButton alloc] initWithFrame:CGRectMake(136*kRate, height, size, size)];
+    _cookModeBtn = [[UIButton alloc] initWithFrame:CGRectMake(229*kRate, height, size, size)];
+    _finishTimeBtn = [[UIButton alloc] initWithFrame:CGRectMake(322*kRate, height, size, size)];
+    
+    [_pNumberBtn addTarget:self action:@selector(pushToNextView:) forControlEvents:UIControlEventTouchUpInside];
+    [_fireBtn addTarget:self action:@selector(pushToNextView:) forControlEvents:UIControlEventTouchUpInside];
+    [_cookModeBtn addTarget:self action:@selector(pushToNextView:) forControlEvents:UIControlEventTouchUpInside];
+    [_finishTimeBtn addTarget:self action:@selector(pushToNextView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    CGRect frame = CGRectMake(0, 0, 60*kRate, 21*kRate);
+    
+    _pNumberLabel = [self setLabelWithFrame:frame];
+    _pNumberLabel.center = [self makeCenterWithPoint:_pNumberBtn.center];
+    
+    _fireLabel = [self setLabelWithFrame:frame];
+    _fireLabel.center = [self makeCenterWithPoint:_fireBtn.center];
+    
+    _cookModeLabel = [self setLabelWithFrame:frame];
+   _cookModeLabel.center = [self makeCenterWithPoint:_cookModeBtn.center];
+    
+   
+    
+    _finishTimeLabel = [self setLabelWithFrame:frame];
+    _finishTimeLabel.center = [self makeCenterWithPoint:_finishTimeBtn.center];
+    
+    [self.view addSubview:_cookModeLabel];
+    [self.view addSubview:_pNumberLabel];
+    [self.view addSubview:_fireLabel];
+    
+    [self.view addSubview:_finishTimeLabel];
+    
+    [self.view addSubview:_cookModeBtn];
+    [self.view addSubview:_fireBtn];
+    [self.view addSubview:_pNumberBtn];
+    [self.view addSubview:_finishTimeBtn];
+}
+
+- (CGPoint)makeCenterWithPoint:(CGPoint)center
+{
+    CGPoint point = center;
+    point.y += 50*kRate;
+    return point;
+}
+
+
+- (void)myViewController
+{
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     for (NSInteger i = 0 ; i<_devicesArray.count; i++) {
         [controllers addObject:[NSNull null]];
     }
     self.viewControllers = controllers;
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.7)];
+}
+
+- (UILabel *)setLabelWithFrame:(CGRect)frame
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.textAlignment =  NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:12 * kRate];
     
-    // a page is the width of the scroll view
+    label.textColor = [UIColor blackColor];
+    return label;
+}
+
+- (void) setPageView
+{
+    
     self.scrollView.pagingEnabled = YES;
     self.scrollView.contentSize =
-    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * self.devicesArray.count, CGRectGetHeight(self.scrollView.frame));
+    CGSizeMake(kWidth * self.devicesArray.count, kHeight * 0.71);
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;
-    [self.view addSubview:_scrollView];
+
     
-    _pageControl = [[UIPageControl alloc] init];
-    _pageControl.center = CGPointMake(CGRectGetWidth(self.scrollView.frame)*0.5, CGRectGetHeight(self.scrollView.frame)*0.94);
-    _pageControl.bounds = CGRectMake(0, 0, 150, 50);
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, 150, 50)];
     
+    
+    
+    _pageControl.center = CGPointMake(self.view.frame.size.width * 0.5, kHeight*0.71*0.94);
     _pageControl.numberOfPages = _devicesArray.count;
+    
     [_pageControl addTarget:self action:@selector(gotoPage:) forControlEvents:UIControlEventValueChanged];
-//    _pageControl.currentPageIndicatorTintColor = []
+   
     _pageControl.pageIndicatorTintColor = UIColorFromRGB(0xa6cce7);
     [self.view addSubview:_pageControl];
     
@@ -81,23 +189,10 @@
     }
     [self loadScrollViewWithPage:_currentNumber];
     
-    CGPoint pt = CGPointMake(CGRectGetWidth(self.scrollView.frame)*_currentNumber, 0);
+    CGPoint pt = CGPointMake(kWidth * _currentNumber, 0);
     [_scrollView setContentOffset:pt];
     _pageControl.currentPage = _currentNumber;
-    
- 
-    
-    
-    // popover
-    
-    UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, kCellHeight*kCellCount) style:UITableViewStylePlain];
-    blueView.dataSource = self;
-    blueView.delegate = self;
-    self.moreTableView = blueView;
-    
-    _moreArray = [NSArray arrayWithObjects:@"修改设备名称", @"分享给家人", @"米仓信息", @"检查固件升级", @"解除连接", @"反馈", @"说明书", nil];
-    [self resetPopver];
-    
+
 }
 
 - (void) setNavigationBar
@@ -119,14 +214,18 @@
 
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [self.popover dismiss];
+}
 
 #pragma mark popover
 
 - (void) resetPopver;
 {
     self.popover = [DXPopover new];
-    popoverWidth = CGRectGetWidth(self.view.bounds);
+    popoverWidth = kWidth;
 }
 
 - (IBAction)moreDetail:(id)sender
@@ -199,6 +298,7 @@
     cell.myLebel.text = _moreArray[indexPath.row];
     NSString *iamge = [NSString stringWithFormat:@"icon-%@.png", _moreArray[indexPath.row]];
     cell.logoImage.image = [UIImage imageNamed:iamge];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -210,12 +310,24 @@
 
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_moreArray[indexPath.row] isEqualToString:@"精米程度"]) {
+        RiceGradViewController *viewController = [[RiceGradViewController alloc] initWithNibName:@"RiceGradViewController" bundle:nil];
+        [self.popover dismiss];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+
+}
+
+
 #pragma mark 
 - (void)setImageAndLabelWithDevice:(DM_EVegetable *)device
 {
     _titleName = device.device;
     self.title = _titleName;
-    if ([device.module isEqualToString:@"关机中"] || [device.module isEqualToString:@"冷藏中"]) {
+    
+    if ([device.module isEqualToString:@"待机中"] || [device.module isEqualToString:@"冷藏中"]) {
         if ([device.device isEqualToString:@"e饭宝"]) {
             
             [self.pNumberBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-米量（152）.png"] forState:UIControlStateNormal];
@@ -258,11 +370,21 @@
         
 
     }
+
+ 
+    if ([_device.device isEqualToString:@"e饭宝"]) {
+        self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份",device.pnumberweight];
+        self.cookModeLabel.text = device.state;
+        self.fireLabel.text = device.degree;
+    }else
+    {
+        self.pNumberLabel.text = device.degree;
+        self.cookModeLabel.text = device.pnumberweight;
+        self.fireLabel.text = device.state;
+
+    }
     
-    self.pNumberLabel.text = device.pnumberweight;
-    self.fireLabel.text = device.state;
-    self.cookModeLabel.text = device.degree;
-    self.finishTimeLabel.text = device.finishtime;
+    self.finishTimeLabel.text = device.appointTime;
     
 }
 
@@ -280,11 +402,13 @@
     if ((NSNull *)controller == [NSNull null]) {
         controller = [[MyViewController alloc] initWithDevice:_devicesArray[page]];
         [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+        
     }
     if (controller.view.superview == nil) {
-        CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
+        CGRect frame = self.view.frame;
+        frame.origin.x = kWidth * page;
         frame.origin.y = 0;
+
         controller.view.frame = frame;
         
         [self addChildViewController:controller];
@@ -302,20 +426,17 @@
         [view removeFromSuperview];
     }
         NSUInteger numPages = self.devicesArray.count;
-        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numPages, CGRectGetHeight(self.scrollView.frame));
+        self.scrollView.contentSize = CGSizeMake(kWidth * numPages, kHeight * 0.71);
         self.viewControllers = nil;
         NSMutableArray *controllers = [[NSMutableArray alloc] init];
         for (NSUInteger i = 0; i < _devicesArray.count; i++) {
             [controllers addObject:[NSNull null]];
         }
     self.viewControllers = controllers;
-    [self loadScrollViewWithPage:self.pageControl.currentPage - 1];
-    [self loadScrollViewWithPage:self.pageControl.currentPage];
-    [self loadScrollViewWithPage:self.pageControl.currentPage + 1];
+    [self scrollWithPage:self.pageControl.currentPage];
     [self gotoPage:NO];
     
 }
-
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -327,11 +448,17 @@
     _device = _devicesArray[page];
     [self setImageAndLabelWithDevice:_device];
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    [self scrollWithPage:page];
+    
+    // a possible optimization would be to unload the views+controllers which are no longer visible
+}
+
+
+- (void)scrollWithPage:(NSInteger)page
+{
     [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
     [self loadScrollViewWithPage:page + 1];
-    
-    // a possible optimization would be to unload the views+controllers which are no longer visible
 }
 
 
@@ -339,10 +466,8 @@
 {
     NSInteger page = self.pageControl.currentPage;
     
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+    
+    [self scrollWithPage:page];
     
     // update the scroll view to the appropriate page
     CGRect bounds = self.scrollView.bounds;
@@ -362,6 +487,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark  devieDelegate
+- (void)changeDevice:(DM_EVegetable *)device withIndex:(NSInteger)index
+{
+    [_devicesArray replaceObjectAtIndex:index withObject:device];
+    [self setImageAndLabelWithDevice:device];
+    [self myViewController];
+    [self scrollWithPage:index];
+    
+}
+
 
 - (IBAction)pushToNextView:(UIButton *)sender {
     if ([_device.device isEqualToString:@"e饭宝"]) {
@@ -369,6 +504,8 @@
         viewController.currentButtonName = sender.currentTitle;
         viewController.currentTag = sender.tag;
         viewController.device = self.device;
+        viewController.currentIndex = self.pageControl.currentPage;
+        viewController.delegate = self;
         [self.navigationController pushViewController:viewController animated:YES];
     }else
     {
@@ -376,9 +513,72 @@
         viewController.device = self.device;
         viewController.currentButtonName = sender.currentTitle;
         viewController.currentTag = sender.tag;
+        viewController.currentIndex = self.pageControl.currentPage;
+        viewController.delegate = self;
+
         [self.navigationController pushViewController:viewController animated:YES];
         
     }
     
 }
+- (IBAction)startCook:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"取消烹饪"] ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认取消烹饪" message:@"停止烹饪锅内食物，转为待机状态" delegate:self cancelButtonTitle:nil otherButtonTitles:@"继续烹饪", @"结束烹饪", nil];
+        [alert show];
+        
+        
+    }else if ( [sender.titleLabel.text isEqualToString:@"取消保温"])
+    {
+        
+    }else
+    {
+        _device.module = @"烹饪中";
+    }
+    
+    [self changeDevice:_device withIndex:_pageControl.currentPage];
+    
+}
+
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        _device.module = @"待机中";
+        [self cancelCookingWithState:@"取消烹饪"];
+    }
+}
+
+
+
+- (void)cancelCookingWithState:(NSString *)module
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parameters = @{@"phonenumber":_device.phonenumber,
+                                 @"device":_device.device,
+                                 @"pnumberweight":_device.pnumberweight,
+                                 @"degree":_device.degree,
+                                 @"state":_device.state,
+                                 @"devicename":_device.devicename,
+                                 @"finishtime":_device.finishtime,
+                                 @"UUID":_device.UUID,
+                                 @"module":module};
+    
+    [manager POST:[NSString stringWithFormat: @"http://%@/CancelsoakcookServlet", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        if ([recieve isEqualToString:@"cancel"]) {
+            _device.module = @"待机中";
+            [self changeDevice:_device withIndex:_pageControl.currentPage];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        
+    }];
+}
+
+
 @end

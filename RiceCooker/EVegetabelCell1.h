@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "DM_EVegetable.h"
 @interface EVegetabelCell1 : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
-@property (weak, nonatomic) IBOutlet UILabel *finishTime;
-@property (weak, nonatomic) IBOutlet UILabel *moduleLable;
-@property (weak, nonatomic) IBOutlet UILabel *pNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *settimeLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) IBOutlet UILabel *finishTime;
+@property (strong, nonatomic) IBOutlet UILabel *moduleLable;
+@property (strong, nonatomic) IBOutlet UILabel *pNumberLabel;
+@property (strong, nonatomic) IBOutlet UILabel *degreeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *stateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *settimeLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *device;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UIImageView *degreeImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *materialImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *weightImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *setTimeImageView;
+@property (strong, nonatomic) IBOutlet UILabel *device;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) IBOutlet UIImageView *degreeImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *materialImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *weightImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *setTimeImageView;
 
 @property (nonatomic, strong) DM_EVegetable *vegetable;
 @property (nonatomic, strong) DM_EVegetable *vegetable1;

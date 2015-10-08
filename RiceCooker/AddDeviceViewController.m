@@ -24,11 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加设备";
+    _deviceTextField.text = [NSString stringWithFormat:@"发现%@", _device];
     if (_isAdd) {
         [self addDvice];
     }
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"barBack.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
 }
 
 
@@ -83,17 +86,20 @@
     }else
     {
     EasyLinkViewController *viewController = [[EasyLinkViewController alloc] initWithNibName:@"EasyLinkViewController" bundle:nil];
+        viewController.UUID = self.UUID;
+        viewController.device = self.device;
     [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 
 - (void)JSONWithURL
 {
-    NSString *urlStr = [NSString stringWithFormat: @"http://%@StartexPerienceServlet", SERVER_URL];
+    NSString *urlStr = [NSString stringWithFormat: @"http://%@/StartexPerienceServlet", SERVER_URL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *paramters = @{@"device":self.device,
-                                @"phonenumber": _phoneNumber};
+                                @"phonenumber": _phoneNumber,
+                                @"uuid" : self.UUID};
     
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -103,7 +109,8 @@
         
         if ([recive isEqualToString:@"success"])
         {
-            
+            NSLog(@"success");
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
             
         }else if ([recive isEqualToString: @"fail"]) {
 
@@ -151,7 +158,7 @@
     }];
 }
 - (IBAction)startStep:(id)sender {
-//    [self JSONWithURL];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    [self JSONWithURL];
+
 }
 @end

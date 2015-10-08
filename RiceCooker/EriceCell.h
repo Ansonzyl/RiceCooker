@@ -11,16 +11,16 @@
 #import "DM_EVegetable.h"
 
 @interface EriceCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
-@property (weak, nonatomic) IBOutlet UILabel *finishTime;
-@property (weak, nonatomic) IBOutlet UILabel *moduleLable;
-@property (weak, nonatomic) IBOutlet UILabel *pNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) IBOutlet UILabel *finishTime;
+@property (strong, nonatomic) IBOutlet UILabel *moduleLable;
+@property (strong, nonatomic)  UILabel *pNumberLabel;
+@property (strong, nonatomic)  UILabel *degreeLabel;
+@property (strong, nonatomic)  UILabel *stateLabel;
+@property (nonatomic, strong) UILabel *deviceLabel;
 
 
-
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) DM_ERiceCell *riceCell;
 - (void)setRiceCell:(DM_ERiceCell *)riceCell;
 @property (nonatomic, strong) DM_EVegetable *device;

@@ -108,10 +108,10 @@
 }
 
 - (IBAction)pushNextView:(id)sender {
-//    [self restart];
-    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
-    viewController.isAdd = YES;
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self restart];
+//    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
+//    viewController.isAdd = YES;
+//    [self.navigationController pushViewController:viewController animated:YES];
 
 }
 
@@ -146,8 +146,16 @@
     if ([respose statusCode] == 200) {
         AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
         viewController.isAdd = YES;
+        viewController.UUID = self.UUID;
+        viewController.device = self.device;
         [self.navigationController pushViewController:viewController animated:YES];
     }
+
+    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
+    viewController.isAdd = YES;
+    viewController.UUID = self.UUID;
+    viewController.device = self.device;
+    [self.navigationController pushViewController:viewController animated:YES];
 
 }
 

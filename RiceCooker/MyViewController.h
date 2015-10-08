@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DM_EVegetable.h"
-@interface MyViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *workingImage;
+
+@interface MyViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+
+@property (strong, nonatomic) IBOutlet UIImageView *workingImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *collectBtn;
 @property (weak, nonatomic) IBOutlet UIButton *refrigerationBtn;

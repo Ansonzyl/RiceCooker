@@ -14,7 +14,9 @@
 #import "DM_ERiceCell.h"
 #import "DM_EVegetable.h"
 #import "EVegetabelCell1.h"
+#import "SYQRCodeViewController.h"
 
+#define kRate [UIScreen mainScreen].bounds.size.width / 414
 #define TYPE 2
 #define kRice 0
 #define kVegetable 1
@@ -55,11 +57,13 @@
     _addBuuton = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
     self.navigationItem.rightBarButtonItem = _addBuuton;
     
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LabelContentList" ofType:@"plist"];
+    _config = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"addDevices"];
 
     
     
     
-    UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, AddCellHeight*2) style:UITableViewStylePlain];
+    UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, AddCellHeight*_config.count) style:UITableViewStylePlain];
     
     
     blueView.dataSource = self;
@@ -71,7 +75,7 @@
     self.tableView.dataSource = self;
 
     [self resetPopover];
-    _config = [NSArray arrayWithObjects:@"e饭宝", @"e菜宝", nil];
+    
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
     
 }
@@ -149,7 +153,7 @@
 //        if (section == 0) {
 //            return 1;
 //        }else
-            return 2;
+            return _config.count;
     }else
     {
     switch (section) {
@@ -233,18 +237,50 @@
 #pragma mark - UITableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 添加设备
     if ([tableView isEqual:_addTableView]) {
-
         AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
         [self.popover dismiss];
-        viewController.device = _config[indexPath.row];
+       
         viewController.phoneNumber = self.phoneNumber;
         [viewController setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:viewController animated:YES];
+
+        if (indexPath.row == 2) {
+                       SYQRCodeViewController *qrcodevc = [[SYQRCodeViewController alloc] init];
+            [self.navigationController pushViewController:qrcodevc animated:YES];
+
+            qrcodevc.SYQRCodeSuncessBlock = ^(SYQRCodeViewController *aqrvc,NSString *qrString){
+                NSArray *array = [qrString componentsSeparatedByString:@","];
+                viewController.device = array[0];
+                viewController.UUID = array[1];
+                [aqrvc.navigationController pushViewController:viewController animated:YES];
+            };
+            qrcodevc.SYQRCodeFailBlock = ^(SYQRCodeViewController *aqrvc){
+                [self showTopMessage:@"扫描失败，请重试"];
+                
+            };
+            qrcodevc.SYQRCodeCancleBlock = ^(SYQRCodeViewController *aqrvc){
+                [aqrvc dismissViewControllerAnimated:NO completion:nil];
+                
+            };
+            
+
+        }else
+        {
+             viewController.device = _config[indexPath.row];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
         
     }else
     {
+        // 设备主页
+        
+//        ViewController *viewController = [[ViewController alloc] initWithNibName:@"DevicesViewController" bundle:nil];
+//        
+//        
         DevicesViewController *viewController = [[DevicesViewController alloc] initWithNibName:@"DevicesViewController" bundle:nil];
+        
+        
         _devicesArray = [[NSMutableArray alloc] init];
         for (int i = 0; i<_riceArray.count; i++) {
             DM_EVegetable *riceCell = [DM_EVegetable eVegetableWithDict:_riceArray[i]];
@@ -265,12 +301,13 @@
         {
             viewController.currentNumber = indexPath.row + _riceArray.count;
         }
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         [viewController setHidesBottomBarWhenPushed:YES];
+        
+
+        
         [self.navigationController pushViewController:viewController animated:YES];
-//            [self presentViewController:viewController animated:YES completion:^{
-//                
-//            }];
+        
+       
         
       
     }
@@ -283,7 +320,7 @@
         return AddCellHeight;
         
     }else
-        return 137;
+        return 137*kRate;
 }
 
 

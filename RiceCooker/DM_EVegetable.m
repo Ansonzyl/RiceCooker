@@ -13,45 +13,40 @@
 {
     DM_EVegetable *cell = [[self alloc] init];
     [cell setValuesForKeysWithDictionary:dict];
-
-    [cell remianTimeWithFinishTime:cell.finishtime withSetTime:cell.settime];
+    
+    [cell setTime:cell.remaintime withSetTime:cell.settime];
     return cell;
 }
 
-//- (void)finishTime
-//{
-//    NSTimeInterval remain = [_remaintime intValue]*60;
-//    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:remain];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"HH:mm"];
-//    self.finishtime = [formatter stringFromDate:date];
-//    
-//}
 
-- (void)remianTimeWithFinishTime:(NSMutableString *)finishTime withSetTime:(NSString *)setTime
+- (void)setTime:(NSString *)remainTime withSetTime:(NSString *)setTime
 {
-   
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
-//    NSDate *date = [NSDate date];
-//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//    
-//    NSInteger interval = [zone secondsFromGMTForDate: date];
-//    
-//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-//    
-    NSDate *finish = [formatter dateFromString:finishTime];
     
-    NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
-    self.remianTime = [finish timeIntervalSinceDate:now];
-    _settingTime = [setTime integerValue] * 60;
-    if (_settingTime < _remianTime) {
-        _remianTime = _settingTime;
+   
+    if ([_device isEqualToString:@"e饭宝"]) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMddHH:mm"];
+        NSDate *finish = [formatter dateFromString:_finishtime];
+        NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
+        self.remianTime = [finish timeIntervalSinceDate:now];
+        
+
+    }else
+    {
+        NSInteger time = [self.remaintime doubleValue];
+        self.remianTime = time/4 * 3600 + time%2 + time/2%2 * 60;
     }
     if (_remianTime < 0) {
         _remianTime = 0;
     }
-    _remianTime = _settingTime - _remianTime;
+
+    _settingTime = [setTime integerValue] * 60;
+    
+    
+
+
+    NSString *str = [_finishtime substringFromIndex:4];
+    _appointTime = [NSMutableString stringWithFormat:@"%@完成", str];
 }
 
 

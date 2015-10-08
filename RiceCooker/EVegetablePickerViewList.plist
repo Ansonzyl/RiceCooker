@@ -21,7 +21,12 @@
 		<key>海鲜</key>
 		<array>
 			<string>虾</string>
+			<string>大闸蟹</string>
 			<string>清蒸鱼</string>
+		</array>
+		<key>自定义</key>
+		<array>
+			<string>自定义</string>
 		</array>
 	</dict>
 	<key>weight</key>
@@ -34,10 +39,8 @@
 	</array>
 	<key>cookType</key>
 	<array>
-		<string>再加热</string>
-		<string>热牛奶</string>
-		<string>微波解冻</string>
-		<string>自动</string>
+		<string>微波</string>
+		<string>美味蒸</string>
 	</array>
 </dict>
 </plist>

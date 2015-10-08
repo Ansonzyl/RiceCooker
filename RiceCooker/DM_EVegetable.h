@@ -24,5 +24,9 @@
 @property (nonatomic, copy) NSString *remaintime;
 @property (nonatomic, assign) double remianTime;
 @property (nonatomic, assign) double settingTime;
+
+@property (nonatomic, copy) NSString *appointTime;
+@property (nonatomic, copy) NSString *ricedegree;
+
 + (DM_EVegetable *)eVegetableWithDict:(NSDictionary *)dict;
 @end

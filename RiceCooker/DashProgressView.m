@@ -33,7 +33,7 @@
     // 设置线宽
     CGContextSetLineWidth(ctx, 9.0);
     // 设置点线模式
-    CGFloat lengths[] = {1, 4};
+    CGFloat lengths[] = {1, 3};
     CGContextSetLineDash(ctx, 0, lengths, 2);
     CGSize viewSize = self.bounds.size;
     CGPoint center = CGPointMake(viewSize.width / 2, viewSize.height / 2);
