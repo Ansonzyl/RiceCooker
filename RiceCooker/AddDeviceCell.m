@@ -7,6 +7,7 @@
 //
 
 #import "AddDeviceCell.h"
+#define kRate [UIScreen mainScreen].bounds.size.width / 414
 
 @implementation AddDeviceCell
 
@@ -14,6 +15,11 @@
 {
     return [[NSBundle mainBundle] loadNibNamed:@"Cell" owner:nil options:nil][0];
 }
+- (void)awakeFromNib {
+    // Initialization code
+    _myLebel.font = [UIFont systemFontOfSize:18*kRate];
+}
+
 
 + (NSString *)ID
 {

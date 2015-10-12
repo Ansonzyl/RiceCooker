@@ -35,15 +35,19 @@
     {
         NSInteger time = [self.remaintime doubleValue];
         self.remianTime = time/4 * 3600 + time%2 + time/2%2 * 60;
+        self.settime = [NSString stringWithFormat:@"%@min", self.settime];
+        self.pnumberweight = [NSString stringWithFormat:@"%@g", self.pnumberweight];
     }
     if (_remianTime < 0) {
         _remianTime = 0;
     }
 
     _settingTime = [setTime integerValue] * 60;
-    
-    
+    if ([self.module isEqualToString:@"待机中"]) {
+        _remianTime = _settingTime;
+    }
 
+    
 
     NSString *str = [_finishtime substringFromIndex:4];
     _appointTime = [NSMutableString stringWithFormat:@"%@完成", str];

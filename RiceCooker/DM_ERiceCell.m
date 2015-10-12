@@ -35,7 +35,12 @@
     if (_settingTime < _remianTime) {
         _remianTime = _settingTime;
     }
+   if ([self.module isEqualToString:@"待机中"]) {
+        _remaintime = _settime;
+    }
+
     _remianTime = _settingTime - _remianTime;
+    
 }
 
 

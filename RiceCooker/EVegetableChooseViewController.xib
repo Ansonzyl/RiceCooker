@@ -9,22 +9,13 @@
             <connections>
                 <outlet property="backImage" destination="WgX-fO-EmM" id="Ucl-gk-m4N"/>
                 <outlet property="contentLabel" destination="bNX-E0-fGB" id="Yck-ok-cQV"/>
-                <outlet property="cookTypeImageView" destination="Cdd-Sc-bvN" id="8ep-Gc-6d7"/>
-                <outlet property="cookTypeLabel" destination="KFZ-UZ-tp8" id="Fm5-Ox-Q9c"/>
                 <outlet property="cookTypePickerView" destination="qt1-Fh-Qy4" id="iaR-Eb-EJb"/>
                 <outlet property="datePicker" destination="cWg-hI-S4x" id="JdF-BP-fYw"/>
-                <outlet property="finishTimeImageView" destination="dWC-1g-SfT" id="bwY-zt-RRR"/>
-                <outlet property="finishTimeLabel" destination="uYX-Nv-8VQ" id="PKc-jz-Xbs"/>
-                <outlet property="materialImageView" destination="0TX-MD-StC" id="2rW-5c-pNv"/>
-                <outlet property="materialLabel" destination="LGc-p1-GAu" id="5Po-6p-zWc"/>
                 <outlet property="materialPickerView" destination="xQX-3Q-fLd" id="5AQ-wm-ZOk"/>
                 <outlet property="setFinishTimeLabel" destination="FH1-cp-UZC" id="CCB-uo-BBs"/>
                 <outlet property="setTimeLabel" destination="ldB-IX-jR1" id="N4G-pc-hA3"/>
-                <outlet property="stateLabel" destination="XWJ-gg-Lwb" id="95d-1f-Cbe"/>
                 <outlet property="timePicker" destination="WJK-SS-eGh" id="kWr-TL-dSH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="weightImageView" destination="vT1-cS-l8g" id="ao7-Tc-prT"/>
-                <outlet property="weightLabel" destination="egh-25-DZ9" id="lz8-2o-CRB"/>
                 <outlet property="weightPickerView" destination="7FZ-fr-6G9" id="wFA-ke-Uvz"/>
             </connections>
         </placeholder>
@@ -33,42 +24,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="美味蒸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFZ-UZ-tp8">
-                    <rect key="frame" x="40" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="青菜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGc-p1-GAu">
-                    <rect key="frame" x="135" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egh-25-DZ9">
-                    <rect key="frame" x="228" y="638" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18:30完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYX-Nv-8VQ">
-                    <rect key="frame" x="306" y="638" width="73" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝烹饪方式（152）.png" highlightedImage="icon-e菜宝-烹饪方式选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cdd-Sc-bvN">
-                    <rect key="frame" x="36" y="571" width="51" height="51"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝食材（152）.png" highlightedImage="icon-e菜宝-食材选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="0TX-MD-StC">
-                    <rect key="frame" x="131" y="571" width="51" height="51"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝重量（152）.png" highlightedImage="icon-e菜宝-重量选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="vT1-cS-l8g">
-                    <rect key="frame" x="224" y="571" width="51" height="51"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝-预约（152）.png" highlightedImage="icon-e饭宝-预约选中（152）.png" translatesAutoresizingMaskIntoConstraints="NO" id="dWC-1g-SfT">
-                    <rect key="frame" x="317" y="571" width="51" height="51"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-OA-Y8V">
                     <rect key="frame" x="0.0" y="687" width="414" height="49"/>
                     <color key="backgroundColor" red="0.25098039220000001" green="0.7843137255" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,15 +122,6 @@
                         <constraint firstAttribute="width" secondItem="WgX-fO-EmM" secondAttribute="height" multiplier="207:155" id="KpB-Fw-icF"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWJ-gg-Lwb">
-                    <rect key="frame" x="0.0" y="106" width="414" height="58"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="XWJ-gg-Lwb" secondAttribute="height" multiplier="207:29" id="fbO-uj-hFH"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -183,7 +129,6 @@
                 <constraint firstAttribute="centerX" secondItem="7FZ-fr-6G9" secondAttribute="centerX" id="99R-Jh-sEO"/>
                 <constraint firstItem="qt1-Fh-Qy4" firstAttribute="centerX" secondItem="7FZ-fr-6G9" secondAttribute="centerX" id="9YA-ey-lHi"/>
                 <constraint firstAttribute="trailing" secondItem="WgX-fO-EmM" secondAttribute="trailing" id="A91-OI-6LC"/>
-                <constraint firstItem="XWJ-gg-Lwb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AMC-rn-sEx"/>
                 <constraint firstItem="xQX-3Q-fLd" firstAttribute="height" secondItem="7FZ-fr-6G9" secondAttribute="height" id="EQL-bZ-0do"/>
                 <constraint firstItem="FH1-cp-UZC" firstAttribute="leading" secondItem="ldB-IX-jR1" secondAttribute="trailing" id="GpQ-YQ-pEo"/>
                 <constraint firstAttribute="trailing" secondItem="FH1-cp-UZC" secondAttribute="trailing" id="I8U-kX-dpc"/>
@@ -207,23 +152,11 @@
                 <constraint firstItem="xQX-3Q-fLd" firstAttribute="top" secondItem="ldB-IX-jR1" secondAttribute="bottom" constant="2" id="gZZ-xC-1nU"/>
                 <constraint firstItem="xQX-3Q-fLd" firstAttribute="centerX" secondItem="7FZ-fr-6G9" secondAttribute="centerX" id="htV-vL-QMI"/>
                 <constraint firstItem="ldB-IX-jR1" firstAttribute="top" secondItem="bNX-E0-fGB" secondAttribute="bottom" constant="4" id="jH4-fq-ZyQ"/>
-                <constraint firstItem="XWJ-gg-Lwb" firstAttribute="centerY" secondItem="WgX-fO-EmM" secondAttribute="centerY" constant="-20" id="mCo-bu-mAe"/>
                 <constraint firstItem="cWg-hI-S4x" firstAttribute="leading" secondItem="WJK-SS-eGh" secondAttribute="trailing" id="qOH-Xb-rCV"/>
                 <constraint firstItem="cWg-hI-S4x" firstAttribute="top" secondItem="FH1-cp-UZC" secondAttribute="bottom" constant="2" id="t0H-wQ-vXy"/>
-                <constraint firstAttribute="trailing" secondItem="XWJ-gg-Lwb" secondAttribute="trailing" id="tR1-E1-kHI"/>
                 <constraint firstItem="WJK-SS-eGh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uDe-7P-c5M"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon-e菜宝-烹饪方式选中（152）.png" width="152" height="152"/>
-        <image name="icon-e菜宝-重量选中（152）.png" width="152" height="152"/>
-        <image name="icon-e菜宝-食材选中（152）.png" width="152" height="152"/>
-        <image name="icon-e菜宝烹饪方式（152）.png" width="152" height="152"/>
-        <image name="icon-e菜宝重量（152）.png" width="152" height="152"/>
-        <image name="icon-e菜宝食材（152）.png" width="152" height="152"/>
-        <image name="icon-e饭宝-预约选中（152）.png" width="152" height="152"/>
-        <image name="icon-e饭宝-预约（152）.png" width="152" height="152"/>
-    </resources>
 </document>

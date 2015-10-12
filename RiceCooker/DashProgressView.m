@@ -22,6 +22,11 @@
     return  self;
 }
 
+- (void)setPercent:(double)percent
+{
+    _percent = percent;
+    [self setNeedsDisplay];
+}
 
 
 // Only override drawRect: if you perform custom drawing.
@@ -46,6 +51,10 @@
     
     CGContextAddArc(ctx, center.x, center.y, outerRadius, startAngle, endAngle, 0);
     CGContextStrokePath(ctx);
+    
+    if (_percent >1) {
+        _percent = 1;
+    }
     
     CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
     double start =  - M_PI_2;

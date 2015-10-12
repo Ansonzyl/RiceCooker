@@ -35,6 +35,7 @@
 @property (nonatomic, strong) UIImage *moreImage;
 @property (nonatomic, strong) UIImage *cancelImage;
 @property (nonatomic, strong) NSString *titleName;
+@property (nonatomic, copy) NSString *pNumberStr;
 - (IBAction)startCook:(UIButton *)sender;
 
 @end
@@ -46,7 +47,7 @@
     [self setNavigationBar];
     [self setButtonWithLabel];
     _device = _devicesArray[_currentNumber];
-    
+   
     [self setImageAndLabelWithDevice:_device];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -54,11 +55,12 @@
     [self myViewController];
     [self setPageView];
     
+     NSString *path = [[NSBundle mainBundle] pathForResource:@"LabelContentList" ofType:@"plist"];
+        _moreArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"deviceDetail"];
+
 
     dispatch_async(queue, ^{
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"LabelContentList" ofType:@"plist"];
-        _moreArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"deviceDetail"];
-        
+               
         // popover
         
         UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, kCellHeight * _moreArray.count) style:UITableViewStylePlain];
@@ -328,6 +330,7 @@
     self.title = _titleName;
     
     if ([device.module isEqualToString:@"待机中"] || [device.module isEqualToString:@"冷藏中"]) {
+        _startBtn.userInteractionEnabled = NO;
         if ([device.device isEqualToString:@"e饭宝"]) {
             
             [self.pNumberBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-米量（152）.png"] forState:UIControlStateNormal];
@@ -345,8 +348,10 @@
         self.cookModeBtn.enabled = YES;
         self.finishTimeBtn.enabled = YES;
         [self.startBtn setTitle:@"开始烹饪" forState:UIControlStateNormal];
+        self.startBtn.userInteractionEnabled = NO;
     }else
     {
+        self.startBtn.userInteractionEnabled = YES;
         if ([device.device isEqualToString:@"e饭宝"]) {
             
             [self.pNumberBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-米量不可选（152）.png"] forState:UIControlStateNormal];
@@ -385,6 +390,10 @@
     }
     
     self.finishTimeLabel.text = device.appointTime;
+//    if ([_device.module isEqualToString:@"开始烹饪"]) {
+//        _startBtn.userInteractionEnabled = NO;
+//    }else
+//        _startBtn.userInteractionEnabled = YES;
     
 }
 
@@ -414,6 +423,8 @@
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
+        controller.currntIndex = page;
+        
         
     }
     
@@ -544,8 +555,15 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        _device.module = @"待机中";
-        [self cancelCookingWithState:@"取消烹饪"];
+        
+        if ([_device.module isEqualToString:@"烹饪中"])
+        {
+            [self cancelCookingWithState:@"取消烹饪"];
+        }else if ([_device.module isEqualToString:@"保温中"])
+        {
+            [self cancelCookingWithState:@"取消保温"];
+        }
+        
     }
 }
 
@@ -556,21 +574,42 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSDictionary *parameters = @{@"phonenumber":_device.phonenumber,
-                                 @"device":_device.device,
-                                 @"pnumberweight":_device.pnumberweight,
-                                 @"degree":_device.degree,
-                                 @"state":_device.state,
-                                 @"devicename":_device.devicename,
-                                 @"finishtime":_device.finishtime,
-                                 @"UUID":_device.UUID,
-                                 @"module":module};
+    NSDictionary *parameters;
+    if ([_device.module isEqualToString:@"e饭宝"]) {
+        parameters = @{@"phonenumber":_device.phonenumber,
+                         @"device":_device.device,
+                         @"pnumberweight":_device.pnumberweight,
+                         @"degree":_device.degree,
+                         @"state":_device.state,
+                         @"devicename":_device.devicename,
+                         @"finishtime":_device.finishtime,
+                         @"UUID":_device.UUID,
+                         @"module":module};
+    }else
+    {
+        parameters = @{@"phonenumber":_device.phonenumber,
+                       @"device":_device.device,
+                       @"pnumberweight":[NSString stringWithFormat:@"%d", [_device.pnumberweight intValue]],
+                       @"degree":_device.degree,
+                       @"state":_device.state,
+                       @"devicename":_device.devicename,
+                       @"finishtime":_device.finishtime,
+                       @"UUID":_device.UUID,
+                       @"module":module,
+                       @"settime":[NSString stringWithFormat:@"%f", _device.settingTime]};
+
+    }
+
+
     
     [manager POST:[NSString stringWithFormat: @"http://%@/CancelsoakcookServlet", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", recieve);
         if ([recieve isEqualToString:@"cancel"]) {
             _device.module = @"待机中";
+            [_deviceDelegate changeDevice:_device withIndex:_pageControl.currentPage];
+            
             [self changeDevice:_device withIndex:_pageControl.currentPage];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

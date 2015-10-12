@@ -49,7 +49,7 @@
 		1931E59D1B46B1C60035B21B /* icon-e菜宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5921B46B1C60035B21B /* icon-e菜宝.png */; };
 		1931E59E1B46B1C60035B21B /* icon-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5931B46B1C60035B21B /* icon-e饭宝.png */; };
 		1931E59F1B46B1C60035B21B /* pic-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5941B46B1C60035B21B /* pic-e饭宝.png */; };
-		1941D44D1B6C9ED500FEF48D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941D44C1B6C9ED500FEF48D /* Reachability.m */; };
+		193572ED1BC6B7040078368D /* 主页背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 193572EC1BC6B7040078368D /* 主页背景.png */; };
 		1941D4541B6CB59600FEF48D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941D4531B6CB59600FEF48D /* CoreGraphics.framework */; };
 		194A89A11B26AEEA000E27F8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194A899F1B26AEEA000E27F8 /* RegisterViewController.m */; };
 		194A89A21B26AEEA000E27F8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194A89A01B26AEEA000E27F8 /* RegisterViewController.xib */; };
@@ -141,6 +141,7 @@
 		195B5E951B3ED6A600838C55 /* ERiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195B5E931B3ED6A600838C55 /* ERiceViewController.xib */; };
 		195D50B01B60E0FC009ACEB4 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D50AF1B60E0FC009ACEB4 /* UserInfoViewController.m */; };
 		195D50B31B611DBC009ACEB4 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D50B21B611DBC009ACEB4 /* UserInfoCell.m */; };
+		1965D9601BC8D7EC005924E3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1965D95F1BC8D7EC005924E3 /* Reachability.m */; };
 		196A01701B969081003F9392 /* ERiceChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196A016E1B969081003F9392 /* ERiceChooseViewController.m */; };
 		196A01711B969081003F9392 /* ERiceChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196A016F1B969081003F9392 /* ERiceChooseViewController.xib */; };
 		196A01751B969095003F9392 /* EVegetableChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196A01731B969095003F9392 /* EVegetableChooseViewController.m */; };
@@ -325,9 +326,8 @@
 		1931E5921B46B1C60035B21B /* icon-e菜宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e菜宝.png"; sourceTree = "<group>"; };
 		1931E5931B46B1C60035B21B /* icon-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e饭宝.png"; sourceTree = "<group>"; };
 		1931E5941B46B1C60035B21B /* pic-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic-e饭宝.png"; sourceTree = "<group>"; };
+		193572EC1BC6B7040078368D /* 主页背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页背景.png"; sourceTree = "<group>"; };
 		1935CEE91BB92A2E0061FC13 /* DeviceChangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceChangeDelegate.h; sourceTree = "<group>"; };
-		1941D44B1B6C9ED500FEF48D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		1941D44C1B6C9ED500FEF48D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		1941D4531B6CB59600FEF48D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		194A899E1B26AEEA000E27F8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		194A899F1B26AEEA000E27F8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -428,6 +428,8 @@
 		195D50AF1B60E0FC009ACEB4 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		195D50B11B611DBC009ACEB4 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		195D50B21B611DBC009ACEB4 /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		1965D95E1BC8D7EC005924E3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1965D95F1BC8D7EC005924E3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		196A016D1B969081003F9392 /* ERiceChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERiceChooseViewController.h; sourceTree = "<group>"; };
 		196A016E1B969081003F9392 /* ERiceChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERiceChooseViewController.m; sourceTree = "<group>"; };
 		196A016F1B969081003F9392 /* ERiceChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ERiceChooseViewController.xib; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 		196B3F471B22C88B00287B79 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				193572EC1BC6B7040078368D /* 主页背景.png */,
 				192835B01BB920BD00A7A8EF /* shop */,
 				1982F24B1BA1CD7700F2D62C /* whitLine.png */,
 				1982F2491BA1BCE400F2D62C /* icon-更多.png */,
@@ -916,12 +919,12 @@
 		196B3FC11B1DCF3B00AD77E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1965D95E1BC8D7EC005924E3 /* Reachability.h */,
+				1965D95F1BC8D7EC005924E3 /* Reachability.m */,
 				19DB184D1BBA85E5000B28FC /* SYQRCodeViewController.h */,
 				19DB18561BBA999B000B28FC /* SYQRCodeViewController.m */,
 				1927F5F91B6CDC5F00DECD44 /* ProgressView.h */,
 				1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */,
-				1941D44B1B6C9ED500FEF48D /* Reachability.h */,
-				1941D44C1B6C9ED500FEF48D /* Reachability.m */,
 				19E217EF1B4BB4C4001808B9 /* resource */,
 				196B3F471B22C88B00287B79 /* image */,
 				196B3FC21B1DCF3B00AD77E9 /* Info.plist */,
@@ -1235,6 +1238,7 @@
 				1959F32D1B67B38800829160 /* icon-e饭宝-口感.png in Resources */,
 				196F6F721BB921D00053CB77 /* ad.png in Resources */,
 				196F6F491BB921960053CB77 /* 菜1.png in Resources */,
+				193572ED1BC6B7040078368D /* 主页背景.png in Resources */,
 				196F6F901BB9225B0053CB77 /* icon-我常买.png in Resources */,
 				1959F3261B67B38800829160 /* icon-e菜宝下未连接（188）.png in Resources */,
 				1959F2E21B677BE300829160 /* icon-我的厨房.png in Resources */,
@@ -1476,7 +1480,6 @@
 				19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */,
 				196B3FEA1B1DD0F200AD77E9 /* LoginViewController.m in Sources */,
 				195D50B01B60E0FC009ACEB4 /* UserInfoViewController.m in Sources */,
-				1941D44D1B6C9ED500FEF48D /* Reachability.m in Sources */,
 				196B3FC41B1DCF3B00AD77E9 /* main.m in Sources */,
 				19E549C51B9DD58900F22BB0 /* DashProgressView.m in Sources */,
 				198A0B9C1B6B1514009EE795 /* EVegetabelCell1.m in Sources */,
@@ -1484,6 +1487,7 @@
 				198A0BA21B6B157A009EE795 /* DM_EVegetable.m in Sources */,
 				195B5E941B3ED6A600838C55 /* ERiceViewController.m in Sources */,
 				196A01751B969095003F9392 /* EVegetableChooseViewController.m in Sources */,
+				1965D9601BC8D7EC005924E3 /* Reachability.m in Sources */,
 				19CF94561B934B10002085D2 /* MyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1611,7 +1615,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/yi/Documents/ios/RiceCooker/RiceCooker/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/xxm/Desktop/RiceCooker/RiceCooker/PrefixHeader.pch;
 				INFOPLIST_FILE = RiceCooker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1630,7 +1634,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/yi/Documents/ios/RiceCooker/RiceCooker/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/xxm/Desktop/RiceCooker/RiceCooker/PrefixHeader.pch;
 				INFOPLIST_FILE = RiceCooker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -13,14 +13,14 @@
 @property (strong, nonatomic) IBOutlet UIImageView *pNumber;
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *fireImage;
-@property (weak, nonatomic) IBOutlet UIImageView *cookModeImage;
-@property (weak, nonatomic) IBOutlet UIImageView *finishTimeImage;
-@property (weak, nonatomic) IBOutlet UILabel *pNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *fireLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *fireImage;
+@property (strong, nonatomic) IBOutlet UIImageView *cookModeImage;
+@property (strong, nonatomic) IBOutlet UIImageView *finishTimeImage;
+@property (strong, nonatomic) IBOutlet UILabel *pNumberLabel;
+@property (strong, nonatomic) IBOutlet UILabel *fireLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *cookModeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *finishTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *cookModeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *finishTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pNumberPickerView;
@@ -41,8 +41,14 @@
 @property (nonatomic, strong) UITapGestureRecognizer *ges4;
 @property (nonatomic, strong) NSString *contentStr;
 
+
+@property (nonatomic, copy) NSString *pNumberStr;
 @property (nonatomic, strong) NSString *finishTime;
 
+
+@property (nonatomic, strong) NSArray *pNumberArray;
+@property (nonatomic, strong) NSArray *fireArray;
+@property (nonatomic, strong) NSArray *cookModeArray;
 @end
 
 @implementation ERiceChooseViewController
@@ -51,11 +57,16 @@
     [super viewDidLoad];
     self.title = _device.devicename;
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    [self setImageAndLabelText];
     
-    dispatch_async(queue, ^{
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    
         NSString *path = [[NSBundle mainBundle] pathForResource:@"ERicePickerViewList" ofType:@"plist"];
         _dic = [NSDictionary dictionaryWithContentsOfFile:path];
+        _pNumberArray = [_dic objectForKey:@"pNumber"];
+        _fireArray = [_dic objectForKey:@"fire"];
+        _cookModeArray = [_dic objectForKey:@"cookMode"];
         
         _dateFormatter = [[NSDateFormatter alloc] init];
         
@@ -68,35 +79,25 @@
                         action:@selector(dateChange)
               forControlEvents:UIControlEventValueChanged];
         [_dateFormatter setDateFormat:@"MMddHH:mm"];
+       
+        _pNumberStr = _device.pnumberweight;
 
-        
-    });
     
-    [self setImageAndLabelText];
-    
-    dispatch_async(queue, ^{
-        self.pNumberLabel.text = _device.pnumberweight;
-        self.fireLabel.text = _device.state;
-        self.cookModeLabel.text = _device.degree;
-        self.finishTimeLabel.text = _device.appointTime;
-    });
-    
-    
-    
-    
-   
         [self addGestureForImageViews];
     
     
-    dispatch_async(queue, ^{
+    
         [self initializeTheImageViewAndPickerView];
-    });
     
-        [_firePickerView selectRow:[self contentOfPickerView:_firePickerView].count/2 inComponent:0 animated:YES];
     
-    //    [_cookModePickerView selectRow:[self contentOfPickerView:_cookModePickerView].count/2  inComponent:0 animated:YES];
-    
-    [_cookModePickerView selectRow:[[self contentOfPickerView:_cookModePickerView] indexOfObject:_device.degree] inComponent:0 animated:YES];
+    _finishTime = _device.finishtime;
+//        [_firePickerView selectRow:[self contentOfPickerView:_firePickerView].count/2 inComponent:0 animated:YES];
+//    
+//    //    [_cookModePickerView selectRow:[self contentOfPickerView:_cookModePickerView].count/2  inComponent:0 animated:YES];
+//    
+//    [_cookModePickerView selectRow:[[self contentOfPickerView:_cookModePickerView] indexOfObject:_device.degree] inComponent:0 animated:YES];
+//    [_pNumberPickerView selectRow:[_pNumberArray indexOfObject:[_device.pnumberweight substringToIndex:1]] inComponent:1 animated:YES];
+//
     
     
 }
@@ -115,28 +116,68 @@
 
 - (void)setImageAndLabelText
 {
+   
     CGFloat size = 51*kRate;
     CGFloat height = 571 * kRate;
     _pNumber = [self setImageViewWithFrame:CGRectMake(41*kRate, height, size, size) withImage:@"icon-e饭宝-米量（152）.png" withHighlightedImage:@"icon-e饭宝-米量选中（152）.png"];
-//    _fireImage = [self setImageViewWithFrame:CGRectMake(136*kRate, height, size, size) withImage:@"icon-e饭宝-烹饪方式（152）.png" withHighlightedImage:@"icon-e饭宝-烹饪方式选中（152）.png"];
-//    _cookModeImage = [self setImageViewWithFrame:CGRectMake(229*kRate, height, size, size) withImage:@"icon-e饭宝-口感（152）.png" withHighlightedImage:@"icon-e饭宝-口感选中（152）.png"];
-//    _finishTimeImage = [self setImageViewWithFrame:CGRectMake(322*kRate, height, size, size) withImage:@"icon-e饭宝-预约（152）.png" withHighlightedImage:@"icon-e饭宝-预约选中（152）.png"];
+    _fireImage = [self setImageViewWithFrame:CGRectMake(136*kRate, height, size, size) withImage:@"icon-e饭宝-烹饪方式（152）.png" withHighlightedImage:@"icon-e饭宝-烹饪方式选中（152）.png"];
+    _cookModeImage = [self setImageViewWithFrame:CGRectMake(229*kRate, height, size, size) withImage:@"icon-e饭宝-口感（152）.png" withHighlightedImage:@"icon-e饭宝-口感选中（152）.png"];
+    _finishTimeImage = [self setImageViewWithFrame:CGRectMake(322*kRate, height, size, size) withImage:@"icon-e饭宝-预约（152）.png" withHighlightedImage:@"icon-e饭宝-预约选中（152）.png"];
     
     CGRect frame = CGRectMake(0, 0, 60*kRate, 21*kRate);
     size = 12 * kRate;
-    _pNumberLabel = [self setLabelWithFrame:frame withText:_device.pnumberweight withSize:size withColor:[UIColor whiteColor]];
+    _pNumberLabel = [self setLabelWithFrame:frame withText:[NSString stringWithFormat:@"%@人份", _device.pnumberweight ]withSize:size withColor:[UIColor blackColor]];
+    _pNumberLabel.center = [self makeCenterWithPoint:_pNumber.center];
+    _fireLabel = [self setLabelWithFrame:frame withText:_device.state withSize:size withColor:[UIColor blackColor]];
+    _fireLabel.center = [self makeCenterWithPoint:_fireImage.center];
+    _cookModeLabel = [self setLabelWithFrame:frame withText:_device.degree withSize:size withColor:[UIColor blackColor]];
+    _cookModeLabel.center = [self makeCenterWithPoint:_cookModeImage.center];
+    _finishTimeLabel = [self setLabelWithFrame:frame withText:_device.appointTime withSize:size withColor:[UIColor blackColor]];
+    _finishTimeLabel.center = [self makeCenterWithPoint:_finishTimeImage.center];
+    
+    UIColor *textColor = [UIColor whiteColor];
+    UILabel *stateLabel = [self setLabelWithFrame:CGRectMake(150*kRate, 121*kRate, 115*kRate, 21*kRate) withText:_device.module withSize:26.0*kRate withColor:textColor];
     
     
+    UILabel *riceText = [self setLabelWithFrame:CGRectMake(124*kRate, 187*kRate, 166*kRate, 21*kRate) withText:@"米仓还剩100%" withSize:17*kRate withColor:UIColorFromRGB(0xe1ebf2)];
+    size = 18.0 * kRate;
+    height = 282 * kRate;
+    UILabel *riceWeight = [self setLabelWithFrame:CGRectMake(0, height, 33*kRate, 21*kRate) withText:@"30" withSize:size withColor:[UIColor whiteColor]];
+    riceWeight.textAlignment = NSTextAlignmentRight;
+    UILabel *applyNum = [self setLabelWithFrame:CGRectMake(166*kRate, height, 45 * kRate, 21 * kRate) withText:@"100" withSize:size withColor:textColor];
+    applyNum.textAlignment = NSTextAlignmentRight;
+    UILabel *dayNum = [self setLabelWithFrame:CGRectMake(345*kRate, height, 38, 21*kRate) withText:@"30" withSize:size withColor:textColor];
+    dayNum.textAlignment = NSTextAlignmentRight;
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+        [self.view addSubview:stateLabel];
+        [self.view addSubview:riceText];
+        [self.view addSubview:riceWeight];
+        [self.view addSubview:applyNum];
+        [self.view addSubview:dayNum];
+        
+        [self.view addSubview:_finishTimeLabel];
+        [self.view addSubview:_cookModeLabel];
+        [self.view addSubview:_fireLabel];
+        [self.view addSubview:_pNumberLabel];
+        [self.view addSubview:_pNumber];
+        [self.view addSubview:_fireImage];
+        [self.view addSubview:_cookModeImage];
+        [self.view addSubview:_finishTimeImage];
+    });
     
-    
-    
-    [self.view addSubview:_pNumber];
-    [self.view addSubview:_fireImage];
-    [self.view addSubview:_cookModeImage];
-    [self.view addSubview:_finishTimeImage];
     
 }
+
+
+- (CGPoint)makeCenterWithPoint:(CGPoint)center
+{
+    CGPoint point = center;
+    point.y += 50*kRate;
+    return point;
+}
+
 
 
 - (UIImageView *)setImageViewWithFrame:(CGRect)frame withImage:(NSString *)imageName withHighlightedImage:(NSString *)highlightedImage
@@ -151,7 +192,7 @@
 - (UILabel *)setLabelWithFrame:(CGRect)frame  withText:(NSString *)text withSize:(CGFloat)size withColor:(UIColor *)textColor
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.textAlignment =  NSTextAlignmentLeft;
+    label.textAlignment =  NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:size];
     
     label.textColor = textColor;
@@ -166,6 +207,9 @@
 
 - (void) initializeTheImageViewAndPickerView
 {
+    [self dateChange];
+    [_pNumberPickerView selectRow:[_pNumberArray indexOfObject:[_device.pnumberweight substringToIndex:1]] inComponent:1 animated:YES];
+    _cookModeLabel.text = _cookModeArray[0];
     switch (_currentTag) {
         case 0:
             [self optionSingletap:_ges1];
@@ -202,7 +246,6 @@
     [_cookModeImage addGestureRecognizer:_ges3];
     _ges4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(optionSingletap:)];
     
-    
     [_finishTimeImage addGestureRecognizer:_ges4];
 
 }
@@ -224,8 +267,7 @@
         _pNumber.highlighted = YES;
         _pNumberPickerView.hidden = NO;
         self.chooseLabel.text = @"米量";
-        [_pNumberPickerView selectRow:[[self contentOfPickerView:_pNumberPickerView] indexOfObject:[self.pNumberLabel.text substringToIndex:1]] inComponent:1 animated:YES];
-
+        
         
     }else if (ges == _ges2)
     {
@@ -262,76 +304,73 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == 2) {
-        return 1;
-    }else
-    {
-    NSArray *array = [self contentOfPickerView:pickerView];
-    return array.count;
-    }
-}
+    
 
-
-- (NSArray *)contentOfPickerView:(UIPickerView *)pickerView
-{
-    NSArray *array;
     if ([pickerView isEqual:_pNumberPickerView]) {
-        array = [_dic objectForKey:@"pNumber"];
+        if (component == 2) {
+            return 1;
+        }else
+        return _pNumberArray.count;
     }else if ([pickerView isEqual:_firePickerView])
     {
-        array = [_dic objectForKey:@"fire"];
+        return _fireArray.count;
     }else if ([pickerView isEqual:_cookModePickerView])
     {
-        array = [_dic objectForKey:@"cookMode"];
-    }
-    return array;
+        return _cookModeArray.count;
+    }else
+        return 0;
 
 }
+
+
 
 
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSArray *array = [self contentOfPickerView:pickerView];
-    if (row < [array count]) {
-        if (pickerView == _pNumberPickerView) {
-            if (component == 1) {
-                return [array objectAtIndex:row];
-            }
-            else if (component == 2)
-                return @"人份";
-            else
-                return nil;
-        }else
-        {
-            return [array objectAtIndex:row];
+    
+    
+    if ([pickerView isEqual:_pNumberPickerView]) {
+        if (component == 1) {
+            return [_pNumberArray objectAtIndex:row];
         }
-
+        else if (component == 2)
+            return @"人份";
+        else
+            return nil;
+    }else if ([pickerView isEqual:_firePickerView])
+    {
+        return  [_fireArray objectAtIndex:row];
+    }else if ([pickerView isEqual:_cookModePickerView])
+    {
+        return [_cookModeArray objectAtIndex:row];
     }else
         return nil;
+    
+    
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSArray *array = [self contentOfPickerView:pickerView];
-    if (row < array.count) {
-        _contentStr = [array objectAtIndex:row];
-        if ([pickerView isEqual:_pNumberPickerView]) {
-            if (component == 1) {
-                //            _contentStr = [array objectAtIndex:row];
-                
-                self.pNumberLabel.text = [NSString stringWithFormat:@"%ld人份", row + 1];
-                
-            }
-        }else if ([pickerView isEqual:_firePickerView])
-        {
-            self.fireLabel.text = _contentStr;
-        }else if ([pickerView isEqual:_cookModePickerView])
-        {
-            self.cookModeLabel.text = _contentStr;
+    
+    if ([pickerView isEqual:_pNumberPickerView]) {
+        if (component == 1) {
+            self.pNumberStr = [NSString stringWithFormat:@"%ld", row + 1];
+            self.pNumberLabel.text = [NSString stringWithFormat:@"%ld人份", row + 1];
+            
         }
 
+    }else if ([pickerView isEqual:_firePickerView])
+    {
+        self.fireLabel.text = [_fireArray objectAtIndex:row];
+    }else if ([pickerView isEqual:_cookModePickerView])
+    {
+        self.cookModeLabel.text = [_cookModeArray objectAtIndex:row];
     }
+    
+    
+    
+    
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -395,12 +434,13 @@
         
         self.startBtn.userInteractionEnabled = NO;
         NSString *urlStr = [NSString stringWithFormat: @"http://%@/Reciveservlet", SERVER_URL];
+  
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         NSDictionary *parameters = @{@"phonenumber" : self.device.phonenumber,
                                      @"device" : self.device.device,
-                                     @"pnumberweight" : self.pNumberLabel.text,
+                                     @"pnumberweight" : self.pNumberStr,
                                      @"degree" : self.fireLabel.text,
                                      @"state" : self.cookModeLabel.text,
                                      @"devicename" : self.device.devicename,
@@ -410,24 +450,31 @@
         
         [manager POST:urlStr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+
+                NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             NSLog(@"%@",recieve);
-            if ([recieve isEqualToString:@"start"]) {
-                [self changeDevice];
-                [_delegate changeDevice:_device withIndex:_currentIndex];
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }else
-            {
-                
-            }
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if ([recieve isEqualToString:@"start"]) {
+                    [self changeDevice];
+                    [_delegate changeDevice:_device withIndex:_currentIndex];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息" message:@"预约成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }else
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息" message:@"设置失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+
+                }
+
+
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
-        [self changeDevice];
-        [_delegate changeDevice:_device withIndex:_currentIndex];
-        [self.navigationController popViewControllerAnimated:YES];
 
     }else
     {
@@ -442,11 +489,8 @@
 // 判断完成时间是否大于设置时间
 - (BOOL)isFinishTimeGreaterThanSetTime
 {
-
-//    NSDate *finish = [_dateFormatter dateFromString:_finishTime];
-    NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:30*60];
     
-    if (_datePicker.date < date) {
+    if ([self timeOfInsulation] < 30*60) {
         return NO;
     }else
         return YES;
@@ -460,18 +504,29 @@
 {
     _device.state = self.cookModeLabel.text;
     _device.degree = self.fireLabel.text;
-    _device.pnumberweight = _pNumberLabel.text;
+    _device.pnumberweight = _pNumberStr;
     _device.finishtime = [NSMutableString stringWithString: self.finishTime];
     _device.appointTime = self.finishTimeLabel.text;
-    _device.module = @"烹饪中";
-    _device.remianTime = 30 * 60;
+    if ( 30 * 60 <[self timeOfInsulation] && [self timeOfInsulation] < 31 * 60) {
+        _device.module = @"烹饪中";
+    }
+    
+    _device.remianTime = [self timeOfInsulation];
     _device.settingTime = 30 * 60;
     
     
 }
 
 
-
+- (int)timeOfInsulation
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMddHH:mm"];
+    NSDate *finish = [formatter dateFromString:_finishTime];
+    NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
+    int time = [finish timeIntervalSinceDate:now];
+    return time;
+}
 
 
 @end

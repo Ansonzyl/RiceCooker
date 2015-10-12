@@ -13,16 +13,14 @@
 	</array>
 	<key>material</key>
 	<dict>
-		<key>蔬菜</key>
+		<key>家禽</key>
 		<array>
-			<string>青菜</string>
-			<string>菠菜</string>
+			<string>排骨</string>
+			<string>水蒸蛋</string>
 		</array>
 		<key>海鲜</key>
 		<array>
-			<string>虾</string>
-			<string>大闸蟹</string>
-			<string>清蒸鱼</string>
+			<string>鱼</string>
 		</array>
 		<key>自定义</key>
 		<array>

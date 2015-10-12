@@ -2,15 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDeviceViewController">
             <connections>
-                <outlet property="deviceTextField" destination="WIs-Bo-i3n" id="1OX-90-DGD"/>
-                <outlet property="leftButton" destination="Kt6-ON-Pph" id="pLS-zk-1hB"/>
-                <outlet property="rightButton" destination="GQa-S1-Pnd" id="oZU-6u-kQM"/>
-                <outlet property="startButton" destination="5cf-jU-QED" id="xoa-Cg-B9f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,117 +13,9 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发现e饭煲" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIs-Bo-i3n">
-                    <rect key="frame" x="0.0" y="78" width="414" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="WIs-Bo-i3n" secondAttribute="height" multiplier="138:7" id="SBj-xi-V54"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <color key="textColor" red="0.94509803921568625" green="0.98039215686274506" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic-e饭宝.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z2r-kk-LBr">
-                    <rect key="frame" x="137" y="145" width="140" height="208"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Z2r-kk-LBr" secondAttribute="height" multiplier="35:52" id="0cm-37-VjQ"/>
-                    </constraints>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQa-S1-Pnd">
-                    <rect key="frame" x="207" y="418" width="192" height="57"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="GQa-S1-Pnd" secondAttribute="height" multiplier="64:19" id="uGD-ft-r6s"/>
-                    </constraints>
-                    <state key="normal" title="是" backgroundImage="右半按钮.png">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PushEasyLink:" destination="-1" eventType="touchUpInside" id="qAl-uB-jLU"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt6-ON-Pph">
-                    <rect key="frame" x="14" y="418" width="192" height="57"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Kt6-ON-Pph" secondAttribute="height" multiplier="64:19" id="MrE-Cu-3zl"/>
-                    </constraints>
-                    <state key="normal" title="否" backgroundImage="左半按钮.png">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cf-jU-QED">
-                    <rect key="frame" x="15" y="418" width="385" height="57"/>
-                    <color key="backgroundColor" red="0.16862745098039217" green="0.69019607843137254" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="5cf-jU-QED" secondAttribute="height" multiplier="385:57" id="4Ot-gP-5nq"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="开始体验">
-                        <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="startStep:" destination="-1" eventType="touchUpInside" id="Hk6-c2-tdS"/>
-                    </connections>
-                </button>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVk-k1-Nyc">
-                    <rect key="frame" x="0.0" y="220" width="139" height="57"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="TVk-k1-Nyc" secondAttribute="height" multiplier="139:57" id="KKf-LG-BjO"/>
-                    </constraints>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reb-zt-bWB">
-                    <rect key="frame" x="275" y="220" width="139" height="57"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请检查指示灯是否在慢闪状态" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEn-tD-SOk">
-                    <rect key="frame" x="0.0" y="107" width="414" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="VEn-tD-SOk" secondAttribute="height" multiplier="138:7" id="Kpn-hG-OT6"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.94509803920000002" green="0.98039215690000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
             <color key="backgroundColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="GQa-S1-Pnd" firstAttribute="leading" secondItem="Kt6-ON-Pph" secondAttribute="trailing" constant="1" id="0hG-Rw-0bo"/>
-                <constraint firstItem="Kt6-ON-Pph" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="41F-wn-mga"/>
-                <constraint firstAttribute="trailing" secondItem="VEn-tD-SOk" secondAttribute="trailing" id="7G4-9r-QTk"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="top" secondItem="Z2r-kk-LBr" secondAttribute="bottom" constant="65" id="Hs1-U8-XgU"/>
-                <constraint firstItem="WIs-Bo-i3n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MSa-KJ-dhJ"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="height" secondItem="Kt6-ON-Pph" secondAttribute="height" id="NoF-Yn-6V6"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="height" secondItem="reb-zt-bWB" secondAttribute="height" id="Q59-kD-9F5"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="height" secondItem="TVk-k1-Nyc" secondAttribute="height" id="Rii-gx-X8M"/>
-                <constraint firstItem="TVk-k1-Nyc" firstAttribute="top" secondItem="VEn-tD-SOk" secondAttribute="bottom" constant="92" id="S8o-73-iVs"/>
-                <constraint firstAttribute="trailing" secondItem="5cf-jU-QED" secondAttribute="trailing" constant="14" id="Sde-qF-adw"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Xj7-9D-XkT"/>
-                <constraint firstItem="VEn-tD-SOk" firstAttribute="top" secondItem="WIs-Bo-i3n" secondAttribute="bottom" constant="8" id="ZiE-l2-cJw"/>
-                <constraint firstItem="VEn-tD-SOk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="blN-HV-s8h"/>
-                <constraint firstItem="Z2r-kk-LBr" firstAttribute="top" secondItem="VEn-tD-SOk" secondAttribute="bottom" constant="17" id="c7Y-WD-kHP"/>
-                <constraint firstItem="WIs-Bo-i3n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="dfv-0V-I3D"/>
-                <constraint firstAttribute="centerX" secondItem="Z2r-kk-LBr" secondAttribute="centerX" id="fb6-zR-781"/>
-                <constraint firstItem="reb-zt-bWB" firstAttribute="leading" secondItem="Z2r-kk-LBr" secondAttribute="trailing" constant="-2" id="gCV-qq-ffO"/>
-                <constraint firstItem="GQa-S1-Pnd" firstAttribute="leading" secondItem="Kt6-ON-Pph" secondAttribute="trailing" constant="1" id="gyg-eG-X3n"/>
-                <constraint firstItem="GQa-S1-Pnd" firstAttribute="top" secondItem="Kt6-ON-Pph" secondAttribute="top" id="h0s-oW-OHo"/>
-                <constraint firstItem="reb-zt-bWB" firstAttribute="top" secondItem="TVk-k1-Nyc" secondAttribute="bottom" constant="-57" id="i3t-qf-CV9"/>
-                <constraint firstAttribute="trailing" secondItem="reb-zt-bWB" secondAttribute="trailing" id="j8N-xH-hfp"/>
-                <constraint firstAttribute="trailing" secondItem="WIs-Bo-i3n" secondAttribute="trailing" id="mOg-Yz-vBr"/>
-                <constraint firstItem="Kt6-ON-Pph" firstAttribute="top" secondItem="Z2r-kk-LBr" secondAttribute="bottom" constant="65" id="nuO-PA-a1b"/>
-                <constraint firstItem="5cf-jU-QED" firstAttribute="height" secondItem="GQa-S1-Pnd" secondAttribute="height" id="wjd-Xc-wfl"/>
-                <constraint firstItem="Z2r-kk-LBr" firstAttribute="leading" secondItem="TVk-k1-Nyc" secondAttribute="trailing" constant="-2" id="xGr-Ef-lMc"/>
-                <constraint firstAttribute="trailing" secondItem="GQa-S1-Pnd" secondAttribute="trailing" constant="15" id="yKD-3k-nkl"/>
-                <constraint firstItem="TVk-k1-Nyc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yhD-dp-qsB"/>
-            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="362" y="305"/>
         </view>
     </objects>
-    <resources>
-        <image name="pic-e饭宝.png" width="422" height="625"/>
-        <image name="右半按钮.png" width="576" height="172"/>
-        <image name="左半按钮.png" width="576" height="172"/>
-    </resources>
 </document>

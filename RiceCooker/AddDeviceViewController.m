@@ -8,8 +8,12 @@
 
 #import "AddDeviceViewController.h"
 #import "EasyLinkViewController.h"
-#import "Reachability.h"
+
 #import "ProgressView.h"
+
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+#define kRate [UIScreen mainScreen].bounds.size.width/414
 
 @interface AddDeviceViewController ()
 - (IBAction)exit:(id)sender;
@@ -24,7 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加设备";
-    _deviceTextField.text = [NSString stringWithFormat:@"发现%@", _device];
+    [self initializeLabelAndButton];
+    _deviceLabel.text = [NSString stringWithFormat:@"发现%@", _device];
     if (_isAdd) {
         [self addDvice];
     }
@@ -35,13 +40,68 @@
 }
 
 
+- (void)initializeLabelAndButton
+{
+    
+    _deviceLabel = [self setLabelWithFrame:CGRectMake(0, 80*kRate, kWidth, 21*kRate) withSize:19 withText:nil];
+    
+    UILabel *label = [self setLabelWithFrame:CGRectMake(0, 102*kRate, kWidth, 21*kRate) withSize:12 withText:@"请检查指示灯是否在慢闪状态"];
+    
+    _leftButton = [self setButtonWithFrame:CGRectMake(14*kRate, 418*kRate, 192*kRate, 57*kRate) WithImage:@"左半按钮" withAction:nil withText:@"否"];
+    _rightButton = [self setButtonWithFrame:CGRectMake(207 * kRate, 418*kRate, 192*kRate, 57*kRate) WithImage:@"右半按钮" withAction:@selector(PushEasyLink:) withText:@"是"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(137*kRate, 150*kRate, 140*kRate, 208*kRate)];
+    imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pic-e饭宝" ofType:@"png"]];
+    _startButton = [self setButtonWithFrame:CGRectMake(15*kRate, 418*kRate, 385*kRate, 57*kRate) WithImage:nil withAction:@selector(startStep:) withText:@"开始体验"];
+    _startButton.hidden = YES;
+    _startButton.backgroundColor = UIColorFromRGB(0x2bb0ac);
+    
+    [self.view addSubview:_startButton];
+    [self.view addSubview:imageView];
+    [self.view addSubview:_leftButton];
+    [self.view addSubview:_rightButton];
+    [self.view addSubview:label];
+    [self.view addSubview:_deviceLabel];
+    
+    
+    
+}
+
+- (UIButton *)setButtonWithFrame:(CGRect)frame WithImage:(NSString *)imageName withAction:(SEL)action withText:(NSString *)text
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
+    [button setBackgroundImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
+    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:text forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    button.titleLabel.font = [UIFont systemFontOfSize:18*kRate];
+    
+    return  button;
+    
+}
+
+- (UILabel *)setLabelWithFrame:(CGRect)frame withSize:(CGFloat)size withText:(NSString*)text
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.textAlignment =  NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:size * kRate];
+    label.text = text;
+    label.textColor = [UIColor whiteColor];
+    return label;
+}
+
+
+
 - (void)addDvice
 {
     _leftButton.hidden = YES;
     _rightButton.hidden = YES;
+    _startButton.hidden = NO;
     _progress = [[ProgressView alloc] init];
     
-    _progress.center = CGPointMake(self.view.center.x, self.view.frame.size.height *3/5);
+    _progress.center = CGPointMake(kWidth / 2, kHeight *3/5);
     _progress.bounds = CGRectMake(0, 0, 62, 62);
     _progress.arcUnfinishColor = UIColorFromRGB(0xffffff);
     _progress.arcFinishColor = UIColorFromRGB(0xffffff);
@@ -73,7 +133,12 @@
     }
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [_myTimer invalidate];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -125,30 +190,32 @@
 }
 
 -(BOOL) isConnectionAvailable{
+#warning 需要重写
     
-    BOOL isExistenceNetwork = YES;
-    Reachability *reach = [Reachability reachabilityWithHostName:@"https://www.baidu.com/"];
-    NSLog(@"%ld", (long)[reach currentReachabilityStatus]);
-    switch ([reach currentReachabilityStatus])
-    {
-        case NotReachable:
-            isExistenceNetwork = NO;
-            //NSLog(@"notReachable");
-            break;
-        case ReachableViaWiFi:
-            isExistenceNetwork = YES;
-            //NSLog(@"WIFI");
-            break;
-        case ReachableViaWWAN:
-            isExistenceNetwork = YES;
-            //NSLog(@"3G");
-        break;
-    }
-    if (reach.reachableOnWWAN)
-    {
-        isExistenceNetwork = YES;
-    }
-     return isExistenceNetwork;
+//    BOOL isExistenceNetwork = YES;
+//    Reachability *reach = [Reachability reachabilityWithHostName:@"https://www.baidu.com/"];
+//    NSLog(@"%ld", (long)[reach currentReachabilityStatus]);
+//    switch ([reach currentReachabilityStatus])
+//    {
+//        case NotReachable:
+//            isExistenceNetwork = NO;
+//            //NSLog(@"notReachable");
+//            break;
+//        case ReachableViaWiFi:
+//            isExistenceNetwork = YES;
+//            //NSLog(@"WIFI");
+//            break;
+//        case ReachableViaWWAN:
+//            isExistenceNetwork = YES;
+//            //NSLog(@"3G");
+//        break;
+//    }
+//    if (reach.reachableOnWWAN)
+//    {
+//        isExistenceNetwork = YES;
+//    }
+//     return isExistenceNetwork;
+    return YES;
 }
 
 

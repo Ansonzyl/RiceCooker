@@ -92,10 +92,10 @@
     
     
     _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(110*kRate, 115*kRate, 267*kRate, 20*kRate)];
-    _progressView.backgroundColor = UIColorFromRGB(0x2b75aa);
+    _progressView.trackTintColor = UIColorFromRGB(0x2b75aa);
     _progressView.tintColor = UIColorFromRGB(0xd4ffff);
     self.progressView.layer.cornerRadius = 6;
-    
+     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f * kRate);
     [self addSubview:_progressView];
 
 }

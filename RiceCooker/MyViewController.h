@@ -11,15 +11,15 @@
 
 
 @interface MyViewController : UIViewController
-
+@property (nonatomic, assign) NSInteger currntIndex;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *workingImage;
 
-@property (weak, nonatomic) IBOutlet UIButton *collectBtn;
-@property (weak, nonatomic) IBOutlet UIButton *refrigerationBtn;
-@property (weak, nonatomic) IBOutlet UILabel *cancelreFrigerateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *collectionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *collectBtn;
+@property (strong, nonatomic) IBOutlet UIButton *refrigerationBtn;
+@property (strong, nonatomic) IBOutlet UILabel *cancelreFrigerateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *collectionLabel;
 - (IBAction)cancelreFrigerating:(id)sender;
 - (IBAction)collectingRecipe:(id)sender;
 

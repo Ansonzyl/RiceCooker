@@ -15,6 +15,7 @@
 #import "DM_EVegetable.h"
 #import "EVegetabelCell1.h"
 #import "SYQRCodeViewController.h"
+#import "Reachability.h"
 
 #define kRate [UIScreen mainScreen].bounds.size.width / 414
 #define TYPE 2
@@ -22,6 +23,7 @@
 #define kVegetable 1
 #import "AddDeviceCell.h"
 #define AddCellHeight 58
+
 
 
 @interface MyKitchenViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -33,6 +35,7 @@
 @property (nonatomic, strong) NSMutableArray *vegetableArray;
 @property (nonatomic, strong) UIBarButtonItem *addBuuton;
 @property (nonatomic, strong) UITableView *addTableView;
+@property (nonatomic, strong) UIRefreshControl *refresh;
 
 @property (nonatomic, strong) DXPopover *popover;
 @property (nonatomic, strong) NSArray *config;
@@ -49,6 +52,9 @@
     [super viewDidLoad];
     self.title = @"我的厨房";
     
+    _refresh = [[UIRefreshControl alloc] init];
+    [_refresh addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:_refresh];
     _addImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-添加.png" ofType:nil]];
     _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31, 31)];
     [_addBtn setImage:_addImage forState:UIControlStateNormal];
@@ -94,13 +100,61 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [self setNavigationBar];
     
-        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"www.apple.com"];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    if ([self netWorkStateWithReachability:reach]) {
+        [self JSONWithURL];
+    }
+    
+}
+
+- (void)pullToRefresh
+{
+    [self JSONWithURL];
+    [self.refresh endRefreshing];
+}
+
+
+//- (void) reachabilityChanged:(NSNotification *)note
+//{
+//    Reachability* curReach = [note object];
+//    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+//    [self updateInterfaceWithReachability:curReach];
+//}
+
+- (BOOL)netWorkStateWithReachability:(Reachability *)reachability
+{
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    BOOL isExistenceNetwork;
+    
+    switch (netStatus) {
+        case NotReachable:
+            isExistenceNetwork = NO;
+            NSLog(@"no network");
+            break;
+        case ReachableViaWWAN:
+            isExistenceNetwork = YES;
+            break;
+        case ReachableViaWiFi:
+            isExistenceNetwork = YES;
+            break;
+
+        default:
+            break;
+    }
+    return isExistenceNetwork;
+}
+
+
+- (void) setNavigationBar
+{
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
     [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
-    [self JSONWithURL];
 }
 
 - (void)JSONWithURL
@@ -112,19 +166,32 @@
     NSDictionary *parameters = @{@"phonenumber": _phoneNumber};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"http://%@/HomePage", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject) {
+            _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
+//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//            [user setObject:_recieveArray forKey:@"deviceArray"];
+//            
+            
+            for (int i = 0; i<_recieveArray.count; i++) {
+                if ([[_recieveArray[i] objectForKey:@"connectstate"] isEqualToString:@"1"]) {
+                    if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
+                        [_riceArray addObject:_recieveArray[i]];
+                    }else if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e菜宝"])
+                    {
+                        [_vegetableArray addObject:_recieveArray[i]];
+                    }
+                   
 
-        _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        for (int i = 0; i<_recieveArray.count; i++) {
-           
-            if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
-                [_riceArray addObject:_recieveArray[i]];
-            }else if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e菜宝"])
-            {
-                [_vegetableArray addObject:_recieveArray[i]];
+                }else
+                {
+                    
+                }
+                
             }
-        }
 
+        }
+        
         [self.tableView reloadData];
 
         
@@ -176,41 +243,50 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
     if ([tableView isEqual:_addTableView]) {
         
         if (indexPath.section == 0) {
-            AddDeviceCell *cell = [tableView dequeueReusableCellWithIdentifier:[AddDeviceCell ID]];
-            if (cell == nil) {
-                cell = [AddDeviceCell AddDeviceCell];
+            if (_config.count > indexPath.row) {
+                AddDeviceCell *cell = [tableView dequeueReusableCellWithIdentifier:[AddDeviceCell ID]];
+                if (cell == nil) {
+                    cell = [AddDeviceCell AddDeviceCell];
+                    
+                }
+               
                 
-            }
-            NSString *image = [NSString stringWithFormat:@"icon-%@.png", _config[indexPath.row]];
-            cell.logoImage.image = [UIImage imageNamed:image];
-            cell.myLebel.text = _config[indexPath.row];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+                NSString *image = [NSString stringWithFormat:@"icon-%@.png", _config[indexPath.row]];
+                cell.logoImage.image = [UIImage imageNamed:image];
+                cell.myLebel.text = _config[indexPath.row];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
 
+            }
+            
         }
     }else
     {
         
         if(indexPath.section == kRice)
         {
-            EriceCell *cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
+            if (_riceArray.count > indexPath.row) {
+                EriceCell *cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
             if (cell == nil) {
                 cell = [EriceCell ericeCell];
             }
-//            DM_ERiceCell *riceCell = [DM_ERiceCell eRiceWithDict:_riceArray[indexPath.row]];
             DM_EVegetable *device = [DM_EVegetable eVegetableWithDict:_riceArray[indexPath.row]];
             cell.device = device;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
+            }
             
 
-        }else //if (indexPath.section == kVegetable)
+        }else
+            
         {
-            DM_EVegetable *vegetable = [DM_EVegetable eVegetableWithDict:_vegetableArray[indexPath.row]];
+            if (_vegetableArray.count > indexPath.row) {
+                DM_EVegetable *vegetable = [DM_EVegetable eVegetableWithDict:_vegetableArray[indexPath.row]];
             EVegetabelCell1 *cell = [tableView dequeueReusableCellWithIdentifier:[EVegetabelCell1 cellID]];
             if (cell == nil) {
                 cell = [EVegetabelCell1 eVegetableCell];
@@ -226,9 +302,14 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
+
+            }
+            
         }
         
-    }return nil;
+    }
+    
+    return nil;
     
     
 }
@@ -250,7 +331,7 @@
             [self.navigationController pushViewController:qrcodevc animated:YES];
 
             qrcodevc.SYQRCodeSuncessBlock = ^(SYQRCodeViewController *aqrvc,NSString *qrString){
-                NSArray *array = [qrString componentsSeparatedByString:@","];
+                NSArray *array = [qrString componentsSeparatedByString:@" "];
                 viewController.device = array[0];
                 viewController.UUID = array[1];
                 [aqrvc.navigationController pushViewController:viewController animated:YES];
@@ -370,6 +451,7 @@
 
     } completion:nil];
 }
+
 
 
 @end

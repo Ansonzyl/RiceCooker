@@ -9,6 +9,7 @@
 #import "EasyLinkViewController.h"
 #import "AddDeviceViewController.h"
 #define SERVERIP @"202.75.219.40"
+//#define SERVERIP @"192.168.253.4"
 #define SERVERPORT @"8899"
 #define DEVICEWLANNAME @"MXCHIP_4A1B0A"
 
@@ -108,10 +109,8 @@
 }
 
 - (IBAction)pushNextView:(id)sender {
-    [self restart];
-//    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
-//    viewController.isAdd = YES;
-//    [self.navigationController pushViewController:viewController animated:YES];
+    [self saveInfomation];
+
 
 }
 
@@ -119,13 +118,51 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)saveInfomation
+{
+    NSString *urlStr = @"http://192.168.1.1/advanced.htm";
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+
+    NSMutableString *body = [NSMutableString stringWithFormat:@"wifi_mode=1&wifi_ssid=%@&security_mode=4&wifi_key=%@&wifi_ssid1=&security_mode1=0&wifi_key1=&wifi_ssid2=&security_mode2=0&wifi_key2=&wifi_ssid3=&security_mode3=0&wifi_key3=&wifi_ssid4=&security_mode4=0&wifi_key4=&uap_ssid=&uap_secmode=1&uap_key=&dhcp_enalbe=1&local_ip_addr=0.0.0.0&netmask=0.0.0.0&gateway_ip_addr=0.0.0.0&dns_server=0.0.0.0&mstype=1&remote_server_mode=0&remote_dns=%@&rport=8899&lport=8899&",self.SSIDTextField.text, self.passwordTextField.text, SERVERIP];
+    [body appendString:@"estype=4&esaddr=&esrport=0&eslport=0&baudrate=4&parity=0&data_length=0&stop_bits=0&cts_rts_enalbe=0&dma_buffer_size=0&uart_trans_mode=4&device_num=0&ps_enalbe=0&tx_power=31&keepalive_num=4&keepalive_time=120&socks_type=0&socks_addr=0.0.0.0&socks_port=0&socks_user=&socks_pass=&socks_1=0&socks_2=0&web_user=admin&web_pass=admin&cld_id=0&cld_key=00000000000000000000000000000000&device_name=EMW_3162+%2845580E%29&roam_val=75&udp_enable=1&save=Save"];
+    
+    NSData *bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *length = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
+    [request setValue:@"http://192.168.1.1" forHTTPHeaderField:@"Origin"];
+    [request setValue:@"Basic YWRtaW46YWRtaW4=" forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"http://192.168.1.1/advanced.htm" forHTTPHeaderField:@"Referer"];
+    [request setValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+    [request setValue:length forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
+    [request setValue:@"192.168.1.1" forHTTPHeaderField:@"Host"];
+    [request setHTTPBody:bodyData];
+    NSHTTPURLResponse *respose;
+    NSError *error;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&respose error:&error];
+    
+    if ([respose statusCode] == 200) {
+        [self restart];
+    }
+
+    
+    
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]  completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//       
+//        
+//    }];
+    
+    
+}
+
 - (void)restart
 {
     NSString *urlStr = @"http://192.168.1.1/advanced.htm";
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     [request setHTTPMethod:@"POST"];
-    NSMutableString *body = [NSMutableString stringWithFormat:@"wifi_mode=1&wifi_ssid=%@&security_mode=4&wifi_key=%@&wifi_ssid1=&security_mode1=0&wifi_key1=&wifi_ssid2=&security_mode2=0&wifi_key2=&wifi_ssid3=&security_mode3=0&wifi_key3=&wifi_ssid4=&security_mode4=0&wifi_key4=&uap_ssid=&uap_secmode=1&uap_key=&dhcp_enalbe=1&local_ip_addr=0.0.0.0&netmask=0.0.0.0&gateway_ip_addr=0.0.0.0&dns_server=0.0.0.0&mstype=1&remote_server_mode=0&remote_dns=202.75.219.40&rport=8899&lport=8899&", self.SSIDTextField.text, self.passwordTextField.text];
+    NSMutableString *body = [NSMutableString stringWithFormat:@"wifi_mode=1&wifi_ssid=%@&security_mode=4&wifi_key=%@&wifi_ssid1=&security_mode1=0&wifi_key1=&wifi_ssid2=&security_mode2=0&wifi_key2=&wifi_ssid3=&security_mode3=0&wifi_key3=&wifi_ssid4=&security_mode4=0&wifi_key4=&uap_ssid=&uap_secmode=1&uap_key=&dhcp_enalbe=1&local_ip_addr=0.0.0.0&netmask=0.0.0.0&gateway_ip_addr=0.0.0.0&dns_server=0.0.0.0&mstype=1&remote_server_mode=0&remote_dns=%@&rport=8899&lport=8899&", self.SSIDTextField.text, self.passwordTextField.text, SERVERIP];
     
     [body appendString:@"estype=4&esaddr=&esrport=0&eslport=0&baudrate=4&parity=0&data_length=0&stop_bits=0&cts_rts_enalbe=0&dma_buffer_size=0&uart_trans_mode=4&device_num=0&ps_enalbe=0&tx_power=31&keepalive_num=4&keepalive_time=120&socks_type=0&socks_addr=0.0.0.0&socks_port=0&socks_user=&socks_pass=&socks_1=0&socks_2=0&web_user=admin&web_pass=admin&cld_id=0&cld_key=00000000000000000000000000000000&device_name=EMW_3162+%284A1B0A%29&roam_val=75&udp_enable=1&reset=Reset"];
     
@@ -151,11 +188,7 @@
         [self.navigationController pushViewController:viewController animated:YES];
     }
 
-    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
-    viewController.isAdd = YES;
-    viewController.UUID = self.UUID;
-    viewController.device = self.device;
-    [self.navigationController pushViewController:viewController animated:YES];
+    
 
 }
 

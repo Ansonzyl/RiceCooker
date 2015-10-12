@@ -10,6 +10,7 @@
 
 @interface DM_EVegetable : NSObject
 
+@property (nonatomic, copy) NSString *connectstate;
 @property (nonatomic, copy) NSString *device; //
 @property (nonatomic, copy) NSString *devicename;//
 @property (nonatomic, copy) NSString *settime;//

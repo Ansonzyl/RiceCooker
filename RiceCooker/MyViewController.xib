@@ -7,10 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyViewController">
             <connections>
                 <outlet property="backgroundView" destination="jXx-b8-91p" id="mfh-e2-GCL"/>
-                <outlet property="cancelreFrigerateLabel" destination="3vG-WL-Fvc" id="hb1-8y-1p8"/>
-                <outlet property="collectBtn" destination="jV8-qE-QC2" id="qLD-2o-CG2"/>
-                <outlet property="collectionLabel" destination="0jG-OC-FeG" id="CPM-ia-f2q"/>
-                <outlet property="refrigerationBtn" destination="1YD-O2-77a" id="LBx-iS-lvB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,36 +18,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jXx-b8-91p">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="525"/>
                 </imageView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1YD-O2-77a">
-                    <rect key="frame" x="42" y="415" width="51" height="51"/>
-                    <state key="normal" backgroundImage="icon-e菜宝-取消冷藏（152）.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="cancelreFrigerating:" destination="-1" eventType="touchUpInside" id="np3-r8-iH8"/>
-                    </connections>
-                </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jV8-qE-QC2">
-                    <rect key="frame" x="321" y="415" width="51" height="51"/>
-                    <state key="normal" backgroundImage="icon-收藏(152).png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="collectingRecipe:" destination="-1" eventType="touchUpInside" id="t56-uf-LM5"/>
-                    </connections>
-                </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="取消冷藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vG-WL-Fvc">
-                    <rect key="frame" x="36" y="480" width="63" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-OC-FeG">
-                    <rect key="frame" x="314" y="480" width="65" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -65,8 +31,4 @@
             <point key="canvasLocation" x="277" y="301.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon-e菜宝-取消冷藏（152）.png" width="152" height="152"/>
-        <image name="icon-收藏(152).png" width="152" height="152"/>
-    </resources>
 </document>
