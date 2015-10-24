@@ -20,8 +20,7 @@
     self.getBtutton.layer.cornerRadius = 2;
     // Do any additional setup after loading the view from its nib.
     self.phoneImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"phone.png" ofType:nil]];
-//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
-//    self.navigationItem.leftBarButtonItem = button;
+    
     self.view.backgroundColor = UIColorFromRGB(0x40c8c4);
     self.phoneNumberTextField.delegate = self;
     if ([self.identityStr isEqualToString:@"注册"]) {
@@ -75,62 +74,62 @@
 //    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewController animated:YES];
 ////    
-    RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-    viewController.phoneNumber = self.phoneNumberTextField.text;
-    [self.navigationController pushViewController:viewController animated:YES];
-    
+//    RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+//    viewController.phoneNumber = self.phoneNumberTextField.text;
+//    [self.navigationController pushViewController:viewController animated:YES];
 //    
-//    if ([self.identityStr isEqualToString:@"忘记密码？"]) {
-//                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
-//            viewController.phoneNumber = self.phoneNumberTextField.text;
-//            [self.navigationController pushViewController:viewController animated:YES];
-//            
-//            }else if ([self.identityStr isEqualToString:@"注册"])
-//    {
-//        
-//            RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-//            viewController.phoneNumber = self.phoneNumberTextField.text;
-//            [self.navigationController pushViewController:viewController animated:YES];
-//            
-//                
-//    }
+//
+    if ([self.identityStr isEqualToString:@"忘记密码？"]) {
+                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
+            viewController.phoneNumber = self.phoneNumberTextField.text;
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+            }else if ([self.identityStr isEqualToString:@"注册"])
+    {
+        
+            RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+            viewController.phoneNumber = self.phoneNumberTextField.text;
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+                
+    }
     
 
     
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text};
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    [manager POST:_urlStr parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//        NSString *recive = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        if ([self.identityStr isEqualToString:@"忘记密码？"]) {
-//            if ([recive isEqualToString:@"success"]) {
-//                FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
-//                viewController.phoneNumber = self.phoneNumberTextField.text;
-//                [self.navigationController pushViewController:viewController animated:YES];
-//                
-//            }else
-//            {
-//                [self showTopMessage:@"用户名未注册"];
-//            }
-//        }else if ([self.identityStr isEqualToString:@"注册"])
-//        {
-//            if ([recive isEqualToString:@"success"]) {
-//                RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-//                 viewController.phoneNumber = self.phoneNumberTextField.text;
-//                [self.navigationController pushViewController:viewController animated:YES];
-//                
-//            }else
-//            {
-//               [self showTopMessage:@"用户名已注册"];
-//            }
-//
-//        }
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [self showTopMessage:@"连接不上服务器"];
-//        
-//    }];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text};
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:_urlStr parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        NSString *recive = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        if ([self.identityStr isEqualToString:@"忘记密码？"]) {
+            if ([recive isEqualToString:@"success"]) {
+                FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
+                viewController.phoneNumber = self.phoneNumberTextField.text;
+                [self.navigationController pushViewController:viewController animated:YES];
+                
+            }else
+            {
+                [self showTopMessage:@"用户名未注册"];
+            }
+        }else if ([self.identityStr isEqualToString:@"注册"])
+        {
+            if ([recive isEqualToString:@"success"]) {
+                RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+                 viewController.phoneNumber = self.phoneNumberTextField.text;
+                [self.navigationController pushViewController:viewController animated:YES];
+                
+            }else
+            {
+               [self showTopMessage:@"用户名已注册"];
+            }
+
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showTopMessage:@"连接不上服务器"];
+        
+    }];
     
 }
 

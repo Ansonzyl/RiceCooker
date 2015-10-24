@@ -49,7 +49,7 @@
 @property (nonatomic, strong) NSArray *cookTypeArray;
 @property (nonatomic, strong) NSArray *materialArray2;
 @property (nonatomic, assign) NSInteger setTime;
-
+//@property (nonatomic, strong) NSDate *currentTime;
 @property (nonatomic, copy) NSString *weight;
 //@property (nonatomic, copy)
 @end
@@ -62,33 +62,34 @@
     
     [self initializeImageAndLabelText];
     [self setAllArray];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@背景1", _device.devicename] ofType:@".png"];
     NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
 
-        self.backImage.image = [UIImage imageWithData:imageData];
+    self.backImage.image = [UIImage imageWithData:imageData];
+
+
     
+//    NSDate *now = [NSDate date];
+    [_datePicker setMinimumDate:[NSDate date]];
+//    NSDate *date = [[NSDate date] initWithTimeIntervalSinceNow:32*60*60];
+//    [_datePicker setMaximumDate:[[NSDate date] initWithTimeIntervalSinceNow:32*60*60]];
+
+    [_datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60]];
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"MMddHH:mm"];
+    [_datePicker addTarget:self
+                    action:@selector(dateChange)
+          forControlEvents:UIControlEventValueChanged];
+    _finishTime = self.device.finishtime;
+        
     
-    dispatch_async(queue, ^{
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"MMddHH:mm"];
-        NSDate *currentTime = [NSDate date];
-        [_datePicker setMinimumDate:currentTime];
-        NSDate *date = [currentTime initWithTimeIntervalSinceNow:32*60*60];
-        [_datePicker setMaximumDate:date];
-        [_datePicker addTarget:self
-                        action:@selector(dateChange)
-              forControlEvents:UIControlEventValueChanged];
-        _finishTime = self.device.finishtime;
-        
-    });
-        
     NSArray  *array = [[_materialDic allKeys] sortedArrayUsingSelector:@selector(compare:)];
     _selectMaterial = [array objectAtIndex:0];
     
     [self addGestureForImageViews];
-    
+ 
     [self initializeTheImageViewAndPickerView];
     
     
@@ -383,9 +384,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-  
- 
-        if ([pickerView isEqual:_cookTypePickerView]) {
+          if ([pickerView isEqual:_cookTypePickerView]) {
             _cookTypeLabel.text = [_cookTypeArray objectAtIndex:row];
         }else if ([pickerView isEqual:_weightPickerView])
         {
@@ -404,7 +403,6 @@
             }else
             {
                 NSString *temp = [[_materialDic objectForKey:_selectMaterial] objectAtIndex:row];
-                
                 _materialLabel.text = temp;
             }
         }else
@@ -451,25 +449,34 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    CGFloat width = CGRectGetHeight(pickerView.frame)*kRate;
+    CGFloat width = CGRectGetWidth(pickerView.frame)*kRate;
     CGFloat center = 80*kRate;
     if (pickerView == _cookTypePickerView) {
         return width;
     }else if ([pickerView isEqual:_materialPickerView])
-        return width/2;
-    else if ([pickerView isEqual:_weightPickerView])
     {
         if (component == 1 || component == 2) {
-            return center;
+            return width/4;
         }else
-            return (width - center)/2;
-    }else if ([pickerView isEqual:_weightPickerView])
+            return center;
+        
+    }
+    else if ([pickerView isEqual:_weightPickerView])
+//    {
+//        if (component == 1 || component == 2) {
+//            return center;
+//        }else
+//            return width/3*kRate;
+////        return width/3 * kRate;
+//    }
+//    else if ([pickerView isEqual:_weightPickerView])
     {
-        if (component == 1) {
+        if (component == 0) {
             return 50*kRate;
         }else
             return 100*kRate;
-    }else
+    }
+    else
     {
         if (component == 1) {
             return 50*kRate;
@@ -507,16 +514,13 @@
         [self startCookNetWork];
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"烹饪时间不足" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"烹饪时间不足,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
 
     }
     
-//    [self changeDevice];
-//    [_delegate changeDevice:_device withIndex:_currentIndex];
-//    [self.navigationController popViewControllerAnimated:YES];
-
-
     
 }
 
@@ -548,14 +552,19 @@
         if ([recieve isEqualToString:@"start"]) {
             [self changeDevice];
             [_delegate changeDevice:_device withIndex:_currentIndex];
-            [self.navigationController popViewControllerAnimated:YES];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"预约成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"预约成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
             
         }else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"设置失败\n请重新设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"设置失败,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -567,6 +576,7 @@
 
 - (void)changeDevice
 {
+    _device.module = @"已预约";
     _device.state = self.materialLabel.text;
     _device.degree = self.cookTypeLabel.text;
     _device.pnumberweight = _weightLabel.text;

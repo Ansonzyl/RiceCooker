@@ -316,8 +316,14 @@
 {
     if ([_moreArray[indexPath.row] isEqualToString:@"精米程度"]) {
         RiceGradViewController *viewController = [[RiceGradViewController alloc] initWithNibName:@"RiceGradViewController" bundle:nil];
-        [self.popover dismiss];
-        [self.navigationController pushViewController:viewController animated:YES];
+        
+        if ([_device.device isEqual:@"e饭宝"]) {
+            [self.popover dismiss];
+            viewController.UUID = _device.UUID;
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+        }
+        
     }
 
 }
@@ -379,8 +385,8 @@
  
     if ([_device.device isEqualToString:@"e饭宝"]) {
         self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份",device.pnumberweight];
-        self.cookModeLabel.text = device.state;
-        self.fireLabel.text = device.degree;
+        self.cookModeLabel.text = device.degree;
+        self.fireLabel.text = device.state;
     }else
     {
         self.pNumberLabel.text = device.degree;
@@ -417,14 +423,13 @@
         CGRect frame = self.view.frame;
         frame.origin.x = kWidth * page;
         frame.origin.y = 0;
-
         controller.view.frame = frame;
         
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
         [controller didMoveToParentViewController:self];
         controller.currntIndex = page;
-        
+        controller.delegate = self;
         
     }
     
@@ -533,39 +538,63 @@
     
 }
 - (IBAction)startCook:(UIButton *)sender {
-    if ([sender.titleLabel.text isEqualToString:@"取消烹饪"] ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认取消烹饪" message:@"停止烹饪锅内食物，转为待机状态" delegate:self cancelButtonTitle:nil otherButtonTitles:@"继续烹饪", @"结束烹饪", nil];
-        [alert show];
-        
-        
-    }else if ( [sender.titleLabel.text isEqualToString:@"取消保温"])
+    NSString *message;
+    NSString *title;
+    NSString *leftText;
+    NSString *rightText;
+   
+    if ([_device.module isEqualToString:@"烹饪中"] || [_device.module isEqualToString:@"已预约"]) {
+        title = @"确认取消烹饪";
+        message = @"停止烹饪锅内食物，转为待机状态";
+        leftText = @"继续烹饪";
+        rightText = @"结束烹饪";
+    }else if ([_device.module isEqualToString:@"保温中"])
     {
-        
-    }else
-    {
-        _device.module = @"烹饪中";
+        title = @"确认取消保温";
+        message = @"停止烹饪锅内食物，转为待机状态";
+        leftText = @"继续保温";
+        rightText = @"结束保温";
     }
     
-    [self changeDevice:_device withIndex:_pageControl.currentPage];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:leftText style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *goAction = [UIAlertAction actionWithTitle:rightText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          [self cancelCookingWithState:sender.titleLabel.text];
+    }];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:goAction];
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+
+    
+    
+    
+    
+    
+
+    
+    
     
 }
 
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        
-        if ([_device.module isEqualToString:@"烹饪中"])
-        {
-            [self cancelCookingWithState:@"取消烹饪"];
-        }else if ([_device.module isEqualToString:@"保温中"])
-        {
-            [self cancelCookingWithState:@"取消保温"];
-        }
-        
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 1) {
+//        
+//        if ([_device.module isEqualToString:@"烹饪中"])
+//        {
+//            [self cancelCookingWithState:@"取消烹饪"];
+//        }else if ([_device.module isEqualToString:@"保温中"])
+//        {
+//            [self cancelCookingWithState:@"取消保温"];
+//        }
+//        
+//    }
+//}
 
 
 
@@ -608,7 +637,6 @@
         NSLog(@"%@", recieve);
         if ([recieve isEqualToString:@"cancel"]) {
             _device.module = @"待机中";
-            [_deviceDelegate changeDevice:_device withIndex:_pageControl.currentPage];
             
             [self changeDevice:_device withIndex:_pageControl.currentPage];
         }
@@ -617,6 +645,8 @@
         
         
     }];
+    
+    
 }
 
 

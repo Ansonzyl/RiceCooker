@@ -12,6 +12,7 @@
 
 @implementation EriceCell
 
+
 +(NSString *)cellID
 {
     return @"riceCell";
@@ -21,6 +22,7 @@
 
     [super awakeFromNib];
     [self setImageAndLabel];
+    [self setOtherImageView];
     
 }
 
@@ -48,48 +50,15 @@
     
     _iconImage = [self setImageViewWithFrame:CGRectMake(0, 0, 63*kRate, 63*kRate) withImage:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝（188）" ofType:@"png"]];
     _iconImage.center = CGPointMake(kRate * 57, CGRectGetHeight(self.frame)/2 *kRate);
-    
-    double size = 25 * kRate;
-    UIImageView *degreeImage = [self setImageViewWithFrame:CGRectMake(kWidth - 57*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-口感" ofType:@"png"]];
-    UIImageView *stateImage = [self setImageViewWithFrame:CGRectMake(kWidth - 102*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-烹饪方式" ofType:@"png"]];
-    UIImageView *pNumberImage = [self setImageViewWithFrame:CGRectMake(266*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-米量" ofType:@"png"]];
-    
-    CGRect frame = CGRectMake(0, 0, 40*kRate, 18*kRate);
-    CGFloat fontSize = 12*kRate;
-    
-    _pNumberLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
-    _pNumberLabel.textAlignment = NSTextAlignmentCenter;
-    _pNumberLabel.center = [self makeCenterWithPoint:pNumberImage.center];
-    
-    
-    [self addSubview:_pNumberLabel];
-    
-    _stateLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
-    _stateLabel.textAlignment = NSTextAlignmentCenter;
-    _stateLabel.center = [self makeCenterWithPoint:stateImage.center];
-    [self addSubview:_stateLabel];
-    
-
-    _degreeLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
-    _degreeLabel.textAlignment = NSTextAlignmentCenter;
-    _degreeLabel.center = [self makeCenterWithPoint:degreeImage.center];
-    [self addSubview:_degreeLabel];
-    
-    
     _deviceLabel = [self setLabelWithFrame:CGRectMake(110*kRate, 30*kRate, 70*kRate, 21*kRate)  withText:@"e饭宝" withSize:21*kRate];
+    CGFloat fontSize = 12*kRate;
     _moduleLable = [self setLabelWithFrame:CGRectMake(110*kRate, 57*kRate, 70*kRate, 21*kRate) withText:nil withSize:15*kRate];
     _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 70*kRate, 21*kRate) withText:nil withSize:fontSize];
-    
-    
-    [self addSubview:stateImage];
-    [self addSubview:pNumberImage];
-    [self addSubview:degreeImage];
 
     [self addSubview:_iconImage];
     [self addSubview:_deviceLabel];
     [self addSubview:_moduleLable];
     [self addSubview:_finishTime];
-    
     
     _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(110*kRate, 115*kRate, 267*kRate, 20*kRate)];
     _progressView.trackTintColor = UIColorFromRGB(0x2b75aa);
@@ -99,6 +68,49 @@
     [self addSubview:_progressView];
 
 }
+
+- (void) setOtherImageView
+{
+    double size = 25 * kRate;
+    _stateImage = [self setImageViewWithFrame:CGRectMake(kWidth - 57*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-口感" ofType:@"png"]];
+    
+    _degreeImage = [self setImageViewWithFrame:CGRectMake(kWidth - 102*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-烹饪方式" ofType:@"png"]];
+    _pNumberImage = [self setImageViewWithFrame:CGRectMake(266*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e饭宝-米量" ofType:@"png"]];
+    
+    CGRect frame = CGRectMake(0, 0, 40*kRate, 18*kRate);
+    CGFloat fontSize = 12*kRate;
+    
+    _pNumberLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
+    _pNumberLabel.textAlignment = NSTextAlignmentCenter;
+    _pNumberLabel.center = [self makeCenterWithPoint:_pNumberImage.center];
+    
+    
+    [self addSubview:_pNumberLabel];
+    
+    _stateLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
+    _stateLabel.textAlignment = NSTextAlignmentCenter;
+    _stateLabel.center = [self makeCenterWithPoint:_stateImage.center];
+    [self addSubview:_stateLabel];
+    
+    
+    _degreeLabel = [self setLabelWithFrame:frame withText:nil withSize:fontSize];
+    _degreeLabel.textAlignment = NSTextAlignmentCenter;
+    _degreeLabel.center = [self makeCenterWithPoint:_degreeImage.center];
+    [self addSubview:_degreeLabel];
+    
+    
+    [self addSubview:_stateImage];
+    [self addSubview:_pNumberImage];
+    [self addSubview:_degreeImage];
+    
+    
+    
+
+}
+
+
+
+
 
 
 - (CGPoint)makeCenterWithPoint:(CGPoint)center
@@ -115,14 +127,13 @@
 
 - (void)setRiceCell:(DM_ERiceCell *)riceCell
 {
-//    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
-//    self.progressView.layer.cornerRadius = 6;
     _riceCell = riceCell;
-    _stateLabel.text = riceCell.state;
+    
+    _stateLabel.text = riceCell.degree;
     self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", riceCell.pnumberweight];
     
     self.moduleLable.text = riceCell.module;
-    self.degreeLabel.text = riceCell.degree;
+    self.degreeLabel.text = riceCell.state;
     self.finishTime.text = riceCell.appointTime;
     [self.progressView setProgress:(riceCell.settingTime -riceCell.remianTime)/riceCell.settingTime];
 }
@@ -130,16 +141,28 @@
 
 - (void)setDevice:(DM_EVegetable *)device
 {
-//    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
-//    self.progressView.layer.cornerRadius = 6;
     _device = device;
-    _stateLabel.text = device.state;
-    self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
-    
+    if ([device.connectstate isEqualToString:@"1"]) {
+        self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
+        self.stateLabel.text = device.state;
+        self.degreeLabel.text = device.degree;
+        self.finishTime.text =  device.appointTime;
+        [self.progressView setProgress:(device.settingTime -device.remianTime)/device.settingTime];
+
+    }else
+    {
+        _pNumberLabel.hidden = YES;
+        _stateLabel.hidden = YES;
+        _degreeLabel.hidden = YES;
+        
+        _pNumberImage.hidden = YES;
+        _stateImage.hidden = YES;
+        _degreeImage.hidden = YES;
+        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝未连接（188）" ofType:@"png"]];
+        [self.progressView setProgress:0];
+        
+    }
     self.moduleLable.text = device.module;
-    self.degreeLabel.text = device.degree;
-    self.finishTime.text =  device.appointTime;
-    [self.progressView setProgress:(device.settingTime -device.remianTime)/device.settingTime];
 }
 
 

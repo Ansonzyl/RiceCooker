@@ -30,15 +30,27 @@
     self.title = @"添加设备";
     [self initializeLabelAndButton];
     _deviceLabel.text = [NSString stringWithFormat:@"发现%@", _device];
-    if (_isAdd) {
-        [self addDvice];
-    }
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed: @"barBack.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
+    
+//    if (_isAdd) {
+//        [self addDvice];
+//    }
+    if (_isAdd) {
+        _leftButton.hidden = YES;
+        _rightButton.hidden = YES;
+        _startButton.hidden = NO;
+    }
+
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+   }
 
 - (void)initializeLabelAndButton
 {
@@ -54,7 +66,9 @@
     imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pic-e饭宝" ofType:@"png"]];
     _startButton = [self setButtonWithFrame:CGRectMake(15*kRate, 418*kRate, 385*kRate, 57*kRate) WithImage:nil withAction:@selector(startStep:) withText:@"开始体验"];
     _startButton.hidden = YES;
+    [_startButton setBackgroundImage:nil forState:UIControlStateNormal];
     _startButton.backgroundColor = UIColorFromRGB(0x2bb0ac);
+    _startButton.layer.cornerRadius = 2;
     
     [self.view addSubview:_startButton];
     [self.view addSubview:imageView];
@@ -101,7 +115,7 @@
     _startButton.hidden = NO;
     _progress = [[ProgressView alloc] init];
     
-    _progress.center = CGPointMake(kWidth / 2, kHeight *3/5);
+    _progress.center = CGPointMake(kWidth / 2, kHeight *4/5);
     _progress.bounds = CGRectMake(0, 0, 62, 62);
     _progress.arcUnfinishColor = UIColorFromRGB(0xffffff);
     _progress.arcFinishColor = UIColorFromRGB(0xffffff);
@@ -114,8 +128,9 @@
 }
 
 
+
 - (void)downLoad{
-    self.progress.percent += 0.2;
+    self.progress.percent += 0.125;
     if (self.progress.percent == 1) {
         [_myTimer invalidate];
         _progress.hidden = YES;
@@ -159,6 +174,8 @@
 
 - (void)JSONWithURL
 {
+    
+    
     NSString *urlStr = [NSString stringWithFormat: @"http://%@/StartexPerienceServlet", SERVER_URL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -225,6 +242,7 @@
     }];
 }
 - (IBAction)startStep:(id)sender {
+    
     [self JSONWithURL];
 
 }

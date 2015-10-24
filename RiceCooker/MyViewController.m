@@ -7,18 +7,18 @@
 //
 
 #import "MyViewController.h"
-#import "DashProgressView.h"
-#import "DeviceChangeDelegate.h"
+
+
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 #define rate [UIScreen mainScreen].bounds.size.width/414
 
-@interface MyViewController () <UIAlertViewDelegate, DeviceChangeDelegate>
+@interface MyViewController ()
 @property (nonatomic, strong) DM_EVegetable *device;
 @property (nonatomic, strong) UILabel *stateLabel;
-@property (nonatomic, strong) DashProgressView *progressView;
+
 @property (nonatomic, strong) UILabel *finishTimeLabel;
-@property (nonatomic, strong) NSTimer *myTimer;
+
 @property (nonatomic, strong) UILabel *riceLabel;
 @property (nonatomic, strong) UILabel *remainLabel;
 
@@ -61,10 +61,18 @@
     self.workingImage.image = [UIImage imageWithData:imageData];
     
     [self.view addSubview:_workingImage];
+    if ([_device.device isEqual:@"e菜宝"]) {
+        [self initializeButtons];
+    }
     
-    [self initializeButtons];
+    CGRect frame = CGRectMake(0, 0 , 244 * rate, 244 *rate);
+    _progressView = [[DashProgressView alloc] initWithFrame:frame];
+    _progressView.center = CGPointMake( kWidth * 0.5,kHeight * 0.71 * 0.5);
+    [self.view addSubview:_progressView];
+    
     
     [self setLabelWithRate];
+    
     
     dispatch_async(queue, ^{
         if ([self timeOfInsulation]/60 > 5) {
@@ -74,18 +82,15 @@
     
     
     
-    dispatch_async(queue, ^{
+    
         [self buttonWith:_device];
-    });
-    
-}
-
-- (void)changeDevice:(DM_EVegetable *)device withIndex:(NSInteger)index
-{
+   
     
 }
 
 
+
+// 设置label
 - (void)setLabelWithRate
 {
     CGRect frame = CGRectMake(0, 0, 100, 21);
@@ -126,10 +131,10 @@
     
     CGRect frame = CGRectMake(0, 0, 65 * rate, 21 * rate);
     size = 14 * rate;
-    _collectionLabel = [self setLabelWithFrame:frame withText:@"收藏" withSize:size];
+    _collectionLabel = [self setLabelWithFrame:frame withTextColor:[UIColor whiteColor] withText:@"收藏" withSize:size];
     _collectionLabel.center = [self makeCenterWithPoint:_collectBtn.center];
     
-    _cancelreFrigerateLabel = [self setLabelWithFrame:frame withText:@"冷藏" withSize:size];
+    _cancelreFrigerateLabel = [self setLabelWithFrame:frame withTextColor:[UIColor whiteColor] withText:@"冷藏" withSize:size];
     _cancelreFrigerateLabel.center = [self makeCenterWithPoint:_refrigerationBtn.center];
     
     
@@ -141,16 +146,7 @@
     
 }
 
-- (UILabel *)setLabelWithFrame:(CGRect)frame  withText:(NSString *)text withSize:(CGFloat)size
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.textAlignment =  NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:size];
-    
-    label.textColor = [UIColor whiteColor];
-    label.text = text;
-    return label;
-}
+
 
 - (CGPoint)makeCenterWithPoint:(CGPoint)center
 {
@@ -185,11 +181,7 @@
     
     [super viewWillAppear:YES];
     // 计时器
-    CGRect frame = CGRectMake(0, 0 , 244 * rate, 244 *rate);
-    _progressView = [[DashProgressView alloc] initWithFrame:frame];
-    _progressView.center = CGPointMake( kWidth * 0.5,kHeight * 0.71 * 0.5);
-
-    if ([_device.module isEqualToString:@"烹饪中"]) {
+      if ([_device.module isEqualToString:@"烹饪中"]) {
         if (_device.remianTime > _device.settingTime) {
             _progressView.percent = 0;
         }else
@@ -201,8 +193,7 @@
     }else
         _progressView.percent = 0;
     
-    [self.view addSubview:_progressView];
-
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -223,13 +214,16 @@
     _cancelreFrigerateLabel.hidden = YES;
     _collectionLabel.hidden = YES;
     
-    if ([self.device.module isEqualToString:@"待机中"]) {
+    if ([self.device.module isEqualToString:@"待机中"]  || [self.device.module isEqualToString:@"已预约"]) {
         _remainLabel.hidden = YES;
         _finishTimeLabel.hidden = YES;
+        self.collectBtn.hidden = NO;
+        self.collectionLabel.hidden = NO;
         _stateLabel.text = _device.module;
         if ([self.device.device isEqualToString:@"e菜宝"]) {
             _riceLabel.hidden = YES;
         }
+        return;
         
     }
 
@@ -294,31 +288,52 @@
 
 }
 
+
 - (IBAction)cancelreFrigerating:(id)sender {
     NSString *leftStr;
     NSString *rightStr;
+    NSString *titleStr;
+    NSString *message;
     if ([_device.module isEqualToString:@"冷藏中"]) {
         rightStr = @"取消冷藏";
         leftStr = @"继续冷藏";
+        titleStr = @"确认取消冷藏";
+        message = @"停止制冷，转为待机状态";
     }else
     {
+        titleStr = @"确认取消保温，启动冷藏";
+        message = @"停止保温，转为冷藏状态";
         leftStr = @"继续保温";
         rightStr = @"启动冷藏";
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认取消保温，启动冷藏" message:@"停止保温，转为冷藏状态" delegate:self cancelButtonTitle:nil otherButtonTitles:leftStr, rightStr, nil];
-     [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:titleStr message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:leftStr style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *goAction = [UIAlertAction actionWithTitle:rightStr style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self refrigerateNetwork];
+    }];
+    [alert addAction:cancelAction];
+    [alert addAction:goAction];
+    [self presentViewController:alert animated:YES completion:^{
         
-    }
+    }];
+    
+
 }
 
+
+// 冷藏和取消冷藏
 - (void)refrigerateNetwork
 {
+    if ([_device.module isEqualToString:@"冷藏中"]) {
+        _device.module = @"待机中";
+    }else{
+        _device.module = @"冷藏中";
+    }
+    
+    [_delegate changeDevice:_device withIndex:_currntIndex];
+    [self buttonWith:_device];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"devicename":_device.devicename,
                                  @"uuid":_device.UUID};
@@ -341,7 +356,7 @@
                _device.module = @"冷藏中";
             }
 
-            
+            [_delegate changeDevice:_device withIndex:_currntIndex];
             [self buttonWith:_device];
             
             
@@ -354,7 +369,7 @@
     }];
 }
 
-
+// 收藏食谱
 - (IBAction)collectingRecipe:(id)sender {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

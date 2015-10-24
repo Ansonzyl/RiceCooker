@@ -70,8 +70,31 @@
 - (IBAction)regain:(id)sender {
     
     NSString *str = [NSString stringWithFormat:@"发送验证码到 %@", self.phoneNumber];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"修改号码",@"确认", nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"修改号码",@"确认", nil];
+//    [alert show];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认手机号" message:str preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"修改号码" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self countDown];
+        _manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *paramters = @{@"phonenumber":self.phoneNumber};
+        [_manager POST:[NSString stringWithFormat:@"http://%@/ForgetPassword", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self countDown];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+
+    }];
+    [alert addAction:backAction];
+    [alert addAction:goAction];
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+
 
     
 }
@@ -87,12 +110,12 @@
 - (BOOL)checkUpload
 {
     if (![self.passwordTextField.text isEqualToString:self.repeatPWTextField.text]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"两次密码输入不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        [self showTopMessage:@"两次密码不一致"];
         return NO;
     }else if ([self.passwordTextField.text isEqualToString:@""] || [self.repeatPWTextField.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"密码输入为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"密码输入为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+        [self showTopMessage:@"密码输入为空"];
         return NO;
     }else
         return YES;
@@ -119,23 +142,15 @@
     
 }
 
-#pragma mark UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else if (buttonIndex == 1)
-    {
-        [self countDown];
-        _manager = [AFHTTPRequestOperationManager manager];
-        NSDictionary *paramters = @{@"phonenumber":self.phoneNumber};
-        [_manager POST:[NSString stringWithFormat:@"http://%@/ForgetPassword", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self countDown];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
-    }
-}
+//#pragma mark UIAlertViewDelegate
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 0) {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else if (buttonIndex == 1)
+//    {
+//            }
+//}
 
 #pragma mark -UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField

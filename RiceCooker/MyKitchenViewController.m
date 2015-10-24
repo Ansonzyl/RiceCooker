@@ -42,15 +42,17 @@
 @property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic, strong) UIImage *addImage;
 @property (nonatomic, strong) UIImage *cancelImage;
-
+@property (nonatomic, strong) UIImageView *titleImage;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) NSMutableArray *devicesArray;
+@property (nonatomic, strong) UIView *titleView;
 @end
 
 @implementation MyKitchenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的厨房";
+    [self setTitlePic];
     
     _refresh = [[UIRefreshControl alloc] init];
     [_refresh addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
@@ -67,15 +69,13 @@
     _config = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"addDevices"];
 
     
-    
-    
     UITableView *blueView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, popoverWidth, AddCellHeight*_config.count) style:UITableViewStylePlain];
     
     
     blueView.dataSource = self;
     blueView.delegate = self;
     self.addTableView = blueView;
-//    self.addTableView.separatorColor = [UIColor clearColor];
+
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -102,11 +102,11 @@
     [super viewWillAppear:YES];
     [self setNavigationBar];
     
-    Reachability *reach = [Reachability reachabilityWithHostName:@"www.apple.com"];
+//    Reachability *reach = [Reachability reachabilityWithHostName:@"www.apple.com"];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-    if ([self netWorkStateWithReachability:reach]) {
+//       if ([self netWorkStateWithReachability:reach]) {
         [self JSONWithURL];
-    }
+//    }
     
 }
 
@@ -124,28 +124,28 @@
 //    [self updateInterfaceWithReachability:curReach];
 //}
 
-- (BOOL)netWorkStateWithReachability:(Reachability *)reachability
-{
-    NetworkStatus netStatus = [reachability currentReachabilityStatus];
-    BOOL isExistenceNetwork;
-    
-    switch (netStatus) {
-        case NotReachable:
-            isExistenceNetwork = NO;
-            NSLog(@"no network");
-            break;
-        case ReachableViaWWAN:
-            isExistenceNetwork = YES;
-            break;
-        case ReachableViaWiFi:
-            isExistenceNetwork = YES;
-            break;
-
-        default:
-            break;
-    }
-    return isExistenceNetwork;
-}
+//- (BOOL)netWorkStateWithReachability:(Reachability *)reachability
+//{
+//    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+//    BOOL isExistenceNetwork;
+//    
+//    switch (netStatus) {
+//        case NotReachable:
+//            isExistenceNetwork = NO;
+//            NSLog(@"no network");
+//            break;
+//        case ReachableViaWWAN:
+//            isExistenceNetwork = YES;
+//            break;
+//        case ReachableViaWiFi:
+//            isExistenceNetwork = YES;
+//            break;
+//
+//        default:
+//            break;
+//    }
+//    return isExistenceNetwork;
+//}
 
 
 - (void) setNavigationBar
@@ -155,26 +155,48 @@
     [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
     [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
+    
 }
+
+- (void)setTitlePic
+{
+    _titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 77*kRate, 17*kRate)];
+    _titleImage.image = [UIImage imageNamed:@"icon-点点厨房.png"];
+
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80*kRate, 17*kRate)];
+    _titleLabel.text = @"添加设备";
+    _titleLabel.textColor = UIColorFromRGB(0xd7ffff);
+    _titleLabel.font = [UIFont systemFontOfSize:15];
+    
+    _titleView = [[UIView alloc] init];
+    self.navigationItem.titleView = _titleView;
+    _titleLabel.center = _titleView.center;
+    _titleImage.center = _titleView.center;
+    [_titleView addSubview:_titleLabel];
+    [_titleView addSubview:_titleImage];
+    _titleLabel.hidden = YES;
+    
+}
+
+
+
 
 - (void)JSONWithURL
 {
     _riceArray = [[NSMutableArray alloc] init];
     _vegetableArray = [[NSMutableArray alloc] init];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"phonenumber": _phoneNumber};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"http://%@/HomePage", SERVER_URL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (responseObject) {
             _recieveArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
-//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-//            [user setObject:_recieveArray forKey:@"deviceArray"];
-//            
+            
             
             for (int i = 0; i<_recieveArray.count; i++) {
-                if ([[_recieveArray[i] objectForKey:@"connectstate"] isEqualToString:@"1"]) {
+               
                     if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e饭宝"]) {
                         [_riceArray addObject:_recieveArray[i]];
                     }else if ([[_recieveArray[i] objectForKey:@"device"] isEqualToString:@"e菜宝"])
@@ -183,19 +205,21 @@
                     }
                    
 
-                }else
-                {
-                    
-                }
                 
             }
-
+            
+            
+            if (_recieveArray.count) {
+                [self.tableView reloadData];
+            }
+            
         }
         
-        [self.tableView reloadData];
-
-        
+            
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        
         NSLog(@"%@", error);
     }];
     
@@ -217,10 +241,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:_addTableView]) {
-//        if (section == 0) {
-//            return 1;
-//        }else
-            return _config.count;
+        return _config.count;
     }else
     {
     switch (section) {
@@ -264,21 +285,31 @@
             }
             
         }
-    }else
+    }else if ([tableView isEqual:_tableView])
     {
+        
         
         if(indexPath.section == kRice)
         {
-            if (_riceArray.count > indexPath.row) {
-                EriceCell *cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
-            if (cell == nil) {
-                cell = [EriceCell ericeCell];
-            }
-            DM_EVegetable *device = [DM_EVegetable eVegetableWithDict:_riceArray[indexPath.row]];
-            cell.device = device;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
+            if (_riceArray.count > indexPath.row)
+            {
+                DM_EVegetable *device = [DM_EVegetable eVegetableWithDict:_riceArray[indexPath.row]];
+                EriceCell *cell;
+//                if ([device.connectstate isEqualToString: @"1"])
+//                {
+                    cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
+                    if (cell == nil) {
+                        cell = [EriceCell ericeCell];
+                    }
+//                    
+//                }else
+//                {
+//                    
+//                }
+                
+                cell.device = device;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
             }
             
 
@@ -308,8 +339,11 @@
         }
         
     }
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        return cell;
     
-    return nil;
+    
+    
     
     
 }
@@ -420,7 +454,8 @@
         [self.popover showAtPoint:startPoint popoverPostion:DXPopoverPositionDown withContentView:self.addTableView inView:self.tabBarController.view];
         _cancelImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-关闭.png" ofType:nil]];
         [self.addBtn setImage:_cancelImage forState:UIControlStateNormal];
-        self.title = @"添加设备";
+        _titleImage.hidden = YES;
+        _titleLabel.hidden = NO;
         __weak typeof (self)weakSelf = self;
         self.popover.didDismissHandler = ^{
             [weakSelf bounceTargetView:leftView];
@@ -447,7 +482,14 @@
         targetView.transform = CGAffineTransformIdentity;
         
         [_addBtn setImage:_addImage forState:UIControlStateNormal];
-        self.title = @"我的厨房";
+//        [self setTitlePic];
+        _titleImage.hidden = NO;
+        _titleLabel.hidden = YES;
+        
+        self.tabBarItem.image = [[UIImage imageNamed:@"icon-我的厨房.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon-我的厨房select.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+
 
     } completion:nil];
 }

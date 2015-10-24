@@ -18,6 +18,7 @@
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *objArray;
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (nonatomic, strong) NSDictionary *recieve;
 @end
 

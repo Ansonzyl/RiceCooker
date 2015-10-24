@@ -92,7 +92,7 @@
     _settimeLabel = [self setLabelWithFrame:frame withSize:fontSize withTextAlignment:NSTextAlignmentCenter];
     _settimeLabel.center = [self makeCenterWithPoint:_setTimeImageView.center];
     [self addSubview:_settimeLabel];
-    _device = [self setLabelWithFrame:CGRectMake(110*kRate, 30*kRate, 70*kRate, 21*kRate)   withSize:21*kRate withTextAlignment:NSTextAlignmentLeft];
+    _device = [self setLabelWithFrame:CGRectMake(110*kRate, 30*kRate, 100*kRate, 21*kRate)   withSize:21*kRate withTextAlignment:NSTextAlignmentLeft];
     _moduleLable = [self setLabelWithFrame:CGRectMake(110*kRate, 57*kRate, 70*kRate, 21*kRate)  withSize:15*kRate withTextAlignment:NSTextAlignmentLeft];
     _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 70*kRate, 21*kRate) withSize:fontSize withTextAlignment:NSTextAlignmentLeft];
     
@@ -127,7 +127,7 @@
 - (void)setVegetable:(DM_EVegetable *)vegetable
 {
     _vegetable = vegetable;
-    self.device.text = vegetable.device;
+    self.device.text = vegetable.devicename;
     _stateLabel.text = vegetable.state;
     self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable.pnumberweight];
     self.moduleLable.text = vegetable.module;
@@ -142,7 +142,7 @@
 - (void)setVegetable2:(DM_EVegetable *)vegetable2
 {
     _vegetable2 = vegetable2;
-    self.device.text = vegetable2.device;
+    self.device.text = vegetable2.devicename;
     self.backgroundColor = UIColorFromRGB(0x4b5a8b);
     self.iconImage.image = [UIImage imageNamed:@"icon-e菜宝中（188）.png"];
     self.setTimeImageView.image = [UIImage imageNamed:@"icon-e菜宝中-烹饪时长.png"];
@@ -171,7 +171,7 @@
 - (void)setVegetable3:(DM_EVegetable *)vegetable3
 {
     _vegetable3 = vegetable3;
-    self.device.text = vegetable3.device;
+    self.device.text = vegetable3.devicename;
     self.backgroundColor = UIColorFromRGB(0x544d7f);
     self.iconImage.image = [UIImage imageNamed:@"icon-e菜宝下（188）.png"];
     self.setTimeImageView.image = [UIImage imageNamed:@"icon-e菜宝下-烹饪时长.png"];

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,6 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AOi-Hs-N8d" id="bYU-3x-YkB">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.29803921568627451" green="0.59607843137254901" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
@@ -19,6 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7r2-23-jCl" id="K5d-An-rr2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.28235294117647058" green="0.45098039215686275" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
@@ -28,6 +31,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hfv-Yr-FP2" id="yrt-gF-RMI">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e饭宝未连接（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="6nf-KT-R8E">
@@ -73,6 +77,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4t-XT-rYm" id="d9q-Ny-Deb">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-e菜宝上未连接（188）.png" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-ai-k7v">

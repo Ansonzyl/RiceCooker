@@ -106,18 +106,13 @@ static int myTime;
 
 - (IBAction)regain:(id)sender {
     NSString *str = [NSString stringWithFormat:@"发送验证码到 %@", self.phoneNumber];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"修改号码",@"确认", nil];
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认手机号" message:str preferredStyle:UIAlertControllerStyleAlert];
+    
 
-}
-
-#pragma mark UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
+    UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"修改号码" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
-    }else if (buttonIndex == 1)
-    {
+    }];
+    UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self countDown];
         _manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *paramters = @{@"phonenumber":self.phoneNumber};
@@ -126,12 +121,45 @@ static int myTime;
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
-    }
+        
+    }];
+    [alert addAction:backAction];
+    [alert addAction:goAction];
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
+
+    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认手机号" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"修改号码",@"确认", nil];
+//    [alert show];
+    
+    
+    
+
 }
+
+//#pragma mark UIAlertViewDelegate
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 0) {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else if (buttonIndex == 1)
+//    {
+//        [self countDown];
+//        _manager = [AFHTTPRequestOperationManager manager];
+//        NSDictionary *paramters = @{@"phonenumber":self.phoneNumber};
+//        [_manager POST:[NSString stringWithFormat:@"http://%@/ForgetPassword", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            [self countDown];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            
+//        }];
+//    }
+//}
 
 - (IBAction)uploadImage:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择文件来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"照相机",@"本地相簿", nil];
     [actionSheet showInView:self.view];
+    
     
     
 }

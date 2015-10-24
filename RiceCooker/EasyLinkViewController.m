@@ -8,8 +8,10 @@
 
 #import "EasyLinkViewController.h"
 #import "AddDeviceViewController.h"
+
 #define SERVERIP @"202.75.219.40"
 //#define SERVERIP @"192.168.253.4"
+//#define SERVERIP @"192.168.2.3"
 #define SERVERPORT @"8899"
 #define DEVICEWLANNAME @"MXCHIP_4A1B0A"
 
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *SSIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
+//@property (nonatomic ,copy) NSString *
 - (IBAction)tapBack:(id)sender;
 - (IBAction)pushNextView:(id)sender;
 - (IBAction)backStep:(id)sender;
@@ -45,8 +48,26 @@
     if (![self.SSIDTextField.text isEqualToString:@""]) {
         self.WlanViewImage.highlighted = YES;
     }
+    if ([_device isEqualToString:@"e菜宝"]) {
+        
+    }else
+    {
+        
+    }
     
 }
+
+
+- (void)initializeLabelAndTextFiled
+{
+    
+}
+
+
+
+
+
+
 
 - (id)fetchSSIDInfo{
     NSArray *ifs = (__bridge_transfer NSArray *)CNCopySupportedInterfaces();
@@ -109,9 +130,14 @@
 }
 
 - (IBAction)pushNextView:(id)sender {
+//    AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
+//    viewController.isAdd = YES;
+//    viewController.UUID = self.UUID;
+//    viewController.device = self.device;
+//    [self.navigationController pushViewController:viewController animated:YES];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self saveInfomation];
-
-
 }
 
 - (IBAction)backStep:(id)sender {
@@ -122,7 +148,7 @@
 {
     NSString *urlStr = @"http://192.168.1.1/advanced.htm";
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20];
     [request setHTTPMethod:@"POST"];
 
     NSMutableString *body = [NSMutableString stringWithFormat:@"wifi_mode=1&wifi_ssid=%@&security_mode=4&wifi_key=%@&wifi_ssid1=&security_mode1=0&wifi_key1=&wifi_ssid2=&security_mode2=0&wifi_key2=&wifi_ssid3=&security_mode3=0&wifi_key3=&wifi_ssid4=&security_mode4=0&wifi_key4=&uap_ssid=&uap_secmode=1&uap_key=&dhcp_enalbe=1&local_ip_addr=0.0.0.0&netmask=0.0.0.0&gateway_ip_addr=0.0.0.0&dns_server=0.0.0.0&mstype=1&remote_server_mode=0&remote_dns=%@&rport=8899&lport=8899&",self.SSIDTextField.text, self.passwordTextField.text, SERVERIP];
@@ -138,26 +164,33 @@
     [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
     [request setValue:@"192.168.1.1" forHTTPHeaderField:@"Host"];
     [request setHTTPBody:bodyData];
-    NSHTTPURLResponse *respose;
-    NSError *error;
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&respose error:&error];
-    
-    if ([respose statusCode] == 200) {
-        [self restart];
-    }
 
     
     
-//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]  completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//       
-//        
-//    }];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if ([(NSHTTPURLResponse *)response statusCode] == 200) {
+            [self restart];
+        }else
+        {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+
+        
+    }];
+    [task resume];
+    
+
+//    [NSURLSession]
+    
     
     
 }
 
 - (void)restart
 {
+#warning 
     NSString *urlStr = @"http://192.168.1.1/advanced.htm";
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
@@ -176,18 +209,29 @@
     [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
     [request setValue:@"192.168.1.1" forHTTPHeaderField:@"Host"];
     [request setHTTPBody:bodyData];
-    NSHTTPURLResponse *respose;
-    NSError *error;
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&respose error:&error];
-    
-    if ([respose statusCode] == 200) {
-        AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
-        viewController.isAdd = YES;
-        viewController.UUID = self.UUID;
-        viewController.device = self.device;
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
 
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if ([(NSHTTPURLResponse *)response statusCode] == 200) {
+            AddDeviceViewController *viewController = [[AddDeviceViewController alloc] initWithNibName:@"AddDeviceViewController" bundle:nil];
+            viewController.isAdd = YES;
+            viewController.UUID = self.UUID;
+            viewController.device = self.device;
+            [self.navigationController pushViewController:viewController animated:YES];
+
+        }else
+        {
+            
+        }
+        
+        
+    }];
+    [task resume];
+
+    
+    
     
 
 }

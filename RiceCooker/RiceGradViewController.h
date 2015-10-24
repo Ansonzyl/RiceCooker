@@ -10,4 +10,5 @@
 
 @interface RiceGradViewController : UIViewController
 
+@property (nonatomic, copy) NSString *UUID;
 @end

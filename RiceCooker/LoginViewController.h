@@ -10,12 +10,12 @@
 
 @interface LoginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *phoneNumberImageView;
-@property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
-@property (weak, nonatomic) IBOutlet UIButton *login_button;
+@property (strong, nonatomic) IBOutlet UIImageView *phoneNumberImageView;
+@property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (strong, nonatomic) IBOutlet UIButton *login_button;
 
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIImageView *passwordImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *logoImageView;
 
 - (IBAction)loginBtn:(id)sender;

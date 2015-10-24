@@ -9,38 +9,50 @@
 #import "MainViewController.h"
 
 @interface MainViewController ()
-
+@property (nonatomic, strong) NSArray *items;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(exit:)];
-//    self.navigationItem.leftBarButtonItem = button;
-    self.tabBar.barTintColor = UIColorFromRGB(0x40c8c4);
+       self.tabBar.barTintColor = UIColorFromRGB(0x40c8c4);
     self.tabBar.tintColor = UIColorFromRGB(0xbbf5f4);
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0xbbf5f4),NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0xbbf5f4),NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorFromRGB(0xbbf5f4),NSFontAttributeName:[UIFont fontWithName:@"Marion-Italic" size:11.0]} forState:UIControlStateNormal];
     
-    NSArray *items = self.tabBar.items;
-    UITabBarItem *kitchen = items[0];
+    
+    _items = self.tabBar.items;
+    UITabBarItem *kitchen = _items[0];
     kitchen.title = @"我的厨房";
-    kitchen.image = [[UIImage imageNamed:@"icon-导航-点点商城.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    kitchen.selectedImage = [[UIImage imageNamed:@"icon-导航-点点商城select.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UITabBarItem *shop = items[1];
+    kitchen.image = [[UIImage imageNamed:@"icon-我的厨房（未选中）.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    kitchen.selectedImage = [[UIImage imageNamed:@"icon-我的厨房.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+    UITabBarItem *shop = _items[1];
     shop.title = @"点点商城";
-    shop.image = [[UIImage imageNamed:@"icon-我的厨房.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    shop.selectedImage = [[UIImage imageNamed:@"icon-我的厨房select.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UITabBarItem *userInfo = items[2];
-    userInfo.image = [[UIImage imageNamed:@"icon-导航-个人中心.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    userInfo.selectedImage = [[UIImage imageNamed:@"icon-导航-个人中心select.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    shop.image = [[UIImage imageNamed:@"icon-68点点商城(未选中）.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    shop.selectedImage = [[UIImage imageNamed:@"icon-68点点商城.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+    
+    UITabBarItem *userInfo = _items[2];
+    userInfo.image = [[UIImage imageNamed:@"icon-个人中心（未选中）.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    userInfo.selectedImage = [[UIImage imageNamed:@"icon-个人中心.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     userInfo.title = @"个人中心";
     
 }
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    
+}
+
+
 
 
 - (void)exit:(id)sender

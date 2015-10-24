@@ -67,18 +67,24 @@
         _pNumberArray = [_dic objectForKey:@"pNumber"];
         _fireArray = [_dic objectForKey:@"fire"];
         _cookModeArray = [_dic objectForKey:@"cookMode"];
-        
+    
+//    dispatch_async(queue, ^{
         _dateFormatter = [[NSDateFormatter alloc] init];
         
-        NSDate *currentTime = [NSDate date];
-        [_datePicker setMinimumDate:currentTime];
-        
-        NSDate *date = [currentTime initWithTimeIntervalSinceNow:32*60*60];
-        [_datePicker setMaximumDate:date];
+//        NSDate *currentTime = [NSDate date];
+   
+        [_datePicker setMinimumDate:[NSDate date]];
+    
+
+//        NSDate *date = [currentTime initWithTimeIntervalSinceNow:24*60*60];
+    
+        [_datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60]];
         [_datePicker addTarget:self
                         action:@selector(dateChange)
               forControlEvents:UIControlEventValueChanged];
         [_dateFormatter setDateFormat:@"MMddHH:mm"];
+//    });
+    
        
         _pNumberStr = _device.pnumberweight;
 
@@ -128,9 +134,12 @@
     size = 12 * kRate;
     _pNumberLabel = [self setLabelWithFrame:frame withText:[NSString stringWithFormat:@"%@人份", _device.pnumberweight ]withSize:size withColor:[UIColor blackColor]];
     _pNumberLabel.center = [self makeCenterWithPoint:_pNumber.center];
-    _fireLabel = [self setLabelWithFrame:frame withText:_device.state withSize:size withColor:[UIColor blackColor]];
+    
+    _fireLabel = [self setLabelWithFrame:frame withText:@"煮饭" withSize:size withColor:[UIColor blackColor]];
     _fireLabel.center = [self makeCenterWithPoint:_fireImage.center];
-    _cookModeLabel = [self setLabelWithFrame:frame withText:_device.degree withSize:size withColor:[UIColor blackColor]];
+    NSLog(@"%@", _fireLabel.text);
+    
+    _cookModeLabel = [self setLabelWithFrame:frame withText:_device.state withSize:size withColor:[UIColor blackColor]];
     _cookModeLabel.center = [self makeCenterWithPoint:_cookModeImage.center];
     _finishTimeLabel = [self setLabelWithFrame:frame withText:_device.appointTime withSize:size withColor:[UIColor blackColor]];
     _finishTimeLabel.center = [self makeCenterWithPoint:_finishTimeImage.center];
@@ -146,11 +155,11 @@
     riceWeight.textAlignment = NSTextAlignmentRight;
     UILabel *applyNum = [self setLabelWithFrame:CGRectMake(166*kRate, height, 45 * kRate, 21 * kRate) withText:@"100" withSize:size withColor:textColor];
     applyNum.textAlignment = NSTextAlignmentRight;
-    UILabel *dayNum = [self setLabelWithFrame:CGRectMake(345*kRate, height, 38, 21*kRate) withText:@"30" withSize:size withColor:textColor];
+    UILabel *dayNum = [self setLabelWithFrame:CGRectMake(335*kRate, height, 38, 21*kRate) withText:@"30" withSize:size withColor:textColor];
     dayNum.textAlignment = NSTextAlignmentRight;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        
+        
         [self.view addSubview:stateLabel];
         [self.view addSubview:riceText];
         [self.view addSubview:riceWeight];
@@ -355,14 +364,14 @@
     
     if ([pickerView isEqual:_pNumberPickerView]) {
         if (component == 1) {
-            self.pNumberStr = [NSString stringWithFormat:@"%ld", row + 1];
-            self.pNumberLabel.text = [NSString stringWithFormat:@"%ld人份", row + 1];
+            self.pNumberStr = [NSString stringWithFormat:@"%d", (int)(row + 1)];
+            self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", self.pNumberStr];
             
         }
 
     }else if ([pickerView isEqual:_firePickerView])
     {
-        self.fireLabel.text = [_fireArray objectAtIndex:row];
+        self.fireLabel.text = _fireArray[row];
     }else if ([pickerView isEqual:_cookModePickerView])
     {
         self.cookModeLabel.text = [_cookModeArray objectAtIndex:row];
@@ -386,17 +395,17 @@
     {
         if (component == 1) {
             retval.textAlignment = NSTextAlignmentCenter;
-            retval.font = [UIFont systemFontOfSize:26];
+            retval.font = [UIFont systemFontOfSize:26*kRate];
         }else
         {
             retval.textAlignment = NSTextAlignmentLeft;
-            retval.font = [UIFont systemFontOfSize:15];
+            retval.font = [UIFont systemFontOfSize:15*kRate];
         }
     }
     else
     {
          retval.textAlignment = NSTextAlignmentCenter;
-        retval.font = [UIFont systemFontOfSize:21];
+        retval.font = [UIFont systemFontOfSize:21*kRate];
         
     }
     retval.text = [self pickerView:pickerView titleForRow:row forComponent:component];
@@ -450,23 +459,33 @@
         
         [manager POST:urlStr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            
-
-                NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             NSLog(@"%@",recieve);
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                if ([recieve isEqualToString:@"start"]) {
+                if ([recieve isEqualToString:@"ericestart"]) {
                     [self changeDevice];
-                    [_delegate changeDevice:_device withIndex:_currentIndex];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息" message:@"预约成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
                     
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [_delegate changeDevice:_device withIndex:_currentIndex];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"预约成功" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                         [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                    
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:^{
+                       
+                    }];
+                    
+                    
+                    
                     
                 }else
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息" message:@"设置失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
+                  
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"设置失败,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
 
                 }
 
@@ -478,8 +497,11 @@
 
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"烹饪时间不足" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"烹饪时间不足,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+       
     }
     
     
@@ -502,6 +524,7 @@
 #pragma mark deviceDelegate
 - (void)changeDevice
 {
+    _device.module = @"已预约";
     _device.state = self.cookModeLabel.text;
     _device.degree = self.fireLabel.text;
     _device.pnumberweight = _pNumberStr;
