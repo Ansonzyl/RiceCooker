@@ -207,7 +207,7 @@
     
     // more
     _moreImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-更多.png" ofType:nil]];
-    _moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31, 31)];
+    _moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 30, 30)];
     [_moreButton setImage:_moreImage forState:UIControlStateNormal];
     [_moreButton addTarget:self action:@selector(moreDetail:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -543,7 +543,7 @@
     NSString *leftText;
     NSString *rightText;
    
-    if ([_device.module isEqualToString:@"烹饪中"] || [_device.module isEqualToString:@"已预约"]) {
+    if ([_device.module isEqualToString:@"烹饪中"] || [_device.module isEqualToString:@"预约中"]) {
         title = @"确认取消烹饪";
         message = @"停止烹饪锅内食物，转为待机状态";
         leftText = @"继续烹饪";
@@ -637,8 +637,18 @@
         NSLog(@"%@", recieve);
         if ([recieve isEqualToString:@"cancel"]) {
             _device.module = @"待机中";
-            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"取消成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
             [self changeDevice:_device withIndex:_pageControl.currentPage];
+        }else if ([recieve isEqualToString:@"ericepushin"])
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"正在进米中，请稍候再试" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

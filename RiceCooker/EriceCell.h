@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIImageView *stateImage;
 @property (nonatomic, strong) UIImageView *degreeImage;
 @property (nonatomic, strong) UIImageView *pNumberImage;
+@property (nonatomic, strong) UIButton *retryButton;
 
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) DM_ERiceCell *riceCell;

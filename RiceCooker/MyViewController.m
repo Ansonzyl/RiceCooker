@@ -214,7 +214,7 @@
     _cancelreFrigerateLabel.hidden = YES;
     _collectionLabel.hidden = YES;
     
-    if ([self.device.module isEqualToString:@"待机中"]  || [self.device.module isEqualToString:@"已预约"]) {
+    if ([self.device.module isEqualToString:@"待机中"]  || [self.device.module isEqualToString:@"预约中"]) {
         _remainLabel.hidden = YES;
         _finishTimeLabel.hidden = YES;
         self.collectBtn.hidden = NO;

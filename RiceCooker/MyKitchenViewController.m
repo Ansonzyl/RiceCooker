@@ -58,7 +58,7 @@
     [_refresh addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:_refresh];
     _addImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-添加.png" ofType:nil]];
-    _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31, 31)];
+    _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 31*kRate, 31*kRate)];
     [_addBtn setImage:_addImage forState:UIControlStateNormal];
     [_addBtn addTarget:self action:@selector(addDevice:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -160,13 +160,14 @@
 
 - (void)setTitlePic
 {
-    _titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 77*kRate, 17*kRate)];
+    _titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 77, 17)];
     _titleImage.image = [UIImage imageNamed:@"icon-点点厨房.png"];
 
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80*kRate, 17*kRate)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 17)];
     _titleLabel.text = @"添加设备";
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = UIColorFromRGB(0xd7ffff);
-    _titleLabel.font = [UIFont systemFontOfSize:15];
+    _titleLabel.font = [UIFont systemFontOfSize:17];
     
     _titleView = [[UIView alloc] init];
     self.navigationItem.titleView = _titleView;

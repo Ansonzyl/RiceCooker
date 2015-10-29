@@ -66,6 +66,17 @@
     self.progressView.layer.cornerRadius = 6;
      self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f * kRate);
     [self addSubview:_progressView];
+    _retryButton = [[UIButton alloc] initWithFrame:CGRectMake(292*kRate, 20*kRate, 92*kRate, 42*kRate)];
+    [_retryButton setTitle:@"连接" forState:UIControlStateNormal];
+    
+    
+    [_retryButton setTitleColor:UIColorFromRGB(0xD4FFFF) forState:UIControlStateNormal];
+    [_retryButton.layer setCornerRadius:3.0f];
+    [_retryButton.layer setBorderWidth:1.0];
+    [_retryButton.layer setBorderColor:UIColorFromRGB(0xD4FFFF).CGColor];
+    _retryButton.titleLabel.font = [UIFont systemFontOfSize:16*kRate];
+    [self.contentView addSubview:_retryButton];
+    _retryButton.hidden = YES;
 
 }
 
@@ -160,10 +171,13 @@
         _degreeImage.hidden = YES;
         _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝未连接（188）" ofType:@"png"]];
         [self.progressView setProgress:0];
+        _retryButton.hidden = NO;
         
     }
     self.moduleLable.text = device.module;
 }
+
+
 
 
 @end

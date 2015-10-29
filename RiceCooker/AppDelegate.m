@@ -27,7 +27,7 @@
     
 //    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x40c8c4)];
     
-//    [UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x40c8c4), NSForegroundColorAttributeName, [UIFont systemFontOfSize:18],nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
 //
 
     //将返回按钮的文字position设置不在屏幕上显示

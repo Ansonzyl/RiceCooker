@@ -2,13 +2,19 @@
 //  ShopViewController.m
 //  RiceCooker
 //
-//  Created by yi on 15/9/28.
-//  Copyright (c) 2015年 yi. All rights reserved.
+//  Created by yi on 15/10/25.
+//  Copyright © 2015年 yi. All rights reserved.
 //
 
 #import "ShopViewController.h"
-
-@interface ShopViewController ()
+#import <CoreLocation/CoreLocation.h>
+#import "CollectionViewController.h"
+#define kRate [UIScreen mainScreen].bounds.size.width / 414
+@interface ShopViewController () <CLLocationManagerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *localButton;
+@property (nonatomic, strong) CLGeocoder *geocoder;
+@property (nonatomic, strong)CLLocationManager *locationManager;
+- (IBAction)detail:(UIButton *)sender;
 
 @end
 
@@ -16,72 +22,126 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    [self startStandardUpdates];
+    [self setBarImage];
+
 }
+
+- (void)setBarImage
+{
+    UIImageView *titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 77, 17)];
+    titleImage.image = [UIImage imageNamed:@"icon-点点商城.png"];
+    UIView *titleView = [[UIView alloc] init];
+    self.navigationItem.titleView = titleView;
+    titleImage.center = titleView.center;
+    [titleView addSubview:titleImage];
+    
+}
+
+
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == _locationManager)
+        _locationManager = [[CLLocationManager alloc] init];
+    
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    // Set a movement threshold for new events.
+    _locationManager.distanceFilter = 500; // meters
+    
+    [_locationManager startUpdatingLocation];
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        
+        [_locationManager requestWhenInUseAuthorization];
+    
+}
+
+
+
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_locationManager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    CLLocation *currentLocation = [locations lastObject];
+    [self reverseGeocode:currentLocation];
+    [self.locationManager stopUpdatingLocation];
+}
+
+
+
+
+- (void)reverseGeocode:(CLLocation *)location
+{
+    if (!_geocoder)
+    {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    [_geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (nil != error) {
+            
+        }else if ([placemarks count] > 0)
+        {
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+             NSLog(@"%@\n%@",placemark.thoroughfare,placemark.subThoroughfare);
+     
+            NSString* address = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@",
+                                 placemark.country,
+                                 placemark.administrativeArea,
+                                 placemark.locality,
+                                 placemark.subLocality,
+                                 placemark.thoroughfare,
+                                 placemark.subThoroughfare];
+            
+            [_localButton setTitle:address forState:UIControlStateNormal];
+        }
+        
+        
+    }];
+    
+    
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    // 提示用户出错原因
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setNavigationBar];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void) setNavigationBar
+{
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
-    // Configure the cell...
+    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
+    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(0xd7ffff)];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:UIColorFromRGB(0xd7ffff) forKey:NSForegroundColorAttributeName]];
     
-    return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -93,4 +153,11 @@
 }
 */
 
+- (IBAction)detail:(UIButton *)sender {
+//     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc ]init];
+//    [flowLayout setItemSize:CGSizeMake(90, 90)];
+    CollectionViewController *viewController = [[CollectionViewController alloc] init];
+    [viewController setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 @end

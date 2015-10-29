@@ -132,71 +132,71 @@
     [_userDefaults setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
     [_userDefaults setObject:self.passwordTextField.text forKey:@"password"];
     
-    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-    [request setHTTPMethod:@"POST"];
-
-    NSString *body = [NSString stringWithFormat:@"phonenumber=%@&password=%@", self.phoneNumberTextField.text, self.passwordTextField.text];
-    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        if ([recieve isEqualToString:@"fail"]) {
-            
-            [self showTopMessage:@"用户名或密码错误"];
-            
-            
-        }else if([recieve isEqualToString:@"success"])
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-            
-            [self presentViewController:main animated:YES completion:nil];
-        }
-        NSLog(@"%@",error);
-
-        
-    }];
-    
-    [task resume];
-    
-    
-    
-    
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-//    [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        
-//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+//    [request setHTTPMethod:@"POST"];
+//
+//    NSString *body = [NSString stringWithFormat:@"phonenumber=%@&password=%@", self.phoneNumberTextField.text, self.passwordTextField.text];
+//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //        if ([recieve isEqualToString:@"fail"]) {
-//
+//            
 //            [self showTopMessage:@"用户名或密码错误"];
-//
+//            
 //            
 //        }else if([recieve isEqualToString:@"success"])
 //        {
 //            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
 //            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//
+//            
 //            [self presentViewController:main animated:YES completion:nil];
 //        }
-//        
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            
-//                NSLog(@"%@", error);
-//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//            [self showTopMessage:@"连接不到服务器"];
+//        NSLog(@"%@",error);
 //
-//        }];
+//        
+//    }];
 //    
+//    [task resume];
+//
+    
+    
+    
+//    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
+    [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([recieve isEqualToString:@"fail"]) {
+
+            [self showTopMessage:@"用户名或密码错误"];
+
+            
+        }else if([recieve isEqualToString:@"success"])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
+            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+
+            [self presentViewController:main animated:YES completion:nil];
+        }
+        
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+                NSLog(@"%@", error);
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self showTopMessage:@"连接不到服务器"];
+
+        }];
+//
     
 
 }
