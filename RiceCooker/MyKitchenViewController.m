@@ -9,7 +9,7 @@
 #import "MyKitchenViewController.h"
 #import "DXPopover.h"
 #import "AddDeviceViewController.h"
-#import "ERiceViewController.h"
+
 #import "EriceCell.h"
 #import "DM_ERiceCell.h"
 #import "DM_EVegetable.h"

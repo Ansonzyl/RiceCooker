@@ -3,22 +3,83 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="affirmBtn" destination="Y9d-Ab-FaZ" id="ACu-Xg-7nR"/>
+                <outlet property="tableView" destination="0XF-05-bs7" id="dGg-ZR-bIe"/>
+                <outlet property="totolLabel" destination="bXM-uZ-zbu" id="5j4-Cn-kft"/>
+                <outlet property="view" destination="rN4-QH-Xj8" id="uAl-RK-RT2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
-                <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
-            </connections>
-        </tableView>
+        <view contentMode="scaleToFill" id="rN4-QH-Xj8">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="0XF-05-bs7">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0XF-05-bs7" secondAttribute="height" multiplier="138:229" id="3zu-5W-Oua"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Rv3-LK-y9B"/>
+                        <outlet property="delegate" destination="-1" id="wZb-qI-HvW"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品总价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Een-82-o6P">
+                    <rect key="frame" x="15" y="687" width="87" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Een-82-o6P" secondAttribute="height" multiplier="87:49" id="zbB-ch-tyO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9d-Ab-FaZ">
+                    <rect key="frame" x="294" y="692" width="105" height="40"/>
+                    <color key="backgroundColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Y9d-Ab-FaZ" secondAttribute="height" multiplier="21:8" id="CsJ-oi-9ux"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="确认购买">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="pushToBuy:" destination="-1" eventType="touchUpInside" id="z19-Qg-YVV"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥29.7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXM-uZ-zbu">
+                    <rect key="frame" x="211" y="687" width="59" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bXM-uZ-zbu" secondAttribute="height" multiplier="59:49" id="KLx-4x-qbR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.25098039215686274" green="0.78431372549019607" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0XF-05-bs7" secondAttribute="trailing" id="1SW-c5-Cmb"/>
+                <constraint firstItem="Een-82-o6P" firstAttribute="top" secondItem="0XF-05-bs7" secondAttribute="bottom" id="2Vg-rP-iug"/>
+                <constraint firstItem="bXM-uZ-zbu" firstAttribute="top" secondItem="0XF-05-bs7" secondAttribute="bottom" id="5Vq-go-JR6"/>
+                <constraint firstAttribute="bottom" secondItem="Een-82-o6P" secondAttribute="bottom" id="6ZF-Kr-h08"/>
+                <constraint firstItem="Een-82-o6P" firstAttribute="leading" secondItem="rN4-QH-Xj8" secondAttribute="leading" constant="15" id="92Y-HB-vYn"/>
+                <constraint firstItem="Y9d-Ab-FaZ" firstAttribute="top" secondItem="0XF-05-bs7" secondAttribute="bottom" constant="5" id="Fip-PX-I3A"/>
+                <constraint firstItem="Y9d-Ab-FaZ" firstAttribute="leading" secondItem="bXM-uZ-zbu" secondAttribute="trailing" constant="24" id="Rd0-oe-gdG"/>
+                <constraint firstAttribute="bottom" secondItem="bXM-uZ-zbu" secondAttribute="bottom" id="TrG-lQ-Tsh"/>
+                <constraint firstItem="0XF-05-bs7" firstAttribute="leading" secondItem="rN4-QH-Xj8" secondAttribute="leading" id="UfH-OV-xNQ"/>
+                <constraint firstAttribute="trailing" secondItem="Y9d-Ab-FaZ" secondAttribute="trailing" constant="15" id="cFh-xv-LSs"/>
+                <constraint firstItem="0XF-05-bs7" firstAttribute="top" secondItem="rN4-QH-Xj8" secondAttribute="top" id="wAs-20-ZfH"/>
+                <constraint firstAttribute="bottom" secondItem="Y9d-Ab-FaZ" secondAttribute="bottom" constant="4" id="ylP-3U-wcQ"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <point key="canvasLocation" x="277" y="465"/>
+        </view>
     </objects>
 </document>

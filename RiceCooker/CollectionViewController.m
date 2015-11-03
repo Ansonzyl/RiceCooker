@@ -40,7 +40,7 @@ static NSString *kPriceKey = @"priceKey";
     
     UINib *nib = [UINib nibWithNibName:@"CollectionViewCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
-//    [self.collectionView registerClass:[] forSupplementaryViewOfKind:<#(nonnull NSString *)#> withReuseIdentifier:<#(nonnull NSString *)#>]
+
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -130,13 +130,8 @@ static NSString *kPriceKey = @"priceKey";
     }else
         cell.titleLabel.text = [NSString stringWithFormat:@"%@\n", str];
     //    cell.titleLabel.text = [numberItem valueForKey:kNameKey];
-    cell.priceLabel.text = commodity.priceKey;
+    cell.priceLabel.text = [NSString stringWithFormat:@"¥%@", commodity.priceKey];
 
-    
-
-    
-    
-    
     return cell;
 }
 

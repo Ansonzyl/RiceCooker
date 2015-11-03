@@ -73,7 +73,7 @@
         
 //        NSDate *currentTime = [NSDate date];
    
-        [_datePicker setMinimumDate:[NSDate date]];
+        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:30*60]];
     
 
 //        NSDate *date = [currentTime initWithTimeIntervalSinceNow:24*60*60];
@@ -524,7 +524,7 @@
 #pragma mark deviceDelegate
 - (void)changeDevice
 {
-    _device.module = @"已预约";
+    _device.module = @"预约中";
     _device.state = self.cookModeLabel.text;
     _device.degree = self.fireLabel.text;
     _device.pnumberweight = _pNumberStr;

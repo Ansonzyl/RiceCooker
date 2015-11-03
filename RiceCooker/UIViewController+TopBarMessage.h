@@ -15,7 +15,7 @@
 @property (nonatomic, copy) dispatch_block_t tapHandler;
 @property (nonatomic, assign) float dimissDelay;
 @property (nonatomic, strong) UILabel *label;
-
+@property (nonatomic, assign) CGFloat kTopBarHeight;
 - (void)resetViews;
 
 @end

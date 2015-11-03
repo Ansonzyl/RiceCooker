@@ -9,11 +9,23 @@
 #import "ShopViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "CollectionViewController.h"
+#import "DM_UserMessage.h"
+#import "AddressCell.h"
+#import "AddNewAddressCell.h"
+
 #define kRate [UIScreen mainScreen].bounds.size.width / 414
-@interface ShopViewController () <CLLocationManagerDelegate>
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define RowHeight 57
+
+@interface ShopViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong)CLLocationManager *locationManager;
+@property (nonatomic, strong) UITableView *topTable;
+@property (nonatomic, strong) UIControl *overlay;
+@property (nonatomic, strong) NSMutableArray *addressArray;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
+
 - (IBAction)detail:(UIButton *)sender;
 
 @end
@@ -25,7 +37,20 @@
 
     [self startStandardUpdates];
     [self setBarImage];
-
+    [self userInformation];
+    _userDefaults = [NSUserDefaults standardUserDefaults];
+//    _addressArray = [_userDefaults objectForKey:@"addressArray"];
+    
+    
+    CGFloat kH = (_addressArray.count + 1)*RowHeight;
+    _topTable = [[UITableView alloc] initWithFrame:CGRectMake(0, - kH, kWidth, kH)];
+    _topTable.delegate = self;
+    _topTable.dataSource = self;
+    _topTable.rowHeight = RowHeight;
+    
+    _localButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    
 }
 
 - (void)setBarImage
@@ -36,22 +61,93 @@
     self.navigationItem.titleView = titleView;
     titleImage.center = titleView.center;
     [titleView addSubview:titleImage];
+}
+
+#pragma mark UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return _addressArray.count;
+    }else
+    {
+    return 1;
+    }
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        static NSString *cellID = @"addressCell";
+        AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell == nil) {
+            cell = [AddressCell addressCell];
+        }
+        cell.userMessage = (DM_UserMessage *)_addressArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.selected = YES;
+        return cell;
+
+    }else
+    {
+        AddNewAddressCell *cell = [[AddNewAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addressNewCell"];
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+}
+
+ -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        DM_UserMessage * address = [_addressArray objectAtIndex:indexPath.row];
+        NSLog(@"%@", address.userAddress);
+        [_localButton setTitle:address.userAddress  forState:UIControlStateNormal];
+        [_addressArray exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
+        [self.topTable reloadData];
+        [self dismiss];
+    }else
+    {
+        
+    }
+}
+
+
+
+
+- (void)userInformation
+{
+    NSMutableArray *array = [NSMutableArray array];
+    DM_UserMessage *msg = [[DM_UserMessage alloc] init];
+    msg.userName = @"骆建松";
+    msg.userPhone = @"18698558701";
+    msg.userAddress = @"杭州市滨江区六和路368号，杭州点厨科技有限公司。";
+    [array addObject:msg];
+    DM_UserMessage *msg2 = [[DM_UserMessage alloc] init];
+    msg2.userName = @"骆建松";
+    msg2.userPhone = @"18698558701";
+    msg2.userAddress = @"杭州市滨江区风雅钱塘4幢1004室";
+    [array addObject:msg2];
+    _addressArray = [NSMutableArray arrayWithArray:array];
     
 }
 
 
+
 - (void)startStandardUpdates
 {
-    // Create the location manager if this object does not
-    // already have one.
-    if (nil == _locationManager)
+        if (nil == _locationManager)
         _locationManager = [[CLLocationManager alloc] init];
     
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    // Set a movement threshold for new events.
-    _locationManager.distanceFilter = 500; // meters
+        _locationManager.distanceFilter = 500; // meters
     
     [_locationManager startUpdatingLocation];
     
@@ -70,7 +166,22 @@
 {
     [super viewWillDisappear:animated];
     [_locationManager stopUpdatingLocation];
+    [self dismiss];
+    [self setAddress];
 }
+
+
+- (void)setAddress
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i<_addressArray.count; i++) {
+        [array addObject:[(DM_UserMessage *)_addressArray[i] encodedItem]];
+    }
+    [_userDefaults setObject:array forKey:@"addressArray"];
+}
+
+
+
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
@@ -154,10 +265,52 @@
 */
 
 - (IBAction)detail:(UIButton *)sender {
-//     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc ]init];
-//    [flowLayout setItemSize:CGSizeMake(90, 90)];
+
     CollectionViewController *viewController = [[CollectionViewController alloc] init];
     [viewController setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:viewController animated:YES];
+    
+//    [self setTopView];
+    
 }
+
+- (void)setTopView
+{
+    NSInteger selectedIndex = 0;
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
+    [self.topTable selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+    CGFloat h = CGRectGetHeight(self.localButton.frame) + CGRectGetHeight(self.navigationController.navigationBar.frame) + 20;
+    _overlay = [[UIControl alloc] initWithFrame:CGRectMake(0, h+CGRectGetHeight(_topTable.frame), kWidth, CGRectGetHeight(self.view.frame))];
+    _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_overlay addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    _overlay.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [self.view insertSubview:_topTable belowSubview:self.navigationController.navigationBar];
+    [self.view insertSubview:_topTable belowSubview:self.localButton];
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect frame = _topTable.frame;
+        frame.origin.y = h;
+        _topTable.frame = frame;
+        [self.view addSubview:_overlay];
+    } completion:^(BOOL finished) {
+        
+    }];
+ 
+}
+
+
+- (void)dismiss
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect frame = _topTable.frame;
+        frame.origin.y = - RowHeight * 2;
+        _topTable.frame = frame;
+
+    } completion:^(BOOL finished) {
+        [self.overlay removeFromSuperview];
+        [_topTable removeFromSuperview];
+    }];
+}
+
+
 @end

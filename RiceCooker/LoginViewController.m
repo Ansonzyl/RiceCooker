@@ -127,11 +127,13 @@
 - (IBAction)loginBtn:(id)sender {
    
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [_userDefaults setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-    [_userDefaults setObject:self.passwordTextField.text forKey:@"password"];
-    
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    if (!(self.phoneNumberTextField.text == nil || self.passwordTextField.text == nil)) {
+//        [_userDefaults setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
+//        [_userDefaults setObject:self.passwordTextField.text forKey:@"password"];
+//    }
+//    
+//    
 //    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
 //    NSURL *url = [NSURL URLWithString:urlStr];
 //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
@@ -162,40 +164,40 @@
 //    }];
 //    
 //    [task resume];
-//
+
     
     
     
 //    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-    [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if ([recieve isEqualToString:@"fail"]) {
-
-            [self showTopMessage:@"用户名或密码错误"];
-
-            
-        }else if([recieve isEqualToString:@"success"])
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
+//    [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//        if ([recieve isEqualToString:@"fail"]) {
+//
+//            [self showTopMessage:@"用户名或密码错误"];
+//
+//            
+//        }else if([recieve isEqualToString:@"success"])
+//        {
+//            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
             UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
 
             [self presentViewController:main animated:YES completion:nil];
-        }
-        
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-                NSLog(@"%@", error);
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self showTopMessage:@"连接不到服务器"];
-
-        }];
+//        }
+//        
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            
+//                NSLog(@"%@", error);
+//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//            [self showTopMessage:@"连接不到服务器"];
+//
+//        }];
 //
     
 

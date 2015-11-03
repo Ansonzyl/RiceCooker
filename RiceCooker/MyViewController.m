@@ -72,20 +72,25 @@
     
     
     [self setLabelWithRate];
-    
-    
-    dispatch_async(queue, ^{
+        dispatch_async(queue, ^{
         if ([self timeOfInsulation]/60 > 5) {
 #warning time
         }
     });
     
-    
-    
-    
-        [self buttonWith:_device];
+    [self buttonWith:_device];
    
     
+}
+
+
+- (void)ricePercent
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 65, kWidth, 25)];
+    label.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    label.textColor = [UIColor grayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
 }
 
 
@@ -103,7 +108,7 @@
     _finishTimeLabel = [self setLabelWithFrame:frame withTextColor:textColor withText: _device.appointTime withSize:12*rate];
     _finishTimeLabel.center = CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5+35*rate);
     
-    _riceLabel = [self setLabelWithFrame:frame withTextColor:textColor withText:@"米仓还剩100%" withSize:12*rate];
+    _riceLabel = [self setLabelWithFrame:frame withTextColor:textColor withText:[NSString stringWithFormat:@"米仓还剩%@％", _device.ericestorage] withSize:12*rate];
     _riceLabel.center = CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5+55*rate);
     
     self.stateLabel = [self setLabelWithFrame:CGRectMake(0, 0, 120, 43) withTextColor:[UIColor whiteColor] withText:_device.module withSize:26*rate];
@@ -214,12 +219,13 @@
     _cancelreFrigerateLabel.hidden = YES;
     _collectionLabel.hidden = YES;
     
-    if ([self.device.module isEqualToString:@"待机中"]  || [self.device.module isEqualToString:@"预约中"]) {
+    if ([self.device.module isEqualToString:@"待机中"]  || [self.device.module isEqualToString:@"预约中"] || [self.device.module isEqualToString:@"已预约"]) {
         _remainLabel.hidden = YES;
         _finishTimeLabel.hidden = YES;
         self.collectBtn.hidden = NO;
         self.collectionLabel.hidden = NO;
         _stateLabel.text = _device.module;
+        _riceLabel.text = [NSString stringWithFormat:@"米仓还剩%@％", _device.ericestorage];
         if ([self.device.device isEqualToString:@"e菜宝"]) {
             _riceLabel.hidden = YES;
         }

@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UILabel *numLabel;
 @property (nonatomic, strong) UILabel *numLabel2;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
-
+@property (nonatomic, strong) NSArray *array;
 @end
 
 @implementation CommodityDetailViewController
@@ -33,6 +33,8 @@
     
     _ui = [[DM_UIConten alloc] init];
     _numInShop = 0;
+    _userDefaults = [NSUserDefaults standardUserDefaults];
+    _array = [_userDefaults objectForKey:@"CartArray"];
     [self setlabel];
     [self setButton];
     [self setNavigationBar];
@@ -41,20 +43,33 @@
     UIButton *leftBtn = [[UIButton alloc] init];
     leftBtn.bounds = CGRectMake(0, 0,30*kRate, 30*kRate );
     [leftBtn setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-返回（商品详情页）.png" ofType:nil]] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(baak) forControlEvents:UIControlEventTouchUpInside];
+    [leftBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     
     self.navigationItem.leftBarButtonItem = leftItem;
     [self.view addSubview:leftBtn];
-    _userDefaults = [NSUserDefaults standardUserDefaults];
-    _cartArray = [NSMutableArray array];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        _cartArray = [NSMutableArray array];
+        for (int i = 0; i<_array.count; i++) {
+            DM_Commodity *com = [DM_Commodity commodityWithDict:_array[i]];
+            [_cartArray addObject:com];
+        }
+
+    });
+    
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewWillAppear:animated];
+    _array = [_userDefaults objectForKey:@"CartArray"];
+    _numLabel2.text = [NSString stringWithFormat:@"%lu", (unsigned long)_array.count];
     [self setNavigationBar];
 }
+
+
 
 - (void)setlabel
 {
@@ -66,7 +81,7 @@
     _numLabel2.backgroundColor = UIColorFromRGB(0x40c8c4);
 
     _numLabel2.textColor = [UIColor whiteColor];
-    _numLabel2.text = @"1";
+    
     _numLabel2.layer.borderWidth  = 1.0f;
     
     _numLabel2.layer.borderColor = UIColorFromRGB(0x40c8c4).CGColor;
@@ -74,9 +89,10 @@
     [_numLabel2.layer setMasksToBounds:YES];
     
     [self.view addSubview:_numLabel2];
-    if (_cartArray.count == 0) {
+    if (_array.count <= 0) {
         _numLabel2.hidden = YES;
-    }
+    }else
+        _numLabel2.hidden = NO;
     
 }
 
@@ -88,7 +104,7 @@
     
 }
 
-- (void)baak
+- (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -133,7 +149,15 @@
     
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i<_cartArray.count; i++) {
+     [array addObject:[(DM_Commodity *)_cartArray[i] encodedItem]];
+    }
+    [_userDefaults setObject:array forKey:@"CartArray"];
+}
 
 -(void)viewDidLayoutSubviews
 {
@@ -199,19 +223,31 @@
     _numLabel2.hidden = NO;
     
     if (_cartArray.count > 0) {
-        for (int i = 0; i<_cartArray.count; i++) {
+        BOOL isExist = NO;
+        int i ;
+        for ( i = 0; i<_cartArray.count; i++) {
             DM_Commodity *com = _cartArray[i];
             // 如果购物车中已有该商品
             if ([_commodity.nameKey isEqual:com.nameKey]) {
-                // 增加数量
-                 com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_numLabel.text intValue])];
-
-                [_cartArray replaceObjectAtIndex:i withObject:com];
+                isExist = YES;
+                break;
+                
             }else
             {
-                _commodity.count = [NSString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
-                [_cartArray addObject:_commodity];
+                
             }
+        }
+        if (isExist) {
+            DM_Commodity *com = _cartArray[i];
+            com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_numLabel.text intValue])];
+            
+            [_cartArray replaceObjectAtIndex:i withObject:com];
+
+        }else
+        {
+            _commodity.count = [NSString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
+            [_cartArray addObject:_commodity];
+
         }
 
     }else
@@ -220,8 +256,6 @@
         [_cartArray addObject:_commodity];
     }
     
-//    NSArray *array = [NSArray arrayWithArray:_cartArray];
-//    [_userDefaults setObject:array forKey:@"cartArray"];
     
     _numLabel2.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
 }

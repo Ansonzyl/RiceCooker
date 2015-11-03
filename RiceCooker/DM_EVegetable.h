@@ -26,6 +26,7 @@
 @property (nonatomic, assign) double remianTime;
 @property (nonatomic, assign) double settingTime;
 
+@property (nonatomic, copy) NSString *ericestorage;
 @property (nonatomic, copy) NSString *appointTime;
 @property (nonatomic, copy) NSString *ricedegree;
 

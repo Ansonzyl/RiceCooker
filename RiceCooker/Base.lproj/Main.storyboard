@@ -275,16 +275,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ux-hF-g3Y">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ux-hF-g3Y">
                                 <rect key="frame" x="0.0" y="64" width="414" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5Ux-hF-g3Y" secondAttribute="height" multiplier="69:5" id="ze1-jf-70c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="         ">
+                                    <color key="titleColor" red="0.396078431372549" green="0.46274509803921571" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="detail:" destination="EId-F9-Ncl" eventType="touchUpInside" id="4CP-iM-gSQ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="top" secondItem="qZ1-4R-kQb" secondAttribute="bottom" id="6kZ-Fb-JOC"/>
+                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="centerX" secondItem="qqN-DN-1ic" secondAttribute="centerX" id="PEt-aF-88j"/>
+                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="width" secondItem="qqN-DN-1ic" secondAttribute="width" id="XeD-KK-HUJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9fz-dv-qHl"/>
                     <connections>

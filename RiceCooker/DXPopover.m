@@ -47,7 +47,9 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    return [self init];
+    self = [super initWithFrame:frame];
+    
+    return self;
 }
 
 - (void)setApplyShadow:(BOOL)applyShadow

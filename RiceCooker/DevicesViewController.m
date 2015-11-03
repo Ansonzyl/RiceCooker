@@ -543,7 +543,7 @@
     NSString *leftText;
     NSString *rightText;
    
-    if ([_device.module isEqualToString:@"烹饪中"] || [_device.module isEqualToString:@"预约中"]) {
+    if ([_device.module isEqualToString:@"烹饪中"] || [_device.module isEqualToString:@"预约中"] || [_device.module isEqualToString:@"已预约"]) {
         title = @"确认取消烹饪";
         message = @"停止烹饪锅内食物，转为待机状态";
         leftText = @"继续烹饪";
@@ -567,16 +567,6 @@
     [self presentViewController:alert animated:YES completion:^{
         
     }];
-
-    
-    
-    
-    
-    
-
-    
-    
-    
 }
 
 
@@ -649,6 +639,12 @@
             [alert addAction:cancelAction];
             [self presentViewController:alert animated:YES completion:nil];
 
+        }else
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"取消失败，请稍候再试。" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

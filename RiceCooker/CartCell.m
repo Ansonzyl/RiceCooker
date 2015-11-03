@@ -35,9 +35,9 @@
 {
     DM_UIConten *ui = [[DM_UIConten alloc]  init];
     CGFloat size = 23*kRate;
-    _check = [ui initializeImageWithFrame:CGRectMake(16*kRate, 36*kRate, size, size) withImageName:@"icon-未选中" withHightlightImage:@"icon-选中"];
+    _check = [ui initializeImageWithFrame:CGRectMake(16*kRate, 36*kRate, size, size) withImageName:@"icon-选中" withHightlightImage:@"icon-未选中"];
     [self.contentView addSubview:_check];
-    size = 82*kRate;
+    size = 72*kRate;
     _image = [[UIImageView alloc] initWithFrame:CGRectMake(54*kRate, 12*kRate, size, size)];
     _image.image = [UIImage imageNamed:@"菜1"];
     [self.contentView addSubview:_image];
@@ -75,20 +75,7 @@
 
 - (void)changeNumber:(UIButton *)sender
 {
-//    if (_check.highlighted) {
-//        int num = [_numLabel.text intValue];
-//        if (sender.tag == 5) {
-//            
-//            if (num > 1) {
-//                num --;
-//            }
-//        }else
-//        {
-//            num ++;
-//        }
-//        _numLabel.text = [NSString stringWithFormat:@"%d", num];
-//
-//    }
+    self.check.highlighted = YES;
     [self.delegate btnClick:self andFlag:sender.tag];
     
 }

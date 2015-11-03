@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>账户支付</string>
+		<key>detail</key>
+		<string>最高返现50元</string>
+		<key>image</key>
+		<string>icon-钱包</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>支付宝支付</string>
+		<key>detail</key>
+		<string>最便捷，最安全！</string>
+		<key>image</key>
+		<string>icon-支付宝</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>微信支付</string>
+		<key>detail</key>
+		<string>已经在微信中绑定银行卡的用户使用</string>
+		<key>image</key>
+		<string>icon-微信支付</string>
+	</dict>
+</array>
+</plist>

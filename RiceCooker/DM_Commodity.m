@@ -14,9 +14,19 @@
 {
     DM_Commodity *commodity = [[self alloc] init];
     [commodity setValuesForKeysWithDictionary:dict];
-    
+    commodity.isSelected = YES;
     
     return commodity;
+}
+
+- (NSDictionary *)encodedItem
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:self.count, @"count",
+            self.priceKey, @"priceKey",
+            self.deletePriceKey , @"deletePriceKey",
+            self.nameKey, @"nameKey",
+            self.imageKey, @"imageKey"
+            ,nil];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CartViewController : UITableViewController
+@interface CartViewController : UIViewController
 @property (nonatomic, strong) NSMutableArray *cartArray;
+@property (nonatomic, strong) NSMutableArray *addressArray;
+
 @end

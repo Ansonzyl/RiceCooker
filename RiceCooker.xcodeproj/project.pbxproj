@@ -38,6 +38,7 @@
 		1917BD7F1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1917BD7D1B257E0A00C8FA17 /* EnterPhoneNumberViewController.m */; };
 		1917BD801B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1917BD7E1B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib */; };
 		1927F5FB1B6CDC5F00DECD44 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */; };
+		192949A01BE8DD3D00BD2859 /* date.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1929499F1BE8DD3D00BD2859 /* date.plist */; settings = {ASSET_TAGS = (); }; };
 		192A47FC1BDDF2C000E148A1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192A47FB1BDDF2C000E148A1 /* CoreLocation.framework */; };
 		192A48401BDE5B7100E148A1 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192A483F1BDE5B7100E148A1 /* CollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		192A48441BDE5BB600E148A1 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 192A48421BDE5BB600E148A1 /* CollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +55,12 @@
 		1931E59E1B46B1C60035B21B /* icon-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5931B46B1C60035B21B /* icon-e饭宝.png */; };
 		1931E59F1B46B1C60035B21B /* pic-e饭宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1931E5941B46B1C60035B21B /* pic-e饭宝.png */; };
 		193572ED1BC6B7040078368D /* 主页背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 193572EC1BC6B7040078368D /* 主页背景.png */; };
+		193C49031BE7381E00F61E9B /* Cell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 193C49021BE7381E00F61E9B /* Cell8.m */; settings = {ASSET_TAGS = (); }; };
+		193C490B1BE79E2700F61E9B /* Cell9.m in Sources */ = {isa = PBXBuildFile; fileRef = 193C490A1BE79E2700F61E9B /* Cell9.m */; settings = {ASSET_TAGS = (); }; };
+		193C490D1BE7A08A00F61E9B /* icon-支付宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 193C490C1BE7A08A00F61E9B /* icon-支付宝.png */; settings = {ASSET_TAGS = (); }; };
+		193C490F1BE7A0E600F61E9B /* icon-微信支付.png in Resources */ = {isa = PBXBuildFile; fileRef = 193C490E1BE7A0E600F61E9B /* icon-微信支付.png */; settings = {ASSET_TAGS = (); }; };
+		193C49111BE7A4BA00F61E9B /* pay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 193C49101BE7A4B900F61E9B /* pay.plist */; settings = {ASSET_TAGS = (); }; };
+		193C49131BE7A82700F61E9B /* icon-钱包.png in Resources */ = {isa = PBXBuildFile; fileRef = 193C49121BE7A82700F61E9B /* icon-钱包.png */; settings = {ASSET_TAGS = (); }; };
 		1941D4541B6CB59600FEF48D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1941D4531B6CB59600FEF48D /* CoreGraphics.framework */; };
 		194A89A11B26AEEA000E27F8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194A899F1B26AEEA000E27F8 /* RegisterViewController.m */; };
 		194A89A21B26AEEA000E27F8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194A89A01B26AEEA000E27F8 /* RegisterViewController.xib */; };
@@ -133,8 +140,6 @@
 		1959F3301B67B38800829160 /* icon-e饭宝（188）.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959F3091B67B38800829160 /* icon-e饭宝（188）.png */; };
 		1959F3311B67B38800829160 /* icon-e饭宝未连接（188）.png in Resources */ = {isa = PBXBuildFile; fileRef = 1959F30A1B67B38800829160 /* icon-e饭宝未连接（188）.png */; };
 		195A6D751BDFB01B00D05256 /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195A6D741BDFB01B00D05256 /* TitleCell.m */; settings = {ASSET_TAGS = (); }; };
-		195B5E941B3ED6A600838C55 /* ERiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195B5E921B3ED6A600838C55 /* ERiceViewController.m */; };
-		195B5E951B3ED6A600838C55 /* ERiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195B5E931B3ED6A600838C55 /* ERiceViewController.xib */; };
 		195D50B01B60E0FC009ACEB4 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D50AF1B60E0FC009ACEB4 /* UserInfoViewController.m */; };
 		195D50B31B611DBC009ACEB4 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D50B21B611DBC009ACEB4 /* UserInfoCell.m */; };
 		1965D9601BC8D7EC005924E3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1965D95F1BC8D7EC005924E3 /* Reachability.m */; };
@@ -164,6 +169,8 @@
 		196B3FD21B1DCF3B00AD77E9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196B3FD01B1DCF3B00AD77E9 /* LaunchScreen.xib */; };
 		196B3FDE1B1DCF3B00AD77E9 /* RiceCookerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B3FDD1B1DCF3B00AD77E9 /* RiceCookerTests.m */; };
 		196B3FEA1B1DD0F200AD77E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B3FE81B1DD0F200AD77E9 /* LoginViewController.m */; };
+		196E68741BE858F8003E589C /* BuyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E68721BE858F8003E589C /* BuyController.m */; settings = {ASSET_TAGS = (); }; };
+		196E68751BE858F8003E589C /* BuyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196E68731BE858F8003E589C /* BuyController.xib */; settings = {ASSET_TAGS = (); }; };
 		196F6F481BB921960053CB77 /* 备菜图.png in Resources */ = {isa = PBXBuildFile; fileRef = 196F6F3F1BB921960053CB77 /* 备菜图.png */; };
 		196F6F491BB921960053CB77 /* 菜1.png in Resources */ = {isa = PBXBuildFile; fileRef = 196F6F401BB921960053CB77 /* 菜1.png */; };
 		196F6F4A1BB921960053CB77 /* 菜2.png in Resources */ = {isa = PBXBuildFile; fileRef = 196F6F411BB921960053CB77 /* 菜2.png */; };
@@ -229,7 +236,7 @@
 		197998961B6600720061CB28 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 197998951B6600720061CB28 /* BasicCell.m */; };
 		197998991B6629200061CB28 /* DM_MyDevices.m in Sources */ = {isa = PBXBuildFile; fileRef = 197998981B6629200061CB28 /* DM_MyDevices.m */; };
 		1979989C1B6673E50061CB28 /* DM_UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1979989B1B6673E50061CB28 /* DM_UserInfo.m */; };
-		197F0A8D1BD7C11500FCFEEC /* 工作动画（已预约）.png in Resources */ = {isa = PBXBuildFile; fileRef = 197F0A8C1BD7C11500FCFEEC /* 工作动画（已预约）.png */; settings = {ASSET_TAGS = (); }; };
+		197F0A8D1BD7C11500FCFEEC /* 工作动画（预约中）.png in Resources */ = {isa = PBXBuildFile; fileRef = 197F0A8C1BD7C11500FCFEEC /* 工作动画（预约中）.png */; settings = {ASSET_TAGS = (); }; };
 		1981040B1BE08E87002E7CF5 /* icon-点点商城.png in Resources */ = {isa = PBXBuildFile; fileRef = 1981040A1BE08E87002E7CF5 /* icon-点点商城.png */; settings = {ASSET_TAGS = (); }; };
 		1981040F1BE09B8D002E7CF5 /* Cell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1981040E1BE09B8D002E7CF5 /* Cell3.m */; settings = {ASSET_TAGS = (); }; };
 		198104111BE0AB4E002E7CF5 /* detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 198104101BE0AB4E002E7CF5 /* detail.png */; settings = {ASSET_TAGS = (); }; };
@@ -255,9 +262,15 @@
 		198A1F1A1B9E8F300048A466 /* 工作动画（冷藏中）.png in Resources */ = {isa = PBXBuildFile; fileRef = 198A1F161B9E8F300048A466 /* 工作动画（冷藏中）.png */; };
 		198A1F1B1B9E8F300048A466 /* 工作动画（烹饪中）.png in Resources */ = {isa = PBXBuildFile; fileRef = 198A1F171B9E8F300048A466 /* 工作动画（烹饪中）.png */; };
 		198D431A1B4FB7DD00D703B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */; };
+		198D4CA31BE24AA500D4186A /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198D4CA11BE24AA500D4186A /* AddressCell.m */; settings = {ASSET_TAGS = (); }; };
+		198D4CA41BE24AA500D4186A /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198D4CA21BE24AA500D4186A /* AddressCell.xib */; settings = {ASSET_TAGS = (); }; };
+		198D4CA71BE2596200D4186A /* DM_UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 198D4CA61BE2596200D4186A /* DM_UserMessage.m */; settings = {ASSET_TAGS = (); }; };
+		198D4CAB1BE2647800D4186A /* AffirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198D4CA91BE2647800D4186A /* AffirmViewController.m */; settings = {ASSET_TAGS = (); }; };
+		198D4CAC1BE2647800D4186A /* AffirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198D4CAA1BE2647800D4186A /* AffirmViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		198DDAB81BE1D1F100B8A1BC /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198DDAB61BE1D1F100B8A1BC /* CartViewController.m */; settings = {ASSET_TAGS = (); }; };
 		198DDAB91BE1D1F100B8A1BC /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198DDAB71BE1D1F100B8A1BC /* CartViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		1992B7001BE060FB006113AF /* Cell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1992B6FF1BE060FB006113AF /* Cell2.m */; settings = {ASSET_TAGS = (); }; };
+		19995BBE1BE3659F00B8F93E /* AddNewAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19995BBD1BE3659F00B8F93E /* AddNewAddressCell.m */; settings = {ASSET_TAGS = (); }; };
 		199C72391B3FC196005BFC89 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 199C72381B3FC196005BFC89 /* DXPopover.m */; };
 		199F61541BCE3744003DA3BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 199F61531BCE3744003DA3BF /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		19A019C61B4EA777005405C4 /* EasyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A019C41B4EA777005405C4 /* EasyLinkViewController.m */; };
@@ -266,8 +279,11 @@
 		19A019CB1B4EA8A7005405C4 /* wlan输入后.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A019C91B4EA8A7005405C4 /* wlan输入后.png */; };
 		19A7365D1BB2413C009C44DC /* LabelContentList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19A7365C1BB2413C009C44DC /* LabelContentList.plist */; };
 		19AF146A1BAAF95E001AD744 /* EVegetablePickerViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19AF14691BAAF95E001AD744 /* EVegetablePickerViewList.plist */; };
+		19AFD5571BE4701100D4DD4A /* Cell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AFD5561BE4701100D4DD4A /* Cell5.m */; settings = {ASSET_TAGS = (); }; };
 		19B4053F1B45202E000E1941 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B4053D1B45202E000E1941 /* AddDeviceViewController.m */; };
 		19B405401B45202E000E1941 /* AddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */; };
+		19BE6D351BE460360010A983 /* Cell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BE6D341BE460360010A983 /* Cell4.m */; settings = {ASSET_TAGS = (); }; };
+		19BE6D371BE4692D0010A983 /* icon-期望送达时间.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BE6D361BE4692D0010A983 /* icon-期望送达时间.png */; settings = {ASSET_TAGS = (); }; };
 		19C1F73A1B26C92400C59704 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C1F7391B26C92400C59704 /* MainViewController.m */; };
 		19C1FD681BA7CFE600162C25 /* ERicePickerViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19C1FD671BA7CFE600162C25 /* ERicePickerViewList.plist */; };
 		19CE9B121BD50EDC001233A0 /* icon-个人中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CE9B0C1BD50EDC001233A0 /* icon-个人中心.png */; settings = {ASSET_TAGS = (); }; };
@@ -280,6 +296,10 @@
 		19CF94521B932E40002085D2 /* DevicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CF94501B932E40002085D2 /* DevicesViewController.xib */; };
 		19CF94561B934B10002085D2 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CF94541B934B10002085D2 /* MyViewController.m */; };
 		19CF94571B934B10002085D2 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CF94551B934B10002085D2 /* MyViewController.xib */; };
+		19D640D31BE617C90058CB81 /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D640D21BE617C90058CB81 /* LineView.m */; settings = {ASSET_TAGS = (); }; };
+		19D640DB1BE64C710058CB81 /* Cell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D640DA1BE64C710058CB81 /* Cell6.m */; settings = {ASSET_TAGS = (); }; };
+		19D640E31BE6547D0058CB81 /* Cell7.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D640E11BE6547D0058CB81 /* Cell7.m */; settings = {ASSET_TAGS = (); }; };
+		19D640E41BE6547D0058CB81 /* Cell7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D640E21BE6547D0058CB81 /* Cell7.xib */; settings = {ASSET_TAGS = (); }; };
 		19DB18521BBA861F000B28FC /* QRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB18511BBA861F000B28FC /* QRViewController.m */; };
 		19DB18571BBA999B000B28FC /* SYQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB18561BBA999B000B28FC /* SYQRCodeViewController.m */; };
 		19E549C51B9DD58900F22BB0 /* DashProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E549C41B9DD58900F22BB0 /* DashProgressView.m */; };
@@ -335,6 +355,7 @@
 		1917BD7E1B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		1927F5F91B6CDC5F00DECD44 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		1927F5FA1B6CDC5F00DECD44 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		1929499F1BE8DD3D00BD2859 /* date.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = date.plist; sourceTree = "<group>"; };
 		192A47FB1BDDF2C000E148A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		192A483E1BDE5B7100E148A1 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		192A483F1BDE5B7100E148A1 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
@@ -355,6 +376,14 @@
 		1931E5941B46B1C60035B21B /* pic-e饭宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic-e饭宝.png"; sourceTree = "<group>"; };
 		193572EC1BC6B7040078368D /* 主页背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页背景.png"; sourceTree = "<group>"; };
 		1935CEE91BB92A2E0061FC13 /* DeviceChangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceChangeDelegate.h; sourceTree = "<group>"; };
+		193C49011BE7381E00F61E9B /* Cell8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell8.h; sourceTree = "<group>"; };
+		193C49021BE7381E00F61E9B /* Cell8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell8.m; sourceTree = "<group>"; };
+		193C49091BE79E2700F61E9B /* Cell9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell9.h; sourceTree = "<group>"; };
+		193C490A1BE79E2700F61E9B /* Cell9.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell9.m; sourceTree = "<group>"; };
+		193C490C1BE7A08A00F61E9B /* icon-支付宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-支付宝.png"; sourceTree = "<group>"; };
+		193C490E1BE7A0E600F61E9B /* icon-微信支付.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-微信支付.png"; sourceTree = "<group>"; };
+		193C49101BE7A4B900F61E9B /* pay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pay.plist; sourceTree = "<group>"; };
+		193C49121BE7A82700F61E9B /* icon-钱包.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-钱包.png"; sourceTree = "<group>"; };
 		1941D4531B6CB59600FEF48D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		194A899E1B26AEEA000E27F8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		194A899F1B26AEEA000E27F8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -442,9 +471,6 @@
 		1959F30A1B67B38800829160 /* icon-e饭宝未连接（188）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-e饭宝未连接（188）.png"; sourceTree = "<group>"; };
 		195A6D731BDFB01B00D05256 /* TitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleCell.h; sourceTree = "<group>"; };
 		195A6D741BDFB01B00D05256 /* TitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleCell.m; sourceTree = "<group>"; };
-		195B5E911B3ED6A600838C55 /* ERiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERiceViewController.h; sourceTree = "<group>"; };
-		195B5E921B3ED6A600838C55 /* ERiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERiceViewController.m; sourceTree = "<group>"; };
-		195B5E931B3ED6A600838C55 /* ERiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ERiceViewController.xib; sourceTree = "<group>"; };
 		195D50AE1B60E0FC009ACEB4 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		195D50AF1B60E0FC009ACEB4 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		195D50B11B611DBC009ACEB4 /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
@@ -490,6 +516,9 @@
 		196B3FDD1B1DCF3B00AD77E9 /* RiceCookerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RiceCookerTests.m; sourceTree = "<group>"; };
 		196B3FE71B1DD0F200AD77E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		196B3FE81B1DD0F200AD77E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		196E68711BE858F8003E589C /* BuyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyController.h; sourceTree = "<group>"; };
+		196E68721BE858F8003E589C /* BuyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyController.m; sourceTree = "<group>"; };
+		196E68731BE858F8003E589C /* BuyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyController.xib; sourceTree = "<group>"; };
 		196F6F3F1BB921960053CB77 /* 备菜图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "备菜图.png"; sourceTree = "<group>"; };
 		196F6F401BB921960053CB77 /* 菜1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "菜1.png"; sourceTree = "<group>"; };
 		196F6F411BB921960053CB77 /* 菜2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "菜2.png"; sourceTree = "<group>"; };
@@ -563,7 +592,7 @@
 		197998981B6629200061CB28 /* DM_MyDevices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_MyDevices.m; sourceTree = "<group>"; };
 		1979989A1B6673E50061CB28 /* DM_UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DM_UserInfo.h; sourceTree = "<group>"; };
 		1979989B1B6673E50061CB28 /* DM_UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_UserInfo.m; sourceTree = "<group>"; };
-		197F0A8C1BD7C11500FCFEEC /* 工作动画（已预约）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "工作动画（已预约）.png"; sourceTree = "<group>"; };
+		197F0A8C1BD7C11500FCFEEC /* 工作动画（预约中）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "工作动画（预约中）.png"; sourceTree = "<group>"; };
 		1981040A1BE08E87002E7CF5 /* icon-点点商城.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-点点商城.png"; sourceTree = "<group>"; };
 		1981040D1BE09B8D002E7CF5 /* Cell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell3.h; sourceTree = "<group>"; };
 		1981040E1BE09B8D002E7CF5 /* Cell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell3.m; sourceTree = "<group>"; };
@@ -596,11 +625,21 @@
 		198A1F161B9E8F300048A466 /* 工作动画（冷藏中）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "工作动画（冷藏中）.png"; sourceTree = "<group>"; };
 		198A1F171B9E8F300048A466 /* 工作动画（烹饪中）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "工作动画（烹饪中）.png"; sourceTree = "<group>"; };
 		198D43191B4FB7DD00D703B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		198D4CA01BE24AA500D4186A /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		198D4CA11BE24AA500D4186A /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		198D4CA21BE24AA500D4186A /* AddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
+		198D4CA51BE2596200D4186A /* DM_UserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DM_UserMessage.h; sourceTree = "<group>"; };
+		198D4CA61BE2596200D4186A /* DM_UserMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DM_UserMessage.m; sourceTree = "<group>"; };
+		198D4CA81BE2647800D4186A /* AffirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffirmViewController.h; sourceTree = "<group>"; };
+		198D4CA91BE2647800D4186A /* AffirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AffirmViewController.m; sourceTree = "<group>"; };
+		198D4CAA1BE2647800D4186A /* AffirmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AffirmViewController.xib; sourceTree = "<group>"; };
 		198DDAB51BE1D1F100B8A1BC /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		198DDAB61BE1D1F100B8A1BC /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		198DDAB71BE1D1F100B8A1BC /* CartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
 		1992B6FE1BE060FB006113AF /* Cell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell2.h; sourceTree = "<group>"; };
 		1992B6FF1BE060FB006113AF /* Cell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell2.m; sourceTree = "<group>"; };
+		19995BBC1BE3659F00B8F93E /* AddNewAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewAddressCell.h; sourceTree = "<group>"; };
+		19995BBD1BE3659F00B8F93E /* AddNewAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewAddressCell.m; sourceTree = "<group>"; };
 		199C72381B3FC196005BFC89 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
 		199C723A1B3FC19C005BFC89 /* DXPopover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
 		199F61531BCE3744003DA3BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -612,9 +651,14 @@
 		19A1B0531BCB719500D2005C /* RiceCooker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RiceCooker.entitlements; sourceTree = "<group>"; };
 		19A7365C1BB2413C009C44DC /* LabelContentList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LabelContentList.plist; sourceTree = "<group>"; };
 		19AF14691BAAF95E001AD744 /* EVegetablePickerViewList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EVegetablePickerViewList.plist; sourceTree = "<group>"; };
+		19AFD5551BE4701100D4DD4A /* Cell5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell5.h; sourceTree = "<group>"; };
+		19AFD5561BE4701100D4DD4A /* Cell5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell5.m; sourceTree = "<group>"; };
 		19B4053C1B45202E000E1941 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
 		19B4053D1B45202E000E1941 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDeviceViewController.xib; sourceTree = "<group>"; };
+		19BE6D331BE460360010A983 /* Cell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell4.h; sourceTree = "<group>"; };
+		19BE6D341BE460360010A983 /* Cell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell4.m; sourceTree = "<group>"; };
+		19BE6D361BE4692D0010A983 /* icon-期望送达时间.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-期望送达时间.png"; sourceTree = "<group>"; };
 		19C1F7381B26C92400C59704 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		19C1F7391B26C92400C59704 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		19C1FD671BA7CFE600162C25 /* ERicePickerViewList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ERicePickerViewList.plist; sourceTree = "<group>"; };
@@ -630,6 +674,13 @@
 		19CF94531B934B10002085D2 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		19CF94541B934B10002085D2 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		19CF94551B934B10002085D2 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
+		19D640D11BE617C90058CB81 /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
+		19D640D21BE617C90058CB81 /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
+		19D640D91BE64C710058CB81 /* Cell6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell6.h; sourceTree = "<group>"; };
+		19D640DA1BE64C710058CB81 /* Cell6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell6.m; sourceTree = "<group>"; };
+		19D640E01BE6547D0058CB81 /* Cell7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell7.h; sourceTree = "<group>"; };
+		19D640E11BE6547D0058CB81 /* Cell7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell7.m; sourceTree = "<group>"; };
+		19D640E21BE6547D0058CB81 /* Cell7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell7.xib; sourceTree = "<group>"; };
 		19DB184D1BBA85E5000B28FC /* SYQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYQRCodeViewController.h; sourceTree = "<group>"; };
 		19DB18501BBA861F000B28FC /* QRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRViewController.h; sourceTree = "<group>"; };
 		19DB18511BBA861F000B28FC /* QRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRViewController.m; sourceTree = "<group>"; };
@@ -733,6 +784,14 @@
 				198DDAB51BE1D1F100B8A1BC /* CartViewController.h */,
 				198DDAB61BE1D1F100B8A1BC /* CartViewController.m */,
 				198DDAB71BE1D1F100B8A1BC /* CartViewController.xib */,
+				198D4CA81BE2647800D4186A /* AffirmViewController.h */,
+				198D4CA91BE2647800D4186A /* AffirmViewController.m */,
+				198D4CAA1BE2647800D4186A /* AffirmViewController.xib */,
+				193C49101BE7A4B900F61E9B /* pay.plist */,
+				196E68711BE858F8003E589C /* BuyController.h */,
+				196E68721BE858F8003E589C /* BuyController.m */,
+				196E68731BE858F8003E589C /* BuyController.xib */,
+				1929499F1BE8DD3D00BD2859 /* date.plist */,
 			);
 			name = shopping;
 			sourceTree = "<group>";
@@ -740,6 +799,10 @@
 		192835B01BB920BD00A7A8EF /* shop */ = {
 			isa = PBXGroup;
 			children = (
+				193C490E1BE7A0E600F61E9B /* icon-微信支付.png */,
+				193C49121BE7A82700F61E9B /* icon-钱包.png */,
+				193C490C1BE7A08A00F61E9B /* icon-支付宝.png */,
+				19BE6D361BE4692D0010A983 /* icon-期望送达时间.png */,
 				196F6F3F1BB921960053CB77 /* 备菜图.png */,
 				196F6F401BB921960053CB77 /* 菜1.png */,
 				196F6F411BB921960053CB77 /* 菜2.png */,
@@ -796,6 +859,9 @@
 				1931E5841B46A5500035B21B /* Cell.xib */,
 				1931E5861B46AE700035B21B /* AddDeviceCell.h */,
 				1931E5871B46AE700035B21B /* AddDeviceCell.m */,
+				198D4CA01BE24AA500D4186A /* AddressCell.h */,
+				198D4CA11BE24AA500D4186A /* AddressCell.m */,
+				198D4CA21BE24AA500D4186A /* AddressCell.xib */,
 				195D50B11B611DBC009ACEB4 /* UserInfoCell.h */,
 				195D50B21B611DBC009ACEB4 /* UserInfoCell.m */,
 				197998941B6600720061CB28 /* BasicCell.h */,
@@ -817,14 +883,7 @@
 				19662AF91BDF95AC00F66BA3 /* imageCell.m */,
 				19662AFB1BDF9A6D00F66BA3 /* RecipeCell.h */,
 				19662AFC1BDF9A6D00F66BA3 /* RecipeCell.m */,
-				195A6D731BDFB01B00D05256 /* TitleCell.h */,
-				195A6D741BDFB01B00D05256 /* TitleCell.m */,
-				1992B6FE1BE060FB006113AF /* Cell2.h */,
-				1992B6FF1BE060FB006113AF /* Cell2.m */,
-				1981040D1BE09B8D002E7CF5 /* Cell3.h */,
-				1981040E1BE09B8D002E7CF5 /* Cell3.m */,
-				1978A3A61BE10EC80070EFFE /* CartCell.h */,
-				1978A3A71BE10EC80070EFFE /* CartCell.m */,
+				19D640DF1BE6532F0058CB81 /* shopCell */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -901,7 +960,7 @@
 		1959F2E31B67B37900829160 /* home */ = {
 			isa = PBXGroup;
 			children = (
-				197F0A8C1BD7C11500FCFEEC /* 工作动画（已预约）.png */,
+				197F0A8C1BD7C11500FCFEEC /* 工作动画（预约中）.png */,
 				19CE9B161BD518C5001233A0 /* icon-68点点商城.png */,
 				19CE9B171BD518C5001233A0 /* icon-68点点商城(未选中）.png */,
 				19CE9B1A1BD51A2C001233A0 /* icon-我的厨房.png */,
@@ -1020,6 +1079,8 @@
 				19AF14691BAAF95E001AD744 /* EVegetablePickerViewList.plist */,
 				19C1FD671BA7CFE600162C25 /* ERicePickerViewList.plist */,
 				19A7365C1BB2413C009C44DC /* LabelContentList.plist */,
+				19D640D11BE617C90058CB81 /* LineView.h */,
+				19D640D21BE617C90058CB81 /* LineView.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1099,6 +1160,8 @@
 				1974F0921BCCDC3100FBC7BF /* DM_UIConten.m */,
 				1978A3A31BE103610070EFFE /* DM_Commodity.h */,
 				1978A3A41BE103610070EFFE /* DM_Commodity.m */,
+				198D4CA51BE2596200D4186A /* DM_UserMessage.h */,
+				198D4CA61BE2596200D4186A /* DM_UserMessage.m */,
 			);
 			name = DataMode;
 			sourceTree = "<group>";
@@ -1129,9 +1192,6 @@
 			children = (
 				19F619B41B26F1D000F69610 /* MyKitchenViewController.h */,
 				19F619B51B26F1D000F69610 /* MyKitchenViewController.m */,
-				195B5E911B3ED6A600838C55 /* ERiceViewController.h */,
-				195B5E921B3ED6A600838C55 /* ERiceViewController.m */,
-				195B5E931B3ED6A600838C55 /* ERiceViewController.xib */,
 				19B4053C1B45202E000E1941 /* AddDeviceViewController.h */,
 				19B4053D1B45202E000E1941 /* AddDeviceViewController.m */,
 				19B4053E1B45202E000E1941 /* AddDeviceViewController.xib */,
@@ -1158,6 +1218,36 @@
 				19DB18511BBA861F000B28FC /* QRViewController.m */,
 			);
 			name = MyKitchen;
+			sourceTree = "<group>";
+		};
+		19D640DF1BE6532F0058CB81 /* shopCell */ = {
+			isa = PBXGroup;
+			children = (
+				195A6D731BDFB01B00D05256 /* TitleCell.h */,
+				195A6D741BDFB01B00D05256 /* TitleCell.m */,
+				1978A3A61BE10EC80070EFFE /* CartCell.h */,
+				1978A3A71BE10EC80070EFFE /* CartCell.m */,
+				19995BBC1BE3659F00B8F93E /* AddNewAddressCell.h */,
+				19995BBD1BE3659F00B8F93E /* AddNewAddressCell.m */,
+				1992B6FE1BE060FB006113AF /* Cell2.h */,
+				1992B6FF1BE060FB006113AF /* Cell2.m */,
+				1981040D1BE09B8D002E7CF5 /* Cell3.h */,
+				1981040E1BE09B8D002E7CF5 /* Cell3.m */,
+				19BE6D331BE460360010A983 /* Cell4.h */,
+				19BE6D341BE460360010A983 /* Cell4.m */,
+				19AFD5551BE4701100D4DD4A /* Cell5.h */,
+				19AFD5561BE4701100D4DD4A /* Cell5.m */,
+				19D640D91BE64C710058CB81 /* Cell6.h */,
+				19D640DA1BE64C710058CB81 /* Cell6.m */,
+				19D640E01BE6547D0058CB81 /* Cell7.h */,
+				19D640E11BE6547D0058CB81 /* Cell7.m */,
+				19D640E21BE6547D0058CB81 /* Cell7.xib */,
+				193C49011BE7381E00F61E9B /* Cell8.h */,
+				193C49021BE7381E00F61E9B /* Cell8.m */,
+				193C49091BE79E2700F61E9B /* Cell9.h */,
+				193C490A1BE79E2700F61E9B /* Cell9.m */,
+			);
+			name = shopCell;
 			sourceTree = "<group>";
 		};
 		19E217EF1B4BB4C4001808B9 /* resource */ = {
@@ -1343,7 +1433,9 @@
 				198A1F191B9E8F300048A466 /* 工作动画（待机中）.png in Resources */,
 				1959F32D1B67B38800829160 /* icon-e饭宝-口感.png in Resources */,
 				196F6F721BB921D00053CB77 /* ad.png in Resources */,
+				198D4CAC1BE2647800D4186A /* AffirmViewController.xib in Resources */,
 				196F6F491BB921960053CB77 /* 菜1.png in Resources */,
+				193C49111BE7A4BA00F61E9B /* pay.plist in Resources */,
 				193572ED1BC6B7040078368D /* 主页背景.png in Resources */,
 				192A48471BDE682600E148A1 /* collection.plist in Resources */,
 				196F6F901BB9225B0053CB77 /* icon-我常买.png in Resources */,
@@ -1356,6 +1448,7 @@
 				1959F2D21B677BE300829160 /* icon-e菜宝-重量选中（152）.png in Resources */,
 				196F6F7F1BB9223D0053CB77 /* icon-添加新地址.png in Resources */,
 				1959F2CB1B677BE300829160 /* icon-e菜宝-取消冷藏（152）.png in Resources */,
+				193C490F1BE7A0E600F61E9B /* icon-微信支付.png in Resources */,
 				1959F2D61B677BE300829160 /* icon-e饭宝-口感（152）.png in Resources */,
 				1959F32B1B67B38800829160 /* icon-e菜宝中（188）.png in Resources */,
 				198DDAB91BE1D1F100B8A1BC /* CartViewController.xib in Resources */,
@@ -1363,7 +1456,7 @@
 				190F1BB61B4CD8B6001DC34E /* 短输入框输入后.png in Resources */,
 				196B3FD21B1DCF3B00AD77E9 /* LaunchScreen.xib in Resources */,
 				196A01711B969081003F9392 /* ERiceChooseViewController.xib in Resources */,
-				197F0A8D1BD7C11500FCFEEC /* 工作动画（已预约）.png in Resources */,
+				197F0A8D1BD7C11500FCFEEC /* 工作动画（预约中）.png in Resources */,
 				190F1BCE1B4D0843001DC34E /* phone输入后.png in Resources */,
 				196F6F7B1BB9223D0053CB77 /* icon-做法.png in Resources */,
 				1982F24A1BA1BCE400F2D62C /* icon-更多.png in Resources */,
@@ -1376,10 +1469,12 @@
 				196F6F621BB921B30053CB77 /* 米3.png in Resources */,
 				190F1BC11B4CD8B6001DC34E /* icon-昵称输入后.png in Resources */,
 				190F1BC91B4CD8B6001DC34E /* icon-验证码输入后.png in Resources */,
+				19D640E41BE6547D0058CB81 /* Cell7.xib in Resources */,
 				1959F2D91B677BE300829160 /* icon-e饭宝-米量（152）.png in Resources */,
 				190F1BB71B4CD8B6001DC34E /* 获验证码按钮.png in Resources */,
 				196F6F8F1BB9225B0053CB77 /* icon-热卖排行.png in Resources */,
 				1959F3301B67B38800829160 /* icon-e饭宝（188）.png in Resources */,
+				196E68751BE858F8003E589C /* BuyController.xib in Resources */,
 				196F6F651BB921B30053CB77 /* 米6.png in Resources */,
 				1959F2CA1B677BE300829160 /* icon-e菜宝-烹饪方式选中（152）.png in Resources */,
 				196F6F6F1BB921D00053CB77 /* 做法2.png in Resources */,
@@ -1403,6 +1498,7 @@
 				1959F2D51B677BE300829160 /* icon-e菜宝重量（152）.png in Resources */,
 				1982F24C1BA1CD7700F2D62C /* whitLine.png in Resources */,
 				1931E5851B46A5500035B21B /* Cell.xib in Resources */,
+				192949A01BE8DD3D00BD2859 /* date.plist in Resources */,
 				194A89A21B26AEEA000E27F8 /* RegisterViewController.xib in Resources */,
 				190F1BCA1B4CD8B6001DC34E /* logo-dicooker.png in Resources */,
 				196F6F5F1BB921B30053CB77 /* 每日推荐.png in Resources */,
@@ -1447,7 +1543,9 @@
 				1959F2C31B677BE300829160 /* icon-检查固件升级.png in Resources */,
 				197630701B61DD28002EFB77 /* icon-e饭宝133.png in Resources */,
 				198A1F1A1B9E8F300048A466 /* 工作动画（冷藏中）.png in Resources */,
+				19BE6D371BE4692D0010A983 /* icon-期望送达时间.png in Resources */,
 				1959F3231B67B38800829160 /* icon-e菜宝下-食材.png in Resources */,
+				198D4CA41BE24AA500D4186A /* AddressCell.xib in Resources */,
 				196F6F4A1BB921960053CB77 /* 菜2.png in Resources */,
 				1981313E1BB57D2F00931C4A /* icon-箭头left.png in Resources */,
 				196F6F641BB921B30053CB77 /* 米5.png in Resources */,
@@ -1455,7 +1553,6 @@
 				19C1FD681BA7CFE600162C25 /* ERicePickerViewList.plist in Resources */,
 				196F6F861BB9224B0053CB77 /* icon-购物车(186 150).png in Resources */,
 				196F6F4F1BB921960053CB77 /* 大图1.png in Resources */,
-				195B5E951B3ED6A600838C55 /* ERiceViewController.xib in Resources */,
 				1959F2C81B677BE300829160 /* icon-修改设备名称.png in Resources */,
 				196F6F4B1BB921960053CB77 /* 菜3.png in Resources */,
 				1976306B1B61DD28002EFB77 /* icon-e菜宝上188.png in Resources */,
@@ -1476,6 +1573,7 @@
 				196F6F7D1BB9223D0053CB77 /* icon-烹饪时间.png in Resources */,
 				1959F2DE1B677BE300829160 /* icon-e饭宝-烹饪方式选中（152）.png in Resources */,
 				196F6F6E1BB921D00053CB77 /* 做法1.png in Resources */,
+				193C49131BE7A82700F61E9B /* icon-钱包.png in Resources */,
 				196F6F4E1BB921960053CB77 /* 菜6.png in Resources */,
 				1931E59D1B46B1C60035B21B /* icon-e菜宝.png in Resources */,
 				196A017E1B969274003F9392 /* e饭宝背景1.png in Resources */,
@@ -1490,6 +1588,7 @@
 				1917BD801B257E0A00C8FA17 /* EnterPhoneNumberViewController.xib in Resources */,
 				196F6F701BB921D00053CB77 /* 做法3.png in Resources */,
 				1959F31B1B67B38800829160 /* icon-e菜宝上-烹饪方式.png in Resources */,
+				193C490D1BE7A08A00F61E9B /* icon-支付宝.png in Resources */,
 				197630671B61DD28002EFB77 /* icon-我的订单.png in Resources */,
 				197630761B621E71002EFB77 /* line.png in Resources */,
 				1959F2DA1B677BE300829160 /* icon-e饭宝-米量不可选（152）.png in Resources */,
@@ -1561,6 +1660,7 @@
 				19A019C61B4EA777005405C4 /* EasyLinkViewController.m in Sources */,
 				196A01701B969081003F9392 /* ERiceChooseViewController.m in Sources */,
 				194A89A11B26AEEA000E27F8 /* RegisterViewController.m in Sources */,
+				19BE6D351BE460360010A983 /* Cell4.m in Sources */,
 				197998931B65F5690061CB28 /* MyDeviceViewController.m in Sources */,
 				1931E5881B46AE700035B21B /* AddDeviceCell.m in Sources */,
 				1959F28A1B6771D400829160 /* DeviceDetailViewController.m in Sources */,
@@ -1568,6 +1668,7 @@
 				19CF94511B932E40002085D2 /* DevicesViewController.m in Sources */,
 				194A89A61B26AEFD000E27F8 /* FogetPWViewController.m in Sources */,
 				1992B7001BE060FB006113AF /* Cell2.m in Sources */,
+				19AFD5571BE4701100D4DD4A /* Cell5.m in Sources */,
 				19F619B61B26F1D000F69610 /* MyKitchenViewController.m in Sources */,
 				197998961B6600720061CB28 /* BasicCell.m in Sources */,
 				198DDAB81BE1D1F100B8A1BC /* CartViewController.m in Sources */,
@@ -1576,6 +1677,10 @@
 				199C72391B3FC196005BFC89 /* DXPopover.m in Sources */,
 				1974F0931BCCDC3100FBC7BF /* DM_UIConten.m in Sources */,
 				198A0BA51B6B581A009EE795 /* DM_ERiceCell.m in Sources */,
+				198D4CA31BE24AA500D4186A /* AddressCell.m in Sources */,
+				198D4CA71BE2596200D4186A /* DM_UserMessage.m in Sources */,
+				193C49031BE7381E00F61E9B /* Cell8.m in Sources */,
+				193C490B1BE79E2700F61E9B /* Cell9.m in Sources */,
 				192A48401BDE5B7100E148A1 /* CollectionViewController.m in Sources */,
 				197998991B6629200061CB28 /* DM_MyDevices.m in Sources */,
 				19DB18571BBA999B000B28FC /* SYQRCodeViewController.m in Sources */,
@@ -1595,17 +1700,22 @@
 				196B3FC41B1DCF3B00AD77E9 /* main.m in Sources */,
 				19E549C51B9DD58900F22BB0 /* DashProgressView.m in Sources */,
 				19662AF61BDF956300F66BA3 /* CommodityCell.m in Sources */,
+				19D640E31BE6547D0058CB81 /* Cell7.m in Sources */,
+				198D4CAB1BE2647800D4186A /* AffirmViewController.m in Sources */,
 				1955D2581BDCB64700FDEEAD /* ShopViewController.m in Sources */,
 				19662AFA1BDF95AC00F66BA3 /* imageCell.m in Sources */,
 				198A0B9C1B6B1514009EE795 /* EVegetabelCell1.m in Sources */,
+				196E68741BE858F8003E589C /* BuyController.m in Sources */,
 				195A6D751BDFB01B00D05256 /* TitleCell.m in Sources */,
 				1978A3A81BE10EC80070EFFE /* CartCell.m in Sources */,
 				1959F2851B67463D00829160 /* AddShareViewController.m in Sources */,
+				19D640DB1BE64C710058CB81 /* Cell6.m in Sources */,
 				198A0BA21B6B157A009EE795 /* DM_EVegetable.m in Sources */,
-				195B5E941B3ED6A600838C55 /* ERiceViewController.m in Sources */,
 				196A01751B969095003F9392 /* EVegetableChooseViewController.m in Sources */,
 				1965D9601BC8D7EC005924E3 /* Reachability.m in Sources */,
+				19D640D31BE617C90058CB81 /* LineView.m in Sources */,
 				19662AE71BDF61A200F66BA3 /* CommodityDetailViewController.m in Sources */,
+				19995BBE1BE3659F00B8F93E /* AddNewAddressCell.m in Sources */,
 				192A48441BDE5BB600E148A1 /* CollectionViewCell.m in Sources */,
 				19CF94561B934B10002085D2 /* MyViewController.m in Sources */,
 			);
@@ -1743,11 +1853,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/yi/Desktop/RiceCooker/RiceCooker/PrefixHeader.pch;
 				INFOPLIST_FILE = RiceCooker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zyl.RiceCooker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9c69510e-2e81-4ee0-ae03-d82d345c01c2";
+				PROVISIONING_PROFILE = "e628fdd3-c8a7-460c-aca0-56bd86bbbc6c";
 				SWIFT_OBJC_BRIDGING_HEADER = "RiceCooker/RiceCooker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1766,11 +1876,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/yi/Desktop/RiceCooker/RiceCooker/PrefixHeader.pch;
 				INFOPLIST_FILE = RiceCooker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zyl.RiceCooker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9c69510e-2e81-4ee0-ae03-d82d345c01c2";
+				PROVISIONING_PROFILE = "e628fdd3-c8a7-460c-aca0-56bd86bbbc6c";
 				SWIFT_OBJC_BRIDGING_HEADER = "RiceCooker/RiceCooker-Bridging-Header.h";
 			};
 			name = Release;

@@ -11,7 +11,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥56.9</string>
+			<string>56.9</string>
 			<key>nameKey</key>
 			<string>佳惠东北大米10KG</string>
 			<key>imageKey</key>
@@ -24,7 +24,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥37.9</string>
+			<string>37.9</string>
 			<key>nameKey</key>
 			<string>金龙鱼优质东北大米5KG</string>
 			<key>imageKey</key>
@@ -37,7 +37,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥83.9</string>
+			<string>83.9</string>
 			<key>nameKey</key>
 			<string>福临门金典特选优质东北大米5KG</string>
 			<key>imageKey</key>
@@ -50,7 +50,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥65.9</string>
+			<string>65.9</string>
 			<key>nameKey</key>
 			<string>金龙鱼优质东北大米10KG</string>
 			<key>imageKey</key>
@@ -63,7 +63,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥49.9</string>
+			<string>49.9</string>
 			<key>nameKey</key>
 			<string>复义仓稻花香米5KG</string>
 			<key>imageKey</key>
@@ -76,7 +76,7 @@
             <string>¥38</string>
 
 			<key>priceKey</key>
-			<string>¥51.9</string>
+			<string>51.9</string>
 			<key>nameKey</key>
 			<string>粒粒哂富哂香米5KG</string>
 			<key>imageKey</key>
@@ -89,7 +89,7 @@
 			<key>count</key>
 			<string>0</string>
 			<key>priceKey</key>
-			<string>¥29.7</string>
+			<string>29.7</string>
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>nameKey</key>
@@ -103,7 +103,7 @@
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
-			<string>¥22.9</string>
+			<string>22.9</string>
 			<key>nameKey</key>
 			<string>西兰花＋鸡胸肉350G</string>
 			<key>imageKey</key>
@@ -115,7 +115,7 @@
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
-			<string>¥12.3</string>
+			<string>12.3</string>
 			<key>nameKey</key>
 			<string>丝瓜＋荷包蛋380G</string>
 			<key>imageKey</key>
@@ -127,7 +127,7 @@
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
-			<string>¥19.5</string>
+			<string>19.5</string>
 			<key>nameKey</key>
 			<string>剁椒＋金针菇＋豆腐400G</string>
 			<key>imageKey</key>
@@ -139,7 +139,7 @@
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
-			<string>¥57.9</string>
+			<string>57.9</string>
 			<key>nameKey</key>
 			<string>豆腐鱼头500G</string>
 			<key>imageKey</key>
@@ -151,7 +151,7 @@
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
-			<string>¥37.9</string>
+			<string>37.9</string>
 			<key>nameKey</key>
 			<string>培根肉280G</string>
 			<key>imageKey</key>

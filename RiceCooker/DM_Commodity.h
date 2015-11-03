@@ -17,4 +17,6 @@
 @property (nonatomic, assign) BOOL isSelected;
 + (DM_Commodity *)commodityWithDict:(NSDictionary *)dict;
 
+- (NSDictionary *) encodedItem;
+
 @end
