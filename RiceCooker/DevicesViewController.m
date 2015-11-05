@@ -36,6 +36,7 @@
 @property (nonatomic, strong) UIImage *cancelImage;
 @property (nonatomic, strong) NSString *titleName;
 @property (nonatomic, copy) NSString *pNumberStr;
+@property (nonatomic, copy) NSString *cancelStr;
 - (IBAction)startCook:(UIButton *)sender;
 
 @end
@@ -334,7 +335,7 @@
 {
     _titleName = device.device;
     self.title = _titleName;
-    
+    self.startBtn.backgroundColor = UIColorFromRGB(0x40C8C4);
     if ([device.module isEqualToString:@"待机中"] || [device.module isEqualToString:@"冷藏中"]) {
         _startBtn.userInteractionEnabled = NO;
         if ([device.device isEqualToString:@"e饭宝"]) {
@@ -363,11 +364,19 @@
             [self.pNumberBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-米量不可选（152）.png"] forState:UIControlStateNormal];
             [self.fireBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-烹饪方式不可选（152）.png"] forState:UIControlStateNormal];
             [self.cookModeBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-口感不可选（152）.png"] forState:UIControlStateNormal];
+            
+            if ([_device.module isEqual:@"烹饪中"]) {
+                self.startBtn.userInteractionEnabled = NO;
+                [self.startBtn setBackgroundColor:UIColorFromRGB(0xdddddd)];
+            }
+
+            
         }else if([device.device isEqualToString:@"e菜宝"])
         {
             [self.pNumberBtn setBackgroundImage:[UIImage imageNamed:@"icon-e菜宝-烹饪方式不可选（152）.png"] forState:UIControlStateNormal];
             [self.fireBtn setBackgroundImage:[UIImage imageNamed:@"icon-e菜宝-食材不可选（152）.png"] forState:UIControlStateNormal];
             [self.cookModeBtn setBackgroundImage:[UIImage imageNamed:@"icon-e菜宝-重量不可选（152）.png"] forState:UIControlStateNormal];
+            
         }
         [self.finishTimeBtn setBackgroundImage:[UIImage imageNamed:@"icon-e饭宝-预约不可选（152）.png"] forState:UIControlStateNormal];
         self.pNumberBtn.enabled = NO;
@@ -376,8 +385,13 @@
         self.finishTimeBtn.enabled = NO;
         if ([device.module isEqualToString:@"保温中"]) {
             [self.startBtn setTitle:@"取消保温" forState:UIControlStateNormal];
-        }else
+        }else if ([device.module isEqualToString:@"烹饪中"]){
             [self.startBtn setTitle:@"取消烹饪" forState:UIControlStateNormal];
+        }else if ([device.module isEqualToString:@"预约中"])
+        {
+            [self.startBtn setTitle:@"取消预约" forState:UIControlStateNormal];
+        }
+        
         
 
     }
@@ -396,10 +410,6 @@
     }
     
     self.finishTimeLabel.text = device.appointTime;
-//    if ([_device.module isEqualToString:@"开始烹饪"]) {
-//        _startBtn.userInteractionEnabled = NO;
-//    }else
-//        _startBtn.userInteractionEnabled = YES;
     
 }
 
@@ -555,6 +565,10 @@
         leftText = @"继续保温";
         rightText = @"结束保温";
     }
+    
+    
+    
+    
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:leftText style:UIAlertActionStyleDefault handler:nil];

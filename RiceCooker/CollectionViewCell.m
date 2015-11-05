@@ -13,13 +13,26 @@
 
 - (void)awakeFromNib {
     [self setLabelAndImage];
-    
 }
 
 + (id)collectCell
 {
     return [[NSBundle mainBundle] loadNibNamed:@"CollectionViewCell" owner:nil options:nil][0];
 }
+
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        [self setLabelAndImage];
+    }
+    return self;
+}
+
+
+
 
 - (void)setLabelAndImage
 {
@@ -39,7 +52,7 @@
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     _titleLabel.numberOfLines = 2;
     
-//    _priceLabel = [ui initializeLabelWithFrame:CGRectMake(5*kRate, 158*kRate, 50*kRate, 30*kRate) withText:@"¥" withSize:9];
+
     _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5*kRate, 158*kRate, 50*kRate, 30*kRate)];
     _priceLabel.font = [UIFont systemFontOfSize:9];
     _priceLabel.textAlignment = NSTextAlignmentLeft;

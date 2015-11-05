@@ -19,7 +19,7 @@
 #define kHeight [UIScreen mainScreen].bounds.size.height
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
-@interface AffirmViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface AffirmViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (strong, nonatomic) IBOutlet UILabel *totlePirceLabel;
 @property (strong, nonatomic) IBOutlet UIButton *affirmBtn;
@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, copy) NSString *selectDate;
 @property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *remarks;
 @end
 
 @implementation AffirmViewController
@@ -298,6 +299,8 @@
     }else
     {
         Cell8 *cell = [[Cell8 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell8"];
+        cell.textFiled.delegate = self;
+        cell.textFiled.returnKeyType = UIReturnKeyDone;
         return cell;
     }
 }
@@ -336,9 +339,11 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [self popPickerView];
+            return;
 
         }
     }
+        [self.view endEditing:YES];
 }
 
 
@@ -426,7 +431,7 @@
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (component == 0) {
-        return 2;
+        return _dateArray.count;
     }else
     {
         NSArray *array = [_dic objectForKey:_selectDate];
@@ -489,9 +494,20 @@
 }
 
 
+#pragma mark ----UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _remarks = textField.text;
+    NSLog(@"%@", _remarks);
+}
 
 
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (IBAction)pushToNextView:(id)sender {
     BuyController *viewController = [[BuyController alloc] initWithNibName:@"BuyController" bundle:nil];
@@ -499,6 +515,8 @@
     viewController.userMsg = self.userMsg;
     viewController.affirmArray = self.affirmArray;
     viewController.cartArray = self.cartArray;
+    viewController.remarks = self.remarks;
+    viewController.deliveryTime = self.deliveryTime;
     viewController.totalPrice = [NSMutableString stringWithString: self.totolPrice];
     [self.navigationController pushViewController:viewController animated:YES];
     

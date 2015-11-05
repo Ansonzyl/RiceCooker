@@ -127,45 +127,56 @@
 - (IBAction)loginBtn:(id)sender {
    
     
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    if (!(self.phoneNumberTextField.text == nil || self.passwordTextField.text == nil)) {
-//        [_userDefaults setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-//        [_userDefaults setObject:self.passwordTextField.text forKey:@"password"];
-//    }
-//    
-//    
-//    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-//    [request setHTTPMethod:@"POST"];
-//
-//    NSString *body = [NSString stringWithFormat:@"phonenumber=%@&password=%@", self.phoneNumberTextField.text, self.passwordTextField.text];
-//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        if ([recieve isEqualToString:@"fail"]) {
-//            
-//            [self showTopMessage:@"用户名或密码错误"];
-//            
-//            
-//        }else if([recieve isEqualToString:@"success"])
-//        {
-//            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-//            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//            
-//            [self presentViewController:main animated:YES completion:nil];
-//        }
-//        NSLog(@"%@",error);
-//
-//        
-//    }];
-//    
-//    [task resume];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  
+    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
 
+    NSString *body = [NSString stringWithFormat:@"phonenumber=%@&password=%@", self.phoneNumberTextField.text, self.passwordTextField.text];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if ([recieve isEqualToString:@"fail"]) {
+            
+            [self showTopMessage:@"用户名或密码错误"];
+            return;
+            
+        }else if([recieve isEqualToString:@"success"])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
+            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:main animated:YES completion:nil];
+            });
+            return;
+
+        }
+        NSLog(@"%@",error);
+        if (error) {
+            NSInteger state = [(NSHTTPURLResponse *)response statusCode];
+            switch (state) {
+                case 500:
+                    [self showTopMessage:@"服务器暂时不可用"];
+                    break;
+                case 401:
+                    [self showTopMessage:@"请求的网页不存在"];
+                    break;
+                default:
+                    [self showTopMessage:@"连接不到服务器"];
+                    break;
+            }
+            }
+    }];
     
+    [task resume];
+
+
     
     
 //    
@@ -185,12 +196,12 @@
 //        }else if([recieve isEqualToString:@"success"])
 //        {
 //            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-
-            [self presentViewController:main animated:YES completion:nil];
+//            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+//
+//            [self presentViewController:main animated:YES completion:nil];
 //        }
-//        
+//
 //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //            
 //                NSLog(@"%@", error);

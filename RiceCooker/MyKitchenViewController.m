@@ -219,7 +219,7 @@
             
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        [self showTopMessage:@"连接不上服务器"];
         
         NSLog(@"%@", error);
     }];
@@ -296,17 +296,11 @@
             {
                 DM_EVegetable *device = [DM_EVegetable eVegetableWithDict:_riceArray[indexPath.row]];
                 EriceCell *cell;
-//                if ([device.connectstate isEqualToString: @"1"])
-//                {
-                    cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
-                    if (cell == nil) {
-                        cell = [EriceCell ericeCell];
-                    }
-//                    
-//                }else
-//                {
-//                    
-//                }
+                cell = [tableView dequeueReusableCellWithIdentifier:[EriceCell cellID]];
+                if (cell == nil) {
+                    cell = [EriceCell ericeCell];
+                }
+
                 
                 cell.device = device;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -10,10 +10,11 @@
 
 @interface FogetPWViewController ()<UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation FogetPWViewController
-
+static int myTime;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,32 +40,64 @@
 }
 
 
+//- (void)countDown
+//{
+//    __block int timeout = 30;
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//    dispatch_source_set_timer(_timer, dispatch_walltime(nil, 0), 1.0*NSEC_PER_SEC, 0); // 每秒执行
+//    dispatch_source_set_event_handler(_timer, ^{
+//        if (timeout <= 0) {
+//            dispatch_source_cancel(_timer);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [_verificationCodeBtn setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+//                _verificationCodeBtn.enabled = YES;
+//            });
+//        }else
+//        {
+//            NSString *timeStr = [NSString stringWithFormat:@"重获验证码(%d)",timeout];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [_verificationCodeBtn setTitle:timeStr forState:UIControlStateNormal];
+//                _verificationCodeBtn.enabled = NO;
+//            });
+//            timeout --;
+//        }
+//    });
+//    dispatch_resume(_timer);
+//
+//}
+
+
+#pragma mark CAPTCHA
+- (void)changeButtonName
+{
+    if (myTime > 1) {
+        self.verificationCodeBtn.enabled = NO;
+        myTime --;
+        NSString *string = [NSString stringWithFormat:@"重获验证码(%d)", myTime];
+        [self.verificationCodeBtn setTitle:string forState:UIControlStateNormal];
+        //        self.reGain.titleLabel.text = string;
+    }else
+    {
+        [self.timer invalidate];
+        self.verificationCodeBtn.enabled = YES;
+        [self.verificationCodeBtn setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+        //        self.reGain.titleLabel.text = @"重新获取验证码";
+    }
+}
+
 - (void)countDown
 {
-    __block int timeout = 30;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(_timer, dispatch_walltime(nil, 0), 1.0*NSEC_PER_SEC, 0); // 每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if (timeout <= 0) {
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_verificationCodeBtn setTitle:@"重新获取验证码" forState:UIControlStateNormal];
-                _verificationCodeBtn.enabled = YES;
-            });
-        }else
-        {
-            NSString *timeStr = [NSString stringWithFormat:@"重获验证码(%d)",timeout];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_verificationCodeBtn setTitle:timeStr forState:UIControlStateNormal];
-                _verificationCodeBtn.enabled = NO;
-            });
-            timeout --;
-        }
-    });
-    dispatch_resume(_timer);
-
+    [self.timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeButtonName) userInfo:nil repeats:YES];
+    self.verificationCodeBtn.enabled = NO;
+    [self.verificationCodeBtn setTitle:@"重获验证码(30)" forState:UIControlStateNormal];
+    
+    myTime = 30;
+    
 }
+
+
 
 
 - (IBAction)regain:(id)sender {

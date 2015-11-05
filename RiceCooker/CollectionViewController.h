@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionViewController : UICollectionViewController
-
+@property (nonatomic, strong) NSArray *contentList;
+@property (nonatomic, copy) NSString *type;
 @end

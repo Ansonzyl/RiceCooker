@@ -25,6 +25,10 @@
     return cell;
 }
 
+
+
+
+
 - (void)setUserMessage:(DM_UserMessage *)userMessage
 {
     _userMessage = userMessage;
@@ -43,7 +47,7 @@
 {
     [super layoutSubviews];
     _select.bounds = CGRectMake(0, 0, 23, 23);
-    _select.center = CGPointMake(20, 29);
+    _select.frame = CGRectMake(16, 17, 23, 23);
     _select.contentMode = UIViewContentModeScaleAspectFit;
 }
 

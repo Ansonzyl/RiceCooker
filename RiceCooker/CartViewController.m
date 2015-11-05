@@ -49,6 +49,14 @@
         
     });
     
+    if ([self.topTableView respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [self.topTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([self.topTableView respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [self.topTableView setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (void)initializeTableViewAndeArray
@@ -60,7 +68,8 @@
         [_addressArray addObject:msg];
     }
     CGFloat kH = (_addressArray.count + 1)*RowHeight;
-    _topTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, - kH, kWidth, kH)];
+    _topTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, - kH, kWidth, kH) style:UITableViewStylePlain];
+//    _topTableView.separatorColor = UIColorFromRGB(0xb4b4b4);
     _topTableView.delegate = self;
     _topTableView.dataSource = self;
     _topTableView.rowHeight = RowHeight;
@@ -112,17 +121,25 @@
 
 #pragma mark - Table view data source
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0)
-    {
-        return 0.1;
-    }else
+    if ([tableView isEqual:_tableView]) {
+        if (section == 0)
+        {
+            return 0.1;
+        }else
+            
+            return 6;
 
-    return 6;
+    }else
+        return 0.1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 6;
+    if ([tableView isEqual:_tableView]) {
+        return 6;
+    }else
+        return 0.1;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -211,10 +228,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
-        return 95*kRate;
+    if ([tableView isEqual:self.tableView]) {
+        if (indexPath.section == 1) {
+            return 95*kRate;
+        }
     }else
         return RowHeight;
+    return RowHeight;
+    
 }
 
 
@@ -258,6 +279,20 @@
     }
     
 }
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 
 #pragma mark Cartdelegate
 - (void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag

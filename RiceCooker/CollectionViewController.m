@@ -12,13 +12,13 @@
 #import "DM_Commodity.h"
 
 @interface CollectionViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) NSArray *contentList;
+
 @property (nonatomic, strong) NSArray *imageArray;
 @end
 
 @implementation CollectionViewController
 
-static NSString * const reuseIdentifier = @"CollectionCell";
+static NSString * const reuseIdentifier = @"CollectionViewCell";
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
 static NSString *kPriceKey = @"priceKey";
@@ -30,7 +30,6 @@ static NSString *kPriceKey = @"priceKey";
      layout.minimumInteritemSpacing = 0;
     layout.headerReferenceSize = CGSizeMake(414*kRate, 30.0f*kRate);
     
-//    layout.sectionInset = UIEdgeInsetsMake(layout.minimumLineSpacing, 0, 0, 0);
     return [super initWithCollectionViewLayout:layout];
 }
 
@@ -44,23 +43,12 @@ static NSString *kPriceKey = @"priceKey";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"collection" ofType:@"plist"];
-    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
-    _contentList = [dic objectForKey:@"rice"];
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (int i = 0; i< _contentList.count; i++) {
-        DM_Commodity *commodity = [DM_Commodity commodityWithDict:_contentList[i]];
-        [array addObject:commodity];
-        
-    }
-    _contentList = array;
     
     [self setBarImage];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kRate*414, 30.f*kRate)];
     label.textColor = UIColorFromRGB(0x657684);
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"稻谷|米";
+    label.text = _type;
     label.font = [UIFont systemFontOfSize:11.0f*kRate];
     label.backgroundColor = UIColorFromRGB(0xf3f3f3);
     [self.collectionView addSubview:label];

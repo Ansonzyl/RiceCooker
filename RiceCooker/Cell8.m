@@ -25,6 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"Cell7" owner:nil options:nil][1];
+        _textFiled.returnKeyType = UIReturnKeyDone;
     }
     return self;
 }

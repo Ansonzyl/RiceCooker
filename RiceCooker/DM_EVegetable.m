@@ -30,6 +30,7 @@
         NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
         self.remianTime = [finish timeIntervalSinceDate:now];
         
+        
 
     }else
     {

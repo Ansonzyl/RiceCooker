@@ -256,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="EId-F9-Ncl" kind="relationship" relationship="rootViewController" id="g8p-zV-AHd"/>
+                        <segue destination="HiS-1V-NfV" kind="relationship" relationship="rootViewController" id="mBJ-xQ-RrE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rg3-5a-nNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -264,46 +264,53 @@
             <point key="canvasLocation" x="423" y="850"/>
         </scene>
         <!--点点商城-->
-        <scene sceneID="CWw-vw-UwJ">
+        <scene sceneID="7If-RR-8bX">
             <objects>
-                <viewController title="点点商城" id="EId-F9-Ncl" customClass="ShopViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qZ1-4R-kQb"/>
-                        <viewControllerLayoutGuide type="bottom" id="DUd-qS-2Ih"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qqN-DN-1ic">
+                <collectionViewController title="点点商城" id="HiS-1V-NfV" customClass="ShopViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="xKS-Ps-WQu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ux-hF-g3Y">
-                                <rect key="frame" x="0.0" y="64" width="414" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="5Ux-hF-g3Y" secondAttribute="height" multiplier="69:5" id="ze1-jf-70c"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="         ">
-                                    <color key="titleColor" red="0.396078431372549" green="0.46274509803921571" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="detail:" destination="EId-F9-Ncl" eventType="touchUpInside" id="4CP-iM-gSQ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="top" secondItem="qZ1-4R-kQb" secondAttribute="bottom" id="6kZ-Fb-JOC"/>
-                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="centerX" secondItem="qqN-DN-1ic" secondAttribute="centerX" id="PEt-aF-88j"/>
-                            <constraint firstItem="5Ux-hF-g3Y" firstAttribute="width" secondItem="qqN-DN-1ic" secondAttribute="width" id="XeD-KK-HUJ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="9fz-dv-qHl"/>
-                    <connections>
-                        <outlet property="localButton" destination="5Ux-hF-g3Y" id="8pg-xO-wos"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fgF-px-XBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FNg-G0-CUS">
+                            <size key="itemSize" width="76" height="84"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="" id="kUH-qF-2jc" customClass="CollectionViewCell">
+                                <rect key="frame" x="0.0" y="114" width="76" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2Z-8p-UD3">
+                            <rect key="frame" x="0.0" y="64" width="414" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPw-vl-jdb">
+                                    <rect key="frame" x="360" y="10" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FRf-yE-FAe">
+                            <rect key="frame" x="0.0" y="198" width="414" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="HiS-1V-NfV" id="hMH-YC-bCO"/>
+                            <outlet property="delegate" destination="HiS-1V-NfV" id="tEd-SB-hLW"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="Aqq-s9-oEr"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D0m-Mc-I81" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="907" y="850"/>
+            <point key="canvasLocation" x="955" y="850"/>
         </scene>
         <!--Share Device View Controller-->
         <scene sceneID="StJ-pr-HFY">
