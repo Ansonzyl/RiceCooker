@@ -17,25 +17,36 @@
 #import "CollectionViewController.h"
 #import "ReusableViewHeader.h"
 #import "CartViewController.h"
+#import "CommodityDetailViewController.h"
 
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define RowHeight 57
 
 
 
-@interface ShopViewController ()<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, reusableDelegate>
+@interface ShopViewController ()<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, reusableDelegate, CollectionCellDelegate>
+{
+    CALayer *_layer;
+    CAShapeLayer *_shapeLayer;
+   
+    
+}
 
 @property (strong, nonatomic) IBOutlet UIButton *localButton;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong)CLLocationManager *locationManager;
+
 @property (nonatomic, strong) UITableView *topTable;
 @property (nonatomic, strong) UIControl *overlay;
+@property (nonatomic, strong) DM_Commodity *comm;
 @property (nonatomic, strong) NSMutableArray *addressArray;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 @property (nonatomic, strong) NSMutableArray *contentList;
 @property (nonatomic, strong) UIButton *cartButton;
 @property (nonatomic, strong) NSMutableArray *cartArray;
 @property (nonatomic, strong) UILabel *cartLabel;
+@property (nonatomic, strong) NSArray *array;
+@property (nonatomic,strong) UIBezierPath *path;
 - (IBAction)detail:(UIButton *)sender;
 
 
@@ -62,7 +73,11 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         [self setTopTableView];
     });
     
-    _cartArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"CartArray"];
+   
+
+    
+    
+    
     _contentList = [NSMutableArray array];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"collection" ofType:@"plist"];
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -82,20 +97,10 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     _cartLabel.textColor = [UIColor whiteColor];
     _cartLabel.font = [UIFont systemFontOfSize:11*kRate];
     frame.origin.x = 346*kRate;
-//    _cartLabel.textAlignment = NSTextAlignmentCenter;
+
     _cartButton = [[UIButton alloc] initWithFrame:CGRectMake(346*kRate, 609*kRate, 62*kRate, 50*kRate)];
 
-    NSString *imageName;
-    if (_cartArray.count > 0) {
-        imageName = @"icon-购物车(186 150).png";
-        _cartLabel.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
-    }else
-    {
-        _cartLabel.hidden = YES;
-        imageName = @"icon-购物车(150 150).png";
-    }
     
-    [_cartButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     _cartButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_cartButton addTarget:self action:@selector(pushToCartView) forControlEvents:UIControlEventTouchUpInside];
     
@@ -105,8 +110,8 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 - (void)pushToCartView
 {
     CartViewController *viewController = [[CartViewController alloc] init];
-//    viewController.cartArray = _cartArray;
-#warning 传值有问题
+    viewController.cartArray = _cartArray;
+    [viewController setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -242,7 +247,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 
 
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark -------<UICollectionViewDataSource>-----
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
@@ -259,30 +264,130 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    if (indexPath == 0) {
-        
+    if (indexPath.section == 0) {
+        UICollectionViewCell *cell = [[UICollectionViewCell alloc] init];
+        return cell;
     }else
     {
+        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+
         DM_Commodity *commodity = [_contentList[indexPath.section - 1] objectAtIndex:indexPath.row];
-        
-        
-        cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:commodity.imageKey ofType:@"png"]];
-        NSString *str = commodity.nameKey;
-        if (str.length > 14) {
-            cell.titleLabel.text = str;
-        }else
-            cell.titleLabel.text = [NSString stringWithFormat:@"%@\n", str];
-        //    cell.titleLabel.text = [numberItem valueForKey:kNameKey];
-        cell.priceLabel.text = [NSString stringWithFormat:@"¥%@", commodity.priceKey];
+        cell.delegate = self;
+        cell.commodity = commodity;
         cell.backgroundColor = [UIColor whiteColor];
-       
+        __block CollectionViewCell *newCell = cell;
+        cell.shopCartBlock = ^(UIImageView *imageView){
+            CGRect rect = [newCell convertRect:newCell.shopBtn.frame toView:self.view];
+            [self startAnimationWithRect:rect ImageView:imageView];
+            
+        };
+        return cell;
 
     }
-    return cell;
+   
    
 }
+
+-(void)startAnimationWithRect:(CGRect)rect ImageView:(UIImageView *)imageView
+{
+    if (!_layer) {
+        _layer = [CALayer layer];
+        _layer.contents = (id)imageView.layer.contents;
+        
+        _layer.contentsGravity = kCAGravityResizeAspectFill;
+        _layer.bounds = rect;
+        _layer.cornerRadius = CGRectGetHeight(_layer.bounds) / 2;
+        _layer.masksToBounds = YES;
+        _layer.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+        
+        [self.view.layer addSublayer:_layer];
+        self.path = [UIBezierPath bezierPath];
+        [_path moveToPoint:_layer.position];
+        [_path addQuadCurveToPoint:_cartButton.center controlPoint:CGPointMake(rect.origin.x + 10, rect.origin.y - 80)];
+    }
+    [self groupAnimation];
+    
+}
+
+- (void)groupAnimation
+{
+    self.collectionView.userInteractionEnabled = NO;
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.path = _path.CGPath;
+    animation.rotationMode = kCAAnimationRotateAuto;
+    CABasicAnimation *expandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+
+    expandAnimation.duration = 0.15f;
+    expandAnimation.fromValue = [NSNumber numberWithFloat:1];
+    expandAnimation.toValue = [NSNumber numberWithFloat:2.0f];
+    expandAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    CABasicAnimation *narrowAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    narrowAnimation.beginTime = 0.15f;
+    narrowAnimation.fromValue = [NSNumber numberWithFloat:2.0f];
+    narrowAnimation.duration = 1.0f;
+    narrowAnimation.toValue = [NSNumber numberWithFloat:0.3f];
+    
+    narrowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    CAAnimationGroup *groups = [CAAnimationGroup animation];
+    groups.animations = @[animation,expandAnimation,narrowAnimation];
+    groups.duration = 1.0f;
+    groups.removedOnCompletion=NO;
+    groups.fillMode=kCAFillModeForwards;
+    groups.delegate = self;
+    [_layer addAnimation:groups forKey:@"group"];
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if (anim == [_layer animationForKey:@"group"]) {
+        self.collectionView.userInteractionEnabled = YES;
+        
+        [_layer removeFromSuperlayer];
+        _layer = nil;
+        _cartLabel.hidden = NO;
+        [self cartShop];
+         _cartLabel.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
+        
+    }
+}
+
+
+- (void)clickBtnWithCommodity:(DM_Commodity *)commodity
+{
+    BOOL isExist = NO;
+    int i ;
+    for ( i = 0; i<_cartArray.count; i++) {
+        DM_Commodity *com = _cartArray[i];
+
+        if ([commodity.nameKey isEqual:com.nameKey]) {
+            isExist = YES;
+            break;
+
+        }else
+        {
+
+        }
+    }
+    if (isExist) {
+        DM_Commodity *com = _cartArray[i];
+        com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_cartLabel.text intValue])];
+
+        [_cartArray replaceObjectAtIndex:i withObject:com];
+
+    }else
+    {
+        commodity.count = @"1";
+        [_cartArray addObject:commodity];
+
+    }
+
+}
+
+
+
 
 #pragma mark <UICollectionViewDelegate>
 
@@ -320,6 +425,9 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusable" forIndexPath:indexPath];
         if (indexPath.section == 0)
         {
+            headerView.labelText.hidden = YES;
+            headerView.button.hidden = YES;
+
         }else if (indexPath.section == 1)
         {
             headerView.labelText.text = @"稻谷｜米";
@@ -344,34 +452,18 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     return 2;
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CommodityDetailViewController *viewController = [[CommodityDetailViewController alloc] init];
+//    NSLog(@"item======%ld",(long)indexPath.item);
+//    NSLog(@"row=======%ld",(long)indexPath.row);
+//    NSLog(@"section===%ld",(long)indexPath.section);
+    viewController.allItem = _contentList[indexPath.section - 1];
+    viewController.commodity = [_contentList[indexPath.section - 1] objectAtIndex:indexPath.row];
+    [viewController setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 - (void)setBarImage
 {
@@ -410,7 +502,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         }
         cell.userMessage = (DM_UserMessage *)_addressArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-
+        
         return cell;
 
     }else
@@ -451,11 +543,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 
     
 }
-//    [tableView setSeparatorInset:UIEdgeInsetsZero];
-
-
-
-
 
 
 - (void)userInformation
@@ -508,7 +595,18 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     [self setAddress];
     [_localButton removeFromSuperview];
     [_cartButton removeFromSuperview];
+    [self encodeArray];
     
+}
+
+- (void)encodeArray
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i<_cartArray.count; i++) {
+        [array addObject:[(DM_Commodity *)_cartArray[i] encodedItem]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"CartArray"];
+
 }
 
 
@@ -580,8 +678,37 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     [self.navigationController.view insertSubview:_localButton aboveSubview:self.collectionView];
     [self.navigationController.view insertSubview:_cartButton aboveSubview:self.collectionView];
     [self.navigationController.view insertSubview:_cartLabel aboveSubview:self.collectionView];
+    _array = [_userDefaults objectForKey:@"CartArray"];
+    _cartArray = [NSMutableArray array];
+    for (int i = 0; i<_array.count; i++) {
+        DM_Commodity *com = [DM_Commodity commodityWithDict:_array[i]];
+        [_cartArray addObject:com];
+    }
+    [self cartShop];
+    
 
 }
+
+- (void)cartShop
+{
+    NSString *imageName;
+    
+
+        
+
+    if (_cartArray.count > 0) {
+        imageName = @"icon-购物车(186 150).png";
+        _cartLabel.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
+        _cartLabel.hidden = NO;
+    }else
+    {
+        _cartLabel.hidden = YES;
+        imageName = @"icon-购物车(150 150).png";
+    }
+    
+    [_cartButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
 
 - (void) setNavigationBar
 {
@@ -606,8 +733,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
  */
 
 - (IBAction)detail:(UIButton *)sender {
-    
-
     
     
        [self setTopView];

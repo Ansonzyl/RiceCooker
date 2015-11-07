@@ -61,11 +61,30 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i<_cartArray.count; i++) {
+        [array addObject:[(DM_Commodity *)_cartArray[i] encodedItem]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"CartArray"];
+    
+    
+}
+
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     _array = [_userDefaults objectForKey:@"CartArray"];
     _numLabel2.text = [NSString stringWithFormat:@"%lu", (unsigned long)_array.count];
+    if (_array.count <= 0) {
+        _numLabel2.hidden = YES;
+    }else
+        _numLabel2.hidden = NO;
+
     [self setNavigationBar];
 }
 
@@ -89,10 +108,6 @@
     [_numLabel2.layer setMasksToBounds:YES];
     
     [self.view addSubview:_numLabel2];
-    if (_array.count <= 0) {
-        _numLabel2.hidden = YES;
-    }else
-        _numLabel2.hidden = NO;
     
 }
 
@@ -129,7 +144,7 @@
     [addShop setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     addShop.layer.cornerRadius = 1;
     
-    UIButton *shopBtn = [[UIButton alloc] initWithFrame:CGRectMake(373*kRate, 705*kRate, 23*kRate, 20*kRate)];
+    UIButton *shopBtn = [[UIButton alloc] initWithFrame:CGRectMake(373*kRate, 705*kRate, 23, 20)];
     [shopBtn setImage:[UIImage imageNamed:@"icon-购物车（商品详情页）.png"] forState:UIControlStateNormal];
     [shopBtn addTarget:self action:@selector(gotoShop) forControlEvents:UIControlEventTouchUpInside];
     
@@ -222,39 +237,38 @@
 {
     _numLabel2.hidden = NO;
     
-    if (_cartArray.count > 0) {
-        BOOL isExist = NO;
-        int i ;
-        for ( i = 0; i<_cartArray.count; i++) {
-            DM_Commodity *com = _cartArray[i];
-            // 如果购物车中已有该商品
-            if ([_commodity.nameKey isEqual:com.nameKey]) {
-                isExist = YES;
-                break;
-                
-            }else
-            {
-                
-            }
-        }
-        if (isExist) {
-            DM_Commodity *com = _cartArray[i];
-            com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_numLabel.text intValue])];
+    BOOL isExist = NO;
+    int i ;
+    for ( i = 0; i<_cartArray.count; i++) {
+        DM_Commodity *com = _cartArray[i];
+        // 如果购物车中已有该商品
+        if ([_commodity.nameKey isEqual:com.nameKey]) {
+            isExist = YES;
+            break;
             
-            [_cartArray replaceObjectAtIndex:i withObject:com];
-
         }else
         {
-            _commodity.count = [NSString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
-            [_cartArray addObject:_commodity];
-
+            
         }
+    }
+    if (isExist) {
+        DM_Commodity *com = _cartArray[i];
+        com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_numLabel.text intValue])];
+        
+        [_cartArray replaceObjectAtIndex:i withObject:com];
 
     }else
     {
-        _commodity.count = [NSMutableString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
+        _commodity.count = [NSString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
         [_cartArray addObject:_commodity];
+
     }
+
+//    }else
+//    {
+//        _commodity.count = [NSMutableString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
+//        [_cartArray addObject:_commodity];
+//    }
     
     
     _numLabel2.text = [NSString stringWithFormat:@"%ld", _cartArray.count];

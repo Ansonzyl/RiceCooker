@@ -73,7 +73,7 @@
         
 //        NSDate *currentTime = [NSDate date];
    
-        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:30*60]];
+        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:31*60]];
     
 
 //        NSDate *date = [currentTime initWithTimeIntervalSinceNow:24*60*60];

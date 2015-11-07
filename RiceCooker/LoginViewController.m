@@ -45,9 +45,7 @@
     self.phoneNumberTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
-    _userDefaults  = [NSUserDefaults standardUserDefaults];
-    self.passwordTextField.text = [_userDefaults objectForKey:@"password"];
-    self.phoneNumberTextField.text = [_userDefaults objectForKey:@"phoneNumber"];
+  
     if (!([self.phoneNumberTextField isEqual:nil]||[self.phoneNumberTextField.text isEqualToString:@""])) {
         self.phoneNumberImageView.highlighted = YES;
     }
@@ -112,6 +110,10 @@
     
     [self.view addSubview:_passwordTextField];
     [self.view addSubview:_phoneNumberTextField];
+    _userDefaults  = [NSUserDefaults standardUserDefaults];
+    self.passwordTextField.text = [_userDefaults objectForKey:@"password"];
+    self.phoneNumberTextField.text = [_userDefaults objectForKey:@"phoneNumber"];
+    [self loginBtn:loginBton];
     
     
 }

@@ -42,7 +42,7 @@
     
     self.navigationItem.leftBarButtonItem = leftItem;
     [self.view addSubview:leftBtn];
-//    _deliveryTime = @"今天15:30－16:30";
+
     _remarks = @"1";
     
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)])
@@ -227,31 +227,28 @@
 - (IBAction)payment:(id)sender {
    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
         for (int i = 0; i < _affirmArray.count; i++)
     {
         DM_Commodity *commodity = _affirmArray[i];
-        NSDictionary *paramters = @{@"phonenumber" : self.phoneNumber,
-                                    @"nameKey" : commodity.nameKey,
-                                    @"count" : commodity.count,
-                                    @"priceKey" : commodity.priceKey,
-                                    @"deliveryTime": _deliveryTime,
-                                    @"userName" : _userMsg.userName,
-                                    @"userPhone" : _userMsg.userPhone,
-                                    @"userAddress" : _userMsg.userAddress,
-                                    @"totalPrice" : [_totalPrice substringFromIndex:1],
-                                    @"remarks" : _remarks,
-                                    };
-        
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        NSString *url = [NSString stringWithFormat: @"http://%@/ShopOrderServlet", SERVER_URL];
-        [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            NSMutableString *recieve = [[NSMutableString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", recieve);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if ([recieve isEqualToString:@"fail"]) {
 
+    
+        
+        NSString *urlStr = [NSString stringWithFormat: @"http://%@/ShopOrderServlet", SERVER_URL];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *body = [NSString stringWithFormat:@"phonenumber=%@&nameKey=%@&count=%@&priceKey=%@&deliveryTime=%@&userName=%@&userPhone=%@&userAddress=%@&totalPrice=%@&remarks=%@", self.phoneNumber, commodity.nameKey, commodity.count, commodity.priceKey, _deliveryTime, _userMsg.userName, _userMsg.userPhone, _userMsg.userAddress, [_totalPrice substringFromIndex:1], _remarks];
+        [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@", recieve);
+            NSInteger state = [(NSHTTPURLResponse *)response statusCode];
+            if ([recieve isEqualToString:@"fail"]) {
+                
             }else
             {
                 if (recieve.length > 7) {
@@ -259,6 +256,16 @@
                     if ([s isEqualToString:@"success"]) {
                         [self cartURL];
                         _money = [recieve substringFromIndex:7];
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"支付成功" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                        }];
+                        [alert addAction:cancel];
+                        [self presentViewController:alert animated:YES completion:^{
+                            
+                        }];
                     }
                 
                 }else
@@ -267,69 +274,25 @@
                 }
 
             }
+            NSLog(@"%@",error);
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            NSLog(@"%@", error);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showTopMessage:@"连接不到服务器"];
             
         }];
+        
+        [task resume];
+        
+        
     }
-
-    
-        
-//        NSString *urlStr = [NSString stringWithFormat: @"http://%@/ShopOrderServlet", SERVER_URL];
-//        NSURL *url = [NSURL URLWithString:urlStr];
-//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-//        [request setHTTPMethod:@"POST"];
-//        
-//        NSString *body = [NSString stringWithFormat:@"phonenumber=%@&nameKey=%@&count=%@&priceKey=%@&deliveryTime=%@&userName=%@&userPhone=%@&userAddress=%@&totalPrice=%@&remarks=%@", self.phoneNumber, commodity.nameKey, commodity.count, commodity.priceKey, _deliveryTime, _userMsg.userName, _userMsg.userPhone, _userMsg.userAddress, [_totalPrice substringFromIndex:1], _remarks];
-//        [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//        NSURLSession *session = [NSURLSession sharedSession];
-//        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            NSLog(@"%@", recieve);
-//            NSInteger state = [(NSHTTPURLResponse *)response statusCode];
-//            if ([recieve isEqualToString:@"fail"]) {
-//                
-//            }else
-//            {
-//                if (recieve.length > 7) {
-//                    NSString *s = [recieve substringToIndex:7];
-//                    if ([s isEqualToString:@"success"]) {
-//                        [self cartURL];
-//                        _money = [recieve substringFromIndex:7];
-//                    }
-//                
-//                }else
-//                {
-//                    
-//                }
-//
-//            }
-//            NSLog(@"%@",error);
-//            
-//            
-//        }];
-//        
-//        [task resume];
-//        
-//        [self cartURL];
-        
-        
-        
-        
-        
-        
-//    }
     
 }
 
 - (void)cartURL
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    if (_cartArray.count == 0) {
+        [self encodedItem];
+    }else
+    {
     for (int i = 0; i<_cartArray.count; i++) {
         DM_Commodity *commodity = _cartArray[i];
         
@@ -358,6 +321,7 @@
             [self showTopMessage:@"连接不到服务器"];
             
         }];
+    }
     }
 
     

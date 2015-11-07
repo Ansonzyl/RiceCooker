@@ -111,15 +111,8 @@ static NSString *kPriceKey = @"priceKey";
 //    cell.priceLabel.text = [numberItem valueForKey:kPriceKey];
     
     DM_Commodity *commodity = _contentList[indexPath.row];
-    cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:commodity.imageKey ofType:@"png"]];
-    NSString *str = commodity.nameKey;
-    if (str.length > 14) {
-        cell.titleLabel.text = str;
-    }else
-        cell.titleLabel.text = [NSString stringWithFormat:@"%@\n", str];
-    //    cell.titleLabel.text = [numberItem valueForKey:kNameKey];
-    cell.priceLabel.text = [NSString stringWithFormat:@"¥%@", commodity.priceKey];
-
+    cell.commodity = commodity;
+    cell.shopBtn.userInteractionEnabled = NO;
     return cell;
 }
 
@@ -159,9 +152,7 @@ static NSString *kPriceKey = @"priceKey";
     NSLog(@"section===%ld",(long)indexPath.section);
     viewController.allItem = _contentList;
     viewController.commodity = _contentList[indexPath.row];
-//    [self presentViewController:viewController animated:YES completion:^{
-//        
-//    }];
+
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

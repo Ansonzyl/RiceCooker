@@ -248,7 +248,7 @@
             self.cancelreFrigerateLabel.text = @"启动冷藏";
         }
         _finishTimeLabel.text = @"已保温";
-        _riceLabel.text = [NSString stringWithFormat:@"%d分钟", [self timeOfInsulation]];
+        _riceLabel.text = [NSString stringWithFormat:@"%d分钟", (-[self timeOfInsulation])];
         _riceLabel.font = [UIFont systemFontOfSize:15*rate];
                 
     }else if ([device.module isEqualToString:@"冷藏中"])

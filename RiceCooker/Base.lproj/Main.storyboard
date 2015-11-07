@@ -290,12 +290,6 @@
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2Z-8p-UD3">
                             <rect key="frame" x="0.0" y="64" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPw-vl-jdb">
-                                    <rect key="frame" x="360" y="10" width="46" height="30"/>
-                                    <state key="normal" title="Button"/>
-                                </button>
-                            </subviews>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FRf-yE-FAe">
                             <rect key="frame" x="0.0" y="198" width="414" height="50"/>
