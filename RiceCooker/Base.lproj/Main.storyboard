@@ -61,7 +61,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-头像框.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-ID-Kha">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-ID-Kha">
                                             <rect key="frame" x="172" y="25" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Ep9-ID-Kha" secondAttribute="height" multiplier="1:1" id="lv0-lX-AWA"/>
@@ -186,9 +186,6 @@
                                                 <action selector="shareDevices:" destination="p1d-K7-Mm4" eventType="touchUpInside" id="TnZ-H4-U8E"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K01-P2-w1z">
-                                            <rect key="frame" x="175" y="28" width="64" height="64"/>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="tmV-mi-eA2" secondAttribute="centerX" id="03s-pP-KeI"/>
@@ -231,6 +228,7 @@
                                     <outlet property="nickName" destination="EQ2-Mg-jxK" id="MFb-Wj-s5W"/>
                                     <outlet property="recipebBtn" destination="J0l-WZ-Beq" id="ivc-bD-RL7"/>
                                     <outlet property="shareBtn" destination="xsJ-GR-4rE" id="S3Y-Cp-ydE"/>
+                                    <outlet property="userIcon" destination="Ep9-ID-Kha" id="nsi-KM-XOY"/>
                                     <outlet property="userName" destination="EQ2-Mg-jxK" id="wAh-qn-qeF"/>
                                 </connections>
                             </tableViewCell>
@@ -272,29 +270,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FNg-G0-CUS">
                             <size key="itemSize" width="76" height="84"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
-                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="" id="kUH-qF-2jc" customClass="CollectionViewCell">
-                                <rect key="frame" x="0.0" y="114" width="76" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="76" height="84"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2Z-8p-UD3">
-                            <rect key="frame" x="0.0" y="64" width="414" height="50"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FRf-yE-FAe">
-                            <rect key="frame" x="0.0" y="198" width="414" height="50"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="HiS-1V-NfV" id="hMH-YC-bCO"/>
                             <outlet property="delegate" destination="HiS-1V-NfV" id="tEd-SB-hLW"/>
@@ -494,7 +474,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-头像框.png" width="200" height="200"/>
         <image name="line.png" width="2" height="136"/>
         <image name="主页背景.png" width="1242" height="349"/>
     </resources>

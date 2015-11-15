@@ -35,7 +35,7 @@
     }else
     {
         NSInteger time = [self.remaintime doubleValue];
-        self.remianTime = time/4 * 3600 + time%2 + time/2%2 * 60;
+        self.remianTime = time/10000 * 3600 + time%100 + time/100%100 * 60;
         self.settime = [NSString stringWithFormat:@"%@min", self.settime];
         self.pnumberweight = [NSString stringWithFormat:@"%@g", self.pnumberweight];
     }

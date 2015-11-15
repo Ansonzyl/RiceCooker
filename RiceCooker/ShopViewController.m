@@ -349,7 +349,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         _layer = nil;
         _cartLabel.hidden = NO;
         [self cartShop];
-         _cartLabel.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
+         _cartLabel.text = [NSString stringWithFormat:@"%d", (int)_cartArray.count];
         
     }
 }
@@ -373,7 +373,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     }
     if (isExist) {
         DM_Commodity *com = _cartArray[i];
-        com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + [_cartLabel.text intValue])];
+        com.count = [NSString stringWithFormat:@"%d",([com.count intValue] + 1)];
 
         [_cartArray replaceObjectAtIndex:i withObject:com];
 
@@ -564,28 +564,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 
 
 
-- (void)startStandardUpdates
-{
-    if (nil == _locationManager)
-        _locationManager = [[CLLocationManager alloc] init];
-    
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    _locationManager.distanceFilter = 500; // meters
-    
-    [_locationManager startUpdatingLocation];
-    
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-        
-        [_locationManager requestWhenInUseAuthorization];
-    
-}
-
-
-
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -621,6 +599,26 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 
 
 
+// 地址定位
+
+- (void)startStandardUpdates
+{
+    if (nil == _locationManager)
+        _locationManager = [[CLLocationManager alloc] init];
+    
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    _locationManager.distanceFilter = 500; // meters
+    
+    [_locationManager startUpdatingLocation];
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        
+        [_locationManager requestWhenInUseAuthorization];
+    
+}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
@@ -698,7 +696,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 
     if (_cartArray.count > 0) {
         imageName = @"icon-购物车(186 150).png";
-        _cartLabel.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
+        _cartLabel.text = [NSString stringWithFormat:@"%d", (int)_cartArray.count];
         _cartLabel.hidden = NO;
     }else
     {
@@ -751,6 +749,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     [_overlay addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     _overlay.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
     [self.view addSubview:_overlay];
+//    [self.navigationController insertSubview:_overlay aboveSubview:_cartButton];
     [self.view insertSubview:_topTable belowSubview:self.navigationController.navigationBar];
     [self.view insertSubview:_topTable belowSubview:self.localButton];
     [UIView animateWithDuration:0.25 animations:^{

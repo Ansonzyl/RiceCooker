@@ -235,6 +235,13 @@
 
 - (void)addToShop:(UIButton *)sender
 {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"添加购物车成功";
+    hud.labelFont = [UIFont systemFontOfSize:11.0f];
+    [hud hide:YES afterDelay:1.0f];
+    
     _numLabel2.hidden = NO;
     
     BOOL isExist = NO;
@@ -263,15 +270,9 @@
         [_cartArray addObject:_commodity];
 
     }
-
-//    }else
-//    {
-//        _commodity.count = [NSMutableString stringWithFormat:@"%d",([_commodity.count intValue] + [_numLabel.text intValue])];
-//        [_cartArray addObject:_commodity];
-//    }
     
     
-    _numLabel2.text = [NSString stringWithFormat:@"%ld", _cartArray.count];
+    _numLabel2.text = [NSString stringWithFormat:@"%d", (int)_cartArray.count];
 }
 #pragma mark
 

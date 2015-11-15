@@ -47,7 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
     
     NSString *imageName = [NSString stringWithFormat:@"%@背景", _device.devicename];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
@@ -63,6 +63,11 @@
     [self.view addSubview:_workingImage];
     if ([_device.device isEqual:@"e菜宝"]) {
         [self initializeButtons];
+    }else
+    {
+        if ([_device.ericestorage intValue] < 10) {
+            [self topMessageWithString:@"米量不足10%，请及时添加"];
+        }
     }
     
     CGRect frame = CGRectMake(0, 0 , 244 * rate, 244 *rate);
@@ -72,11 +77,6 @@
     
     
     [self setLabelWithRate];
-        dispatch_async(queue, ^{
-        if ([self timeOfInsulation]/60 > 5) {
-#warning time
-        }
-    });
     
     [self buttonWith:_device];
    
@@ -237,7 +237,7 @@
     if ([device.module isEqualToString:@"烹饪中"]) {
         _stateLabel.text = [NSString stringWithFormat:@"%d", (int)device.remianTime/60];
          _riceLabel.hidden = YES;
-        
+        return;
     }
     
     
@@ -248,8 +248,23 @@
             self.cancelreFrigerateLabel.text = @"启动冷藏";
         }
         _finishTimeLabel.text = @"已保温";
-        _riceLabel.text = [NSString stringWithFormat:@"%d分钟", (-[self timeOfInsulation])];
+        _riceLabel.text = [NSString stringWithFormat:@"%d分钟", [self timeOfInsulation]];
         _riceLabel.font = [UIFont systemFontOfSize:15*rate];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if ([self timeOfInsulation]/60 > 5) {
+                NSString *str;
+                if ([_device.device isEqualToString:@"e菜宝"]) {
+                    str = @"保温已超过5小时，建议取消保温，启动冷藏";
+                }else
+                {
+                    str = @"保温已超过5小时，建议取消保温。";
+                }
+                [self topMessageWithString:str];
+
+            }
+        });
+
+        
                 
     }else if ([device.module isEqualToString:@"冷藏中"])
     {
@@ -264,6 +279,22 @@
     }
 
 }
+
+
+
+- (void)topMessageWithString:(NSString *)string
+{
+    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, kWidth, 30.0f)];
+    [self.view addSubview:lable];
+    lable.text = string;
+    lable.textColor = UIColorFromRGB(0x657684);
+    lable.textAlignment = NSTextAlignmentCenter;
+    lable.font = [UIFont systemFontOfSize:11];
+    lable.backgroundColor = [UIColor groupTableViewBackgroundColor];
+
+}
+
+
 
 - (int)timeOfInsulation
 {
@@ -361,14 +392,28 @@
             }else{
                _device.module = @"冷藏中";
             }
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
 
+            
             [_delegate changeDevice:_device withIndex:_currntIndex];
             [self buttonWith:_device];
             
-            
         }else if ([recive isEqualToString:@"fail"])
         {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消失败" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
             
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

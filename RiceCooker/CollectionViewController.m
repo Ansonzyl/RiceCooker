@@ -10,7 +10,7 @@
 #import "CollectionViewCell.h"
 #import "CommodityDetailViewController.h"
 #import "DM_Commodity.h"
-
+#define kRate [UIScreen mainScreen].bounds.size.width/414
 @interface CollectionViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSArray *imageArray;

@@ -67,13 +67,13 @@
 //    _dic = [NSMutableDictionary dictionaryWithObject:_timeArray forKey:@"明天"];
     
     // 大于22点 明天送
-    if (hour < 22)
+    if (hour < 21 && minute < 30)
     {
         _dateArray = @[@"今天", @"明天"];
         NSMutableArray *array = [NSMutableArray arrayWithArray:_timeArray];
         if (hour > 10) {
             NSInteger time = (hour-10) * 60 + minute;
-            NSInteger i = time / 30;
+            NSInteger i = time / 30 + 1;
             
             [array removeObjectsInRange:NSMakeRange(0, i)];
         }

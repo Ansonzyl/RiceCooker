@@ -226,12 +226,13 @@
 
 - (void) initializeTheImageViewAndPickerView
 {
-    _cookTypeLabel.text = _cookTypeArray[0];
+//    _cookTypeLabel.text = _cookTypeArray[0];
+    [_cookTypePickerView selectRow:[_cookTypeArray indexOfObject:_device.degree] inComponent:0 animated:YES ];
     _weight = _weightArray[_weightArray.count/2];
     _weightLabel.text = [NSString stringWithFormat:@"%@g", _weight];
-    [_weightPickerView selectRow:_weightArray.count/2 inComponent:1 animated:YES];
+    [_weightPickerView selectRow:[_weightArray indexOfObject:_weight]inComponent:1 animated:YES];
     _setTime = [_setTimeArray[0] integerValue];
-    _materialLabel.text = [[_materialDic objectForKey:_selectMaterial] objectAtIndex:0];
+//    _materialLabel.text = [[_materialDic objectForKey:_selectMaterial] objectAtIndex:0];
     [self dateChange];
     switch (_currentTag) {
         case 0:
@@ -549,7 +550,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"%@",recieve);
-        if ([recieve isEqualToString:@"start"]) {
+        if ([recieve isEqualToString:@"evegetablestart"]) {
             [self changeDevice];
             [_delegate changeDevice:_device withIndex:_currentIndex];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"预约成功" preferredStyle:UIAlertControllerStyleAlert];
@@ -597,7 +598,7 @@
 - (BOOL)isFinishTimeGreaterThanSetTime
 {
     
-    if ([self timeOfInsulation] <= self.setTime*60) {
+    if ([self timeOfInsulation] <= self.setTime*61) {
         return NO;
     }else
         return YES;

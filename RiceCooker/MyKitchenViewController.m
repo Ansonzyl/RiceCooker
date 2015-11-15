@@ -383,11 +383,7 @@
         
     }else
     {
-        // 设备主页
-        
-//        ViewController *viewController = [[ViewController alloc] initWithNibName:@"DevicesViewController" bundle:nil];
-//        
-//        
+
         DevicesViewController *viewController = [[DevicesViewController alloc] initWithNibName:@"DevicesViewController" bundle:nil];
         
         
@@ -412,14 +408,11 @@
             viewController.currentNumber = indexPath.row + _riceArray.count;
         }
         [viewController setHidesBottomBarWhenPushed:YES];
+        if([((DM_EVegetable *)_devicesArray [viewController.currentNumber]).connectstate intValue] == 1)
+        {
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
         
-
-        
-        [self.navigationController pushViewController:viewController animated:YES];
-        
-       
-        
-      
     }
 }
 

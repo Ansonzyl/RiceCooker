@@ -7,6 +7,7 @@
 //
 
 #import "AddNewAddressCell.h"
+#define kWidth [UIScreen mainScreen].bounds.size.width
 
 @implementation AddNewAddressCell
 
@@ -25,7 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 20)];
-        label.center = self.contentView.center;
+        label.center = CGPointMake(kWidth / 2, 28.5f);
         label.textColor = UIColorFromRGB(0x40c8c4);
         label.font = [UIFont systemFontOfSize:10.0];
         label.text = @"+ 添加新地址";

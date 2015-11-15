@@ -8,7 +8,7 @@
 
 #import "CollectionViewCell.h"
 #import "DM_UIConten.h"
-
+#define kRate [UIScreen mainScreen].bounds.size.width/414
 @implementation CollectionViewCell
 
 - (void)awakeFromNib {

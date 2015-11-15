@@ -14,11 +14,12 @@
 #import "ShareDeviceViewController.h"
 #import "AddShareViewController.h"
 
-@interface UserInfoViewController ()
+@interface UserInfoViewController () <NSURLConnectionDelegate,NSURLConnectionDataDelegate>
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *objArray;
-
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (nonatomic, strong) NSMutableData *imageData;
+//@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (nonatomic, strong) UIImage *iconImage;
 @property (nonatomic, strong) NSDictionary *recieve;
 @end
 
@@ -36,6 +37,8 @@
     [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x40c8c4)];
     _objArray = [NSArray arrayWithObjects:@"消息中心",@"我的订单",@"反馈",@"关于", nil];
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
+     [self downLoadImage];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +58,43 @@
         [self showTopMessage:@"连接不上服务器"];
     }];
     
+}
+
+- (void)downLoadImage
+{
+    _imageData = [[NSMutableData alloc] init];
+    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"http://%@/DownloadServlet", SERVER_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+
+// 响应头
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    _imageData.length = 0;
+    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+    float length = [[resp.allHeaderFields objectForKey:@"Content-Length"] floatValue];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSLog(@"%f", length);
+    
+}
+// 响应体
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_imageData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    _iconImage = [UIImage imageWithData:_imageData];
+    NSIndexSet *section = 0;
+//    [self.tableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 
@@ -79,10 +119,12 @@
     
     if (indexPath.section == 0) {
         [self JSONWithURL];
+       
         UserInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userInfo"];
         DM_UserInfo *userInfo = [DM_UserInfo userInfoWithDic:_recieve];
         cell.dm_userInfo = userInfo;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.userIcon.image = _iconImage;
         return cell;
     }else
     {

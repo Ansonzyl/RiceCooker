@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DM_Commodity.h"
-#define kRate [UIScreen mainScreen].bounds.size.width/414
+
 
 @protocol CollectionCellDelegate <NSObject>
 

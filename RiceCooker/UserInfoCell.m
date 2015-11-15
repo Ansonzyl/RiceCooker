@@ -11,7 +11,11 @@
 @implementation UserInfoCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.userIcon.layer.masksToBounds = YES;
+    self.userIcon.layer.cornerRadius = self.userIcon.bounds.size.width / 2;
+    self.userIcon.layer.borderWidth = 2.0f;
+    self.userIcon.layer.borderColor = [UIColor whiteColor].CGColor;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -27,5 +31,8 @@
     [self.shareBtn setTitle:dm_userInfo.sharedevice forState:UIControlStateNormal];
     [self.linkBtn setTitle:dm_userInfo.bindsevice forState:UIControlStateNormal];
 }
+
+
+
 
 @end

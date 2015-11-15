@@ -4,6 +4,9 @@
 <dict>
 	<key>setTime</key>
 	<array>
+		<string>5</string>
+		<string>10</string>
+		<string>15</string>
 		<string>20</string>
 		<string>25</string>
 		<string>30</string>

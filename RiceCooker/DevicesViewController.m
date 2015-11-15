@@ -399,8 +399,8 @@
  
     if ([_device.device isEqualToString:@"e饭宝"]) {
         self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份",device.pnumberweight];
-        self.cookModeLabel.text = device.degree;
-        self.fireLabel.text = device.state;
+        self.cookModeLabel.text = device.state;
+        self.fireLabel.text = device.degree;
     }else
     {
         self.pNumberLabel.text = device.degree;

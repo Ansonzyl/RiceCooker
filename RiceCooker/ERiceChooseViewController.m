@@ -148,7 +148,7 @@
     UILabel *stateLabel = [self setLabelWithFrame:CGRectMake(150*kRate, 121*kRate, 115*kRate, 21*kRate) withText:_device.module withSize:26.0*kRate withColor:textColor];
     
     
-    UILabel *riceText = [self setLabelWithFrame:CGRectMake(124*kRate, 187*kRate, 166*kRate, 21*kRate) withText:@"米仓还剩100%" withSize:17*kRate withColor:UIColorFromRGB(0xe1ebf2)];
+    UILabel *riceText = [self setLabelWithFrame:CGRectMake(124*kRate, 187*kRate, 166*kRate, 21*kRate) withText:[NSString stringWithFormat:@"米仓还剩%@％", self.device.ericestorage] withSize:17*kRate withColor:UIColorFromRGB(0xe1ebf2)];
     size = 18.0 * kRate;
     height = 282 * kRate;
     UILabel *riceWeight = [self setLabelWithFrame:CGRectMake(0, height, 33*kRate, 21*kRate) withText:@"30" withSize:size withColor:[UIColor whiteColor]];
