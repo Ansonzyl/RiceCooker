@@ -34,7 +34,7 @@
     _ui = [[DM_UIConten alloc] init];
     _numInShop = 0;
     _userDefaults = [NSUserDefaults standardUserDefaults];
-    _array = [_userDefaults objectForKey:@"CartArray"];
+//    _array = [_userDefaults objectForKey:@"CartArray"];
     [self setlabel];
     [self setButton];
     [self setNavigationBar];
@@ -49,16 +49,8 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     [self.view addSubview:leftBtn];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        _cartArray = [NSMutableArray array];
-        for (int i = 0; i<_array.count; i++) {
-            DM_Commodity *com = [DM_Commodity commodityWithDict:_array[i]];
-            [_cartArray addObject:com];
-        }
 
-    });
-    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -86,6 +78,16 @@
         _numLabel2.hidden = NO;
 
     [self setNavigationBar];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        _cartArray = [NSMutableArray array];
+        for (int i = 0; i<_array.count; i++) {
+            DM_Commodity *com = [DM_Commodity commodityWithDict:_array[i]];
+            [_cartArray addObject:com];
+        }
+        
+    });
 }
 
 

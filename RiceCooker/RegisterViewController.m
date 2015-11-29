@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "MainViewController.h"
 @interface RegisterViewController ()<UITextFieldDelegate,UIAlertViewDelegate,UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) NSTimer *timer;
@@ -37,9 +37,16 @@ static int myTime;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [_timer invalidate];
+    
     
 }
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:YES];
+//    [_timer invalidate];
+//}
+
 
 #pragma mark CAPTCHA
 - (void)changeButtonName
@@ -100,7 +107,7 @@ static int myTime;
     [alert addAction:backAction];
     [alert addAction:goAction];
     [self presentViewController:alert animated:YES completion:^{
-        
+        [_timer invalidate];
     }];
 
     
@@ -215,6 +222,12 @@ static int myTime;
         NSString *recive = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         if ([recive isEqualToString:@"success"]) {
             [self showTopMessage:@"上传成功"];
+            self.iconImage.layer.masksToBounds = YES;
+            self.iconImage.layer.cornerRadius = self.iconImage.bounds.size.width / 2;
+            self.iconImage.layer.borderWidth = 2.0f;
+            self.iconImage.layer.borderColor = [UIColor whiteColor].CGColor;
+            
+            
         }else
             [self showTopMessage:@"上传失败"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -270,11 +283,21 @@ static int myTime;
  parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
      [MBProgressHUD hideHUDForView:self.view animated:YES];
      NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:YES];
-     if ([recieve isEqualToString:@""]) {
+     if ([recieve isEqualToString:@"success"]) {
+          [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumber forKey:@"phoneNumber"];
+         UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+         MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
          
+         [self presentViewController:main animated:YES completion:^{
+             [_timer invalidate];
+         }];
+         
+     }else if ([recieve isEqualToString:@"namefail"])
+     {
+         [self showTopMessage:@"用户名已被占用"];
      }else
      {
-         
+         [self showTopMessage:@"注册失败"];
      }
      
  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

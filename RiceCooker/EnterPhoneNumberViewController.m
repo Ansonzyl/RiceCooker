@@ -79,20 +79,20 @@
 //    [self.navigationController pushViewController:viewController animated:YES];
 //    
 //
-    if ([self.identityStr isEqualToString:@"忘记密码？"]) {
-                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
-            viewController.phoneNumber = self.phoneNumberTextField.text;
-            [self.navigationController pushViewController:viewController animated:YES];
-            
-            }else if ([self.identityStr isEqualToString:@"注册"])
-    {
-        
-            RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-            viewController.phoneNumber = self.phoneNumberTextField.text;
-            [self.navigationController pushViewController:viewController animated:YES];
-            
-                
-    }
+//    if ([self.identityStr isEqualToString:@"忘记密码？"]) {
+//                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
+//            viewController.phoneNumber = self.phoneNumberTextField.text;
+//            [self.navigationController pushViewController:viewController animated:YES];
+//            
+//            }else if ([self.identityStr isEqualToString:@"注册"])
+//    {
+//        
+//            RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+//            viewController.phoneNumber = self.phoneNumberTextField.text;
+//            [self.navigationController pushViewController:viewController animated:YES];
+//            
+//                
+//    }
     
 
     

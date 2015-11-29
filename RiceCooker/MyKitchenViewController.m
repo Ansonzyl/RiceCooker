@@ -288,8 +288,6 @@
         }
     }else if ([tableView isEqual:_tableView])
     {
-        
-        
         if(indexPath.section == kRice)
         {
             if (_riceArray.count > indexPath.row)

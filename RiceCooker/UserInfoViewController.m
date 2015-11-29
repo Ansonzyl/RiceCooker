@@ -91,7 +91,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     _iconImage = [UIImage imageWithData:_imageData];
-    NSIndexSet *section = 0;
+    // NSIndexSet *section = 0;
 //    [self.tableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

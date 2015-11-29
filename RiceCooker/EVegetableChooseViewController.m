@@ -84,9 +84,8 @@
           forControlEvents:UIControlEventValueChanged];
     _finishTime = self.device.finishtime;
         
-    
-    NSArray  *array = [[_materialDic allKeys] sortedArrayUsingSelector:@selector(compare:)];
-    _selectMaterial = [array objectAtIndex:0];
+
+    _selectMaterial = [_materialArray1 objectAtIndex:0];
     
     [self addGestureForImageViews];
  
@@ -229,10 +228,14 @@
 //    _cookTypeLabel.text = _cookTypeArray[0];
     [_cookTypePickerView selectRow:[_cookTypeArray indexOfObject:_device.degree] inComponent:0 animated:YES ];
     _weight = _weightArray[_weightArray.count/2];
-    _weightLabel.text = [NSString stringWithFormat:@"%@g", _weight];
+//    _weightLabel.text = [NSString stringWithFormat:@"%@g", _weight];
     [_weightPickerView selectRow:[_weightArray indexOfObject:_weight]inComponent:1 animated:YES];
-    _setTime = [_setTimeArray[0] integerValue];
-//    _materialLabel.text = [[_materialDic objectForKey:_selectMaterial] objectAtIndex:0];
+    _setTime = [_device.settime integerValue];
+    if (!_setTime) {
+        _setTime = [_setTimeArray[0] integerValue];
+    }
+    [_timePicker selectRow:[_setTimeArray indexOfObject:[NSString stringWithFormat:@"%ld", (long)_setTime]] inComponent:1 animated:YES];
+
     [self dateChange];
     switch (_currentTag) {
         case 0:
@@ -451,13 +454,16 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGFloat width = CGRectGetWidth(pickerView.frame)*kRate;
-    CGFloat center = 80*kRate;
+    CGFloat center = 40*kRate;
     if (pickerView == _cookTypePickerView) {
         return width;
     }else if ([pickerView isEqual:_materialPickerView])
     {
-        if (component == 1 || component == 2) {
-            return width/4;
+        if (component == 1 ) {
+            return width/2;
+        }else if(component == 2 )
+        {
+            return width / 2;
         }else
             return center;
         
@@ -577,7 +583,7 @@
 
 - (void)changeDevice
 {
-    _device.module = @"已预约";
+    _device.module = @"预约中";
     _device.state = self.materialLabel.text;
     _device.degree = self.cookTypeLabel.text;
     _device.pnumberweight = _weightLabel.text;

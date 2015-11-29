@@ -584,6 +584,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         [array addObject:[(DM_Commodity *)_cartArray[i] encodedItem]];
     }
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"CartArray"];
+    array = [_userDefaults objectForKey:@"CartArray"];
 
 }
 

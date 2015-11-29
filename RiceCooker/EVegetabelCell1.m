@@ -68,7 +68,7 @@
     
     _degreeImageView = [self setImageViewWithFrame:CGRectMake(221*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle] pathForResource:@"icon-e菜宝上-烹饪方式" ofType:@"png"]];
     
-    CGRect frame = CGRectMake(0, 0, 40*kRate, 18*kRate);
+    CGRect frame = CGRectMake(0, 0, 60*kRate, 18*kRate);
     CGFloat fontSize = 12*kRate;
     
     _pNumberLabel = [self setLabelWithFrame:frame withSize:fontSize withTextAlignment:NSTextAlignmentCenter];
@@ -194,6 +194,9 @@
     self.device.textColor = UIColorFromRGB(0xe9d0ff);
     self.progressView.trackTintColor = UIColorFromRGB(0x363152);
     self.progressView.progressTintColor = UIColorFromRGB(0xe9d0ff);
+//    if (vegetable3.module isEqualToString:<#(nonnull NSString *)#>) {
+//        <#statements#>
+//    }
     [self.progressView setProgress:(vegetable3.settingTime - vegetable3.remianTime)/vegetable3.settingTime];
 
 }

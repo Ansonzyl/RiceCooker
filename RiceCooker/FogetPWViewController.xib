@@ -135,7 +135,7 @@
         </view>
     </objects>
     <resources>
-        <image name="password.png" width="1154" height="172"/>
+        <image name="password.png" width="2" height="136"/>
         <image name="password输入后.png" width="1154" height="172"/>
         <image name="验证码.png" width="659" height="172"/>
         <image name="验证码输入后.png" width="659" height="172"/>

@@ -54,31 +54,40 @@
     NSData *image = [NSData dataWithContentsOfFile:filePath];
     self.backgroundView.image = [UIImage imageWithData:image];
     
-    _workingImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 284*rate, 304*rate)];
-    _workingImage.center =  CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5 + 9);
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"工作动画（%@）", _device.module] ofType:@".png"];
-    NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
-    self.workingImage.image = [UIImage imageWithData:imageData];
+    self.stateLabel = [self setLabelWithFrame:CGRectMake(0, 0, 120, 43) withTextColor:[UIColor whiteColor] withText:_device.module withSize:26*rate];
+    _stateLabel.center = CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5 - 5);
+        [self.view addSubview:_stateLabel];
     
-    [self.view addSubview:_workingImage];
-    if ([_device.device isEqual:@"e菜宝"]) {
-        [self initializeButtons];
-    }else
+    if ([_device.connectstate isEqualToString:@"1"])
     {
-        if ([_device.ericestorage intValue] < 10) {
-            [self topMessageWithString:@"米量不足10%，请及时添加"];
+        _workingImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 284*rate, 304*rate)];
+        _workingImage.center =  CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5 + 9);
+        NSString *imagePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"工作动画（%@）", _device.module] ofType:@".png"];
+        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+        self.workingImage.image = [UIImage imageWithData:imageData];
+        
+        [self.view addSubview:_workingImage];
+
+        if ([_device.device isEqual:@"e菜宝"]) {
+            [self initializeButtons];
+        }else
+        {
+            if ([_device.ericestorage intValue] < 10) {
+                [self topMessageWithString:@"米量不足10%，请及时添加"];
+            }
         }
+        
+        CGRect frame = CGRectMake(0, 0 , 244 * rate, 244 *rate);
+        _progressView = [[DashProgressView alloc] initWithFrame:frame];
+        _progressView.center = CGPointMake( kWidth * 0.5,kHeight * 0.71 * 0.5);
+        [self.view addSubview:_progressView];
+        
+        
+        [self setLabelWithRate];
+        
+        [self buttonWith:_device];
     }
     
-    CGRect frame = CGRectMake(0, 0 , 244 * rate, 244 *rate);
-    _progressView = [[DashProgressView alloc] initWithFrame:frame];
-    _progressView.center = CGPointMake( kWidth * 0.5,kHeight * 0.71 * 0.5);
-    [self.view addSubview:_progressView];
-    
-    
-    [self setLabelWithRate];
-    
-    [self buttonWith:_device];
    
     
 }
@@ -111,12 +120,7 @@
     _riceLabel = [self setLabelWithFrame:frame withTextColor:textColor withText:[NSString stringWithFormat:@"米仓还剩%@％", _device.ericestorage] withSize:12*rate];
     _riceLabel.center = CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5+55*rate);
     
-    self.stateLabel = [self setLabelWithFrame:CGRectMake(0, 0, 120, 43) withTextColor:[UIColor whiteColor] withText:_device.module withSize:26*rate];
-    _stateLabel.center = CGPointMake( kWidth * 0.5  ,kHeight * 0.71 * 0.5 - 5);
-    
-   
 
-    [self.view addSubview:_stateLabel];
     [self.view addSubview:_remainLabel];
     [self.view addSubview:_finishTimeLabel];
     [self.view addSubview:_riceLabel];
@@ -303,6 +307,9 @@
     NSDate *finish = [formatter dateFromString:_device.finishtime];
     NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
     int time = [now timeIntervalSinceDate:finish] / 60;
+    if (time < 0) {
+        time = -time;
+    }
     return time;
 }
 
@@ -362,15 +369,6 @@
 // 冷藏和取消冷藏
 - (void)refrigerateNetwork
 {
-    if ([_device.module isEqualToString:@"冷藏中"]) {
-        _device.module = @"待机中";
-    }else{
-        _device.module = @"冷藏中";
-    }
-    
-    [_delegate changeDevice:_device withIndex:_currntIndex];
-    [self buttonWith:_device];
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"devicename":_device.devicename,
                                  @"uuid":_device.UUID};
@@ -392,13 +390,18 @@
             }else{
                _device.module = @"冷藏中";
             }
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消成功" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:cancelAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-                
-            }];
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消成功" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//            [alert addAction:cancelAction];
+//            
+//            [self presentViewController:alert animated:YES completion:^{
+//                
+//            }];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"取消成功";
+            hud.labelFont = [UIFont systemFontOfSize:11.0f];
+            [hud hide:YES afterDelay:1.0f];
 
             
             [_delegate changeDevice:_device withIndex:_currntIndex];
@@ -406,16 +409,26 @@
             
         }else if ([recive isEqualToString:@"fail"])
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消失败" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:cancelAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-                
-            }];
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"取消失败" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//            [alert addAction:cancelAction];
+//            
+//            [self presentViewController:alert animated:YES completion:^{
+//                
+//            }];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"取消失败";
+            hud.labelFont = [UIFont systemFontOfSize:11.0f];
+            [hud hide:YES afterDelay:1.0f];
 
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"连接不上服务器";
+        hud.labelFont = [UIFont systemFontOfSize:11.0f];
+        [hud hide:YES afterDelay:1.0f];
         
     }];
 }
@@ -449,6 +462,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    NSLog(@"warning");
     // Dispose of any resources that can be recreated.
 }
 

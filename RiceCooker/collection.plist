@@ -5,11 +5,10 @@
 	<key>rice</key>
 	<array>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>78</string>
 			<key>priceKey</key>
 			<string>56.9</string>
 			<key>nameKey</key>
@@ -18,11 +17,10 @@
 			<string>米1</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>45</string>
 			<key>priceKey</key>
 			<string>37.9</string>
 			<key>nameKey</key>
@@ -31,11 +29,10 @@
 			<string>米2</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>99</string>
 			<key>priceKey</key>
 			<string>83.9</string>
 			<key>nameKey</key>
@@ -44,11 +41,10 @@
 			<string>米3</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>75</string>
 			<key>priceKey</key>
 			<string>65.9</string>
 			<key>nameKey</key>
@@ -57,11 +53,10 @@
 			<string>米4</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>55</string>
 			<key>priceKey</key>
 			<string>49.9</string>
 			<key>nameKey</key>
@@ -70,11 +65,10 @@
 			<string>米5</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
-            <key>deletePriceKey</key>
-            <string>¥38</string>
-
+			<key>count</key>
+			<string>0</string>
+			<key>deletePriceKey</key>
+			<string>62</string>
 			<key>priceKey</key>
 			<string>51.9</string>
 			<key>nameKey</key>
@@ -89,7 +83,7 @@
 			<key>count</key>
 			<string>0</string>
 			<key>priceKey</key>
-			<string>29.7</string>
+			<string>42</string>
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>nameKey</key>
@@ -98,8 +92,8 @@
 			<string>菜1</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
+			<key>count</key>
+			<string>0</string>
 			<key>deletePriceKey</key>
 			<string>¥38</string>
 			<key>priceKey</key>
@@ -110,10 +104,10 @@
 			<string>菜2</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
+			<key>count</key>
+			<string>0</string>
 			<key>deletePriceKey</key>
-			<string>¥38</string>
+			<string>23</string>
 			<key>priceKey</key>
 			<string>12.3</string>
 			<key>nameKey</key>
@@ -122,10 +116,10 @@
 			<string>菜3</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
+			<key>count</key>
+			<string>0</string>
 			<key>deletePriceKey</key>
-			<string>¥38</string>
+			<string>31</string>
 			<key>priceKey</key>
 			<string>19.5</string>
 			<key>nameKey</key>
@@ -134,10 +128,10 @@
 			<string>菜4</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
+			<key>count</key>
+			<string>0</string>
 			<key>deletePriceKey</key>
-			<string>¥38</string>
+			<string>70</string>
 			<key>priceKey</key>
 			<string>57.9</string>
 			<key>nameKey</key>
@@ -146,10 +140,10 @@
 			<string>菜5</string>
 		</dict>
 		<dict>
-            <key>count</key>
-            <string>0</string>
+			<key>count</key>
+			<string>0</string>
 			<key>deletePriceKey</key>
-			<string>¥38</string>
+			<string>43</string>
 			<key>priceKey</key>
 			<string>37.9</string>
 			<key>nameKey</key>

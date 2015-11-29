@@ -5,25 +5,97 @@
 	<key>setTime</key>
 	<array>
 		<string>5</string>
+		<string>8</string>
 		<string>10</string>
 		<string>15</string>
 		<string>20</string>
 		<string>25</string>
 		<string>30</string>
-		<string>35</string>
-		<string>40</string>
-		<string>45</string>
 	</array>
 	<key>material</key>
 	<dict>
-		<key>家禽</key>
+		<key>肉类</key>
 		<array>
-			<string>排骨</string>
-			<string>水蒸蛋</string>
+			<string>肉饼蒸蛋</string>
+			<string>排骨玉米汤</string>
+			<string>梅干菜扣肉</string>
+			<string>花生炖猪蹄</string>
+			<string>原笼牛肉</string>
+			<string>牛腩蒸萝卜</string>
+			<string>粉蒸羊肉</string>
+			<string>清蒸鸡肉</string>
+			<string>火腿蒸菜</string>
+			<string>腊肉春笋</string>
+			<string>蒜蓉蒸香肠</string>
+			<string>其他</string>
 		</array>
-		<key>海鲜</key>
+		<key>水产鱼类</key>
 		<array>
-			<string>鱼</string>
+			<string>清蒸鲈鱼</string>
+			<string>微波蒜蓉虾</string>
+			<string>剁椒鱼头</string>
+			<string>清蒸黄鳝</string>
+			<string>清蒸鲫鱼</string>
+			<string>泥鳅滑豆腐</string>
+			<string>清蒸多宝鱼</string>
+			<string>炖鲍鱼</string>
+			<string>剁椒武昌鱼</string>
+			<string>清蒸鱼籽</string>
+			<string>清蒸螃蟹</string>
+			<string>清蒸大黄鱼</string>
+			<string>梭子蟹年糕</string>
+			<string>鲍鱼</string>
+			<string>其他</string>
+		</array>
+		<key>蔬菜</key>
+		<array>
+			<string>青菜</string>
+			<string>白菜</string>
+			<string>娃娃菜</string>
+			<string>芋头</string>
+			<string>土豆</string>
+			<string>冬瓜</string>
+			<string>南瓜</string>
+			<string>银耳</string>
+			<string>其他</string>
+		</array>
+		<key>豆类、豆制品</key>
+		<array>
+			<string>黄豆</string>
+			<string>毛豆</string>
+			<string>绿豆</string>
+			<string>豆腐</string>
+			<string>豆腐干</string>
+			<string>其他</string>
+		</array>
+		<key>五谷杂粮</key>
+		<array>
+			<string>馒头</string>
+			<string>红薯</string>
+			<string>燕麦</string>
+			<string>红豆</string>
+			<string>大麦</string>
+			<string>其他</string>
+		</array>
+		<key>药食</key>
+		<array>
+			<string>燕窝</string>
+			<string>人参</string>
+			<string>田七</string>
+			<string>西洋参</string>
+			<string>穿心莲</string>
+			<string>鱼腥草</string>
+			<string>天麻</string>
+			<string>枸杞子</string>
+			<string>其他</string>
+		</array>
+		<key>蛋、奶</key>
+		<array>
+			<string>水蒸蛋</string>
+			<string>牛奶</string>
+			<string>水蒸鸭蛋</string>
+			<string>蒸鹌鹑蛋</string>
+			<string>其他</string>
 		</array>
 		<key>自定义</key>
 		<array>
@@ -32,11 +104,12 @@
 	</dict>
 	<key>weight</key>
 	<array>
-		<string>100</string>
 		<string>200</string>
+		<string>250</string>
 		<string>300</string>
 		<string>400</string>
 		<string>500</string>
+		<string>600</string>
 	</array>
 	<key>cookType</key>
 	<array>

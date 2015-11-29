@@ -482,10 +482,15 @@
                 }else
                 {
                   
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"设置失败,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-                    [alert addAction:cancelAction];
-                    [self presentViewController:alert animated:YES completion:nil];
+//                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"设置失败,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+//                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+//                    [alert addAction:cancelAction];
+//                    [self presentViewController:alert animated:YES completion:nil];
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.mode = MBProgressHUDModeText;
+                    hud.labelText = @"设置失败\n请重新设置";
+                    hud.labelFont = [UIFont systemFontOfSize:11.0f];
+                    [hud hide:YES afterDelay:1.5f];
 
                 }
 
@@ -497,10 +502,16 @@
 
     }else
     {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"烹饪时间不足,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"烹饪时间不足,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+//        [alert addAction:cancelAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"烹饪时间不足\n请重新设置";
+        hud.labelFont = [UIFont systemFontOfSize:11.0f];
+        [hud hide:YES afterDelay:1.5f];
        
     }
     

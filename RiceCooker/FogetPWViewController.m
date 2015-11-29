@@ -7,7 +7,7 @@
 //
 
 #import "FogetPWViewController.h"
-
+#import "MainViewController.h"
 @interface FogetPWViewController ()<UIAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) NSTimer *timer;
@@ -67,6 +67,11 @@ static int myTime;
 //
 //}
 
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:YES];
+//    [_timer invalidate];
+//}
 
 #pragma mark CAPTCHA
 - (void)changeButtonName
@@ -167,10 +172,25 @@ static int myTime;
                                 };
     [_manager POST:[NSString stringWithFormat:@"http://%@/UpdatePassword", SERVER_URL] parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:YES];
+        if ([recieve isEqualToString:@"success"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumber forKey:@"phoneNumber"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
+            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+            
+            [self presentViewController:main animated:YES completion:^{
+                [_timer invalidate];
+            }];
+            
+        }else{
+            [self showTopMessage:@"重置失败，请重试"];
+            
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self showTopMessage:@"连接不到服务器"];
     }];
     
 }

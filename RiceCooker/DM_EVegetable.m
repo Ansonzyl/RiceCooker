@@ -21,17 +21,15 @@
 
 - (void)setTime:(NSString *)remainTime withSetTime:(NSString *)setTime
 {
-    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMddHH:mm"];
+    NSDate *finish = [formatter dateFromString:_finishtime];
+    NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
    
     if ([_device isEqualToString:@"e饭宝"]) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMddHH:mm"];
-        NSDate *finish = [formatter dateFromString:_finishtime];
-        NSDate *now = [formatter dateFromString:[formatter stringFromDate:[NSDate date]]];
+        
         self.remianTime = [finish timeIntervalSinceDate:now];
-        
-        
-
+      
     }else
     {
         NSInteger time = [self.remaintime doubleValue];
@@ -44,10 +42,9 @@
     }
 
     _settingTime = [setTime integerValue] * 60;
-    if ([self.module isEqualToString:@"待机中"]) {
+    if (![self.module isEqualToString:@"烹饪中"]) {
         _remianTime = _settingTime;
     }
-
     
 
     NSString *str = [_finishtime substringFromIndex:4];
