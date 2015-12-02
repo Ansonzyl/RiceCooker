@@ -316,13 +316,13 @@
                 cell = [EVegetabelCell1 eVegetableCell];
             }
             cell.vegetable = vegetable;
-            if ([vegetable.devicename isEqualToString:@"e菜宝上"]) {
-                cell.vegetable = vegetable;
-            }else if([vegetable.devicename isEqualToString:@"e菜宝中"])
-            {
-                cell.vegetable2 = vegetable;
-            }else
-                cell.vegetable3 = vegetable;
+//            if ([vegetable.devicename isEqualToString:@"e菜宝上"]) {
+//                cell.vegetable = vegetable;
+//            }else if([vegetable.devicename isEqualToString:@"e菜宝中"])
+//            {
+//                cell.vegetable2 = vegetable;
+//            }else
+//                cell.vegetable3 = vegetable;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -406,7 +406,9 @@
             viewController.currentNumber = indexPath.row + _riceArray.count;
         }
         [viewController setHidesBottomBarWhenPushed:YES];
-        if([((DM_EVegetable *)_devicesArray [viewController.currentNumber]).connectstate intValue] == 1)
+        
+        
+        if(([((DM_EVegetable *)_devicesArray [viewController.currentNumber]).connectstate intValue] == 1))
         {
             [self.navigationController pushViewController:viewController animated:YES];
         }

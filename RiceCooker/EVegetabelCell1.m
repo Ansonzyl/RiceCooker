@@ -11,6 +11,10 @@
 #define kWidth [UIScreen mainScreen].bounds.size.width
 
 @implementation EVegetabelCell1
+{
+    UIButton *_retryButton;
+    UILabel *_percentLabel;
+}
 
 + (NSString *)cellID
 {
@@ -113,6 +117,20 @@
     self.progressView.layer.cornerRadius = 6;
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f * kRate);
     [self addSubview:_progressView];
+    _percentLabel = [self setLabelWithFrame:CGRectMake(307*kRate, 86*kRate, 70*kRate, 21*kRate) withSize:fontSize withTextAlignment:NSTextAlignmentRight];
+    [self.contentView addSubview:_percentLabel];
+    _retryButton = [[UIButton alloc] initWithFrame:CGRectMake(292*kRate, 20*kRate, 92*kRate, 42*kRate)];
+    [_retryButton setTitle:@"连接" forState:UIControlStateNormal];
+    
+    
+    [_retryButton setTitleColor:UIColorFromRGB(0xD4FFFF) forState:UIControlStateNormal];
+    [_retryButton.layer setCornerRadius:3.0f];
+    [_retryButton.layer setBorderWidth:1.0];
+    [_retryButton.layer setBorderColor:UIColorFromRGB(0xD4FFFF).CGColor];
+    _retryButton.titleLabel.font = [UIFont systemFontOfSize:16*kRate];
+    [self.contentView addSubview:_retryButton];
+    _retryButton.hidden = YES;
+
     
 }
 
@@ -126,95 +144,85 @@
 
 - (void)setVegetable:(DM_EVegetable *)vegetable
 {
+    if ([vegetable.devicename isEqualToString:@"e菜宝中"]) {
+        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x4b5a8b) withIcon:@"icon-e菜宝中（188）.png" withSetTimeImage:@"icon-e菜宝中-烹饪时长.png" withWeightImage:@"icon-e菜宝中-重量.png" withMaterialImge:@"icon-e菜宝中-食材.png" withDegreeImage:@"icon-e菜宝中-烹饪方式.png"];
+        [self setLableColorWithColor:UIColorFromRGB(0xd1d0ff)];
+        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xd1d0ff)];
+    }else if ([vegetable.devicename isEqualToString:@"e菜宝下"])
+    {
+        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x544d7f) withIcon:@"icon-e菜宝下（188）.png" withSetTimeImage:@"icon-e菜宝下-烹饪时长.png" withWeightImage:@"icon-e菜宝下-重量.png" withMaterialImge:@"icon-e菜宝下-食材.png" withDegreeImage:@"icon-e菜宝下-烹饪方式.png"];
+        [self setLableColorWithColor:UIColorFromRGB(0xe9d0ff)];
+        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xe9d0ff)];
+        
+    }
     _vegetable = vegetable;
     self.device.text = vegetable.devicename;
-    _stateLabel.text = vegetable.state;
-    self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable.pnumberweight];
-    self.moduleLable.text = vegetable.module;
-    self.degreeLabel.text = vegetable.degree;
-    self.settimeLabel.text = vegetable.settime;
+    if ([vegetable.connectstate isEqualToString:@"1"] || ![vegetable.module isEqualToString:@"未连接"]) {
+        _stateLabel.text = vegetable.state;
+        self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable.pnumberweight];
+        self.degreeLabel.text = vegetable.degree;
+        self.settimeLabel.text = vegetable.settime;
+        self.finishTime.text = vegetable.appointTime;
+        double percent = (vegetable.settingTime - vegetable.remianTime)/vegetable.settingTime;
+        _percentLabel.text = [NSString stringWithFormat:@"%d％", (int)(percent*100)];
+        [self.progressView setProgress:percent];
+    }else
+    {
+        _pNumberLabel.hidden = YES;
+        _stateLabel.hidden = YES;
+        _degreeLabel.hidden = YES;
+        _settimeLabel.hidden = YES;
+        _weightImageView.hidden = YES;
+        _degreeImageView.hidden = YES;
+        _materialImageView.hidden = YES;
+        _setTimeImageView.hidden = YES;
+        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝未连接（188）" ofType:@"png"]];
+        [self.progressView setProgress:0];
+        _retryButton.hidden = NO;
+    }
+
     
-    self.finishTime.text = vegetable.appointTime;
-    [self.progressView setProgress:(vegetable.settingTime - vegetable.remianTime)/vegetable.settingTime];
+    self.moduleLable.text = vegetable.module;
 }
 
 
-- (void)setVegetable2:(DM_EVegetable *)vegetable2
+
+
+- (void)setProgressViewWithTrackTinColor:(UIColor *)trackTinColor withProgressTintColor:(UIColor *)tintColor
 {
-    _vegetable2 = vegetable2;
-    self.device.text = vegetable2.devicename;
-    self.backgroundColor = UIColorFromRGB(0x4b5a8b);
-    self.iconImage.image = [UIImage imageNamed:@"icon-e菜宝中（188）.png"];
-    self.setTimeImageView.image = [UIImage imageNamed:@"icon-e菜宝中-烹饪时长.png"];
-    self.weightImageView.image = [UIImage imageNamed:@"icon-e菜宝中-重量.png"];
-    self.materialImageView.image = [UIImage imageNamed:@"icon-e菜宝中-食材.png"];
-    self.degreeImageView.image = [UIImage imageNamed:@"icon-e菜宝中-烹饪方式.png"];
-    _stateLabel.text = vegetable2.state;
-    self.stateLabel.textColor = UIColorFromRGB(0xd1f0ff);
-    self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable2.pnumberweight];
-    self.moduleLable.text = vegetable2.module;
-    self.degreeLabel.text = vegetable2.degree;
-    self.settimeLabel.text = vegetable2.settime;
-    self.finishTime.text = vegetable2.appointTime;
-    self.stateLabel.textColor = UIColorFromRGB(0xd1d0ff);
-    self.pNumberLabel.textColor = UIColorFromRGB(0xd1d0ff);
-    self.moduleLable.textColor = UIColorFromRGB(0xd1d0ff);
-    self.degreeLabel.textColor = UIColorFromRGB(0xd1d0ff);
-    self.settimeLabel.textColor = UIColorFromRGB(0xd1d0ff);
-    self.finishTime.textColor = UIColorFromRGB(0xd1d0ff);
-    self.device.textColor = UIColorFromRGB(0xd1d0ff);
-    self.progressView.trackTintColor = UIColorFromRGB(0x363152);
-    self.progressView.progressTintColor = UIColorFromRGB(0xd1d0ff);
-    [self.progressView setProgress:(vegetable2.settingTime - vegetable2.remianTime)/vegetable2.settingTime];
+    _progressView.trackTintColor = trackTinColor;
+    _progressView.progressTintColor = tintColor;
 }
 
-- (void)setVegetable3:(DM_EVegetable *)vegetable3
+- (void)setLableColorWithColor:(UIColor *)color
 {
-    _vegetable3 = vegetable3;
-    self.device.text = vegetable3.devicename;
-    self.backgroundColor = UIColorFromRGB(0x544d7f);
-    self.iconImage.image = [UIImage imageNamed:@"icon-e菜宝下（188）.png"];
-    self.setTimeImageView.image = [UIImage imageNamed:@"icon-e菜宝下-烹饪时长.png"];
-    self.weightImageView.image = [UIImage imageNamed:@"icon-e菜宝下-重量.png"];
-    self.materialImageView.image = [UIImage imageNamed:@"icon-e菜宝下-食材.png"];
-    self.degreeImageView.image = [UIImage imageNamed:@"icon-e菜宝下-烹饪方式.png"];
-    _stateLabel.text = vegetable3.state;
-    self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable3.pnumberweight];
-    self.moduleLable.text = vegetable3.module;
-    self.degreeLabel.text = vegetable3.degree;
-    self.settimeLabel.text = vegetable3.settime;
-    self.finishTime.text = vegetable3.appointTime;
-    self.stateLabel.textColor = UIColorFromRGB(0xe9d0ff);
-    self.stateLabel.textColor = UIColorFromRGB(0xe9d0ff);
-    self.pNumberLabel.textColor = UIColorFromRGB(0xe9d0ff);
-    self.moduleLable.textColor = UIColorFromRGB(0xe9d0ff);
-    self.degreeLabel.textColor = UIColorFromRGB(0xe9d0ff);
-    self.settimeLabel.textColor = UIColorFromRGB(0xde9d0ff);
-    self.finishTime.textColor = UIColorFromRGB(0xe9d0ff);
-    self.device.textColor = UIColorFromRGB(0xe9d0ff);
-    self.progressView.trackTintColor = UIColorFromRGB(0x363152);
-    self.progressView.progressTintColor = UIColorFromRGB(0xe9d0ff);
-//    if (vegetable3.module isEqualToString:<#(nonnull NSString *)#>) {
-//        <#statements#>
-//    }
-    [self.progressView setProgress:(vegetable3.settingTime - vegetable3.remianTime)/vegetable3.settingTime];
+    self.stateLabel.textColor = color;
+    self.stateLabel.textColor = color;
+    self.pNumberLabel.textColor = color;
+    self.moduleLable.textColor = color;
+    self.degreeLabel.textColor = color;
+    self.settimeLabel.textColor = color;
+    self.finishTime.textColor = color;
+    self.device.textColor = color;
+    _percentLabel.textColor = color;
+    [_retryButton setTitleColor:color forState:UIControlStateNormal];
+}
+
+
+- (void)setBackgroundColorWithUIcolor:(UIColor *)backgroundColor withIcon:(NSString *)iconImage withSetTimeImage:(NSString *)setTimeImage withWeightImage:(NSString *)weightImage withMaterialImge:(NSString *)materialImage withDegreeImage:(NSString *)degreeImage
+{
+
+    self.backgroundColor = backgroundColor;
+    self.iconImage.image = [UIImage imageNamed:iconImage];
+    self.setTimeImageView.image = [UIImage imageNamed:setTimeImage];
+    self.weightImageView.image = [UIImage imageNamed:weightImage];
+    self.materialImageView.image = [UIImage imageNamed:materialImage];
+    self.degreeImageView.image = [UIImage imageNamed:degreeImage];
 
 }
 
 
-//- (void)setImageWithPath:(NSString *)imagePath
-//{
-//    imageView.image = [UIImage imageWithContentsOfFile:imagePath];
-//}
 
-//- (NSString *)imagePathWithDeviceName:(NSString *)devicename with
-//
-//- (void)setCellWithDeviceName:(NSString *)deviceName BackGroundColor:(UIColor *)backGroundColor withTrackTinColor:(UIColor *)trackTinColor withProgressTinColor:(UIColor *)progressTinColor
-//{
-//    [[NSBundle mainBundle]pathForResource:@"icon-e菜宝上-烹饪时长" ofType:@"png"]
-//    self.iconImage.image = [UIImage imageWithContentsOfFile:<#(NSString *)#>]
-//    self.backgroundColor = UIColorFromRGB(0x544d7f);
-//}
 
 
 

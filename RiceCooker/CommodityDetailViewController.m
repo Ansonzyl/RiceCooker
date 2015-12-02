@@ -318,7 +318,7 @@
             }
             NSString *name ;
             if (indexPath.row == 0) {
-                name = @"大图1";
+                name = _commodity.imageKey;
             }else if (indexPath.row == 4)
                 name = @"备菜图";
             else
@@ -345,7 +345,7 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                return 394*kRate;
+                return 416*kRate;
                 break;
             case 1:
                 return 60*kRate;

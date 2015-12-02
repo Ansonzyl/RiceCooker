@@ -333,7 +333,7 @@
 #pragma mark 
 - (void)setImageAndLabelWithDevice:(DM_EVegetable *)device
 {
-    _titleName = device.device;
+    _titleName = device.devicename;
     self.title = _titleName;
     self.startBtn.backgroundColor = UIColorFromRGB(0x40C8C4);
     if ([device.module isEqualToString:@"待机中"] || [device.module isEqualToString:@"冷藏中"]) {

@@ -247,6 +247,7 @@
     
     if ([device.module isEqualToString:@"保温中"]) {
         if ([_device.device isEqualToString:@"e菜宝"]) {
+            self.remainLabel.hidden = YES;
             self.refrigerationBtn.hidden = NO;
             self.cancelreFrigerateLabel.hidden = NO;
             self.cancelreFrigerateLabel.text = @"启动冷藏";

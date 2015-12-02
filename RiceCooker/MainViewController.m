@@ -19,8 +19,7 @@
        self.tabBar.barTintColor = UIColorFromRGB(0x40c8c4);
     self.tabBar.tintColor = UIColorFromRGB(0xbbf5f4);
     
-//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0xbbf5f4),NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorFromRGB(0xbbf5f4),NSFontAttributeName:[UIFont fontWithName:@"Marion-Italic" size:11.0]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorFromRGB(0xbbf5f4),NSFontAttributeName:[UIFont fontWithName:@"Arial" size:10.0]} forState:UIControlStateNormal];
     
     
     _items = self.tabBar.items;

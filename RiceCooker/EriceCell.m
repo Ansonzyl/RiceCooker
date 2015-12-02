@@ -11,7 +11,9 @@
 #define kWidth [UIScreen mainScreen].bounds.size.width
 
 @implementation EriceCell
-
+{
+    UILabel *_percentLabel;
+}
 
 +(NSString *)cellID
 {
@@ -77,6 +79,11 @@
     _retryButton.titleLabel.font = [UIFont systemFontOfSize:16*kRate];
     [self.contentView addSubview:_retryButton];
     _retryButton.hidden = YES;
+    
+    _percentLabel = [self setLabelWithFrame:CGRectMake(307*kRate, 86*kRate, 70*kRate, 21*kRate) withText:nil withSize:fontSize];
+    _percentLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_percentLabel];
+
 
 }
 
@@ -153,27 +160,36 @@
 - (void)setDevice:(DM_EVegetable *)device
 {
     _device = device;
-    if ([device.connectstate isEqualToString:@"1"]) {
+    if ([device.connectstate isEqualToString:@"1"] || ![device.module isEqualToString:@"未连接"]) {
         self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
         self.stateLabel.text = device.state;
         self.degreeLabel.text = device.degree;
+        if ([device.module isEqualToString:@"预约中"]) {
+            self.finishTime.text = [NSString stringWithFormat:@"预约至%@", device.appointTime];
+        }else
         self.finishTime.text =  device.appointTime;
-        [self.progressView setProgress:(device.settingTime -device.remianTime)/device.settingTime];
+        double percent = (device.settingTime -device.remianTime)/device.settingTime;
+        _percentLabel.text = [NSString stringWithFormat:@"%d％", (int)(percent*100)];
+        [self.progressView setProgress:percent];
+
 
     }else
     {
         _pNumberLabel.hidden = YES;
         _stateLabel.hidden = YES;
         _degreeLabel.hidden = YES;
-        
+        _percentLabel.hidden = YES;
+
         _pNumberImage.hidden = YES;
         _stateImage.hidden = YES;
         _degreeImage.hidden = YES;
+//        self.finishTime.text = @"连接失败";
         _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝未连接（188）" ofType:@"png"]];
         [self.progressView setProgress:0];
         _retryButton.hidden = NO;
         
     }
+
     self.moduleLable.text = device.module;
 }
 

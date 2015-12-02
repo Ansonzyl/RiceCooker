@@ -68,22 +68,22 @@
         _fireArray = [_dic objectForKey:@"fire"];
         _cookModeArray = [_dic objectForKey:@"cookMode"];
     
-//    dispatch_async(queue, ^{
+
         _dateFormatter = [[NSDateFormatter alloc] init];
         
-//        NSDate *currentTime = [NSDate date];
+
    
-        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:31*60]];
+        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:46*60]];
     
 
-//        NSDate *date = [currentTime initWithTimeIntervalSinceNow:24*60*60];
+
     
         [_datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60]];
         [_datePicker addTarget:self
                         action:@selector(dateChange)
               forControlEvents:UIControlEventValueChanged];
         [_dateFormatter setDateFormat:@"MMddHH:mm"];
-//    });
+
     
        
         _pNumberStr = _device.pnumberweight;
@@ -217,7 +217,7 @@
 - (void) initializeTheImageViewAndPickerView
 {
     [self dateChange];
-    [_pNumberPickerView selectRow:[_pNumberArray indexOfObject:[_device.pnumberweight substringToIndex:1]] inComponent:1 animated:YES];
+    [_pNumberPickerView selectRow:[_pNumberArray indexOfObject:[_device.pnumberweight substringToIndex:1]] inComponent:0 animated:YES];
     _cookModeLabel.text = _cookModeArray[0];
     switch (_currentTag) {
         case 0:
@@ -306,7 +306,7 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     if (pickerView == _pNumberPickerView) {
-        return 3;
+        return 2;
     }else
     return 1;
 }
@@ -316,7 +316,7 @@
     
 
     if ([pickerView isEqual:_pNumberPickerView]) {
-        if (component == 2) {
+        if (component == 1) {
             return 1;
         }else
         return _pNumberArray.count;
@@ -340,10 +340,10 @@
     
     
     if ([pickerView isEqual:_pNumberPickerView]) {
-        if (component == 1) {
+        if (component == 0) {
             return [_pNumberArray objectAtIndex:row];
         }
-        else if (component == 2)
+        else if (component == 1)
             return @"人份";
         else
             return nil;
@@ -393,8 +393,8 @@
     retval.textColor = UIColorFromRGB(0x636363);
     if (pickerView == _pNumberPickerView)
     {
-        if (component == 1) {
-            retval.textAlignment = NSTextAlignmentCenter;
+        if (component == 0) {
+            retval.textAlignment = NSTextAlignmentRight;
             retval.font = [UIFont systemFontOfSize:26*kRate];
         }else
         {
@@ -423,10 +423,11 @@
     CGFloat width = CGRectGetHeight(pickerView.frame);
     CGFloat center = 50;
     if (pickerView == _pNumberPickerView) {
-        if (component == 1) {
-            return center;
+        if (component == 0) {
+            return width/2 + 10;
         }else
-            return (width - center)/2;
+            return width/2 - 10;
+        
     }else
         return width;
 }
@@ -502,10 +503,6 @@
 
     }else
     {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"烹饪时间不足,请重新设置" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:cancelAction];
-//        [self presentViewController:alert animated:YES completion:nil];
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -523,7 +520,7 @@
 - (BOOL)isFinishTimeGreaterThanSetTime
 {
     
-    if ([self timeOfInsulation] < 30*60) {
+    if ([self timeOfInsulation] < 45*60) {
         return NO;
     }else
         return YES;
@@ -541,12 +538,12 @@
     _device.pnumberweight = _pNumberStr;
     _device.finishtime = [NSMutableString stringWithString: self.finishTime];
     _device.appointTime = self.finishTimeLabel.text;
-    if ( 30 * 60 <[self timeOfInsulation] && [self timeOfInsulation] < 31 * 60) {
+    if ( 45 * 60 <[self timeOfInsulation] && [self timeOfInsulation] < 46 * 60) {
         _device.module = @"烹饪中";
     }
     
     _device.remianTime = [self timeOfInsulation];
-    _device.settingTime = 30 * 60;
+    _device.settingTime = 45 * 60;
     
     
 }

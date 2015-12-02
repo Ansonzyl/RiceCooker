@@ -69,10 +69,8 @@
 
     self.backImage.image = [UIImage imageWithData:imageData];
 
-
     
-//    NSDate *now = [NSDate date];
-    [_datePicker setMinimumDate:[NSDate date]];
+    [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:_device.settingTime + 60]];
 //    NSDate *date = [[NSDate date] initWithTimeIntervalSinceNow:32*60*60];
 //    [_datePicker setMaximumDate:[[NSDate date] initWithTimeIntervalSinceNow:32*60*60]];
 
@@ -227,9 +225,9 @@
 {
 //    _cookTypeLabel.text = _cookTypeArray[0];
     [_cookTypePickerView selectRow:[_cookTypeArray indexOfObject:_device.degree] inComponent:0 animated:YES ];
-    _weight = _weightArray[_weightArray.count/2];
+    _weight = [_weightLabel.text substringToIndex:3];
 //    _weightLabel.text = [NSString stringWithFormat:@"%@g", _weight];
-    [_weightPickerView selectRow:[_weightArray indexOfObject:_weight]inComponent:1 animated:YES];
+    [_weightPickerView selectRow:[_weightArray indexOfObject:_weight]inComponent:0 animated:YES];
     _setTime = [_device.settime integerValue];
     if (!_setTime) {
         _setTime = [_setTimeArray[0] integerValue];
@@ -310,7 +308,7 @@
     {
         return 4;
     }else
-    return 3;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -322,13 +320,13 @@
         
     }else if ([pickerView isEqual:_timePicker])
     {
-        if (component == 2) {
+        if (component == 1) {
             return 1;
         }else
             return _setTimeArray.count;
     }else if ([pickerView isEqual:_weightPickerView])
     {
-        if (component == 2) {
+        if (component == 1) {
             return 1;
         }else
             return _weightArray.count;
@@ -351,9 +349,7 @@
         return _cookTypeArray[row];
         
     }else if (pickerView == _timePicker || pickerView == _weightPickerView) {
-        if (component == 0) {
-            return nil;
-        }else if (component == 1)
+        if (component == 0)
         {
             if ([pickerView isEqual:_timePicker])
             {
@@ -388,7 +384,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-          if ([pickerView isEqual:_cookTypePickerView]) {
+        if ([pickerView isEqual:_cookTypePickerView]) {
             _cookTypeLabel.text = [_cookTypeArray objectAtIndex:row];
         }else if ([pickerView isEqual:_weightPickerView])
         {
@@ -412,6 +408,9 @@
         }else
         {
             _setTime = [_setTimeArray[row] integerValue];
+            [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:(_setTime + 1)*60]];
+            [_datePicker setDate:[NSDate dateWithTimeIntervalSinceNow:(_setTime + 1)*60]animated:YES];
+            
         }
 
     
@@ -432,7 +431,7 @@
     retval.textColor = UIColorFromRGB(0x636363);
     if ([pickerView isEqual:_weightPickerView] || [pickerView isEqual:_timePicker])
     {
-        if (component == 1) {
+        if (component == 0) {
             retval.textAlignment = NSTextAlignmentRight;
             retval.font = [UIFont systemFontOfSize:26 * kRate];
         }else
@@ -454,66 +453,42 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGFloat width = CGRectGetWidth(pickerView.frame)*kRate;
-    CGFloat center = 40*kRate;
-    if (pickerView == _cookTypePickerView) {
+//    CGFloat center = 40*kRate;
+    if (pickerView == _cookTypePickerView) {					
         return width;
     }else if ([pickerView isEqual:_materialPickerView])
     {
         if (component == 1 ) {
-            return width/2;
+            return width*9/20;
         }else if(component == 2 )
         {
-            return width / 2;
+            return width*9 / 20;
         }else
-            return center;
+            return width/10;
         
     }
     else if ([pickerView isEqual:_weightPickerView])
-//    {
-//        if (component == 1 || component == 2) {
-//            return center;
-//        }else
-//            return width/3*kRate;
-////        return width/3 * kRate;
-//    }
-//    else if ([pickerView isEqual:_weightPickerView])
+
     {
         if (component == 0) {
-            return 50*kRate;
+            return width/2 + 20;
         }else
-            return 100*kRate;
+            return width/2 - 20;
     }
     else
     {
-        if (component == 1) {
+        if (component == 0) {
             return 50*kRate;
-        }else if (component == 0)
-        {
-            return 10*kRate;
+//        }else if (component == 0)
+//        {
+//            return 10*kRate;
         }else
             return 50*kRate;
     }
 }
 
 
-//- (NSArray *)contentOfPickerView:(UIPickerView *)pickerView
-//{
-//    NSArray *array;
-//    if ([pickerView isEqual:_cookTypePickerView]) {
-//        array = [_dic objectForKey:@"cookType"];
-//    }else if ([pickerView isEqual:_timePicker])
-//    {
-//        array = [_dic objectForKey:@"setTime"];
-//    }else if ([pickerView isEqual:_weightPickerView])
-//    {
-//        array = [_dic objectForKey:@"weight"];
-//    }else if ([pickerView isEqual:_materialPickerView])
-//    {
-//        array = [[_materialDic allKeys] sortedArrayUsingSelector:@selector(compare:)];
-//    }
-//    return array;
-//    
-//}
+
 
 - (IBAction)startCooking:(UIButton *)sender {
     

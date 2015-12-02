@@ -23,13 +23,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "app icon120.png",
+      "filename" : "120 app icon.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "app icon180.png",
+      "filename" : "180 app icon.png",
       "scale" : "3x"
     }
   ],

@@ -84,6 +84,7 @@
     _passwordImageView.center = [self makeCenterWithPoint:_phoneNumberImageView.center wihtHeight:71];
     
     UIButton *loginBton = [_ui setButtonWithFrame:frame   withText:@"登 录" withFont:19];
+    
     [loginBton addTarget:self action:@selector(loginBtn:) forControlEvents:UIControlEventTouchUpInside];
     loginBton.center = [self makeCenterWithPoint:_passwordImageView.center wihtHeight:71];
     loginBton.layer.cornerRadius = 4;
@@ -113,7 +114,13 @@
     _userDefaults  = [NSUserDefaults standardUserDefaults];
     self.passwordTextField.text = [_userDefaults objectForKey:@"password"];
     self.phoneNumberTextField.text = [_userDefaults objectForKey:@"phoneNumber"];
-    [self loginBtn:loginBton];
+    
+    NSString *first = [_userDefaults objectForKey:@"firstLogin"];
+    if (first) {
+        [self loginBtn:loginBton];
+    }else
+        [_userDefaults setObject:@"notFirst" forKey:@"firstLogin"];
+    
     
     
 }
@@ -183,9 +190,8 @@
 //    [task resume];
 
 
+    NSString *first = [_userDefaults objectForKey:@"firstLogin"];
     
-    
-//    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -195,9 +201,8 @@
         
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([recieve isEqualToString:@"fail"]) {
-
-            [self showTopMessage:@"用户名或密码错误"];
-
+            
+                [self showTopMessage:@"用户名或密码错误"];
             
         }else if([recieve isEqualToString:@"success"])
         {
@@ -216,8 +221,6 @@
             [self showTopMessage:@"连接不到服务器"];
 
         }];
-
-    
 
 }
 

@@ -11,6 +11,10 @@
 	<key>fire</key>
 	<array>
 		<string>煮饭</string>
+		<string>煲仔饭</string>
+		<string>锅巴饭</string>
+		<string>煲汤</string>
+		<string>蛋糕</string>
 	</array>
 	<key>pNumber</key>
 	<array>
