@@ -26,7 +26,7 @@
 
 
 
-@interface MyKitchenViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MyKitchenViewController ()<UITableViewDelegate, UITableViewDataSource, ConnectDelegate>
 {
     CGFloat popoverWidth;
 }
@@ -204,12 +204,8 @@
                     {
                         [_vegetableArray addObject:_recieveArray[i]];
                     }
-                   
-
                 
             }
-            
-            
             if (_recieveArray.count) {
                 [self.tableView reloadData];
             }
@@ -298,8 +294,7 @@
                 if (cell == nil) {
                     cell = [EriceCell ericeCell];
                 }
-
-                
+                cell.delegate = self;
                 cell.device = device;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
@@ -427,8 +422,18 @@
 }
 
 
-
-
+#pragma mark ConnectDelegate
+- (void)deviceTryToConnect:(NSString *)title
+{
+    if ([title isEqualToString:@"连接"]) {
+        
+        [UIView animateWithDuration:2.0 animations:^{
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
 
 
 - (IBAction)addDevice:(id)sender {

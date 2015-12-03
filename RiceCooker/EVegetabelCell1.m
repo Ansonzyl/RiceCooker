@@ -14,6 +14,7 @@
 {
     UIButton *_retryButton;
     UILabel *_percentLabel;
+    NSTimer *_myTimer;
 }
 
 + (NSString *)cellID
@@ -130,9 +131,33 @@
     _retryButton.titleLabel.font = [UIFont systemFontOfSize:16*kRate];
     [self.contentView addSubview:_retryButton];
     _retryButton.hidden = YES;
-
+    
+    [_retryButton addTarget:self action:@selector(clickReTry:) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
+- (void)clickReTry:(UIButton *)sender
+{
+    
+    [_myTimer invalidate];
+    _myTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+}
+
+- (void)countDown
+{
+    if (_progressView.progress < 1) {
+        _progressView.progress += 0.01;
+    }else
+    {
+        [_myTimer invalidate];
+        _progressView.progress = 0;
+        [_retryButton setTitle:@"重试" forState:UIControlStateNormal];
+        _finishTime.hidden = NO;
+        self.finishTime.text = @"连接失败";
+    }
+}
+
+
 
 - (CGPoint)makeCenterWithPoint:(CGPoint)center
 {
@@ -144,20 +169,21 @@
 
 - (void)setVegetable:(DM_EVegetable *)vegetable
 {
-    if ([vegetable.devicename isEqualToString:@"e菜宝中"]) {
-        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x4b5a8b) withIcon:@"icon-e菜宝中（188）.png" withSetTimeImage:@"icon-e菜宝中-烹饪时长.png" withWeightImage:@"icon-e菜宝中-重量.png" withMaterialImge:@"icon-e菜宝中-食材.png" withDegreeImage:@"icon-e菜宝中-烹饪方式.png"];
-        [self setLableColorWithColor:UIColorFromRGB(0xd1d0ff)];
-        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xd1d0ff)];
-    }else if ([vegetable.devicename isEqualToString:@"e菜宝下"])
-    {
-        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x544d7f) withIcon:@"icon-e菜宝下（188）.png" withSetTimeImage:@"icon-e菜宝下-烹饪时长.png" withWeightImage:@"icon-e菜宝下-重量.png" withMaterialImge:@"icon-e菜宝下-食材.png" withDegreeImage:@"icon-e菜宝下-烹饪方式.png"];
-        [self setLableColorWithColor:UIColorFromRGB(0xe9d0ff)];
-        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xe9d0ff)];
-        
-    }
+
     _vegetable = vegetable;
     self.device.text = vegetable.devicename;
+    [self deviceIcon:vegetable];
     if ([vegetable.connectstate isEqualToString:@"1"] || ![vegetable.module isEqualToString:@"未连接"]) {
+        
+        _pNumberLabel.hidden = NO;
+        _stateLabel.hidden = NO;
+        _degreeLabel.hidden = NO;
+        _settimeLabel.hidden = NO;
+        _weightImageView.hidden = NO;
+        _degreeImageView.hidden = NO;
+        _materialImageView.hidden = NO;
+        _setTimeImageView.hidden = NO;
+        _retryButton.hidden = YES;
         _stateLabel.text = vegetable.state;
         self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable.pnumberweight];
         self.degreeLabel.text = vegetable.degree;
@@ -168,6 +194,7 @@
         [self.progressView setProgress:percent];
     }else
     {
+        _finishTime.hidden = YES;
         _pNumberLabel.hidden = YES;
         _stateLabel.hidden = YES;
         _degreeLabel.hidden = YES;
@@ -176,7 +203,17 @@
         _degreeImageView.hidden = YES;
         _materialImageView.hidden = YES;
         _setTimeImageView.hidden = YES;
-        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝未连接（188）" ofType:@"png"]];
+        NSString *iconName;
+        if ([vegetable.devicename isEqualToString:@"e菜宝上"]) {
+            iconName = @"icon-e菜宝上未连接（188）";
+        }else if ([vegetable.devicename isEqualToString:@"e菜宝中"])
+        {
+            iconName = @"icon-e菜宝中未连接（188）";
+        }else
+        {
+            iconName = @"icon-e菜宝下未连接（188）";
+        }
+        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iconName ofType:@"png"]];
         [self.progressView setProgress:0];
         _retryButton.hidden = NO;
     }
@@ -185,7 +222,24 @@
     self.moduleLable.text = vegetable.module;
 }
 
-
+- (void)deviceIcon:(DM_EVegetable *)vegetable
+{
+    if ([vegetable.devicename isEqualToString:@"e菜宝中"]) {
+        
+        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x4b5a8b) withIcon:@"icon-e菜宝中（188）.png" withSetTimeImage:@"icon-e菜宝中-烹饪时长.png" withWeightImage:@"icon-e菜宝中-重量.png" withMaterialImge:@"icon-e菜宝中-食材.png" withDegreeImage:@"icon-e菜宝中-烹饪方式.png"];
+        [self setLableColorWithColor:UIColorFromRGB(0xd1d0ff)];
+        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xd1d0ff)];
+    }else if ([vegetable.devicename isEqualToString:@"e菜宝下"])
+    {
+        [self setBackgroundColorWithUIcolor:UIColorFromRGB(0x544d7f) withIcon:@"icon-e菜宝下（188）.png" withSetTimeImage:@"icon-e菜宝下-烹饪时长.png" withWeightImage:@"icon-e菜宝下-重量.png" withMaterialImge:@"icon-e菜宝下-食材.png" withDegreeImage:@"icon-e菜宝下-烹饪方式.png"];
+        [self setLableColorWithColor:UIColorFromRGB(0xe9d0ff)];
+        [self setProgressViewWithTrackTinColor:UIColorFromRGB(0x363152) withProgressTintColor:UIColorFromRGB(0xe9d0ff)];
+        
+    }else if ([vegetable.devicename isEqualToString:@"e菜宝上"])
+    {
+        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e菜宝上（188）" ofType:@"png"]];
+    }
+}
 
 
 - (void)setProgressViewWithTrackTinColor:(UIColor *)trackTinColor withProgressTintColor:(UIColor *)tintColor
@@ -206,6 +260,8 @@
     self.device.textColor = color;
     _percentLabel.textColor = color;
     [_retryButton setTitleColor:color forState:UIControlStateNormal];
+    [_retryButton.layer setBorderColor:color.CGColor];
+
 }
 
 

@@ -12,7 +12,17 @@
 
 @implementation EriceCell
 {
+    UILabel *_finishTime;
+    UILabel *_pNumberLabel;
+    UILabel *_degreeLabel;
+    UILabel *_stateLabel;
+    UILabel *_deviceLabel;
     UILabel *_percentLabel;
+    UIImageView *_stateImage;
+    UIImageView *_degreeImage;
+    UIImageView *_pNumberImage;
+    
+    NSTimer *_myTimer;
 }
 
 +(NSString *)cellID
@@ -57,10 +67,10 @@
     _moduleLable = [self setLabelWithFrame:CGRectMake(110*kRate, 57*kRate, 70*kRate, 21*kRate) withText:nil withSize:15*kRate];
     _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 70*kRate, 21*kRate) withText:nil withSize:fontSize];
 
-    [self addSubview:_iconImage];
-    [self addSubview:_deviceLabel];
-    [self addSubview:_moduleLable];
-    [self addSubview:_finishTime];
+    [self.contentView addSubview:_iconImage];
+    [self.contentView addSubview:_deviceLabel];
+    [self.contentView addSubview:_moduleLable];
+    [self.contentView addSubview:_finishTime];
     
     _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(110*kRate, 115*kRate, 267*kRate, 20*kRate)];
     _progressView.trackTintColor = UIColorFromRGB(0x2b75aa);
@@ -79,12 +89,34 @@
     _retryButton.titleLabel.font = [UIFont systemFontOfSize:16*kRate];
     [self.contentView addSubview:_retryButton];
     _retryButton.hidden = YES;
-    
+    [_retryButton addTarget:self action:@selector(clickReTry:) forControlEvents:UIControlEventTouchUpInside];
     _percentLabel = [self setLabelWithFrame:CGRectMake(307*kRate, 86*kRate, 70*kRate, 21*kRate) withText:nil withSize:fontSize];
     _percentLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_percentLabel];
 
 
+}
+
+- (void)clickReTry:(UIButton *)sender
+{
+
+    [_myTimer invalidate];
+    _myTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+}
+
+- (void)countDown
+{
+    if (_progressView.progress < 1) {
+        _progressView.progress += 0.01;
+    }else
+    {
+        [_myTimer invalidate];
+        _progressView.progress = 0;
+        [_retryButton setTitle:@"重试" forState:UIControlStateNormal];
+        _finishTime.hidden = NO;
+        _finishTime.text = @"连接失败";
+        [_delegate deviceTryToConnect:_retryButton.titleLabel.text];
+    }
 }
 
 - (void) setOtherImageView
@@ -148,11 +180,11 @@
     _riceCell = riceCell;
     
     _stateLabel.text = riceCell.degree;
-    self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", riceCell.pnumberweight];
+    _pNumberLabel.text = [NSString stringWithFormat:@"%@人份", riceCell.pnumberweight];
     
-    self.moduleLable.text = riceCell.module;
-    self.degreeLabel.text = riceCell.state;
-    self.finishTime.text = riceCell.appointTime;
+    _moduleLable.text = riceCell.module;
+    _degreeLabel.text = riceCell.state;
+    _finishTime.text = riceCell.appointTime;
     [self.progressView setProgress:(riceCell.settingTime -riceCell.remianTime)/riceCell.settingTime];
 }
 
@@ -161,13 +193,24 @@
 {
     _device = device;
     if ([device.connectstate isEqualToString:@"1"] || ![device.module isEqualToString:@"未连接"]) {
-        self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
-        self.stateLabel.text = device.state;
-        self.degreeLabel.text = device.degree;
+        _pNumberLabel.hidden = NO;
+        _stateLabel.hidden = NO;
+        _degreeLabel.hidden = NO;
+        _percentLabel.hidden = NO;
+        _finishTime.hidden = NO;
+        _pNumberImage.hidden = NO;
+        _stateImage.hidden = NO;
+        _degreeImage.hidden = NO;
+        _retryButton.hidden = YES;
+        _pNumberLabel.text = [NSString stringWithFormat:@"%@人份", device.pnumberweight];
+        _stateLabel.text = device.state;
+        _degreeLabel.text = device.degree;
+        _iconImage.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon-e饭宝（188）" ofType:@"png"]];
+        _finishTime.hidden = NO;
         if ([device.module isEqualToString:@"预约中"]) {
-            self.finishTime.text = [NSString stringWithFormat:@"预约至%@", device.appointTime];
+            _finishTime.text = [NSString stringWithFormat:@"预约至%@", device.appointTime];
         }else
-        self.finishTime.text =  device.appointTime;
+        _finishTime.text =  device.appointTime;
         double percent = (device.settingTime -device.remianTime)/device.settingTime;
         _percentLabel.text = [NSString stringWithFormat:@"%d％", (int)(percent*100)];
         [self.progressView setProgress:percent];
@@ -179,7 +222,7 @@
         _stateLabel.hidden = YES;
         _degreeLabel.hidden = YES;
         _percentLabel.hidden = YES;
-
+        _finishTime.hidden = YES;
         _pNumberImage.hidden = YES;
         _stateImage.hidden = YES;
         _degreeImage.hidden = YES;
