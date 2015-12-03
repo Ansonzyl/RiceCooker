@@ -232,7 +232,7 @@
     if (!_setTime) {
         _setTime = [_setTimeArray[0] integerValue];
     }
-    [_timePicker selectRow:[_setTimeArray indexOfObject:[NSString stringWithFormat:@"%ld", (long)_setTime]] inComponent:1 animated:YES];
+    [_timePicker selectRow:[_setTimeArray indexOfObject:[NSString stringWithFormat:@"%ld", (long)_setTime]] inComponent:0 animated:YES];
 
     [self dateChange];
     switch (_currentTag) {
