@@ -363,7 +363,7 @@
 {
     
     if ([pickerView isEqual:_pNumberPickerView]) {
-        if (component == 1) {
+        if (component == 0) {
             self.pNumberStr = [NSString stringWithFormat:@"%d", (int)(row + 1)];
             self.pNumberLabel.text = [NSString stringWithFormat:@"%@人份", self.pNumberStr];
             
@@ -421,7 +421,7 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGFloat width = CGRectGetHeight(pickerView.frame);
-    CGFloat center = 50;
+//    CGFloat center = 50;
     if (pickerView == _pNumberPickerView) {
         if (component == 0) {
             return width/2 + 10;

@@ -103,7 +103,7 @@
     [_finishTimeBtn addTarget:self action:@selector(pushToNextView:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    CGRect frame = CGRectMake(0, 0, 60*kRate, 21*kRate);
+    CGRect frame = CGRectMake(0, 0, 100*kRate, 21*kRate);
     
     _pNumberLabel = [self setLabelWithFrame:frame];
     _pNumberLabel.center = [self makeCenterWithPoint:_pNumberBtn.center];

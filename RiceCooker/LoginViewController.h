@@ -20,9 +20,5 @@
 
 - (IBAction)loginBtn:(id)sender;
 
-- (IBAction)registerBtn:(UIButton *)sender;
-- (IBAction)fogetPasswordBtn:(UIButton *)sender;
-
-- (IBAction)tapback:(id)sender;
 
 @end

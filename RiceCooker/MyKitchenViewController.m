@@ -302,30 +302,19 @@
             
 
         }else
-            
         {
             if (_vegetableArray.count > indexPath.row) {
                 DM_EVegetable *vegetable = [DM_EVegetable eVegetableWithDict:_vegetableArray[indexPath.row]];
-            EVegetabelCell1 *cell = [tableView dequeueReusableCellWithIdentifier:[EVegetabelCell1 cellID]];
-            if (cell == nil) {
-                cell = [EVegetabelCell1 eVegetableCell];
+                EVegetabelCell1 *cell = [tableView dequeueReusableCellWithIdentifier:[EVegetabelCell1 cellID]];
+                if (cell == nil) {
+                    cell = [EVegetabelCell1 eVegetableCell];
+                }
+                cell.vegetable = vegetable;
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
             }
-            cell.vegetable = vegetable;
-//            if ([vegetable.devicename isEqualToString:@"e菜宝上"]) {
-//                cell.vegetable = vegetable;
-//            }else if([vegetable.devicename isEqualToString:@"e菜宝中"])
-//            {
-//                cell.vegetable2 = vegetable;
-//            }else
-//                cell.vegetable3 = vegetable;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-
-            }
-            
         }
-        
     }
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         return cell;
@@ -433,6 +422,11 @@
             
         }];
     }
+}
+
+- (void)unConnectImage
+{
+//    UIImageView *iamgeView = [UIImageView alloc] initWithFrame:CGRectMake(0, -146, , <#CGFloat height#>)
 }
 
 

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"分享管理";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -76,7 +76,7 @@
     BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:[BasicCell cellID]];
     if (cell == nil) {
         cell = [BasicCell basicCell];
-//        cell.titleLabel = [NSString stringWithFormat:@"分享给%@",]
+
     }
     return cell;
 }

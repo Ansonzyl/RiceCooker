@@ -8,13 +8,14 @@
 
 #import "AddShareViewController.h"
 
-@interface AddShareViewController ()
+@interface AddShareViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *sharePhoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *sharePhoneNumberImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *repeatPhoneNumberImageView;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPhoneNumberTextFiled;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 - (IBAction)shareDevices:(id)sender;
+
 
 @end
 
@@ -28,7 +29,20 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:image ofType:@"png"];
     self.iconImage.image = [UIImage imageWithContentsOfFile:path];
     self.shareButton.layer.cornerRadius = 2;
+    _repeatPhoneNumberTextFiled.delegate = self;
+    _sharePhoneNumberTextField.delegate = self;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:_sharePhoneNumberTextField]) {
+        _sharePhoneNumberImageView.highlighted = YES;
+    }else
+    {
+        _repeatPhoneNumberImageView.highlighted = YES;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,5 +60,9 @@
 */
 
 - (IBAction)shareDevices:(id)sender {
+}
+
+- (IBAction)tapBack:(id)sender {
+    [self.view endEditing:YES];
 }
 @end

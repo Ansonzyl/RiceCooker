@@ -11,6 +11,9 @@
 		<string>20</string>
 		<string>25</string>
 		<string>30</string>
+		<string>38</string>
+		<string>40</string>
+		<string>45</string>
 	</array>
 	<key>material</key>
 	<dict>
@@ -23,6 +26,7 @@
 			<string>原笼牛肉</string>
 			<string>牛腩蒸萝卜</string>
 			<string>粉蒸羊肉</string>
+			<string>西兰花鸡胸肉</string>
 			<string>清蒸鸡肉</string>
 			<string>火腿蒸菜</string>
 			<string>腊肉春笋</string>
@@ -31,7 +35,8 @@
 		</array>
 		<key>水产鱼类</key>
 		<array>
-			<string>清蒸鲈鱼</string>
+			<string>清蒸桂鱼</string>
+			<string>豆腐鱼头</string>
 			<string>微波蒜蓉虾</string>
 			<string>剁椒鱼头</string>
 			<string>清蒸黄鳝</string>
@@ -52,8 +57,8 @@
 			<string>青菜</string>
 			<string>白菜</string>
 			<string>娃娃菜</string>
+			<string>丝瓜荷包蛋</string>
 			<string>芋头</string>
-			<string>土豆</string>
 			<string>冬瓜</string>
 			<string>南瓜</string>
 			<string>银耳</string>
@@ -107,6 +112,8 @@
 		<string>200</string>
 		<string>250</string>
 		<string>300</string>
+		<string>350</string>
+		<string>380</string>
 		<string>400</string>
 		<string>500</string>
 		<string>600</string>

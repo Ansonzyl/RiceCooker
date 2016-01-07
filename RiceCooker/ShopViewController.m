@@ -58,10 +58,10 @@
 static NSString * const reuseIdentifier = @"CollectionViewCell";
 
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
     [self initializeCollectionView];
     [self locationBtn];
-    [super viewDidLoad];
+    
     [self userInformation];
     [self setBarImage];
     [self startStandardUpdates];
@@ -354,7 +354,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     }
 }
 
-
+#pragma mark CollectionCellDelegate
 - (void)clickBtnWithCommodity:(DM_Commodity *)commodity
 {
     BOOL isExist = NO;
@@ -365,9 +365,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         if ([commodity.nameKey isEqual:com.nameKey]) {
             isExist = YES;
             break;
-
-        }else
-        {
 
         }
     }
@@ -645,7 +642,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             NSLog(@"%@\n%@",placemark.thoroughfare,placemark.subThoroughfare);
             
-            NSString* address = [NSString stringWithFormat:@"            %@ %@ %@ %@ %@ %@",
+            NSString* address = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@",
                                  placemark.country,
                                  placemark.administrativeArea,
                                  placemark.locality,

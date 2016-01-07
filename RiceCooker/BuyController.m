@@ -70,17 +70,13 @@
 - (void)back
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认取消支付"  message:@"您要放弃这次支付吗？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续支付" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续支付" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [alert addAction:sure];
     [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:^{
-        
-    }];
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

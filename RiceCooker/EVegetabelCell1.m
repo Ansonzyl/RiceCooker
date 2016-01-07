@@ -71,9 +71,9 @@
     _weightImageView = [self setImageViewWithFrame:CGRectMake(kWidth - 102*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e菜宝上-重量" ofType:@"png"]];
     _materialImageView = [self setImageViewWithFrame:CGRectMake(266*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle]pathForResource:@"icon-e菜宝上-食材" ofType:@"png"]];
     
-    _degreeImageView = [self setImageViewWithFrame:CGRectMake(221*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle] pathForResource:@"icon-e菜宝上-烹饪方式" ofType:@"png"]];
+    _degreeImageView = [self setImageViewWithFrame:CGRectMake(219*kRate, 29*kRate, size, size) withImage:[[NSBundle mainBundle] pathForResource:@"icon-e菜宝上-烹饪方式" ofType:@"png"]];
     
-    CGRect frame = CGRectMake(0, 0, 60*kRate, 18*kRate);
+    CGRect frame = CGRectMake(0, 0, 50*kRate, 18*kRate);
     CGFloat fontSize = 12*kRate;
     
     _pNumberLabel = [self setLabelWithFrame:frame withSize:fontSize withTextAlignment:NSTextAlignmentCenter];
@@ -86,6 +86,9 @@
     _stateLabel = [self setLabelWithFrame:frame withSize:fontSize withTextAlignment:NSTextAlignmentCenter];
     
     _stateLabel.center = [self makeCenterWithPoint:_materialImageView.center];
+    CGPoint center = _stateLabel.center;
+    center.x +=1;
+    _stateLabel.center = center;
     [self addSubview:_stateLabel];
     
     

@@ -59,10 +59,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = _device.devicename;
-    
+    [self recieveArray];
     [self initializeImageAndLabelText];
     [self setAllArray];
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@背景1", _device.devicename] ofType:@".png"];
     NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
@@ -71,8 +71,7 @@
 
     
     [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:_device.settingTime + 60]];
-//    NSDate *date = [[NSDate date] initWithTimeIntervalSinceNow:32*60*60];
-//    [_datePicker setMaximumDate:[[NSDate date] initWithTimeIntervalSinceNow:32*60*60]];
+
 
     [_datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60]];
     _dateFormatter = [[NSDateFormatter alloc] init];
@@ -93,16 +92,39 @@
     
 }
 
+- (void)recieveArray
+{
+    NSString *urlStr = [NSString stringWithFormat: @"http://%@/SendToApp", SERVER_URL];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSArray *array = [recieve componentsSeparatedByString:@";"];
+    _setTimeArray = [array[0] componentsSeparatedByString:@","];
+    _weightArray = [array[1] componentsSeparatedByString:@","];
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manager POST:[NSString stringWithFormat: @"http://%@/SendToApp", SERVER_URL]; parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+//        
+//    } failure:<#^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error)failure#>]
+}
+
 - (void)setAllArray
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"EVegetablePickerViewList" ofType:@"plist"];
     _dic = [NSDictionary dictionaryWithContentsOfFile:path];
     
     _materialDic = [_dic objectForKey:@"material"];
-    
     _cookTypeArray = [_dic objectForKey:@"cookType"];
-    _setTimeArray = [_dic objectForKey:@"setTime"];
-    _weightArray = [_dic objectForKey:@"weight"];
+    if (!_setTimeArray) {
+        _setTimeArray = [_dic objectForKey:@"setTime"];
+    }
+    if (!_weightArray) {
+        _weightArray = [_dic objectForKey:@"weight"];
+    }
+    
     _materialArray1 = [[_materialDic allKeys] sortedArrayUsingSelector:@selector(compare:)];
 }
 
@@ -127,7 +149,7 @@
     _weightImageView = [self setImageViewWithFrame:CGRectMake(229*kRate, height, size, size) withImage:@"icon-e菜宝重量（152）.png" withHighlightedImage:@"icon-e菜宝-重量选中（152）.png"];
     _finishTimeImageView = [self setImageViewWithFrame:CGRectMake(322*kRate, height, size, size) withImage:@"icon-e饭宝-预约（152）.png" withHighlightedImage:@"icon-e饭宝-预约选中（152）.png"];
     
-    CGRect frame = CGRectMake(0, 0, 60*kRate, 21*kRate);
+    CGRect frame = CGRectMake(0, 0, 100*kRate, 21*kRate);
     size = 12 * kRate;
     
     _cookTypeLabel = [self setLabelWithFrame:frame withText:_device.degree withSize:size withColor:[UIColor blackColor]];

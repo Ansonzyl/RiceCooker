@@ -190,7 +190,6 @@
 
 - (void)restart
 {
-#warning 
     NSString *urlStr = @"http://192.168.1.1/advanced.htm";
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];

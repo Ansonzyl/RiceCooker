@@ -36,9 +36,7 @@
     
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
     
-//    if (_isAdd) {
-//        [self addDvice];
-//    }
+
     if (_isAdd) {
         _leftButton.hidden = YES;
         _rightButton.hidden = YES;

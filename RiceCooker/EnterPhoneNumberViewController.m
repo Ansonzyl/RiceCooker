@@ -95,45 +95,56 @@
 //    }
     
 
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text};
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:_urlStr parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        NSString *recive = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        if ([self.identityStr isEqualToString:@"忘记密码？"]) {
-            if ([recive isEqualToString:@"success"]) {
-                FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
-                viewController.phoneNumber = self.phoneNumberTextField.text;
-                [self.navigationController pushViewController:viewController animated:YES];
-                
-            }else
+    if ([self isCheckTextField]) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text};
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager POST:_urlStr parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSString *recive = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            if ([self.identityStr isEqualToString:@"忘记密码？"]) {
+                if ([recive isEqualToString:@"success"]) {
+                    FogetPWViewController *viewController = [[FogetPWViewController alloc] initWithNibName:@"FogetPWViewController" bundle:nil];
+                    viewController.phoneNumber = self.phoneNumberTextField.text;
+                    [self.navigationController pushViewController:viewController animated:YES];
+                    
+                }else
+                {
+                    [self showTopMessage:@"用户名未注册"];
+                }
+            }else if ([self.identityStr isEqualToString:@"注册"])
             {
-                [self showTopMessage:@"用户名未注册"];
-            }
-        }else if ([self.identityStr isEqualToString:@"注册"])
-        {
-            if ([recive isEqualToString:@"success"]) {
-                RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-                 viewController.phoneNumber = self.phoneNumberTextField.text;
-                [self.navigationController pushViewController:viewController animated:YES];
+                if ([recive isEqualToString:@"success"]) {
+                    RegisterViewController *viewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+                    viewController.phoneNumber = self.phoneNumberTextField.text;
+                    [self.navigationController pushViewController:viewController animated:YES];
+                    
+                }else
+                {
+                    [self showTopMessage:@"用户名已注册"];
+                }
                 
-            }else
-            {
-               [self showTopMessage:@"用户名已注册"];
             }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showTopMessage:@"连接不上服务器"];
+            
+        }];
 
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showTopMessage:@"连接不上服务器"];
-        
-    }];
+    }else
+    {
+        [self showTopMessage:@"请输入手机号"];
+    }
     
 }
 
-
+- (BOOL)isCheckTextField
+{
+    if ([_phoneNumberTextField.text  isEqual: @""] || _phoneNumberTextField.text == nil) {
+        return NO;
+    }else
+        return YES;
+}
 
 
 - (IBAction)tapback:(id)sender {

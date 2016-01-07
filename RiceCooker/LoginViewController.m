@@ -65,17 +65,10 @@
 }
 
 
-
-//- (UIButton *)initializeButtonWithFrame:(CGRect)frame withText:(NSString *)text withColor
-
-
-
 - (void)setLabelAndImageAndButton
 {
     
     CGRect frame = CGRectMake(0, 0, 385*kRate, 57*kRate);
-    
-    
     
     _logoImageView = [_ui initializeImageWithFrame:CGRectMake(181*kRate, 21*kRate, 51*kRate, 65*kRate) withImageName:@"logo-dicooker" withHightlightImage:nil];
     _phoneNumberImageView = [_ui initializeImageWithFrame:CGRectMake(15*kRate, 123*kRate, 385*kRate, 57*kRate) withImageName:@"phone" withHightlightImage:@"phone输入后"];
@@ -95,9 +88,9 @@
     _passwordTextField = [_ui initializeTextFieldWithFrame:CGRectMake(60*kRate, 208*kRate, 213*kRate, 30*kRate) withFont:14 withtextAlignment:NSTextAlignmentLeft withPlaceholderText:@"密码" withColor:[UIColor whiteColor]];
     _passwordTextField.secureTextEntry = YES;
     UIButton *regist = [_ui setButtonWithFrame:CGRectMake(15*kRate, 330*kRate, 30*kRate, 30*kRate)  withText:@"注册" withFont:15];
-        [regist addTarget:self action:@selector(registerBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [regist addTarget:self action:@selector(presentView:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *forgetPassWord = [_ui setButtonWithFrame:CGRectMake(321*kRate, 330*kRate, 79*kRate, 30*kRate)  withText:@"忘记密码？" withFont:15];
-        [forgetPassWord addTarget:self action:@selector(fogetPasswordBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [forgetPassWord addTarget:self action:@selector(presentView:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *other = [_ui initializeImageWithFrame:CGRectMake(0, 0, 386*kRate, 94*kRate) withImageName:@"other" withHightlightImage:nil];
     other.center = [self makeCenterWithPoint:_passwordImageView.center wihtHeight:190];
     
@@ -115,8 +108,8 @@
     self.passwordTextField.text = [_userDefaults objectForKey:@"password"];
     self.phoneNumberTextField.text = [_userDefaults objectForKey:@"phoneNumber"];
     
-    NSString *first = [_userDefaults objectForKey:@"firstLogin"];
-    if (first) {
+    NSString *notFirst = [_userDefaults objectForKey:@"firstLogin"];
+    if (notFirst) {
         [self loginBtn:loginBton];
     }else
         [_userDefaults setObject:@"notFirst" forKey:@"firstLogin"];
@@ -134,107 +127,59 @@
 
 
 - (IBAction)loginBtn:(id)sender {
-   
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-  
-//    NSString *urlStr = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-//    [request setHTTPMethod:@"POST"];
-//
-//    NSString *body = [NSString stringWithFormat:@"phonenumber=%@&password=%@", self.phoneNumberTextField.text, self.passwordTextField.text];
-//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        NSString *recieve = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        if ([recieve isEqualToString:@"fail"]) {
-//            
-//            [self showTopMessage:@"用户名或密码错误"];
-//            return;
-//            
-//        }else if([recieve isEqualToString:@"success"])
-//        {
-//            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-//            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
-//            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self presentViewController:main animated:YES completion:nil];
-//            });
-//            return;
-//
-//        }
-//        NSLog(@"%@",error);
-//        if (error) {
-//            NSInteger state = [(NSHTTPURLResponse *)response statusCode];
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                switch (state) {
-//                    case 500:
-//                        [self showTopMessage:@"服务器暂时不可用"];
-//                        break;
-//                    case 401:
-//                        [self showTopMessage:@"请求的网页不存在"];
-//                        break;
-//                    default:
-//                        [self showTopMessage:@"连接不到服务器"];
-//                        break;
-//                }
-//                return;
-//
-//            });
-//        }
-//    }];
-//    
-//    [task resume];
-
-
-    NSString *first = [_userDefaults objectForKey:@"firstLogin"];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text, @"password":self.passwordTextField.text};
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
-    [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    if ([self isCheckTextField]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *paramters = @{@"phonenumber":self.phoneNumberTextField.text,
+                                    @"password":self.passwordTextField.text};
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        NSString *url = [NSString stringWithFormat: @"http://%@/LoginServlet", SERVER_URL];
         
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if ([recieve isEqualToString:@"fail"]) {
+        [manager POST:url parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSString *recieve = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if ([recieve isEqualToString:@"fail"]) {
                 [self showTopMessage:@"用户名或密码错误"];
+            }else if([recieve isEqualToString:@"success"])
+            {
+                [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
+                UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+                [self presentViewController:main animated:YES completion:nil];
+            }
             
-        }else if([recieve isEqualToString:@"success"])
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNumberTextField.text forKey:@"phoneNumber"];
-            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
-            UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            MainViewController *main = [stroyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-
-            [self presentViewController:main animated:YES completion:nil];
-        }
-
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
-                NSLog(@"%@", error);
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"%@", error);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self showTopMessage:@"连接不到服务器"];
-
+            
         }];
 
+    }
+    
 }
 
-- (IBAction)fogetPasswordBtn:(UIButton *)sender {
-    [self presentView:sender.titleLabel.text];
+- (BOOL)isCheckTextField
+{
+    if ([_phoneNumberTextField.text  isEqual: @""] || _phoneNumberTextField.text == nil) {
+        [self showTopMessage:@"请输入手机号"];
+        return NO;
+    }else if ([_passwordTextField.text isEqual:@""] || _passwordTextField.text == nil)
+    {
+        [self showTopMessage:@"请输入密码"];
+        return NO;
+    }else
+        return YES;
 }
 
 
-- (void)presentView:(NSString *)identity
+- (void)presentView:(UIButton *)sender
 {
     EnterPhoneNumberViewController *viewController = [[EnterPhoneNumberViewController alloc] initWithNibName:@"EnterPhoneNumberViewController" bundle:nil];
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    viewController.identityStr = identity;
-//    [self presentViewController:navController animated:YES completion:nil];
+    viewController.identityStr = sender.titleLabel.text;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -263,11 +208,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
-}
-
-- (IBAction)registerBtn:(UIButton *)sender
-{
-    [self presentView:@"注册"];
 }
 
 
