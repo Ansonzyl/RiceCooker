@@ -65,7 +65,7 @@
     _deviceLabel = [self setLabelWithFrame:CGRectMake(110*kRate, 30*kRate, 70*kRate, 21*kRate)  withText:@"e饭宝" withSize:21*kRate];
     CGFloat fontSize = 12*kRate;
     _moduleLable = [self setLabelWithFrame:CGRectMake(110*kRate, 57*kRate, 70*kRate, 21*kRate) withText:nil withSize:15*kRate];
-    _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 70*kRate, 21*kRate) withText:nil withSize:fontSize];
+    _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 200*kRate, 21*kRate) withText:nil withSize:fontSize];
 
     [self.contentView addSubview:_iconImage];
     [self.contentView addSubview:_deviceLabel];

@@ -102,7 +102,7 @@
     [self addSubview:_settimeLabel];
     _device = [self setLabelWithFrame:CGRectMake(110*kRate, 30*kRate, 100*kRate, 21*kRate)   withSize:21*kRate withTextAlignment:NSTextAlignmentLeft];
     _moduleLable = [self setLabelWithFrame:CGRectMake(110*kRate, 57*kRate, 70*kRate, 21*kRate)  withSize:15*kRate withTextAlignment:NSTextAlignmentLeft];
-    _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 70*kRate, 21*kRate) withSize:fontSize withTextAlignment:NSTextAlignmentLeft];
+    _finishTime = [self setLabelWithFrame:CGRectMake(110*kRate, 86*kRate, 200*kRate, 21*kRate) withSize:fontSize withTextAlignment:NSTextAlignmentLeft];
     
     
     [self addSubview:_degreeImageView];
@@ -191,8 +191,13 @@
         self.pNumberLabel.text = [NSString stringWithFormat:@"%@", vegetable.pnumberweight];
         self.degreeLabel.text = vegetable.degree;
         self.settimeLabel.text = vegetable.settime;
-        self.finishTime.text = vegetable.appointTime;
+        
         double percent = (vegetable.settingTime - vegetable.remianTime)/vegetable.settingTime;
+        if ([_vegetable.module isEqualToString:@"预约中"]) {
+            _finishTime.text = [NSString stringWithFormat:@"预约至%@", _vegetable.appointTime];
+        }else
+            self.finishTime.text = vegetable.appointTime;
+
         _percentLabel.text = [NSString stringWithFormat:@"%d％", (int)(percent*100)];
         [self.progressView setProgress:percent];
     }else

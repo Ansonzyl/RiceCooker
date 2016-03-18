@@ -73,7 +73,7 @@
         
 
    
-        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:46*60]];
+        [_datePicker setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:47*60]];
     
 
 

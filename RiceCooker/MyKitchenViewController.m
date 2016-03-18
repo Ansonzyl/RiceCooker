@@ -84,7 +84,10 @@
     
     _phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pullToRefresh) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -108,6 +111,11 @@
         [self JSONWithURL];
 //    }
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)pullToRefresh

@@ -557,10 +557,14 @@
             [self changeDevice];
             [_delegate changeDevice:_device withIndex:_currentIndex];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"预约成功" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+
+            
             [alert addAction:cancelAction];
             [self presentViewController:alert animated:YES completion:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                
             }];
             
         }else
