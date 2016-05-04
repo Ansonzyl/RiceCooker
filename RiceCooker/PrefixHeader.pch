@@ -14,9 +14,9 @@
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
 //#define SERVER_URL @"localhost:8080/zyl1"
-//#define SERVER_URL @"202.75.219.40:8081/zgz"
+#define SERVER_URL @"202.75.219.40:8081/zgz"
 //#define SERVER_URL @"192.168.1.109:8081/zgz"
-#define SERVER_URL @"192.168.2.3:8081/zgz"
+//#define SERVER_URL @"192.168.2.3:8081/zgz"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #import "UIViewController+TopBarMessage.h"
 
